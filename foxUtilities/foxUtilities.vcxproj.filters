@@ -13,5 +13,8 @@
     <ClInclude Include="includes\foxPlatformDefines.h">
       <Filter>Archivos de origen\Prerequisites</Filter>
     </ClInclude>
+    <ClInclude Include="includes\foxPlatformTypes.h">
+      <Filter>Archivos de origen\Prerequisites</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
