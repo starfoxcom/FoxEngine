@@ -19,8 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\foxPlatformDefines.h" />
-    <ClInclude Include="includes\foxPlatformTypes.h" />
+    <ClCompile Include="src\foxPlatformMath.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\foxPlatformDefines.h" />
+    <ClInclude Include="include\foxPlatformMath.h" />
+    <ClInclude Include="include\foxPlatformTypes.h" />
+    <ClInclude Include="include\foxPrerequisitesUtilities.h" />
+    <ClInclude Include="include\foxStdHeaders.h" />
+    <ClInclude Include="include\foxVector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
