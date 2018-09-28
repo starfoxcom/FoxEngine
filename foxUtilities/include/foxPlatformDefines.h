@@ -1,11 +1,16 @@
 /**
- * 
+ * @file foxPlatformDefines.h
+ * @author ---
+ * @date ---
+ * @brief Some definitions to describe the target platform
+ *
+ * This definitions are meant to describe the target platform
  */
 
 #pragma once
 
 /**
- * 
+ * Initial platform/compiler-related stuff to set.
  */
 #define FOX_PLATFORM_WIN32      1       //Windows Platform
 #define FOX_PLATFORM_LINUX      2       //Linux Platform
@@ -29,7 +34,7 @@
 #define FOX_ENDIAN FOX_ENDIAN_LITTLE
 
 /**
- * 
+ * Compiler type and version.
  */
 #if defined(__clang__)
 #   define FOX_COMPILER FOX_COMPILER_CLANG
@@ -74,7 +79,7 @@
 #endif
 
 /**
- * 
+ * See if we can user __forceinline or if we need to user __inline instead.
  */
 #if FOX_COMPILER == FOX_COMPILER_MSVC       //If we are compiling on Visual Studio
 #   if FOX_COMP_VER >= 1200                 //If we are on Visual Studio 6 or higher
@@ -265,7 +270,8 @@
 #   define _CRT_SECURE_NO_WARNINGS
 
     /**
-     * Disable: "<type> needs to
+     * Disable: "<type> needs to have DLL interface to be used by clients"
+     * Happens on STL member variables which are not public therefore is ok
      */
 #   pragma warning (disable: 4251)
 
@@ -273,7 +279,11 @@
 #   pragma warning (disable:4996)
 
     /**
-     * 
+     * Disable: decorated name length exceeded, name was truncated. Happens with
+     * really long type names. Even fairly standard use of std::unordered_map
+     * with custom parameters, meaning I can't really do much to avoid it.
+     * It shouldn't effect execution but might cause problems if you compile
+     * library with one compiler and use it in another.
      */
 #   pragma warning (disable:4503)
 
