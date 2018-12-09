@@ -26,26 +26,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -179,15 +179,24 @@
     <ClInclude Include="include\foxDevice.h" />
     <ClInclude Include="include\foxDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
+    <ClInclude Include="include\foxGraphicsDefines.h" />
+    <ClInclude Include="include\foxInputLayout.h" />
+    <ClInclude Include="include\foxPixelShader.h" />
+    <ClInclude Include="include\foxRenderTargetView.h" />
     <ClInclude Include="include\foxSwapChain.h" />
     <ClInclude Include="include\foxVertexBuffer.h" />
+    <ClInclude Include="include\foxVertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDevice.cpp" />
     <ClCompile Include="src\foxDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxInputLayout.cpp" />
+    <ClCompile Include="src\foxPixelShader.cpp" />
+    <ClCompile Include="src\foxRenderTargetView.cpp" />
     <ClCompile Include="src\foxSwapChain.cpp" />
     <ClCompile Include="src\foxVertexBuffer.cpp" />
+    <ClCompile Include="src\foxVertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

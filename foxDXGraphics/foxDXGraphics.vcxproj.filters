@@ -7,6 +7,9 @@
     <Filter Include="Src">
       <UniqueIdentifier>{7d1a54c0-d5ce-4e64-b752-cea49ad6f135}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\prerequisites">
+      <UniqueIdentifier>{4d1e0b74-6290-41a5-b734-8673324c538a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\foxDXGraphicsAPI.h">
@@ -24,6 +27,21 @@
     <ClInclude Include="include\foxVertexBuffer.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxGraphicsDefines.h">
+      <Filter>Include\prerequisites</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxInputLayout.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxRenderTargetView.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxVertexShader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxPixelShader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -39,6 +57,18 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxVertexBuffer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxInputLayout.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxRenderTargetView.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxVertexShader.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxPixelShader.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

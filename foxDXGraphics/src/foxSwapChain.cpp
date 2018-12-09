@@ -45,8 +45,8 @@ namespace foxEngineSDK
     return &m_swapChain;
   }
 
-  DXGI_SWAP_CHAIN_DESC SwapChain::getSwapChainDesc()
+  DXGI_SWAP_CHAIN_DESC * SwapChain::getSwapChainDesc()
   {
-    return m_swapChainDesc;
+    return &m_swapChainDesc;
   }
 }

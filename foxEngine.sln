@@ -6,12 +6,27 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxUtilities", "foxUtilities\foxUtilities.vcxproj", "{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxUtilities_UnitTest", "foxUtilities_UnitTest\foxUtilities_UnitTest.vcxproj", "{1DFEC8D5-6093-4C51-BB2B-72EA0B83F610}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxCore", "foxCore\foxCore.vcxproj", "{452E4C8A-B7AC-48C2-886D-669F73C50621}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxDXGraphics", "foxDXGraphics\foxDXGraphics.vcxproj", "{861F5C58-9F2A-49AB-BC06-CE139801C09D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768} = {167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxDXGraphics_UnitTest", "foxDXGraphics_UnitTest\foxDXGraphics_UnitTest.vcxproj", "{3B1ECE6D-7F19-43D3-94EC-5B8DAFD410DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{861F5C58-9F2A-49AB-BC06-CE139801C09D} = {861F5C58-9F2A-49AB-BC06-CE139801C09D}
+		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768} = {167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxCore", "foxCore\foxCore.vcxproj", "{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +52,6 @@ Global
 		{1DFEC8D5-6093-4C51-BB2B-72EA0B83F610}.Release|x64.Build.0 = Release|x64
 		{1DFEC8D5-6093-4C51-BB2B-72EA0B83F610}.Release|x86.ActiveCfg = Release|Win32
 		{1DFEC8D5-6093-4C51-BB2B-72EA0B83F610}.Release|x86.Build.0 = Release|Win32
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Debug|x64.ActiveCfg = Debug|x64
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Debug|x64.Build.0 = Debug|x64
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Debug|x86.ActiveCfg = Debug|Win32
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Debug|x86.Build.0 = Debug|Win32
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Release|x64.ActiveCfg = Release|x64
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Release|x64.Build.0 = Release|x64
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Release|x86.ActiveCfg = Release|Win32
-		{452E4C8A-B7AC-48C2-886D-669F73C50621}.Release|x86.Build.0 = Release|Win32
 		{861F5C58-9F2A-49AB-BC06-CE139801C09D}.Debug|x64.ActiveCfg = Debug|x64
 		{861F5C58-9F2A-49AB-BC06-CE139801C09D}.Debug|x64.Build.0 = Debug|x64
 		{861F5C58-9F2A-49AB-BC06-CE139801C09D}.Debug|x86.ActiveCfg = Debug|Win32
@@ -61,6 +68,14 @@ Global
 		{3B1ECE6D-7F19-43D3-94EC-5B8DAFD410DE}.Release|x64.Build.0 = Release|x64
 		{3B1ECE6D-7F19-43D3-94EC-5B8DAFD410DE}.Release|x86.ActiveCfg = Release|Win32
 		{3B1ECE6D-7F19-43D3-94EC-5B8DAFD410DE}.Release|x86.Build.0 = Release|Win32
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Debug|x64.ActiveCfg = Debug|x64
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Debug|x64.Build.0 = Debug|x64
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Debug|x86.ActiveCfg = Debug|Win32
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Debug|x86.Build.0 = Debug|Win32
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x64.ActiveCfg = Release|x64
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x64.Build.0 = Release|x64
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x86.ActiveCfg = Release|Win32
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

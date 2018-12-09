@@ -10,6 +10,7 @@
  * Includes
  */
 #include <d3d11.h>
+#include "foxGraphicsDefines.h"
 
  /**
  * Libs
@@ -17,7 +18,7 @@
 namespace foxEngineSDK
 {
 
-  class SwapChain
+  class FOX_GRAPHICS_EXPORT SwapChain
   {
   public:
     SwapChain();
@@ -35,7 +36,7 @@ namespace foxEngineSDK
 
     IDXGISwapChain * getSwapChain();
 
-    DXGI_SWAP_CHAIN_DESC getSwapChainDesc();
+    DXGI_SWAP_CHAIN_DESC * getSwapChainDesc();
 
 
 

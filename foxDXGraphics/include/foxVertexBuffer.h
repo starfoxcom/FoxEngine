@@ -10,6 +10,7 @@
 * Includes
 */
 #include <d3d11.h>
+#include "foxGraphicsDefines.h"
 
 
 
@@ -23,7 +24,7 @@
 namespace foxEngineSDK
 {
 
-  class VertexBuffer
+  class FOX_GRAPHICS_EXPORT VertexBuffer
   {
   public:
     VertexBuffer();
@@ -35,7 +36,7 @@ namespace foxEngineSDK
 
     ID3D11Buffer  * getVertexBuffer();
 
-    D3D11_BUFFER_DESC getBufferDesc();
+    D3D11_BUFFER_DESC * getBufferDesc();
   private:
 
     D3D11_BUFFER_DESC m_bufferDesc;

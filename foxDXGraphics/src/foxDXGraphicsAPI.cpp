@@ -1,9 +1,17 @@
-#include "foxDXGraphicsAPI.h"
-
 #include <vector>
 #include <fstream>
 #include <iostream>
   
+#include "foxDXGraphicsAPI.h"
+#include "foxSwapChain.h"
+#include "foxDevice.h"
+#include "foxDeviceContext.h"
+#include "foxVertexBuffer.h"
+#include "foxInputLayout.h"
+#include "foxRenderTargetView.h"
+#include "foxVertexShader.h"
+#include "foxPixelShader.h"
+
 namespace foxEngineSDK
 {
 
@@ -29,6 +37,9 @@ namespace foxEngineSDK
     //Create new device context object
     m_deviceContext = new DeviceContext();
 
+    //Create new render target view object
+    m_renderTargetView = new RenderTargetView();
+
     //Set swap chain description
     m_swapChain->setSwapChainDesc(_windowHandler);
 
@@ -53,7 +64,7 @@ namespace foxEngineSDK
       featureLevels,
       7,
       D3D11_SDK_VERSION,
-      &m_swapChain->getSwapChainDesc(),
+      m_swapChain->getSwapChainDesc(),
       m_swapChain->getSwapChainRef(),
       m_device->getDeviceRef(),
       NULL,
@@ -66,13 +77,13 @@ namespace foxEngineSDK
     m_swapChain->getSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&texture);
 
     //Create render target view
-    m_device->getDevice()->CreateRenderTargetView(texture, NULL, &m_renderTargetView);
+    m_device->getDevice()->CreateRenderTargetView(texture, NULL, m_renderTargetView->getRenderTargetViewRef());
 
     //Release texture
     texture->Release();
 
     //Set render target
-    m_deviceContext->getDeviceContext()->OMSetRenderTargets(1, &m_renderTargetView, NULL);
+    m_deviceContext->getDeviceContext()->OMSetRenderTargets(1, m_renderTargetView->getRenderTargetViewRef(), NULL);
 
     //Create viewport object
     D3D11_VIEWPORT viewport;
@@ -154,17 +165,11 @@ namespace foxEngineSDK
 
     //Create buffer
     m_device->getDevice()->CreateBuffer(
-      &m_vertexBuffer->getBufferDesc(), &InitData, m_vertexBuffer->getVertexBufferRef());
+      m_vertexBuffer->getBufferDesc(),
+      &InitData,
+      m_vertexBuffer->getVertexBufferRef());
 
-    //YOU ARE HERE
-    D3D11_MAPPED_SUBRESOURCE mapSubResource;
-
-    m_deviceContext->getDeviceContext()->Map(
-      m_vertexBuffer->getVertexBuffer(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mapSubResource);
-
-    mapSubResource.pData = triangle;
-
-    m_deviceContext->getDeviceContext()->Unmap(m_vertexBuffer->getVertexBuffer(), 0);
+    
 
   }
 
@@ -172,6 +177,12 @@ namespace foxEngineSDK
   {
 
     HRESULT hr;
+
+    m_inputLayout = new InputLayout();
+
+    m_vertexShader = new VertexShader();
+
+    m_pixelShader = new PixelShader();
 
     //Get file
     std::fstream file(_fileName, std::ios::in | std::ios::binary | std::ios::ate);
@@ -184,7 +195,7 @@ namespace foxEngineSDK
       return -1;
     }
 
-    size_t fileSize = file.tellg();
+    size_t fileSize = static_cast<size_t>(file.tellg());
 
     dataBuffer.resize(fileSize);
 
@@ -258,20 +269,20 @@ namespace foxEngineSDK
       VS->GetBufferPointer(),
       VS->GetBufferSize(),
       NULL,
-      &m_vertexShader);
+      m_vertexShader->getVertexShaderRef());
 
     //Create pixel shader
     m_device->getDevice()->CreatePixelShader(
       PS->GetBufferPointer(),
       PS->GetBufferSize(),
       NULL,
-      &m_pixelShader);
+      m_pixelShader->getPixelShaderRef());
 
     //Set vertex shader
-    m_deviceContext->getDeviceContext()->VSSetShader(m_vertexShader, 0, 0);
+    m_deviceContext->getDeviceContext()->VSSetShader(m_vertexShader->getVertexShader(), 0, 0);
 
     //Set pixel shader
-    m_deviceContext->getDeviceContext()->PSSetShader(m_pixelShader, 0, 0);
+    m_deviceContext->getDeviceContext()->PSSetShader(m_pixelShader->getPixelShader(), 0, 0);
 
     D3D11_INPUT_ELEMENT_DESC inputElementDesc[]
     {
@@ -280,21 +291,45 @@ namespace foxEngineSDK
     };
 
     m_device->getDevice()->CreateInputLayout(
-      inputElementDesc, 2, VS->GetBufferPointer(), VS->GetBufferSize(), &m_inputLayout);
+      inputElementDesc,
+      2,
+      VS->GetBufferPointer(),
+      VS->GetBufferSize(),
+      m_inputLayout->getInputLayoutRef());
 
-    m_deviceContext->getDeviceContext()->IASetInputLayout(m_inputLayout);
+    m_deviceContext->getDeviceContext()->IASetInputLayout(m_inputLayout->getInputLayout());
 
     return S_OK;
+  }
+
+  SwapChain * DXGraphicsAPI::getSwapChain()
+  {
+    return m_swapChain;
+  }
+
+  DeviceContext * DXGraphicsAPI::getDeviceContext()
+  {
+    return m_deviceContext;
+  }
+
+  RenderTargetView * DXGraphicsAPI::getRenderTargetView()
+  {
+    return m_renderTargetView;
+  }
+
+  VertexBuffer * DXGraphicsAPI::getVertexBuffer()
+  {
+    return m_vertexBuffer;
   }
 
   void DXGraphicsAPI::destroy()
   {
     m_swapChain->getSwapChain()->SetFullscreenState(FALSE, NULL);
 
-    m_inputLayout->Release();
-    m_pixelShader->Release();
-    m_vertexShader->Release();
-    m_renderTargetView->Release();
+    m_inputLayout->getInputLayout()->Release();
+    m_pixelShader->getPixelShader()->Release();
+    m_vertexShader->getVertexShader()->Release();
+    m_renderTargetView->getRenderTargetView()->Release();
     m_swapChain->getSwapChain()->Release();
     m_deviceContext->getDeviceContext()->Release();
     m_device->getDevice()->Release();

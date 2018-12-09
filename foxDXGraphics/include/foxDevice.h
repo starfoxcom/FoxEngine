@@ -10,6 +10,7 @@
  * Includes
  */
 #include <d3d11.h>
+#include "foxGraphicsDefines.h"
 
 /**
  * Libs
@@ -18,7 +19,7 @@
 namespace foxEngineSDK
 {
 
-  class Device
+  class FOX_GRAPHICS_EXPORT Device
   {
   public:
     Device();

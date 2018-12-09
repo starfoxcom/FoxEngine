@@ -10,21 +10,30 @@
  * Includes
  */
 #include <d3dcompiler.h>
-
-#include "foxSwapChain.h"
-#include "foxDevice.h"
-#include "foxDeviceContext.h"
-#include "foxVertexBuffer.h"
+#include <d3d11.h>
+#include "foxGraphicsDefines.h"
 
 /**
  * Libs, since the .libs have been added in the project settings, this is no longer needed
  */
 //#pragma comment(lib, "d3dcompiler.lib")
 
+
 namespace foxEngineSDK
 {
+/**
+ * Forward declarations
+ */
+class SwapChain;
+class Device;
+class DeviceContext;
+class VertexBuffer;
+class InputLayout;
+class RenderTargetView;
+class VertexShader;
+class PixelShader;
 
-  class DXGraphicsAPI
+  class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
   public:
     DXGraphicsAPI();
@@ -51,28 +60,31 @@ namespace foxEngineSDK
      */
     HRESULT initPipeline(const char * _fileName);
 
+    SwapChain * getSwapChain();
 
-    SwapChain * m_swapChain;
-    //IDXGISwapChain * m_swapChain;
+    DeviceContext * getDeviceContext();
 
-    Device * m_device;
-    //ID3D11Device * m_device;
+    RenderTargetView * getRenderTargetView();
 
-    DeviceContext * m_deviceContext;
-    //ID3D11DeviceContext * m_deviceContext;
-
-    VertexBuffer * m_vertexBuffer;
-
-    ID3D11InputLayout * m_inputLayout;
-
-    ID3D11RenderTargetView * m_renderTargetView;
-
-    ID3D11VertexShader * m_vertexShader;
-
-    ID3D11PixelShader * m_pixelShader;
+    VertexBuffer * getVertexBuffer();
 
   private:
 
+    SwapChain * m_swapChain;
+
+    Device * m_device;
+
+    DeviceContext * m_deviceContext;
+
+    VertexBuffer * m_vertexBuffer;
+
+    InputLayout * m_inputLayout;
+
+    RenderTargetView * m_renderTargetView;
+
+    VertexShader * m_vertexShader;
+
+    PixelShader * m_pixelShader;
   };
 }
 

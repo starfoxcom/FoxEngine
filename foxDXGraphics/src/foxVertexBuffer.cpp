@@ -35,8 +35,8 @@ namespace foxEngineSDK
     return m_vertexBuffer;
   }
 
-  D3D11_BUFFER_DESC VertexBuffer::getBufferDesc()
+  D3D11_BUFFER_DESC * VertexBuffer::getBufferDesc()
   {
-    return m_bufferDesc;
+    return &m_bufferDesc;
   }
 }
