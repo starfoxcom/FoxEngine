@@ -42,6 +42,15 @@
     <ClInclude Include="include\foxPixelShader.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxRenderWindow.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxShader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxTexture.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -69,6 +78,15 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxPixelShader.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxRenderWindow.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxShader.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxTexture.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

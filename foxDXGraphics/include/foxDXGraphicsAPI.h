@@ -11,6 +11,8 @@
  */
 #include <d3dcompiler.h>
 #include <d3d11.h>
+
+#include "foxLog.h"
 #include "foxGraphicsDefines.h"
 
 /**
@@ -24,51 +26,93 @@ namespace foxEngineSDK
 /**
  * Forward declarations
  */
-class SwapChain;
-class Device;
-class DeviceContext;
-class VertexBuffer;
-class InputLayout;
-class RenderTargetView;
-class VertexShader;
-class PixelShader;
+  class RenderWindow;
+  class SwapChain;
+  class Device;
+  class DeviceContext;
+  class Texture;
+  class RenderTargetView;
+  class VertexShader;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
   public:
+
+    enum ShaderType
+    {
+      VERTEX = 0,
+      PIXEL
+    };
+
     DXGraphicsAPI();
     ~DXGraphicsAPI();
 
     /**
-     * @brief Initializes the graphics API.
-     * @param _windowHandler The window application.
+     * RenderWindow functions
      */
-    void init(HWND _windowHandler);
+    /**
+     * @brief Initialize the graphics Window.
+     * @param _hInstance The instance of the application.
+     * @param _windowClass The name of the window class.
+     * @param _windowTitle The title of the window.
+     * @param _width The width of the window.
+     * @param _height The height of the window.
+     */
+    bool initWindow(
+      HINSTANCE _hInstance,
+      std::string _windowClass,
+      std::string _windowTitle,
+      int32 _width,
+      int32 _height);
 
     /**
-     * @brief Initializes the graphic content.
+     * @brief Gets the window handle.
      */
-    void initGraphics();
+    //HWND getWindowHandle();
 
     /**
-     * @brief Releases all D3D11 objects.
+     * @brief Process the messages of the window.
      */
-    void destroy();
+    bool processMessages();
 
     /**
-     * @brief Initializes pipeline
+     * @brief Initialize the device.
      */
-    HRESULT initPipeline(const char * _fileName);
+    bool initDevice();
 
-    SwapChain * getSwapChain();
+    /**
+     * @brief Creates the vertex shader
+     */
+    bool createVertexShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel);
+    /**
+     * @brief Cleans up the device.
+     */
+    void cleanupDevice();
 
-    DeviceContext * getDeviceContext();
+    /**
+     * @brief Render the window frame.
+     */
+    void render();
 
-    RenderTargetView * getRenderTargetView();
+    /**
+     * SwapChain functions
+     */
+    void setSwapChainDesc(
+      uint32 _bufferCount = 1,
+      uint32 _numerator = 60,
+      uint32 _denominator = 1,
+      uint32 _sampleCount = 1,
+      uint32 _sampleQuality = 0,
+      bool _windowed = true);
 
-    VertexBuffer * getVertexBuffer();
+
 
   private:
+
+    RenderWindow * m_renderWindow;
 
     SwapChain * m_swapChain;
 
@@ -76,15 +120,11 @@ class PixelShader;
 
     DeviceContext * m_deviceContext;
 
-    VertexBuffer * m_vertexBuffer;
-
-    InputLayout * m_inputLayout;
+    Texture * m_texture;
 
     RenderTargetView * m_renderTargetView;
 
     VertexShader * m_vertexShader;
-
-    PixelShader * m_pixelShader;
   };
 }
 

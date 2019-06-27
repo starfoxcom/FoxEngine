@@ -10,13 +10,15 @@
 /**
 * Includes
 */
-#include <d3d11.h>
+
 #include "foxGraphicsDefines.h"
+
+#include "foxShader.h"
 
 namespace foxEngineSDK
 {
 
-  class FOX_GRAPHICS_EXPORT VertexShader
+  class VertexShader : public Shader
   {
   public:
     VertexShader();

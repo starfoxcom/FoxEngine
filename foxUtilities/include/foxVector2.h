@@ -1,5 +1,5 @@
 /**
-* @file foxPlatformMath.h
+* @file foxVector2.h
 * @author ---
 * @date ---
 * @brief Implementation of a vector in a 2D space.
@@ -17,7 +17,13 @@
 
 namespace foxEngineSDK
 {
-  class Vector2
+
+  /**
+   * Forward declarations
+   */
+  class Vector3;
+
+  class FOX_UTILITY_EXPORT Vector2
   {
   public:
 
@@ -32,18 +38,35 @@ namespace foxEngineSDK
     ~Vector2();
 
     /**
-     * @brief Constructor using initial values.
-     * @param X X coordinate.
-     * @param Y Y coordinate.
+     * @brief Vector's Y component.
      */
-    Vector2(float X, float Y);
+    float y;
+
+    /**
+     * @brief Vector's X component.
+     */
+    float x;
+
+    /**
+     * @brief Constructor using initial values.
+     * @param _x X coordinate.
+     * @param _y Y coordinate.
+     */
+    Vector2(float _x, float _y);
+
+    /**
+     * @brief Constructor using a vector3.
+     * @param _vec3D The vector to copy the components.
+     * @return The 2D vector copied from a 3D vector.
+     */
+    Vector2(const Vector3& _vec3D);
 
     /**
      * @brief Gets the result of adding two vectors together.
-     * @param vec2D The other vector to add to this.
+     * @param _vec2D The other vector to add to this.
      * @return The result of adding the vectors together.
      */
-    Vector2 operator+(const Vector2& vec2D);
+    Vector2 operator+(const Vector2& _vec2D);
 
     /**
     * @brief Gets the result of adding float A to this.
@@ -54,10 +77,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Gets the result of subtracting a vector from this.
-     * @param vec2D The other vector to subtract from.
+     * @param _vec2D The other vector to subtract from.
      * @return The result of the subtraction.
      */
-    Vector2 operator-(const Vector2& vec2D);
+    Vector2 operator-(const Vector2& _vec2D);
 
     /**
      * @brief Gets the result of subtracting float A from this.
@@ -68,10 +91,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Gets the result of multiplying the vector with another.
-     * @param vec2D The other vector to multiply this.
+     * @param _vec2D The other vector to multiply this.
      * @return The result of the multiplication.
      */
-    Vector2 operator*(const Vector2& vec2D);
+    Vector2 operator*(const Vector2& _vec2D);
 
     /**
      * @brief Gets the result of scaling the vector with float A.
@@ -82,10 +105,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Gets the result of dividing the vector with another.
-     * @param vec2D The other vector to divide this.
+     * @param _vec2D The other vector to divide this.
      * @return the result of the division.
      */
-    Vector2 operator/(const Vector2& vec2D);
+    Vector2 operator/(const Vector2& _vec2D);
 
     /**
      * @brief Gets the result of dividing the vector with float A.
@@ -96,73 +119,66 @@ namespace foxEngineSDK
 
     /**
      * @brief Gets the dot product of this vector and another.
-     * @param vec2D The other vector.
+     * @param _vec2D The other vector.
      * @return The dot product.
      */
-    float operator|(const Vector2& vec2D);
+    float operator|(const Vector2& _vec2D);
 
     /**
      * @brief Gets the cross product of this vector and another.
-     * @param vec2D The other vector.
+     * @param _vec2D The other vector.
      * @return The cross product.
      */
-    float operator^(const Vector2& vec2D);
+    float operator^(const Vector2& _vec2D);
 
     /**
      * @brief Checks if this vector is less than another vector.
-     * @param vec2D The vector to compare against.
+     * @param _vec2D The vector to compare against.
      * return true if this is a smaller vector, otherwise false.
      */
-    bool operator<(const Vector2& vec2D);
+    bool operator<(const Vector2& _vec2D);
 
     /**
      * @brief Checks if this vector is more than another vector.
-     * @param vec2D The vector to compare against.
+     * @param _vec2D The vector to compare against.
      * @return true if this is a bigger vector, otherwise false.
      */
-    bool operator>(const Vector2& vec2D);
-
-    /**
-     * @brief Copy another vector into this vector.
-     * @param vec2D The vector to copy from.
-     * @return This vector as the given vector.
-     */
-    Vector2 operator=(const Vector2& vec2D);
+    bool operator>(const Vector2& _vec2D);
 
     /**
      * @brief Compares this vector with another for equality.
-     * @param vec2D The vector to compare against.
+     * @param _vec2D The vector to compare against.
      * @return true if the two vectors are equal, otherwise false.
      */
-    bool operator==(const Vector2& vec2D);
+    bool operator==(const Vector2& _vec2D);
 
     /**
      * @brief Compares this vector with another for inequality.
-     * @param vec2D The vector to compare against.
+     * @param _vec2D The vector to compare against.
      * @return true if the two vectors are not equal, otherwise false.
      */
-    bool operator!=(const Vector2& vec2D);
+    bool operator!=(const Vector2& _vec2D);
 
     /**
      * @brief Adds another vector to this.
-     * @param vec2D The other vector to add.
+     * @param _vec2D The other vector to add.
      * @return Copy of the vector after addition.
      */
-    Vector2 operator+=(const Vector2& vec2D);
+    Vector2& operator+=(const Vector2& _vec2D);
 
     /**
      * @brief subtracts another vector to this.
-     * @param vec2D The other vector to subtract.
+     * @param _vec2D The other vector to subtract.
      * @return Copy of the vector after subtraction.
      */
-    Vector2& operator-=(const Vector2& vec2D);
+    Vector2& operator-=(const Vector2& _vec2D);
 
     /**
      * @brief Multiplies another vector to this.
-     * @param vec2D The vector to multiply with.
+     * @param _vec2D The vector to multiply with.
      * @return copy of the vector after multiplication.
      */
-    Vector2& operator*=(const Vector2& vec2D);
+    Vector2& operator*=(const Vector2& _vec2D);
 
     /**
      * @brief Scales this vector.
@@ -173,30 +189,187 @@ namespace foxEngineSDK
 
     /**
      * @brief Divides another vector to this.
-     * @param vec2D The vector to divide with.
+     * @param _vec2D The vector to divide with.
      * @return Copy of the vector after division.
      */
-    Vector2& operator/=(const Vector2& vec2D);
+    Vector2& operator/=(const Vector2& _vec2D);
 
     /**
      * @brief Divides this vector.
      * @param A Float to divide the vector by.
      * @return Copy of the vector after division.
      */
-    Vector2 operator/=(float A);
+    Vector2& operator/=(float A);
 
     /**
     * @brief Checks if this vector is less or equal than another vector.
-    * @param vec2D The vector to compare against.
+    * @param _vec2D The vector to compare against.
     * return true if this is a smaller or equal vector, otherwise false.
     */
-    bool operator<=(const Vector2& vec2D);
+    bool operator<=(const Vector2& _vec2D);
 
     /**
     * @brief Checks if this vector is more than another vector.
-    * @param vec2D The vector to compare against.
+    * @param _vec2D The vector to compare against.
     * @return true if this is a bigger or equal vector, otherwise false.
     */
-    bool operator>=(const Vector2& vec2D);
+    bool operator>=(const Vector2& _vec2D);
+
+    /**
+     * @brief Gets specific component of the vector.
+     * @param _index The index of the vector.
+     * @return The reference to the component.
+     */
+    float & operator[](uint32 _index);
+
+    /**
+    * @brief Gets specific component of the vector.
+    * @param _index The index of the vector.
+    * @return The reference to the component.
+    */
+    float operator[](uint32 _index) const;
+    
+    /**
+     * Vector2 functions
+     */
+
+    Vector2::~Vector2() {}
+
+    Vector2::Vector2(float _x, float _y) : x(_x), y(_y) {}
+
+    Vector2::Vector2(const Vector3& _vec3D) : x(_vec3D.x), y(_vec3D.y) {}
+
+    Vector2 Vector2::operator+(const Vector2& _vec2D)
+    {
+      return Vector2(x + _vec2D.x, y + _vec2D.y);
+    }
+
+    Vector2 Vector2::operator+(float A)
+    {
+      return Vector2(x + A, y + A);
+    }
+
+    Vector2 Vector2::operator-(const Vector2& _vec2D)
+    {
+      return Vector2(x - _vec2D.x, y - _vec2D.y);
+    }
+
+    Vector2 Vector2::operator-(float A)
+    {
+      return Vector2(x - A, y - A);
+    }
+
+    Vector2 Vector2::operator*(const Vector2& _vec2D)
+    {
+      return Vector2(x * _vec2D.x, y * _vec2D.y);
+    }
+
+    Vector2 Vector2::operator*(float A)
+    {
+      return Vector2(x * A, y * A);
+    }
+
+    Vector2 Vector2::operator/(const Vector2& _vec2D)
+    {
+      return Vector2(x / _vec2D.x, y / _vec2D.y);
+    }
+
+    Vector2 Vector2::operator/(float A)
+    {
+      return Vector2(x / A, y / A);
+    }
+
+    float Vector2::operator|(const Vector2& _vec2D)
+    {
+      return x * _vec2D.x + y * _vec2D.y;
+    }
+
+    float Vector2::operator^(const Vector2 & _vec2D)
+    {
+      return x * _vec2D.y - y * _vec2D.x;
+    }
+
+    bool Vector2::operator<(const Vector2 & _vec2D)
+    {
+      return x < _vec2D.x && y < _vec2D.y;
+    }
+
+    bool Vector2::operator>(const Vector2 & _vec2D)
+    {
+      return x > _vec2D.x && y > _vec2D.y;
+    }
+    
+    bool Vector2::operator==(const Vector2 & _vec2D)
+    {
+      return x == _vec2D.x && y == _vec2D.y;
+    }
+
+    bool Vector2::operator!=(const Vector2 & _vec2D)
+    {
+      return x != _vec2D.x || y != _vec2D.y;
+    }
+
+    Vector2 & Vector2::operator+=(const Vector2 & _vec2D)
+    {
+      x += _vec2D.x;
+      y += _vec2D.y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator-=(const Vector2 & _vec2D)
+    {
+      x -= _vec2D.x;
+      y -= _vec2D.y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator*=(const Vector2 & _vec2D)
+    {
+      x *= _vec2D.x;
+      y *= _vec2D.y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator*=(float A)
+    {
+      x *= A;
+      y *= A;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator/=(const Vector2 & _vec2D)
+    {
+      x /= _vec2D.x;
+      y /= _vec2D.y;
+      return *this;
+    }
+
+    Vector2 & Vector2::operator/=(float A)
+    {
+      x /= A;
+      y /= A;
+      return *this;
+    }
+
+    bool Vector2::operator<=(const Vector2 & _vec2D)
+    {
+      return x <= _vec2D.x && y <= _vec2D.y;
+    }
+
+    bool Vector2::operator>=(const Vector2 & _vec2D)
+    {
+      return x >= _vec2D.x && y >= _vec2D.y;
+    }
+
+    float & Vector2::operator[](uint32 _index)
+    {
+      return ((_index == 0) ? x : y);
+    }
+
+    float Vector2::operator[](uint32 _index) const
+    {
+      return ((_index == 0) ? x : y);
+    }
+
   };
 }

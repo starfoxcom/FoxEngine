@@ -6,6 +6,8 @@
 #include <windows.h>
 #include "foxDXGraphicsAPI.h"
 
+
+
 using namespace foxEngineSDK;
 
 class BaseApp
@@ -14,12 +16,9 @@ public:
   BaseApp();
   ~BaseApp();
 
-  int run();
-
-  void render();
+  bool run();
 
 private:
-  HWND m_windowHandler; /**< Windows handler */
 
   DXGraphicsAPI m_graphicsAPI;
 

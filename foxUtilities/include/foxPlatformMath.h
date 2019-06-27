@@ -23,6 +23,15 @@ namespace foxEngineSDK
   {
   public:
 
+    static const float PI;
+    static const float INV_PI;
+    static const float HALF_PI;
+    static const float TWO_PI;
+
+    static const float DEG2RAD;
+    static const float RAD2DEG;
+    static const float LOG2;
+
     /**
      * Trigonometric functions
      */
@@ -266,15 +275,5 @@ namespace foxEngineSDK
     {
       return max(max(A, B), C);
     }
-
-    static const float PI;
-    static const float INV_PI;
-    static const float HALF_PI;
-    static const float TWO_PI;
-
-    static const float DEG2RAD;
-    static const float RAD2DEG;
-    static const float LOG2;
-
   };
 }

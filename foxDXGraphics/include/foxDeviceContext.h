@@ -10,7 +10,6 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
 
 /**
 * Libs
@@ -19,13 +18,13 @@
 namespace foxEngineSDK
 {
 
-  class FOX_GRAPHICS_EXPORT DeviceContext
+  class DeviceContext
   {
   public:
     DeviceContext();
     ~DeviceContext();
 
-    ID3D11DeviceContext ** getDEviceContextRef();
+    ID3D11DeviceContext ** getDeviceContextRef();
 
     ID3D11DeviceContext * getDeviceContext();
 

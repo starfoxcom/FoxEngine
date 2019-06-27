@@ -13,10 +13,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\foxPlatformMath.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="src\foxPlatformMath.cpp">
+    <ClCompile Include="src\foxLog.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,7 +37,28 @@
       <Filter>Include\Prerequisites</Filter>
     </ClInclude>
     <ClInclude Include="include\foxVector2.h">
-      <Filter>Include\Prerequisites</Filter>
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxLog.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxModule.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxVector3.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxVector4.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxRay.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxPlane.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxMatrix4.h">
+      <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

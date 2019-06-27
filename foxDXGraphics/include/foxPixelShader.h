@@ -26,8 +26,12 @@ namespace foxEngineSDK
 
     ID3D11PixelShader * getPixelShader();
 
+    ID3DBlob * getPSBlop();
+
   private:
 
     ID3D11PixelShader * m_pixelShader;
+
+    ID3DBlob* m_PSBlob;
   };
 }

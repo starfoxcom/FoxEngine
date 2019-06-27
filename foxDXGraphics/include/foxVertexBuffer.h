@@ -24,7 +24,7 @@
 namespace foxEngineSDK
 {
 
-  class FOX_GRAPHICS_EXPORT VertexBuffer
+  class VertexBuffer
   {
   public:
     VertexBuffer();
@@ -52,6 +52,11 @@ namespace foxEngineSDK
     FLOAT NX, NY, NZ, NW;
     FLOAT U, V;
 
+  };
+
+  struct simpleVertex
+  {
+    FLOAT X, Y, Z;
   };
 
   //struct vertex2

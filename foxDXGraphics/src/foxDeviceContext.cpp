@@ -13,7 +13,7 @@ namespace foxEngineSDK
   {
   }
 
-  ID3D11DeviceContext ** DeviceContext::getDEviceContextRef()
+  ID3D11DeviceContext ** DeviceContext::getDeviceContextRef()
   {
     return &m_deviceContext;
   }

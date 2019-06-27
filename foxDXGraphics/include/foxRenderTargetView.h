@@ -11,12 +11,11 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
 
 namespace foxEngineSDK
 {
 
-  class FOX_GRAPHICS_EXPORT RenderTargetView
+  class RenderTargetView
   {
   public:
     RenderTargetView();

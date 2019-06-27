@@ -10,7 +10,6 @@
  * Includes
  */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
 
 /**
  * Libs
@@ -19,7 +18,10 @@
 namespace foxEngineSDK
 {
 
-  class FOX_GRAPHICS_EXPORT Device
+  class VertexShader;
+  class InputLayout;
+
+  class Device
   {
   public:
     Device();
@@ -28,6 +30,10 @@ namespace foxEngineSDK
     ID3D11Device ** getDeviceRef();
 
     ID3D11Device * getDevice();
+
+    bool createVertexShader(VertexShader * _vertexShader);
+
+    bool createInputLayout(VertexShader * _vertexShader, InputLayout * _inputLayout);
 
   private:
     ID3D11Device * m_device;

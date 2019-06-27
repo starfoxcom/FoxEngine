@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include <cassert>
-
 #include "foxPlatformDefines.h"
 #include "foxPlatformTypes.h"
 #include "foxStdHeaders.h"

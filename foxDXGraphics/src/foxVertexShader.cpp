@@ -1,4 +1,5 @@
 #include "foxVertexShader.h"
+#include "foxLog.h"
 
 
 namespace foxEngineSDK

@@ -1,4 +1,11 @@
-
+/**
+* @file foxPlatformTypes.h
+* @author ---
+* @date ---
+* @brief Some definitions to describe the target platform
+*
+* This definitions are meant to describe the target platform
+*/
 
 #pragma once
 
@@ -7,6 +14,7 @@
  */
 
 #include <cstdint>
+#include <string>
 #include "foxPlatformDefines.h"
 
 #if FOX_PLATFORM == FOX_PLATFORM_PS4
@@ -96,4 +104,10 @@ namespace foxEngineSDK
    * SIZE_T is an architecture dependent data type
    */
   using SIZE_T = size_t;
+
+  /**
+   * String types
+   */
+  using String = std::string;
+  using WString = std::wstring;
 };
