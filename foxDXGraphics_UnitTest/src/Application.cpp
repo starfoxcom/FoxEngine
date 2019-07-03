@@ -36,7 +36,7 @@ bool BaseApp::run()
   //Init Viewport
 
 
-  //m_graphicsAPI.createVertexShader("shaders.shader", "VSMain", "vs_4_0");
+  m_graphicsAPI.createVertexShader("shaders.shader", "VSMain", "vs_4_0");
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
