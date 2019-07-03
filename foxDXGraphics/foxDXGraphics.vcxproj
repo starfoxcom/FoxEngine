@@ -189,6 +189,7 @@
     <ClInclude Include="include\foxVertexBuffer.h" />
     <ClInclude Include="include\foxVertexShader.h" />
     <ClInclude Include="include\foxRenderWindow.h" />
+    <ClInclude Include="include\foxViewport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDevice.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="src\foxTexture.cpp" />
     <ClCompile Include="src\foxVertexBuffer.cpp" />
     <ClCompile Include="src\foxVertexShader.cpp" />
+    <ClCompile Include="src\foxViewport.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,11 +27,12 @@ namespace foxEngineSDK
  * Forward declarations
  */
   class RenderWindow;
-  class SwapChain;
   class Device;
+  class SwapChain;
   class DeviceContext;
-  class Texture;
   class RenderTargetView;
+  class Texture;
+  class Viewport;
   class VertexShader;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
@@ -81,6 +82,11 @@ namespace foxEngineSDK
     bool initDevice();
 
     /**
+     * @brief Initialize the viewport.
+     */
+    void initViewport(float _width, float _height);
+
+    /**
      * @brief Creates the vertex shader
      */
     bool createVertexShader(
@@ -121,6 +127,8 @@ namespace foxEngineSDK
     DeviceContext * m_deviceContext;
 
     Texture * m_texture;
+
+    Viewport * m_viewport;
 
     RenderTargetView * m_renderTargetView;
 

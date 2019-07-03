@@ -8,6 +8,7 @@
 #include "foxDevice.h"
 #include "foxDeviceContext.h"
 #include "foxTexture.h"
+#include "foxViewport.h"
 #include "foxRenderTargetView.h"
 #include "foxVertexShader.h"
 
@@ -22,6 +23,7 @@ namespace foxEngineSDK
     m_device = new Device();
     m_deviceContext = new DeviceContext();
     m_texture = new Texture();
+    m_viewport = new Viewport();
     m_renderTargetView = new RenderTargetView();
     m_vertexShader = new VertexShader();
   }
@@ -32,7 +34,10 @@ namespace foxEngineSDK
     delete m_swapChain;
     delete m_device;
     delete m_deviceContext;
+    delete m_texture;
+    delete m_viewport;
     delete m_renderTargetView;
+    delete m_vertexShader;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -127,21 +132,18 @@ namespace foxEngineSDK
       m_renderTargetView->getRenderTargetViewRef(),
       NULL);
 
-    //TODO: Create Viewport class
-    D3D11_VIEWPORT viewPort;
-    
-    viewPort.Width = static_cast<float>(width);
-    viewPort.Height = static_cast<float>(height);
-    viewPort.MinDepth = 0.0f;
-    viewPort.MaxDepth = 1.0f;
-    viewPort.TopLeftX = 0;
-    viewPort.TopLeftY = 0;
+    initViewport(static_cast<float>(width), static_cast<float>(height));
 
-    m_deviceContext->getDeviceContext()->RSSetViewports(1, &viewPort);
+    m_deviceContext->getDeviceContext()->RSSetViewports(1, m_viewport->getViewport());
 
 
 
     return true;
+  }
+
+  void DXGraphicsAPI::initViewport(float _width, float _height)
+  {
+    m_viewport->initViewport(_width, _height);
   }
 
   bool DXGraphicsAPI::createVertexShader(
