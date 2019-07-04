@@ -20,14 +20,12 @@ namespace foxEngineSDK
   {
     return m_inputLayout;
   }
-  D3D11_INPUT_ELEMENT_DESC * InputLayout::getInputLayoutDesc()
+  std::vector<InputElements> * InputLayout::getInputLayoutDesc()
   {
-    return &m_inputLayoutDesc[0];
+    return &m_inputElements;
   }
   uint32 InputLayout::getInputLayoutNumElements()
   {
-  
-    uint32 result = ARRAYSIZE(m_inputLayoutDesc);
-    return result;
+    return m_inputElements.size();
   }
 }
