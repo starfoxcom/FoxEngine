@@ -38,6 +38,26 @@ bool BaseApp::run()
 
   m_graphicsAPI.createVertexShader("shaders.shader", "VSMain", "vs_4_0");
 
+  m_graphicsAPI.addInputElement(
+    "POSITION",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    0,
+    0,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
+  m_graphicsAPI.addInputElement(
+    "COLOR",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    0,
+    16,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
+  m_graphicsAPI.createInputLayout();
+
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
   {

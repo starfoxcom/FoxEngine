@@ -14,6 +14,7 @@
 
 #include "foxLog.h"
 #include "foxGraphicsDefines.h"
+#include "foxGraphicsCommons.h"
 
 /**
  * Libs, since the .libs have been added in the project settings, this is no longer needed
@@ -34,6 +35,7 @@ namespace foxEngineSDK
   class Texture;
   class Viewport;
   class VertexShader;
+  class InputLayout;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -93,6 +95,24 @@ namespace foxEngineSDK
       const char * _fileName,
       const char * _entryPoint,
       const char * _shaderModel);
+
+    /**
+     * 
+     */
+    void addInputElement(
+      const char * _semanticName,
+      uint32 _semanticIndex,
+      FOXGI_FORMAT::E _format,
+      uint32 _inputSlot,
+      uint32 _alignedByteOffset,
+      FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
+      uint32 _instanceDataSetpRate);
+
+    /**
+     * @brief Creates the input layout
+     */
+    bool createInputLayout();
+
     /**
      * @brief Cleans up the device.
      */
@@ -103,6 +123,9 @@ namespace foxEngineSDK
      */
     void render();
 
+    /**
+     * SETTERS
+     */
     /**
      * SwapChain functions
      */
@@ -133,6 +156,8 @@ namespace foxEngineSDK
     RenderTargetView * m_renderTargetView;
 
     VertexShader * m_vertexShader;
+
+    InputLayout * m_inputLayout;
   };
 }
 

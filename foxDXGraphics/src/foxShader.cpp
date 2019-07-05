@@ -42,7 +42,7 @@ namespace foxEngineSDK
       return false;
     }
 
-    size_t fileSize = static_cast<size_t>(file.tellg());
+    SIZE_T fileSize = static_cast<SIZE_T>(file.tellg());
 
     dataBuffer.resize(fileSize);
 
