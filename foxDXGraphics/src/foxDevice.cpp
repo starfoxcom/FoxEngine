@@ -1,5 +1,6 @@
 #include "foxDevice.h"
 #include "foxVertexShader.h"
+#include "foxInputLayout.h"
 #include "foxLog.h"
 
 
@@ -33,14 +34,28 @@ namespace foxEngineSDK
       _vertexShader->getVertexShaderRef())))
     {
       _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Vertex Shader couldn't be created";
       return false;
     }
     Log() << "Vertex Shader created successfully";
     return true;
   }
   
-  //bool Device::createInputLayout(VertexShader * _vertexShader, InputLayout * _inputLayout)
-  //{
-  //  if(FAILED(m_device->CreateInputLayout(_inputLayout->getInputLayoutDesc(),)));
-  //}
+  bool Device::createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader)
+  {
+    if (FAILED(m_device->CreateInputLayout(
+      _inputLayout->getInputLayoutDesc(),
+      _inputLayout->getInputLayoutNumElements(),
+      _vertexShader->getBlob()->GetBufferPointer(),
+      _vertexShader->getBlob()->GetBufferSize(),
+      _inputLayout->getInputLayoutRef())))
+    {
+      _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Input layout couldn't be created";
+      return false;
+    }
+    _vertexShader->getBlob()->Release();
+    Log() << "Input layout created successfully";
+    return true;
+  }
 }

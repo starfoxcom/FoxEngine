@@ -179,6 +179,7 @@
     <ClInclude Include="include\foxDevice.h" />
     <ClInclude Include="include\foxDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
+    <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
     <ClInclude Include="include\foxInputLayout.h" />
     <ClInclude Include="include\foxPixelShader.h" />

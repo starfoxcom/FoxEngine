@@ -1,4 +1,5 @@
 #include "foxDeviceContext.h"
+#include "foxInputLayout.h"
 
 
 namespace foxEngineSDK
@@ -21,5 +22,10 @@ namespace foxEngineSDK
   ID3D11DeviceContext * DeviceContext::getDeviceContext()
   {
     return m_deviceContext;
+  }
+  void DeviceContext::setInputLayout(InputLayout * _inputLayout)
+  {
+
+    m_deviceContext->IASetInputLayout(_inputLayout->getInputLayout());
   }
 }

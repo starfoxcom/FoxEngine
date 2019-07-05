@@ -11,6 +11,7 @@
 #include "foxViewport.h"
 #include "foxRenderTargetView.h"
 #include "foxVertexShader.h"
+#include "foxInputLayout.h"
 
 namespace foxEngineSDK
 {
@@ -26,6 +27,7 @@ namespace foxEngineSDK
     m_viewport = new Viewport();
     m_renderTargetView = new RenderTargetView();
     m_vertexShader = new VertexShader();
+    m_inputLayout = new InputLayout();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -38,6 +40,7 @@ namespace foxEngineSDK
     delete m_viewport;
     delete m_renderTargetView;
     delete m_vertexShader;
+    delete m_inputLayout;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -155,6 +158,32 @@ namespace foxEngineSDK
     return m_device->createVertexShader(m_vertexShader);
   }
 
+  void DXGraphicsAPI::addInputElement(
+    const char * _semanticName,
+    uint32 _semanticIndex,
+    FOXGI_FORMAT::E _format,
+    uint32 _inputSlot,
+    uint32 _alignedByteOffset,
+    FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
+    uint32 _instanceDataSetpRate)
+  {
+
+    m_inputLayout->addElement(
+      _semanticName,
+      _semanticIndex,
+      _format,
+      _inputSlot,
+      _alignedByteOffset,
+      _inputSlotClass,
+      _instanceDataSetpRate);
+
+  }
+
+  bool DXGraphicsAPI::createInputLayout()
+  {
+    return m_device->createInputLayout(m_inputLayout, m_vertexShader);
+  }
+
   void DXGraphicsAPI::cleanupDevice()
   {
 
@@ -192,6 +221,11 @@ namespace foxEngineSDK
       _sampleCount,
       _sampleQuality,
       _windowed);
+  }
+
+  void DXGraphicsAPI::setInputLayout()
+  {
+    m_deviceContext->setInputLayout(m_inputLayout);
   }
   
 }

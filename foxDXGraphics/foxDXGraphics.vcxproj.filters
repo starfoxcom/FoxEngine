@@ -54,6 +54,9 @@
     <ClInclude Include="include\foxViewport.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxGraphicsCommons.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">

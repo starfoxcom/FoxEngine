@@ -18,6 +18,8 @@
 namespace foxEngineSDK
 {
 
+  class InputLayout;
+
   class DeviceContext
   {
   public:
@@ -27,6 +29,8 @@ namespace foxEngineSDK
     ID3D11DeviceContext ** getDeviceContextRef();
 
     ID3D11DeviceContext * getDeviceContext();
+
+    void setInputLayout(InputLayout * _inputLayout);
 
   private:
     ID3D11DeviceContext * m_deviceContext;

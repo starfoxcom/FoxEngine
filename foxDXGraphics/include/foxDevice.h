@@ -33,7 +33,7 @@ namespace foxEngineSDK
 
     bool createVertexShader(VertexShader * _vertexShader);
 
-    bool createInputLayout(VertexShader * _vertexShader, InputLayout * _inputLayout);
+    bool createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader);
 
   private:
     ID3D11Device * m_device;

@@ -1,0 +1,57 @@
+/**
+* @file foxInputLayout.h
+* @author --
+* @date ---
+* @brief Implementation of input layout.
+*/
+#pragma once
+
+/**
+* Includes
+*/
+
+namespace foxEngineSDK
+{
+  namespace FOXGI_FORMAT
+  {
+    enum E
+    {
+      K_UNKNOWN = 0,
+      
+      K_R32G32B32A32_FLOAT = 2,
+      K_R32G32B32A32_UINT = 3,
+
+      K_R32G32B32_FLOAT = 6,
+      K_R32G32B32_UINT = 7,
+
+      K_R16G16B16A16_FLOAT = 10,
+      K_R16G16B16A16_UINT = 12,
+
+      K_R32G32_FLOAT = 16,
+      K_R32G32_UINT = 17,
+
+      //K_R8G8B8A8_FLOAT,
+      K_R8G8B8A8_UNORM = 28,
+
+      K_R16G16_FLOAT = 34,
+      K_R16G16_UINT = 36,
+
+      K_R8G8_UINT = 50,
+
+      K_R8_UINT = 62,
+
+      K_R32_UINT = 42,
+
+      K_D24_UNORM_S8_UINT = 45
+    };
+  }
+
+  namespace FOX_INPUT_CLASSIFICATION
+  {
+    enum E
+    {
+      K_INPUT_PER_VERTEX_DATA = 0,
+      K_INPUT_PER_INSTANCE_DATA = 1
+    };
+  }
+}

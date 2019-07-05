@@ -10,11 +10,22 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
-#include "foxPlatformTypes.h"
+#include "foxPrerequisitesUtilities.h"
+#include "foxGraphicsCommons.h"
 
 namespace foxEngineSDK
 {
+
+  struct InputElements
+  {
+    const char * semanticName;
+    uint32 semanticIndex;
+    FOXGI_FORMAT::E format;
+    uint32 inputSlot;
+    uint32 alignedByteOffset;
+    FOX_INPUT_CLASSIFICATION::E inputSlotClass;
+    uint32 instanceDataStepRate;
+  };
 
   class InputLayout
   {
@@ -26,28 +37,24 @@ namespace foxEngineSDK
     
     ID3D11InputLayout * getInputLayout();
     
-    D3D11_INPUT_ELEMENT_DESC * getInputLayoutDesc();                           
+    D3D11_INPUT_ELEMENT_DESC * getInputLayoutDesc();
     
     uint32 getInputLayoutNumElements();
+
+    void addElement(
+      const char * _semanticName,
+      uint32 _semanticIndex,
+      FOXGI_FORMAT::E _format,
+      uint32 _inputSlot,
+      uint32 _alignedByteOffset,
+      FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
+      uint32 _instanceDataSetpRate);
 
   private:
     ID3D11InputLayout * m_inputLayout;
 
-    struct InputElements
-    {
-      const char _semanticName;
-      uint32 _semanticIndex;
-      //TODO: DXGI_FORMAT own enum
-      uint32 _alignedByteOffset;
-      //TODO: INPUT_CLASSIFICATION own enum
-      uint32 _instanceDataStepRate;
-    };
+    D3D11_INPUT_ELEMENT_DESC * m_inputElementDesc;
 
-    D3D11_INPUT_ELEMENT_DESC m_inputLayoutDesc[] =
-    {
-      { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-    };
+    std::vector<InputElements> m_inputElements;
   };
-
-  //TODO: Graphics commons
 }

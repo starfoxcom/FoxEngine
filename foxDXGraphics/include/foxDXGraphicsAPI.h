@@ -14,6 +14,7 @@
 
 #include "foxLog.h"
 #include "foxGraphicsDefines.h"
+#include "foxGraphicsCommons.h"
 
 /**
  * Libs, since the .libs have been added in the project settings, this is no longer needed
@@ -34,6 +35,7 @@ namespace foxEngineSDK
   class Texture;
   class Viewport;
   class VertexShader;
+  class InputLayout;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -83,16 +85,39 @@ namespace foxEngineSDK
 
     /**
      * @brief Initialize the viewport.
+     * @param _width The width of the window.
+     * @param _height The height of the window.
      */
     void initViewport(float _width, float _height);
 
     /**
      * @brief Creates the vertex shader
+     * @param _filename The name of the shader file
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
      */
     bool createVertexShader(
       const char * _fileName,
       const char * _entryPoint,
       const char * _shaderModel);
+
+    /**
+     * 
+     */
+    void addInputElement(
+      const char * _semanticName,
+      uint32 _semanticIndex,
+      FOXGI_FORMAT::E _format,
+      uint32 _inputSlot,
+      uint32 _alignedByteOffset,
+      FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
+      uint32 _instanceDataSetpRate);
+
+    /**
+     * @brief Creates the input layout
+     */
+    bool createInputLayout();
+
     /**
      * @brief Cleans up the device.
      */
@@ -104,6 +129,9 @@ namespace foxEngineSDK
     void render();
 
     /**
+     * SETTERS
+     */
+    /**
      * SwapChain functions
      */
     void setSwapChainDesc(
@@ -113,6 +141,11 @@ namespace foxEngineSDK
       uint32 _sampleCount = 1,
       uint32 _sampleQuality = 0,
       bool _windowed = true);
+
+    /**
+     * @brief Sets the input layout
+     */
+    void setInputLayout();
 
 
 
@@ -133,6 +166,8 @@ namespace foxEngineSDK
     RenderTargetView * m_renderTargetView;
 
     VertexShader * m_vertexShader;
+
+    InputLayout * m_inputLayout;
   };
 }
 
