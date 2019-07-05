@@ -54,7 +54,7 @@ namespace foxEngineSDK
 
     ID3DBlob* errorBlob;
 
-    if ((D3DCompile(
+    if (FAILED(D3DCompile(
       &dataBuffer[0],
       fileSize,
       NULL,

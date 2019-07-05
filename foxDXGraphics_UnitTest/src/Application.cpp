@@ -1,8 +1,5 @@
 #include "Application.h"
-#include "foxDeviceContext.h"
-#include "foxVertexBuffer.h"
-#include "foxSwapChain.h"
-#include "foxRenderTargetView.h"
+
 
 
 bool BaseApp::run()
@@ -47,18 +44,22 @@ bool BaseApp::run()
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
+
   m_graphicsAPI.addInputElement(
     "COLOR",
     0,
     FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
     0,
-    16,
+    12,
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
   m_graphicsAPI.createInputLayout();
 
   m_graphicsAPI.setInputLayout();
+
+  m_graphicsAPI.createPixelShader("shaders.shader", "PSMain", "ps_4_0");
+
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)

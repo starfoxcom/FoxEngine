@@ -36,6 +36,7 @@ namespace foxEngineSDK
   class Viewport;
   class VertexShader;
   class InputLayout;
+  class PixelShader;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -91,8 +92,8 @@ namespace foxEngineSDK
     void initViewport(float _width, float _height);
 
     /**
-     * @brief Creates the vertex shader
-     * @param _filename The name of the shader file
+     * @brief Creates the vertex shader.
+     * @param _filename The name of the shader file.
      * @param _entryPoint The entry point for the vertex shader.
      * @param _shaderModel The shader model.
      */
@@ -102,7 +103,18 @@ namespace foxEngineSDK
       const char * _shaderModel);
 
     /**
-     * 
+     * @brief Creates the pixel shader.
+     * @param @param _filename The name of the shader file.
+     * @param _entryPoint The entry point for the pixel shader.
+     * @param _shaderModel The shader model.
+     */
+    bool createPixelShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel);
+
+    /**
+     * @brief Adds an input element to the input layout element descriptor
      */
     void addInputElement(
       const char * _semanticName,
@@ -128,9 +140,9 @@ namespace foxEngineSDK
      */
     void render();
 
-    /**
-     * SETTERS
-     */
+    ///////////////////////////////////
+    // SETTERS
+    ///////////////////////////////////
     /**
      * SwapChain functions
      */
@@ -168,6 +180,8 @@ namespace foxEngineSDK
     VertexShader * m_vertexShader;
 
     InputLayout * m_inputLayout;
+
+    PixelShader * m_pixelShader;
   };
 }
 

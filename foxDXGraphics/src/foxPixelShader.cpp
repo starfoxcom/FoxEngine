@@ -20,8 +20,4 @@ namespace foxEngineSDK
   {
     return m_pixelShader;
   }
-  ID3DBlob * PixelShader::getPSBlop()
-  {
-    return m_PSBlob;
-  }
 }
