@@ -58,6 +58,8 @@ bool BaseApp::run()
 
   m_graphicsAPI.createInputLayout();
 
+  m_graphicsAPI.setInputLayout();
+
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
   {

@@ -222,5 +222,10 @@ namespace foxEngineSDK
       _sampleQuality,
       _windowed);
   }
+
+  void DXGraphicsAPI::setInputLayout()
+  {
+    m_deviceContext->setInputLayout(m_inputLayout);
+  }
   
 }

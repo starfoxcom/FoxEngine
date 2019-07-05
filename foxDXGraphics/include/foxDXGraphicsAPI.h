@@ -85,11 +85,16 @@ namespace foxEngineSDK
 
     /**
      * @brief Initialize the viewport.
+     * @param _width The width of the window.
+     * @param _height The height of the window.
      */
     void initViewport(float _width, float _height);
 
     /**
      * @brief Creates the vertex shader
+     * @param _filename The name of the shader file
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
      */
     bool createVertexShader(
       const char * _fileName,
@@ -136,6 +141,11 @@ namespace foxEngineSDK
       uint32 _sampleCount = 1,
       uint32 _sampleQuality = 0,
       bool _windowed = true);
+
+    /**
+     * @brief Sets the input layout
+     */
+    void setInputLayout();
 
 
 

@@ -13,7 +13,9 @@ namespace foxEngineSDK
 
   InputLayout::~InputLayout()
   {
+    delete[] m_inputElementDesc;
   }
+
   ID3D11InputLayout ** InputLayout::getInputLayoutRef()
   {
     return &m_inputLayout;
