@@ -2,6 +2,7 @@
 #include "foxVertexShader.h"
 #include "foxInputLayout.h"
 #include "foxPixelShader.h"
+#include "foxVertexBuffer.h"
 #include "foxLog.h"
 
 
@@ -41,7 +42,7 @@ namespace foxEngineSDK
     Log() << "Vertex Shader created successfully";
     return true;
   }
-  
+
   bool Device::createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader)
   {
     if (FAILED(m_device->CreateInputLayout(
@@ -73,6 +74,34 @@ namespace foxEngineSDK
     }
     _pixelShader->getBlob()->Release();
     Log() << "Pixel Shader created successfully";
+    return true;
+  }
+  bool Device::createVertexBuffer(
+    VertexBuffer * _vertexBuffer,
+    int32 _cpuAcces,
+    int32 _miscFlag)
+  {
+    simpleVertex triangle[]
+    {
+
+      { 0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f},
+      { 0.45f, -0.5, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f},
+      { -0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f}
+    };
+
+    _vertexBuffer->setBufferDesc();
+
+    _vertexBuffer->setSubresourceData(triangle, _cpuAcces, _miscFlag);
+
+    if (FAILED(m_device->CreateBuffer(
+      _vertexBuffer->getBufferDesc(),
+      _vertexBuffer->getSubresourceData(),
+      _vertexBuffer->getVertexBufferRef())))
+    {
+      Log(Log::LOGERROR, true) << "Vertex buffer couldn't be created";
+      return false;
+    }
+    Log() << "Vertex buffer created successfully";
     return true;
   }
 }

@@ -37,16 +37,11 @@ namespace foxEngineSDK
   class VertexShader;
   class InputLayout;
   class PixelShader;
+  class VertexBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
   public:
-
-    enum ShaderType
-    {
-      VERTEX = 0,
-      PIXEL
-    };
 
     DXGraphicsAPI();
     ~DXGraphicsAPI();
@@ -112,6 +107,13 @@ namespace foxEngineSDK
       const char * _fileName,
       const char * _entryPoint,
       const char * _shaderModel);
+
+    /**
+     * @brief Creates the vertex buffer.
+     * @param _cpuAcces
+     * @param _miscFlag
+     */
+    bool createVertexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
 
     /**
      * @brief Adds an input element to the input layout element descriptor
@@ -182,6 +184,8 @@ namespace foxEngineSDK
     InputLayout * m_inputLayout;
 
     PixelShader * m_pixelShader;
+
+    VertexBuffer * m_vertexBuffer;
   };
 }
 

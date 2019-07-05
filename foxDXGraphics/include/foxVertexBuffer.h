@@ -10,7 +10,7 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
+#include "foxPrerequisitesUtilities.h"
 
 
 
@@ -32,6 +32,13 @@ namespace foxEngineSDK
 
     void setBufferDesc();
 
+    void setSubresourceData(
+      const void * _triangle,
+      uint32 _sysMemPitch,
+      uint32 _sysMemSlicePitch);
+
+    D3D11_SUBRESOURCE_DATA * getSubresourceData();
+
     ID3D11Buffer  ** getVertexBufferRef();
 
     ID3D11Buffer  * getVertexBuffer();
@@ -39,9 +46,11 @@ namespace foxEngineSDK
     D3D11_BUFFER_DESC * getBufferDesc();
   private:
 
-    D3D11_BUFFER_DESC m_bufferDesc;
+    D3D11_BUFFER_DESC * m_bufferDesc;
 
     ID3D11Buffer * m_vertexBuffer;
+
+    D3D11_SUBRESOURCE_DATA * m_initData;
 
   };
 
@@ -57,6 +66,7 @@ namespace foxEngineSDK
   struct simpleVertex
   {
     FLOAT X, Y, Z;
+    FLOAT R, G, B, A;
   };
 
   //struct vertex2

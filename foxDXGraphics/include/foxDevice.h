@@ -10,6 +10,7 @@
  * Includes
  */
 #include <d3d11.h>
+#include "foxPlatformTypes.h"
 
 /**
  * Libs
@@ -21,6 +22,7 @@ namespace foxEngineSDK
   class VertexShader;
   class InputLayout;
   class PixelShader;
+  class VertexBuffer;
 
   class Device
   {
@@ -37,6 +39,11 @@ namespace foxEngineSDK
     bool createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader);
 
     bool createPixelShader(PixelShader * _pixelShader);
+
+    bool createVertexBuffer(
+      VertexBuffer * _vertexBuffer,
+      int32 _cpuAcces,
+      int32 _miscFlag);
 
   private:
     ID3D11Device * m_device;

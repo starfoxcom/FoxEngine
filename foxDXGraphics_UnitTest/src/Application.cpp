@@ -60,6 +60,8 @@ bool BaseApp::run()
 
   m_graphicsAPI.createPixelShader("shaders.shader", "PSMain", "ps_4_0");
 
+  //Here is where the model will be created, but for now a triangle is only what we have
+  m_graphicsAPI.createVertexBuffer();
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
