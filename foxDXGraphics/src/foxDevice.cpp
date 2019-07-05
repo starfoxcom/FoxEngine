@@ -1,6 +1,7 @@
 #include "foxDevice.h"
 #include "foxVertexShader.h"
 #include "foxInputLayout.h"
+#include "foxPixelShader.h"
 #include "foxLog.h"
 
 
@@ -56,6 +57,22 @@ namespace foxEngineSDK
     }
     _vertexShader->getBlob()->Release();
     Log() << "Input layout created successfully";
+    return true;
+  }
+  bool Device::createPixelShader(PixelShader * _pixelShader)
+  {
+    if (FAILED(m_device->CreatePixelShader(
+      _pixelShader->getBlob()->GetBufferPointer(),
+      _pixelShader->getBlob()->GetBufferSize(),
+      NULL,
+      _pixelShader->getPixelShaderRef())))
+    {
+      _pixelShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Pixel Shader couldn't be created";
+      return false;
+    }
+    _pixelShader->getBlob()->Release();
+    Log() << "Pixel Shader created successfully";
     return true;
   }
 }

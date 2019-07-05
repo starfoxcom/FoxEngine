@@ -12,11 +12,12 @@
 */
 #include <d3d11.h>
 #include "foxGraphicsDefines.h"
+#include "foxShader.h"
 
 namespace foxEngineSDK
 {
 
-  class PixelShader
+  class PixelShader : public Shader
   {
   public:
     PixelShader();
@@ -26,12 +27,8 @@ namespace foxEngineSDK
 
     ID3D11PixelShader * getPixelShader();
 
-    ID3DBlob * getPSBlop();
-
   private:
 
     ID3D11PixelShader * m_pixelShader;
-
-    ID3DBlob* m_PSBlob;
   };
 }

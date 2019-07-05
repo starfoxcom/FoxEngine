@@ -20,6 +20,7 @@ namespace foxEngineSDK
 
   class VertexShader;
   class InputLayout;
+  class PixelShader;
 
   class Device
   {
@@ -34,6 +35,8 @@ namespace foxEngineSDK
     bool createVertexShader(VertexShader * _vertexShader);
 
     bool createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader);
+
+    bool createPixelShader(PixelShader * _pixelShader);
 
   private:
     ID3D11Device * m_device;
