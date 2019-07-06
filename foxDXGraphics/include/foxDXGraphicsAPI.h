@@ -161,6 +161,19 @@ namespace foxEngineSDK
      */
     void setInputLayout();
 
+    /**
+     * @brief Sets the vertex buffer input assembly.
+     * @param _startSlot
+     * @param _numOfBuffers
+     */
+    void setIAVertexBuffer(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+
+    /**
+     * @brief Sets the primitive topology
+     * @param 
+     */
+    void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
 
 
   private:

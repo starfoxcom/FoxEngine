@@ -1,5 +1,6 @@
 #include "foxDeviceContext.h"
 #include "foxInputLayout.h"
+#include "foxVertexBuffer.h"
 
 
 namespace foxEngineSDK
@@ -27,5 +28,25 @@ namespace foxEngineSDK
   {
 
     m_deviceContext->IASetInputLayout(_inputLayout->getInputLayout());
+  }
+
+  void DeviceContext::setIAVertexBuffers(
+    VertexBuffer * _vertexBuffer,
+    uint32 _startSlot,
+    uint32 _numOfBuffers)
+  {
+    uint32 stride = sizeof(simpleVertex);
+    uint32 offset = 0;
+
+    m_deviceContext->IASetVertexBuffers(
+      _startSlot,
+      _numOfBuffers,
+      _vertexBuffer->getVertexBufferRef(),
+      &stride,
+      &offset);
+  }
+  void DeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  {
+    m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
   }
 }

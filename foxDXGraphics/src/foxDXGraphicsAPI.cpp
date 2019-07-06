@@ -253,5 +253,15 @@ namespace foxEngineSDK
   {
     m_deviceContext->setInputLayout(m_inputLayout);
   }
+
+  void DXGraphicsAPI::setIAVertexBuffer(uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->setIAVertexBuffers(m_vertexBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  {
+    m_deviceContext->setIAPrimitiveTopology(_topology);
+  }
   
 }
