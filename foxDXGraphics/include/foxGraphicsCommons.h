@@ -54,4 +54,13 @@ namespace foxEngineSDK
       K_INPUT_PER_INSTANCE_DATA = 1
     };
   }
+
+  namespace FOX_PRIMITIVE_TOPOLOGY
+  {
+    enum E
+    {
+      K_PRIMITIVE_TOPOLOGY_UNDEFINDED = 0,
+      K_PRIMITIVE_TOPOLOGY_TRIANGLELIST = 4
+    };
+  }
 }

@@ -60,6 +60,13 @@ bool BaseApp::run()
 
   m_graphicsAPI.createPixelShader("shaders.shader", "PSMain", "ps_4_0");
 
+  //Here is where the model will be created, but for now a triangle is only what we have
+  m_graphicsAPI.createVertexBuffer();
+
+  m_graphicsAPI.setIAVertexBuffer();
+
+  m_graphicsAPI.setIAPrimitiveTopology(
+    FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)

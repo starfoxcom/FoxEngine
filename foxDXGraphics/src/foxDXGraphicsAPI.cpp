@@ -13,6 +13,7 @@
 #include "foxVertexShader.h"
 #include "foxInputLayout.h"
 #include "foxPixelShader.h"
+#include "foxVertexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -30,6 +31,7 @@ namespace foxEngineSDK
     m_vertexShader = new VertexShader();
     m_inputLayout = new InputLayout();
     m_pixelShader = new PixelShader();
+    m_vertexBuffer = new VertexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -44,6 +46,7 @@ namespace foxEngineSDK
     delete m_vertexShader;
     delete m_inputLayout;
     delete m_pixelShader;
+    delete m_vertexBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -170,6 +173,13 @@ namespace foxEngineSDK
     return m_device->createPixelShader(m_pixelShader);
   }
 
+  bool DXGraphicsAPI::createVertexBuffer(
+    int32 _cpuAcces,
+    int32 _miscFlag)
+  {
+    return m_device->createVertexBuffer(m_vertexBuffer, _cpuAcces, _miscFlag);
+  }
+
   void DXGraphicsAPI::addInputElement(
     const char * _semanticName,
     uint32 _semanticIndex,
@@ -201,6 +211,7 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_vertexBuffer->getVertexBuffer()) m_vertexBuffer->getVertexBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
     if (m_pixelShader->getPixelShader()) m_pixelShader->getPixelShader()->Release();
@@ -241,6 +252,16 @@ namespace foxEngineSDK
   void DXGraphicsAPI::setInputLayout()
   {
     m_deviceContext->setInputLayout(m_inputLayout);
+  }
+
+  void DXGraphicsAPI::setIAVertexBuffer(uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->setIAVertexBuffers(m_vertexBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  {
+    m_deviceContext->setIAPrimitiveTopology(_topology);
   }
   
 }
