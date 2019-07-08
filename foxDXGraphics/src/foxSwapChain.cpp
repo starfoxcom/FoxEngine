@@ -46,6 +46,11 @@ namespace foxEngineSDK
     m_swapChainDesc.Windowed = _windowed;
   }
 
+  void SwapChain::present()
+  {
+    m_swapChain->Present(0, 0);
+  }
+
   IDXGISwapChain * SwapChain::getSwapChain()
   {
     return m_swapChain;

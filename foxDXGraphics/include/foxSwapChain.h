@@ -33,6 +33,8 @@ namespace foxEngineSDK
       uint32 _sampleQuality = 0,
       bool _windowed = true);
 
+    void present();
+
     IDXGISwapChain ** getSwapChainRef();
 
     IDXGISwapChain * getSwapChain();

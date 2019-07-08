@@ -1,6 +1,9 @@
 #include "foxDeviceContext.h"
+#include "foxRenderTargetView.h"
 #include "foxInputLayout.h"
 #include "foxVertexBuffer.h"
+#include "foxVertexShader.h"
+#include "foxPixelShader.h"
 
 
 namespace foxEngineSDK
@@ -23,6 +26,14 @@ namespace foxEngineSDK
   ID3D11DeviceContext * DeviceContext::getDeviceContext()
   {
     return m_deviceContext;
+  }
+  void DeviceContext::clearRenderTargetView(
+    RenderTargetView * _renderTargetView,
+    float * _clearColor)
+  {
+    m_deviceContext->ClearRenderTargetView(
+      _renderTargetView->getRenderTargetView(),
+      _clearColor);
   }
   void DeviceContext::setInputLayout(InputLayout * _inputLayout)
   {
@@ -48,5 +59,17 @@ namespace foxEngineSDK
   void DeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
+  }
+  void DeviceContext::setVertexShader(VertexShader * _vertexShader)
+  {
+    m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
+  }
+  void DeviceContext::setPixelShader(PixelShader * _pixelShader)
+  {
+    m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
+  }
+  void DeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
+  {
+    m_deviceContext->Draw(_vertexCount, _vertexStart);
   }
 }

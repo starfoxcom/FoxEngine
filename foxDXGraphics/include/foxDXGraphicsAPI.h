@@ -142,6 +142,12 @@ namespace foxEngineSDK
      */
     void render();
 
+    /**
+     * @brief Cleans the render target view.
+     * @param _clearColor The color which will be used to clear the render target.
+     */
+    void clearRenderTargetView(float * _clearColor);
+
     ///////////////////////////////////
     // SETTERS
     ///////////////////////////////////
@@ -173,6 +179,29 @@ namespace foxEngineSDK
      * @param 
      */
     void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
+    /**
+     * @brief Sets the vertex shader.
+     */
+    void setVertexShader();
+
+    /**
+     * @brief Sets the pixel shader.
+     */
+    void setPixelShader();
+
+    /**
+     * @brief Draws the vertices.
+     * @param _vertexCount The total count of vertices.
+     * @param _vertexStart The starting point of the vertices.
+     */
+    void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    /**
+     * @brief Present the information from the back to the front buffer.
+     */
+    void present();
+
 
 
 

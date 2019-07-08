@@ -226,9 +226,20 @@ namespace foxEngineSDK
 
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
 
-    m_deviceContext->getDeviceContext()->ClearRenderTargetView(m_renderTargetView->getRenderTargetView(), clearColor);
+    clearRenderTargetView(clearColor);
 
-    m_swapChain->getSwapChain()->Present(0, 0);
+    setVertexShader();
+
+    setPixelShader();
+
+    draw(3, 0);
+    
+    present();
+  }
+
+  void DXGraphicsAPI::clearRenderTargetView(float * _clearColor)
+  {
+    m_deviceContext->clearRenderTargetView(m_renderTargetView, _clearColor);
   }
 
   void DXGraphicsAPI::setSwapChainDesc(
@@ -262,6 +273,26 @@ namespace foxEngineSDK
   void DXGraphicsAPI::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->setIAPrimitiveTopology(_topology);
+  }
+
+  void DXGraphicsAPI::setVertexShader()
+  {
+    m_deviceContext->setVertexShader(m_vertexShader);
+  }
+
+  void DXGraphicsAPI::setPixelShader()
+  {
+    m_deviceContext->setPixelShader(m_pixelShader);
+  }
+
+  void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
+  {
+    m_deviceContext->draw(_vertexCount, _vertexStart);
+  }
+
+  void DXGraphicsAPI::present()
+  {
+    m_swapChain->present();
   }
   
 }
