@@ -20,8 +20,11 @@
 namespace foxEngineSDK
 {
 
+  class RenderTargetView;
   class InputLayout;
   class VertexBuffer;
+  class VertexShader;
+  class PixelShader;
 
   class DeviceContext
   {
@@ -33,6 +36,8 @@ namespace foxEngineSDK
 
     ID3D11DeviceContext * getDeviceContext();
 
+    void clearRenderTargetView(RenderTargetView* _renderTargetView, float * _clearColor);
+
     void setInputLayout(InputLayout * _inputLayout);
 
     void setIAVertexBuffers(
@@ -41,6 +46,12 @@ namespace foxEngineSDK
       uint32 _numOfBuffers);
 
     void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
+    void setVertexShader(VertexShader * _vertexShader);
+
+    void setPixelShader(PixelShader * _pixelShader);
+
+    void draw(uint32 _vertexCount, uint32 _vertexStart);
 
   private:
     ID3D11DeviceContext * m_deviceContext;
