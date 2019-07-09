@@ -17,11 +17,11 @@
 namespace foxEngineSDK
 {
 
-  class PixelShader : public Shader
+  class DXPixelShader : public Shader
   {
   public:
-    PixelShader();
-    ~PixelShader();
+    DXPixelShader();
+    ~DXPixelShader();
 
     ID3D11PixelShader ** getPixelShaderRef();
 

@@ -1,14 +1,14 @@
-#include "foxViewport.h"
+#include "foxDXViewport.h"
 
 namespace foxEngineSDK
 {
-  Viewport::Viewport()
+  DXViewport::DXViewport()
   {
   }
-  Viewport::~Viewport()
+  DXViewport::~DXViewport()
   {
   }
-  void Viewport::initViewport(float _width, float _height)
+  void DXViewport::initViewport(float _width, float _height)
   {
     m_viewport.Width = _width;
     m_viewport.Height = _height;
@@ -17,7 +17,7 @@ namespace foxEngineSDK
     m_viewport.TopLeftX = 0;
     m_viewport.TopLeftY = 0;
   }
-  D3D11_VIEWPORT * Viewport::getViewport()
+  D3D11_VIEWPORT * DXViewport::getViewport()
   {
     return &m_viewport;
   }

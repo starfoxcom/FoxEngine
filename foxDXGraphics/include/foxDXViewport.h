@@ -15,12 +15,12 @@
 
 namespace foxEngineSDK
 {
-  class Viewport
+  class DXViewport
   {
 
   public:
-    Viewport();
-    ~Viewport();
+    DXViewport();
+    ~DXViewport();
 
     void initViewport(float _width, float _height);
 

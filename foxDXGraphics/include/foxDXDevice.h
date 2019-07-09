@@ -19,29 +19,29 @@
 namespace foxEngineSDK
 {
 
-  class VertexShader;
-  class InputLayout;
-  class PixelShader;
-  class VertexBuffer;
+  class DXVertexShader;
+  class DXInputLayout;
+  class DXPixelShader;
+  class DXVertexBuffer;
 
-  class Device
+  class DXDevice
   {
   public:
-    Device();
-    ~Device();
+    DXDevice();
+    ~DXDevice();
 
     ID3D11Device ** getDeviceRef();
 
     ID3D11Device * getDevice();
 
-    bool createVertexShader(VertexShader * _vertexShader);
+    bool createVertexShader(DXVertexShader * _vertexShader);
 
-    bool createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader);
+    bool createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader);
 
-    bool createPixelShader(PixelShader * _pixelShader);
+    bool createPixelShader(DXPixelShader * _pixelShader);
 
     bool createVertexBuffer(
-      VertexBuffer * _vertexBuffer,
+      DXVertexBuffer * _vertexBuffer,
       int32 _cpuAcces,
       int32 _miscFlag);
 

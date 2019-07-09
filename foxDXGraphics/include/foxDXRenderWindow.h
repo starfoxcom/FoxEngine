@@ -16,7 +16,7 @@
 namespace foxEngineSDK
 {
 
-  class RenderWindow
+  class DXRenderWindow
   {
 
   public:
@@ -29,7 +29,7 @@ namespace foxEngineSDK
 
     bool processMessages();
 
-    ~RenderWindow();
+    ~DXRenderWindow();
 
     HWND getWindowHandle();
 

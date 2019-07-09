@@ -18,11 +18,11 @@
 namespace foxEngineSDK
 {
 
-  class VertexShader : public Shader
+  class DXVertexShader : public Shader
   {
   public:
-    VertexShader();
-    ~VertexShader();
+    DXVertexShader();
+    ~DXVertexShader();
 
     ID3D11VertexShader ** getVertexShaderRef();
 

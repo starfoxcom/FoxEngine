@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClCompile Include="src\Source.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\foxCoreGraphicsAPI.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}</ProjectGuid>

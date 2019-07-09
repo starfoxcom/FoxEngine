@@ -1,48 +1,48 @@
-#include "foxDeviceContext.h"
-#include "foxRenderTargetView.h"
-#include "foxInputLayout.h"
-#include "foxVertexBuffer.h"
-#include "foxVertexShader.h"
-#include "foxPixelShader.h"
+#include "foxDXDeviceContext.h"
+#include "foxDXRenderTargetView.h"
+#include "foxDXInputLayout.h"
+#include "foxDXVertexBuffer.h"
+#include "foxDXVertexShader.h"
+#include "foxDXPixelShader.h"
 
 
 namespace foxEngineSDK
 {
 
-  DeviceContext::DeviceContext()
+  DXDeviceContext::DXDeviceContext()
   {
   }
 
 
-  DeviceContext::~DeviceContext()
+  DXDeviceContext::~DXDeviceContext()
   {
   }
 
-  ID3D11DeviceContext ** DeviceContext::getDeviceContextRef()
+  ID3D11DeviceContext ** DXDeviceContext::getDeviceContextRef()
   {
     return &m_deviceContext;
   }
 
-  ID3D11DeviceContext * DeviceContext::getDeviceContext()
+  ID3D11DeviceContext * DXDeviceContext::getDeviceContext()
   {
     return m_deviceContext;
   }
-  void DeviceContext::clearRenderTargetView(
-    RenderTargetView * _renderTargetView,
+  void DXDeviceContext::clearRenderTargetView(
+    DXRenderTargetView * _renderTargetView,
     float * _clearColor)
   {
     m_deviceContext->ClearRenderTargetView(
       _renderTargetView->getRenderTargetView(),
       _clearColor);
   }
-  void DeviceContext::setInputLayout(InputLayout * _inputLayout)
+  void DXDeviceContext::setInputLayout(DXInputLayout * _inputLayout)
   {
 
     m_deviceContext->IASetInputLayout(_inputLayout->getInputLayout());
   }
 
-  void DeviceContext::setIAVertexBuffers(
-    VertexBuffer * _vertexBuffer,
+  void DXDeviceContext::setIAVertexBuffers(
+    DXVertexBuffer * _vertexBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers)
   {
@@ -56,19 +56,19 @@ namespace foxEngineSDK
       &stride,
       &offset);
   }
-  void DeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  void DXDeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
   }
-  void DeviceContext::setVertexShader(VertexShader * _vertexShader)
+  void DXDeviceContext::setVertexShader(DXVertexShader * _vertexShader)
   {
     m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
   }
-  void DeviceContext::setPixelShader(PixelShader * _pixelShader)
+  void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)
   {
     m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
   }
-  void DeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
+  void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->Draw(_vertexCount, _vertexStart);
   }

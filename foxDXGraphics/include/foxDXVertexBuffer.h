@@ -24,11 +24,11 @@
 namespace foxEngineSDK
 {
 
-  class VertexBuffer
+  class DXVertexBuffer
   {
   public:
-    VertexBuffer();
-    ~VertexBuffer();
+    DXVertexBuffer();
+    ~DXVertexBuffer();
 
     void setBufferDesc();
 
