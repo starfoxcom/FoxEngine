@@ -48,7 +48,7 @@ bool BaseApp::run()
   m_graphicsAPI.addInputElement(
     "COLOR",
     0,
-    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    FOXGI_FORMAT::E::K_R32G32B32A32_FLOAT,
     0,
     12,
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
