@@ -1,19 +1,19 @@
-#include "foxSwapChain.h"
+#include "foxDXSwapChain.h"
 
 
 namespace foxEngineSDK
 {
 
-  SwapChain::SwapChain()
+  DXSwapChain::DXSwapChain()
   {
   }
 
 
-  SwapChain::~SwapChain()
+  DXSwapChain::~DXSwapChain()
   {
   }
 
-  void SwapChain::setSwapChainDesc(
+  void DXSwapChain::setSwapChainDesc(
     HWND _windowHandler,
     uint32 _bufferCount,
     uint32 _numerator,
@@ -46,22 +46,22 @@ namespace foxEngineSDK
     m_swapChainDesc.Windowed = _windowed;
   }
 
-  void SwapChain::present()
+  void DXSwapChain::present()
   {
     m_swapChain->Present(0, 0);
   }
 
-  IDXGISwapChain * SwapChain::getSwapChain()
+  IDXGISwapChain * DXSwapChain::getSwapChain()
   {
     return m_swapChain;
   }
 
-  IDXGISwapChain ** SwapChain::getSwapChainRef()
+  IDXGISwapChain ** DXSwapChain::getSwapChainRef()
   {
     return &m_swapChain;
   }
 
-  DXGI_SWAP_CHAIN_DESC * SwapChain::getSwapChainDesc()
+  DXGI_SWAP_CHAIN_DESC * DXSwapChain::getSwapChainDesc()
   {
     return &m_swapChainDesc;
   }

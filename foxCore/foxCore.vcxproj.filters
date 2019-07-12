@@ -9,6 +9,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\foxCoreGraphicsAPI.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\Source.cpp">
       <Filter>Src</Filter>
     </ClCompile>

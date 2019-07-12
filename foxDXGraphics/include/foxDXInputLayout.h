@@ -27,11 +27,11 @@ namespace foxEngineSDK
     uint32 instanceDataStepRate;
   };
 
-  class InputLayout
+  class DXInputLayout
   {
   public:
-    InputLayout();
-    ~InputLayout();
+    DXInputLayout();
+    ~DXInputLayout();
 
     ID3D11InputLayout ** getInputLayoutRef();
     

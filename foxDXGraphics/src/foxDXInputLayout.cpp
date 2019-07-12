@@ -1,30 +1,30 @@
-#include "foxInputLayout.h"
+#include "foxDXInputLayout.h"
 
 
 namespace foxEngineSDK
 {
 
-  InputLayout::InputLayout()
+  DXInputLayout::DXInputLayout()
   {
 
     m_inputElementDesc = nullptr;
   }
 
 
-  InputLayout::~InputLayout()
+  DXInputLayout::~DXInputLayout()
   {
     delete[] m_inputElementDesc;
   }
 
-  ID3D11InputLayout ** InputLayout::getInputLayoutRef()
+  ID3D11InputLayout ** DXInputLayout::getInputLayoutRef()
   {
     return &m_inputLayout;
   }
-  ID3D11InputLayout * InputLayout::getInputLayout()
+  ID3D11InputLayout * DXInputLayout::getInputLayout()
   {
     return m_inputLayout;
   }
-  D3D11_INPUT_ELEMENT_DESC * InputLayout::getInputLayoutDesc()
+  D3D11_INPUT_ELEMENT_DESC * DXInputLayout::getInputLayoutDesc()
   {
     if (m_inputElementDesc != nullptr)
     {
@@ -47,12 +47,12 @@ namespace foxEngineSDK
 
     return m_inputElementDesc;
   }
-  uint32 InputLayout::getInputLayoutNumElements()
+  uint32 DXInputLayout::getInputLayoutNumElements()
   {
     return m_inputElements.size();
   }
 
-  void InputLayout::addElement(
+  void DXInputLayout::addElement(
     const char * _semanticName,
     uint32 _semanticIndex,
     FOXGI_FORMAT::E _format,

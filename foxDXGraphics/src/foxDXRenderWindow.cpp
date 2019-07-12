@@ -1,4 +1,4 @@
-#include "foxRenderWindow.h"
+#include "foxDXRenderWindow.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
@@ -22,7 +22,7 @@ namespace foxEngineSDK
     return DefWindowProc(hWnd, message, wParam, lParam);
   }
 
-  bool RenderWindow::initialize(
+  bool DXRenderWindow::initialize(
     HINSTANCE _hInstance,
     std::string _windowClass,
     std::string _windowTitle,
@@ -64,7 +64,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool RenderWindow::processMessages()
+  bool DXRenderWindow::processMessages()
   {
     MSG msg = { 0 };
 
@@ -87,7 +87,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  RenderWindow::~RenderWindow()
+  DXRenderWindow::~DXRenderWindow()
   {
 
     if (this->m_windowHandle != NULL)
@@ -97,12 +97,12 @@ namespace foxEngineSDK
     }
   }
 
-  HWND RenderWindow::getWindowHandle()
+  HWND DXRenderWindow::getWindowHandle()
   {
     return m_windowHandle;
   }
 
-  bool RenderWindow::registerWindowClass()
+  bool DXRenderWindow::registerWindowClass()
   {
 
     WNDCLASSEX windowClass;

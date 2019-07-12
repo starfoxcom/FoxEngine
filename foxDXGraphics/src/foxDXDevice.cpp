@@ -1,33 +1,33 @@
-#include "foxDevice.h"
-#include "foxVertexShader.h"
-#include "foxInputLayout.h"
-#include "foxPixelShader.h"
-#include "foxVertexBuffer.h"
+#include "foxDXDevice.h"
+#include "foxDXVertexShader.h"
+#include "foxDXInputLayout.h"
+#include "foxDXPixelShader.h"
+#include "foxDXVertexBuffer.h"
 #include "foxLog.h"
 
 
 namespace foxEngineSDK
 {
 
-  Device::Device()
+  DXDevice::DXDevice()
   {
   }
 
 
-  Device::~Device()
+  DXDevice::~DXDevice()
   {
   }
 
-  ID3D11Device ** Device::getDeviceRef()
+  ID3D11Device ** DXDevice::getDeviceRef()
   {
     return &m_device;
   }
 
-  ID3D11Device * Device::getDevice()
+  ID3D11Device * DXDevice::getDevice()
   {
     return m_device;
   }
-  bool Device::createVertexShader(VertexShader * _vertexShader)
+  bool DXDevice::createVertexShader(DXVertexShader * _vertexShader)
   {
     if (FAILED(m_device->CreateVertexShader(
       _vertexShader->getBlob()->GetBufferPointer(),
@@ -43,7 +43,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool Device::createInputLayout(InputLayout * _inputLayout, VertexShader * _vertexShader)
+  bool DXDevice::createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader)
   {
     if (FAILED(m_device->CreateInputLayout(
       _inputLayout->getInputLayoutDesc(),
@@ -60,7 +60,7 @@ namespace foxEngineSDK
     Log() << "Input layout created successfully";
     return true;
   }
-  bool Device::createPixelShader(PixelShader * _pixelShader)
+  bool DXDevice::createPixelShader(DXPixelShader * _pixelShader)
   {
     if (FAILED(m_device->CreatePixelShader(
       _pixelShader->getBlob()->GetBufferPointer(),
@@ -76,8 +76,8 @@ namespace foxEngineSDK
     Log() << "Pixel Shader created successfully";
     return true;
   }
-  bool Device::createVertexBuffer(
-    VertexBuffer * _vertexBuffer,
+  bool DXDevice::createVertexBuffer(
+    DXVertexBuffer * _vertexBuffer,
     int32 _cpuAcces,
     int32 _miscFlag)
   {

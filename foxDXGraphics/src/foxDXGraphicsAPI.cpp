@@ -3,17 +3,17 @@
 #include <iostream>
   
 #include "foxDXGraphicsAPI.h"
-#include "foxRenderWindow.h"
-#include "foxSwapChain.h"
-#include "foxDevice.h"
-#include "foxDeviceContext.h"
-#include "foxTexture.h"
-#include "foxViewport.h"
-#include "foxRenderTargetView.h"
-#include "foxVertexShader.h"
-#include "foxInputLayout.h"
-#include "foxPixelShader.h"
-#include "foxVertexBuffer.h"
+#include "foxDXRenderWindow.h"
+#include "foxDXSwapChain.h"
+#include "foxDXDevice.h"
+#include "foxDXDeviceContext.h"
+#include "foxDXTexture.h"
+#include "foxDXViewport.h"
+#include "foxDXRenderTargetView.h"
+#include "foxDXVertexShader.h"
+#include "foxDXInputLayout.h"
+#include "foxDXPixelShader.h"
+#include "foxDXVertexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -21,17 +21,17 @@ namespace foxEngineSDK
   DXGraphicsAPI::DXGraphicsAPI()
   {
 
-    m_renderWindow = new RenderWindow();
-    m_swapChain = new SwapChain();
-    m_device = new Device();
-    m_deviceContext = new DeviceContext();
-    m_texture = new Texture();
-    m_viewport = new Viewport();
-    m_renderTargetView = new RenderTargetView();
-    m_vertexShader = new VertexShader();
-    m_inputLayout = new InputLayout();
-    m_pixelShader = new PixelShader();
-    m_vertexBuffer = new VertexBuffer();
+    m_renderWindow = new DXRenderWindow();
+    m_swapChain = new DXSwapChain();
+    m_device = new DXDevice();
+    m_deviceContext = new DXDeviceContext();
+    m_texture = new DXTexture();
+    m_viewport = new DXViewport();
+    m_renderTargetView = new DXRenderTargetView();
+    m_vertexShader = new DXVertexShader();
+    m_inputLayout = new DXInputLayout();
+    m_pixelShader = new DXPixelShader();
+    m_vertexBuffer = new DXVertexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()

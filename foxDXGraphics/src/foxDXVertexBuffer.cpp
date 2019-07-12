@@ -1,23 +1,23 @@
-#include "foxVertexBuffer.h"
+#include "foxDXVertexBuffer.h"
 
 
 namespace foxEngineSDK
 {
 
-  VertexBuffer::VertexBuffer()
+  DXVertexBuffer::DXVertexBuffer()
   {
     m_bufferDesc = nullptr;
     m_initData = nullptr;
   }
 
 
-  VertexBuffer::~VertexBuffer()
+  DXVertexBuffer::~DXVertexBuffer()
   {
     delete m_bufferDesc;
     delete m_initData;
   }
 
-  void VertexBuffer::setBufferDesc()
+  void DXVertexBuffer::setBufferDesc()
   {
     m_bufferDesc = new D3D11_BUFFER_DESC();
 
@@ -27,7 +27,7 @@ namespace foxEngineSDK
     m_bufferDesc->CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
   }
 
-  void VertexBuffer::setSubresourceData(
+  void DXVertexBuffer::setSubresourceData(
     const void * _triangle,
     uint32 _sysMemPitch,
     uint32 _sysMemSlicePitch)
@@ -40,22 +40,22 @@ namespace foxEngineSDK
     m_initData->SysMemSlicePitch = _sysMemSlicePitch;
   }
 
-  D3D11_SUBRESOURCE_DATA * VertexBuffer::getSubresourceData()
+  D3D11_SUBRESOURCE_DATA * DXVertexBuffer::getSubresourceData()
   {
     return m_initData;
   }
 
-  ID3D11Buffer ** VertexBuffer::getVertexBufferRef()
+  ID3D11Buffer ** DXVertexBuffer::getVertexBufferRef()
   {
     return &m_vertexBuffer;
   }
 
-  ID3D11Buffer * VertexBuffer::getVertexBuffer()
+  ID3D11Buffer * DXVertexBuffer::getVertexBuffer()
   {
     return m_vertexBuffer;
   }
 
-  D3D11_BUFFER_DESC * VertexBuffer::getBufferDesc()
+  D3D11_BUFFER_DESC * DXVertexBuffer::getBufferDesc()
   {
     return m_bufferDesc;
   }

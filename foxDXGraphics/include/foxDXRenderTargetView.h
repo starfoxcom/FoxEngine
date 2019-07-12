@@ -15,11 +15,11 @@
 namespace foxEngineSDK
 {
 
-  class RenderTargetView
+  class DXRenderTargetView
   {
   public:
-    RenderTargetView();
-    ~RenderTargetView();
+    DXRenderTargetView();
+    ~DXRenderTargetView();
 
     ID3D11RenderTargetView ** getRenderTargetViewRef();
 

@@ -6,11 +6,11 @@
 namespace foxEngineSDK
 {
 
-  class Texture
+  class DXTexture
   {
   public:
-    Texture();
-    ~Texture();
+    DXTexture();
+    ~DXTexture();
 
     ID3D11Texture2D * getTexture();
 

@@ -18,11 +18,11 @@
 namespace foxEngineSDK
 {
 
-  class SwapChain
+  class DXSwapChain
   {
   public:
-    SwapChain();
-    ~SwapChain();
+    DXSwapChain();
+    ~DXSwapChain();
 
     void setSwapChainDesc(
       HWND _windowHandler,

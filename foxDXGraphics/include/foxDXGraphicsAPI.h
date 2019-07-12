@@ -27,17 +27,17 @@ namespace foxEngineSDK
 /**
  * Forward declarations
  */
-  class RenderWindow;
-  class Device;
-  class SwapChain;
-  class DeviceContext;
-  class RenderTargetView;
-  class Texture;
-  class Viewport;
-  class VertexShader;
-  class InputLayout;
-  class PixelShader;
-  class VertexBuffer;
+  class DXRenderWindow;
+  class DXDevice;
+  class DXSwapChain;
+  class DXDeviceContext;
+  class DXRenderTargetView;
+  class DXTexture;
+  class DXViewport;
+  class DXVertexShader;
+  class DXInputLayout;
+  class DXPixelShader;
+  class DXVertexBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -148,9 +148,9 @@ namespace foxEngineSDK
      */
     void clearRenderTargetView(float * _clearColor);
 
-    ///////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
     // SETTERS
-    ///////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
     /**
      * SwapChain functions
      */
@@ -207,27 +207,27 @@ namespace foxEngineSDK
 
   private:
 
-    RenderWindow * m_renderWindow;
+    DXRenderWindow * m_renderWindow;
 
-    SwapChain * m_swapChain;
+    DXSwapChain * m_swapChain;
 
-    Device * m_device;
+    DXDevice * m_device;
 
-    DeviceContext * m_deviceContext;
+    DXDeviceContext * m_deviceContext;
 
-    Texture * m_texture;
+    DXTexture * m_texture;
 
-    Viewport * m_viewport;
+    DXViewport * m_viewport;
 
-    RenderTargetView * m_renderTargetView;
+    DXRenderTargetView * m_renderTargetView;
 
-    VertexShader * m_vertexShader;
+    DXVertexShader * m_vertexShader;
 
-    InputLayout * m_inputLayout;
+    DXInputLayout * m_inputLayout;
 
-    PixelShader * m_pixelShader;
+    DXPixelShader * m_pixelShader;
 
-    VertexBuffer * m_vertexBuffer;
+    DXVertexBuffer * m_vertexBuffer;
   };
 }
 

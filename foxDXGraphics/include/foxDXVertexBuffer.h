@@ -24,11 +24,26 @@
 namespace foxEngineSDK
 {
 
-  class VertexBuffer
+  struct vertex
+  {
+    FLOAT X, Y, Z, W;
+    FLOAT R, G, B, A;
+    FLOAT NX, NY, NZ, NW;
+    FLOAT U, V;
+
+  };
+
+  struct simpleVertex
+  {
+    FLOAT X, Y, Z;
+    FLOAT R, G, B, A;
+  };
+
+  class DXVertexBuffer
   {
   public:
-    VertexBuffer();
-    ~VertexBuffer();
+    DXVertexBuffer();
+    ~DXVertexBuffer();
 
     void setBufferDesc();
 
@@ -52,21 +67,6 @@ namespace foxEngineSDK
 
     D3D11_SUBRESOURCE_DATA * m_initData;
 
-  };
-
-  struct vertex
-  {
-    FLOAT X, Y, Z, W;
-    FLOAT R, G, B, A;
-    FLOAT NX, NY, NZ, NW;
-    FLOAT U, V;
-
-  };
-
-  struct simpleVertex
-  {
-    FLOAT X, Y, Z;
-    FLOAT R, G, B, A;
   };
 
   //struct vertex2
