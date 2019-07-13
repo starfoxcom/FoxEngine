@@ -20,7 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxLog.cpp" />
+    <ClCompile Include="src\foxMatrix4.cpp" />
     <ClCompile Include="src\foxPlatformMath.cpp" />
+    <ClCompile Include="src\foxVector2.cpp" />
+    <ClCompile Include="src\foxVector3.cpp" />
+    <ClCompile Include="src\foxVector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\foxLog.h" />

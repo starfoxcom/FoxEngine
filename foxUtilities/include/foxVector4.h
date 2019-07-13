@@ -76,6 +76,12 @@ namespace foxEngineSDK
     Vector4(const Vector3& _vec3D, float _w);
 
     /**
+     * @brief Constructor using another vector4.
+     * @param _vec4D The vector to copy from.
+     */
+    Vector4(const Vector4& _vec4D);
+
+    /**
      * @brief Gets the result of adding two vectors together.
      * @param _vec4D The other vector to add to this.
      * @return The result of adding the vectors together.
@@ -136,7 +142,14 @@ namespace foxEngineSDK
      * @param _vec4D The other vector.
      * @return The cross product.
      */
-    float operator^(const Vector4& _vec4D);
+    Vector4 operator^(const Vector4& _vec4D);
+
+    /**
+     * @brief Gets the dot product of this vector and another.
+     * @param _vec4D The other vector.
+     * @return The dot product.
+     */
+    float operator|(const Vector4& _vec4D);
 
     /**
     * @brief Compares this vector with another for equality.
@@ -198,117 +211,6 @@ namespace foxEngineSDK
      * Vector3 functions
      */
 
-    Vector4::Vector4(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w) {}
 
-    Vector4::Vector4(const Vector2 & _vec2Dxy, const Vector2 & _vec2Dzw) :
-      x(_vec2Dxy.x), y(_vec2Dxy.y), z(_vec2Dzw.x), w(_vec2Dzw.y) {}
-
-    Vector4::Vector4(const Vector3& _vec3D, float _w) :
-      x(_vec3D.x), y(_vec3D.y), z(_vec3D.z), w(_w) {}
-
-    Vector4 Vector4::operator+(const Vector4& _vec4D)
-    {
-      return Vector4(x + _vec4D.x, y + _vec4D.y, z + _vec4D.z, w + _vec4D.w);
-    }
-
-    Vector4 Vector4::operator+(float A)
-    {
-      return Vector4(x + A, y + A, z + A, w + A);
-    }
-
-    Vector4 Vector4::operator-(const Vector4& _vec4D)
-    {
-      return Vector4(x - _vec4D.x, y - _vec4D.y, z - _vec4D.z, w - _vec4D.w);
-    }
-
-    Vector4 Vector4::operator-(float A)
-    {
-      return Vector4(x - A, y - A, z - A, w - A);
-    }
-
-    Vector4 Vector4::operator*(const Vector4& _vec4D)
-    {
-      return Vector4(x * _vec4D.x, y * _vec4D.y, z * _vec4D.z, w * _vec4D.w);
-    }
-
-    Vector4 Vector4::operator*(float A)
-    {
-      return Vector4(x *A, y * A, z * A, w * A);
-    }
-
-    Vector4 Vector4::operator/(const Vector4& _vec4D)
-    {
-      return Vector4(x / _vec4D.x, y / _vec4D.y, z / _vec4D.z, w / _vec4D.w);
-    }
-
-    Vector4 Vector4::operator/(float A)
-    {
-      return Vector4(x / A, y / A, z / A, w / A);
-    }
-
-    float Vector4::operator^(const Vector4& _vec4D)
-    {
-      return Vector4(
-        y * _vec3D.z - z * _vec3D.y,
-        z * _vec3D.x - x * _vec3D.z,
-        x * _vec3D.y - y * _vec3D.x,
-        0.0f);
-    }
-
-    bool Vector4::operator==(const Vector4& _vec4D)
-    {
-      return x == _vec4D.x && y == _vec4D.y && z == _vec4D.z && w == _vec4D.w;
-    }
-
-    bool Vector4::operator!=(const Vector4& _vec4D)
-    {
-      return x != _vec4D - x || y != _vec4D.y || z != _vec4D.z || w != _vec4D.w;
-    }
-
-    Vector4 & Vector4::operator+=(const Vector4& _vec4D)
-    {
-      x += _vec4D.x;
-      y += _vec4D.y;
-      z += _vec4D.z;
-      w += _vec4D.w;
-      return *this;
-    }
-
-    Vector4 & Vector4::operator*=(const Vector4& _vec4D)
-    {
-      x *= _vec4D.x;
-      y *= _vec4D.y;
-      z *= _vec4D.z;
-      w *= _vec4D.w;
-      return *this;
-    }
-
-    Vector4 & Vector4::operator*=(float A)
-    {
-      x *= A;
-      y *= A;
-      z *= A;
-      w *= A;
-      return *this;
-    }
-
-    Vector4 & Vector4::operator/=(const Vector4& _vec4D)
-    {
-      x /= _vec4D.x;
-      y /= _vec4D.y;
-      z /= _vec4D.z;
-      w /= _vec4D.w;
-      return *this;
-    }
-
-    float & operator[](uint32 _index)
-    {
-      return (&x)[_index];
-    }
-
-    float operator[](uint32 _index) const
-    {
-      return (&x)[_index];
-    }
   };
 }
