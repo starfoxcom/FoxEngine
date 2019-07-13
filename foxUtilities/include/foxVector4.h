@@ -13,7 +13,6 @@
  * Includes
  */
 #include "foxPrerequisitesUtilities.h"
-#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {
@@ -30,7 +29,7 @@ namespace foxEngineSDK
     /**
      * @brief Default constructor
      */
-    Vector4() = default;
+    Vector4();
 
     /**
      * @brief Vector's X component.

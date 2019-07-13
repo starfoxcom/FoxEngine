@@ -23,7 +23,7 @@ namespace foxEngineSDK
     /**
      * @brief Default constructor
      */
-    Matrix4() = default;
+    Matrix4();
 
     /**
      * @brief Constructor from 4 3D vectors.

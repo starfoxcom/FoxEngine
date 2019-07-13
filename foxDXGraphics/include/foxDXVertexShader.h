@@ -13,12 +13,12 @@
 
 #include "foxGraphicsDefines.h"
 
-#include "foxShader.h"
+#include "foxDXShader.h"
 
 namespace foxEngineSDK
 {
 
-  class DXVertexShader : public Shader
+  class DXVertexShader : public DXShader
   {
   public:
     DXVertexShader();

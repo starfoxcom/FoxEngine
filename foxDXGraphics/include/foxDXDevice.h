@@ -23,6 +23,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXPixelShader;
   class DXVertexBuffer;
+  class DXIndexBuffer;
 
   class DXDevice
   {
@@ -40,10 +41,10 @@ namespace foxEngineSDK
 
     bool createPixelShader(DXPixelShader * _pixelShader);
 
-    bool createVertexBuffer(
-      DXVertexBuffer * _vertexBuffer,
-      int32 _cpuAcces,
-      int32 _miscFlag);
+    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer);
+
+    bool createIndexBuffer(DXIndexBuffer * _indexBuffer);
+
 
   private:
     ID3D11Device * m_device;

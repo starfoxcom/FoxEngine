@@ -7,7 +7,7 @@ namespace foxEngineSDK
 
   Vector3::Vector3() : x(0.0), y(0.0), z(0.0) {}
 
-  Vector3::Vector3(float _x, float _y, float _z) : x(_y), y(_y), z(_z) {}
+  Vector3::Vector3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
 
   Vector3::Vector3(const Vector2& _vec2D, float _z) : x(_vec2D.x), y(_vec2D.y), z(_z) {}
 

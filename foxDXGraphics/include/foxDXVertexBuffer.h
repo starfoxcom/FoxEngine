@@ -11,11 +11,12 @@
 */
 #include <d3d11.h>
 #include "foxPrerequisitesUtilities.h"
+#include "foxDXBuffer.h"
 
 
 
-//#include "foxVector2.h"
-//#include "foxVector4.h"
+#include "foxVector3.h"
+#include "foxVector4.h"
 
 /**
 * Libs
@@ -39,7 +40,13 @@ namespace foxEngineSDK
     FLOAT R, G, B, A;
   };
 
-  class DXVertexBuffer
+  struct simpleVertex2
+  {
+    Vector3 position;
+    Vector4 color;
+  };
+
+  class DXVertexBuffer : public DXBuffer
   {
   public:
     DXVertexBuffer();
@@ -48,32 +55,7 @@ namespace foxEngineSDK
     void setBufferDesc();
 
     void setSubresourceData(
-      const void * _triangle,
-      uint32 _sysMemPitch,
-      uint32 _sysMemSlicePitch);
-
-    D3D11_SUBRESOURCE_DATA * getSubresourceData();
-
-    ID3D11Buffer  ** getVertexBufferRef();
-
-    ID3D11Buffer  * getVertexBuffer();
-
-    D3D11_BUFFER_DESC * getBufferDesc();
-  private:
-
-    D3D11_BUFFER_DESC * m_bufferDesc;
-
-    ID3D11Buffer * m_vertexBuffer;
-
-    D3D11_SUBRESOURCE_DATA * m_initData;
+      const void * _triangle);
 
   };
-
-  //struct vertex2
-  //{
-  //  Vector4 pos;
-  //  Vector4 color;
-  //  Vector4 normals;
-  //  Vector2 textCoords;
-  //};
 }
