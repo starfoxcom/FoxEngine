@@ -12,7 +12,6 @@
  * Includes
  */
 #include "foxPrerequisitesUtilities.h"
-#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {

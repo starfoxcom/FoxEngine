@@ -14,9 +14,8 @@
 
 
 
-//#include "foxVector2.h"
-//#include "foxVector3.h"
-//#include "foxVector4.h"
+#include "foxVector3.h"
+#include "foxVector4.h"
 
 /**
 * Libs
@@ -40,11 +39,11 @@ namespace foxEngineSDK
     FLOAT R, G, B, A;
   };
 
-  /*struct simpleVertex2
+  struct simpleVertex2
   {
     Vector3 position;
     Vector4 color;
-  };*/
+  };
 
   class DXVertexBuffer
   {

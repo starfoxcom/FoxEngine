@@ -22,7 +22,7 @@ namespace foxEngineSDK
     m_bufferDesc = new D3D11_BUFFER_DESC();
 
     m_bufferDesc->Usage = D3D11_USAGE_DYNAMIC;
-    m_bufferDesc->ByteWidth = sizeof(simpleVertex) * 3;
+    m_bufferDesc->ByteWidth = sizeof(simpleVertex2) * 3;
     m_bufferDesc->BindFlags = D3D11_BIND_VERTEX_BUFFER;
     m_bufferDesc->CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
   }
