@@ -83,7 +83,7 @@ namespace foxEngineSDK
     int32 _miscFlag)
   {
     simpleVertex triangle[]
-    {
+  {
 
       { 0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f},
       { 0.45f, -0.5, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f},
