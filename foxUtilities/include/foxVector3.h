@@ -67,6 +67,12 @@ namespace foxEngineSDK
     Vector3(const Vector2& _vec2D, float _z);
 
     /**
+     * @brief Constructor using another vector3.
+     * @param _vec3D The vector3 to copy the components.
+     */
+    Vector3(const Vector3& _vec3D);
+
+    /**
      * @brief Gets the result of adding two vectors together.
      * @param _vec3D The other vector to add to this.
      * @return The result of adding the vectors together.
@@ -134,7 +140,7 @@ namespace foxEngineSDK
      * @param _vec3D The other vector.
      * @return The cross product.
      */
-    float operator^(const Vector3& _vec3D);
+    Vector3 operator^(const Vector3& _vec3D);
 
     /**
     * @brief Compares this vector with another for equality.
@@ -210,132 +216,7 @@ namespace foxEngineSDK
      * Vector3 functions
      */
 
-    Vector3::~Vector3() {}
-
-    Vector3::Vector3(float _x, float _y, float _z) : x(_y), y(_y), z(_z) {}
-
-    Vector3::Vector3(const Vector2& _vec2D, float _z) : x(_vec2D.x), y(_vec2D.y), z(_z) {}
-
-    Vector3 Vector3::operator+(const Vector3& _vec3D)
-    {
-      return Vector3(x + _vec3D.x, y + _vec3D.y, y + _vec3D.z);
-    }
-
-    Vector3 Vector3::operator+(float A)
-    {
-      return Vector3(x + A, y + A, z + A);
-    }
-
-    Vector3 Vector3::operator-(const Vector3& _vec3D)
-    {
-      return Vector3(x - _vec3D.x, y - _vec3D.y, y - _vec3D.z);
-    }
-
-    Vector3 Vector3::operator-(float A)
-    {
-      return Vector3(x - A, y - A, z - A);
-    }
-
-    Vector3 Vector3::operator*(const Vector3& _vec3D)
-    {
-      return Vector3(x * _vec3D.x, y * _vec3D.y, z * _vec3D.z);
-    }
-
-    Vector3 Vector3::operator*(float A)
-    {
-      return Vector3(x * A, y * A, z * A);
-    }
-
-    Vector3 Vector3::operator/(const Vector3& _vec3D)
-    {
-      return Vector3(x / _vec3D.x, y / _vec3D.y, z / _vec3D.z);
-    }
-
-    Vector3 Vector3::operator/(float A)
-    {
-      return Vector3(x / A, y / A, z / A);
-    }
-
-    float Vector3::operator|(const Vector3& _vec3D)
-    {
-      return x * _vec3D.x + y * _vec3D.y + z * _vec3D.z;
-    }
-
-    float Vector3::operator^(const Vector3& _vec3D)
-    {
-      return Vector3(
-        y * _vec3D.z - z * _vec3D.y,
-        z * _vec3D.x - x * _vec3D.z,
-        x * _vec3D.y - y * _vec3D.x);
-    }
-
-    bool Vector3::operator==(const Vector3& _vec3D)
-    {
-      return x == _vec3D.x && y == _vec3D.y && z == _vec3D.z;
-    }
-
-    bool Vector3::operator!=(const Vector3& _vec3D)
-    {
-      return x != _vec3D.x || y != _vec3D.y || z != _vec3D.z;
-    }
-
-    Vector3 & Vector3::operator+=(const Vector3& _vec3D)
-    {
-      x += _vec3D.x;
-      y += _vec3D.y;
-      z += _vec3D.z;
-      return *this;
-    }
-
-    Vector3 & Vector3::operator-=(const Vector3& _vec3D)
-    {
-      x -= _vec3D.x;
-      y -= _vec3D.y;
-      z -= _vec3D.z;
-      return *this;
-    }
-
-    Vector3 & Vector3::operator*=(const Vector3& _vec3D)
-    {
-      x *= _vec3D.x;
-      y *= _vec3D.y;
-      z *= _vec3D.z;
-      return *this;
-    }
-
-    Vector3 & Vector3::operator*=(float A)
-    {
-      x *= A;
-      y *= A;
-      z *= A;
-      return *this;
-    }
-
-    Vector3 & Vector3::operator/=(const Vector3& _vec3D)
-    {
-      x /= _vec3D.x;
-      y /= _vec3D.y;
-      z /= _vec3D.z;
-      return *this;
-    }
-
-    Vector3 & Vector3::operator/=(float A)
-    {
-      x /= A;
-      y /= A;
-      z /= A;
-      return *this;
-    }
-
-    float & operator[](uint32 _index)
-    {
-      return (&x)[_index];
-    }
-
-    float operator[](uint32 _index) const 
-    {
-      return (&x)[_index];
-    }
+    
 
   };
 }

@@ -19,6 +19,18 @@
     <ClCompile Include="src\foxLog.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="src\foxVector2.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxVector3.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxVector4.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxMatrix4.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\foxPlatformDefines.h">
