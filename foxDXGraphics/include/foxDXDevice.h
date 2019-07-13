@@ -24,6 +24,7 @@ namespace foxEngineSDK
   class DXPixelShader;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
   class DXDevice
   {
@@ -45,6 +46,7 @@ namespace foxEngineSDK
 
     bool createIndexBuffer(DXIndexBuffer * _indexBuffer);
 
+    bool createConstantBuffer(DXConstantBuffer * _constantBuffer);
 
   private:
     ID3D11Device * m_device;

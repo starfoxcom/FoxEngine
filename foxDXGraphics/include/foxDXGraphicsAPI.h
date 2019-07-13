@@ -39,6 +39,7 @@ namespace foxEngineSDK
   class DXPixelShader;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -122,6 +123,13 @@ namespace foxEngineSDK
      * @param _miscFlag
      */
     bool createIndexBuffer();
+
+    /**
+     * @brief Creates the constant buffer.
+     * @param _cpuAcces
+     * @param _miscFlag
+     */
+    bool createConstantBuffer();
 
     /**
      * @brief Adds an input element to the input layout element descriptor
@@ -245,6 +253,8 @@ namespace foxEngineSDK
     DXVertexBuffer * m_vertexBuffer;
 
     DXIndexBuffer * m_indexBuffer;
+
+    DXConstantBuffer * m_constantBuffer;
   };
 }
 

@@ -15,6 +15,7 @@
 #include "foxDXPixelShader.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
+#include "foxDXConstantBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -34,6 +35,7 @@ namespace foxEngineSDK
     m_pixelShader = new DXPixelShader();
     m_vertexBuffer = new DXVertexBuffer();
     m_indexBuffer = new DXIndexBuffer();
+    m_constantBuffer = new DXConstantBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -50,6 +52,7 @@ namespace foxEngineSDK
     delete m_pixelShader;
     delete m_vertexBuffer;
     delete m_indexBuffer;
+    delete m_constantBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -177,8 +180,6 @@ namespace foxEngineSDK
   }
 
   bool DXGraphicsAPI::createVertexBuffer()
-    int32 _cpuAcces,
-    int32 _miscFlag)
   {
     return m_device->createVertexBuffer(m_vertexBuffer);
   }
@@ -186,6 +187,11 @@ namespace foxEngineSDK
   bool DXGraphicsAPI::createIndexBuffer()
   {
     return m_device->createIndexBuffer(m_indexBuffer);
+  }
+
+  bool DXGraphicsAPI::createConstantBuffer()
+  {
+    return m_device->createConstantBuffer(m_constantBuffer);
   }
 
   void DXGraphicsAPI::addInputElement(

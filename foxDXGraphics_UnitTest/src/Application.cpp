@@ -72,6 +72,8 @@ bool BaseApp::run()
   m_graphicsAPI.setIAPrimitiveTopology(
     FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
+  m_graphicsAPI.createConstantBuffer();
+
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
   {
