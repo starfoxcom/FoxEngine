@@ -120,7 +120,7 @@ namespace foxEngineSDK
      * @param _cpuAcces
      * @param _miscFlag
      */
-    bool createIndexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
+    //bool createIndexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
 
     /**
      * @brief Adds an input element to the input layout element descriptor

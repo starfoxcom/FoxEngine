@@ -49,7 +49,7 @@ namespace foxEngineSDK
   }
   uint32 DXInputLayout::getInputLayoutNumElements()
   {
-    return m_inputElements.size();
+    return static_cast<uint32>(m_inputElements.size());
   }
 
   void DXInputLayout::addElement(

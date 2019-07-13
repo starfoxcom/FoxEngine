@@ -89,6 +89,13 @@ namespace foxEngineSDK
       { -0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f}
     };
 
+    /*simpleVertex2 triangle2[]
+    {
+      {Vector3(0.0f, 0.5f, 0.0f),Vector4(1.0f, 0.0f, 0.0f, 1.0f)},
+      {Vector3(0.45f, -0.5, 0.0f),Vector4(0.0f, 1.0f, 0.0f, 1.0f)},
+      {Vector3(-0.45f, -0.5f, 0.0f),Vector4(0.0f, 0.0f, 1.0f, 1.0f)}
+    };*/
+
     _vertexBuffer->setBufferDesc();
 
     _vertexBuffer->setSubresourceData(triangle, _cpuAcces, _miscFlag);

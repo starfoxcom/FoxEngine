@@ -15,6 +15,7 @@
 
 
 //#include "foxVector2.h"
+//#include "foxVector3.h"
 //#include "foxVector4.h"
 
 /**
@@ -38,6 +39,12 @@ namespace foxEngineSDK
     FLOAT X, Y, Z;
     FLOAT R, G, B, A;
   };
+
+  /*struct simpleVertex2
+  {
+    Vector3 position;
+    Vector4 color;
+  };*/
 
   class DXVertexBuffer
   {
@@ -68,12 +75,4 @@ namespace foxEngineSDK
     D3D11_SUBRESOURCE_DATA * m_initData;
 
   };
-
-  //struct vertex2
-  //{
-  //  Vector4 pos;
-  //  Vector4 color;
-  //  Vector4 normals;
-  //  Vector2 textCoords;
-  //};
 }

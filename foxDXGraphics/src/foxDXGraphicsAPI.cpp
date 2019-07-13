@@ -180,10 +180,10 @@ namespace foxEngineSDK
     return m_device->createVertexBuffer(m_vertexBuffer, _cpuAcces, _miscFlag);
   }
 
-  bool DXGraphicsAPI::createIndexBuffer(int32 _cpuAcces, int32 _miscFlag)
-  {
-    return false;
-  }
+  //bool DXGraphicsAPI::createIndexBuffer(int32 _cpuAcces, int32 _miscFlag)
+  //{
+  //  return false;
+  //}
 
   void DXGraphicsAPI::addInputElement(
     const char * _semanticName,

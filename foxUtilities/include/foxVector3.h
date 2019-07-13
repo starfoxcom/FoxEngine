@@ -29,7 +29,7 @@ namespace foxEngineSDK
     /**
      * @brief Default constructor.
      */
-    Vector3() = default;
+    Vector3();
 
     /**
      * @brief Default destructor.
