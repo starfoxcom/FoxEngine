@@ -18,9 +18,6 @@
     <ClInclude Include="include\foxGraphicsDefines.h">
       <Filter>Include\prerequisites</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxShader.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\foxGraphicsCommons.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -57,7 +54,18 @@
     <ClInclude Include="include\foxDXVertexBuffer.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxDXIndexBuffer.h" />
+    <ClInclude Include="include\foxDXIndexBuffer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxDXBuffer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxDXShader.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxDXConstantBuffer.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -97,6 +105,15 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXVertexBuffer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxDXIndexBuffer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxDXBuffer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxDXConstantBuffer.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

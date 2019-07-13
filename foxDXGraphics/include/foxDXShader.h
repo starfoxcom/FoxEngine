@@ -16,11 +16,11 @@
 namespace foxEngineSDK
 {
 
-  class Shader
+  class DXShader
   {
   public:
-    Shader();
-    ~Shader();
+    DXShader();
+    ~DXShader();
 
     ID3DBlob ** getBlobRef();
 

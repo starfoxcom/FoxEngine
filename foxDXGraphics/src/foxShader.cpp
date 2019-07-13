@@ -3,31 +3,31 @@
 #include <iostream>
 #include <d3dcompiler.h>
 
-#include "foxShader.h"
+#include "foxDXShader.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
 {
 
-  Shader::Shader()
+  DXShader::DXShader()
   {
   }
 
-  Shader::~Shader()
+  DXShader::~DXShader()
   {
   }
 
-  ID3DBlob ** Shader::getBlobRef()
+  ID3DBlob ** DXShader::getBlobRef()
   {
     return &m_blob;
   }
 
-  ID3DBlob * Shader::getBlob()
+  ID3DBlob * DXShader::getBlob()
   {
     return m_blob;
   }
 
-  bool Shader::compileShaderFromFile(
+  bool DXShader::compileShaderFromFile(
     const char * _fileName,
     const char * _entryPoint,
     const char * _shaderModel)

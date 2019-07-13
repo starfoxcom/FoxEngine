@@ -11,6 +11,7 @@
 */
 #include <d3d11.h>
 #include "foxPrerequisitesUtilities.h"
+#include "foxDXBuffer.h"
 
 
 
@@ -45,7 +46,7 @@ namespace foxEngineSDK
     Vector4 color;
   };
 
-  class DXVertexBuffer
+  class DXVertexBuffer : public DXBuffer
   {
   public:
     DXVertexBuffer();
@@ -54,24 +55,7 @@ namespace foxEngineSDK
     void setBufferDesc();
 
     void setSubresourceData(
-      const void * _triangle,
-      uint32 _sysMemPitch,
-      uint32 _sysMemSlicePitch);
-
-    D3D11_SUBRESOURCE_DATA * getSubresourceData();
-
-    ID3D11Buffer  ** getVertexBufferRef();
-
-    ID3D11Buffer  * getVertexBuffer();
-
-    D3D11_BUFFER_DESC * getBufferDesc();
-  private:
-
-    D3D11_BUFFER_DESC * m_bufferDesc;
-
-    ID3D11Buffer * m_vertexBuffer;
-
-    D3D11_SUBRESOURCE_DATA * m_initData;
+      const void * _triangle);
 
   };
 }

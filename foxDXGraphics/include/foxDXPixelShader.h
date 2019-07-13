@@ -12,12 +12,12 @@
 */
 #include <d3d11.h>
 #include "foxGraphicsDefines.h"
-#include "foxShader.h"
+#include "foxDXShader.h"
 
 namespace foxEngineSDK
 {
 
-  class DXPixelShader : public Shader
+  class DXPixelShader : public DXShader
   {
   public:
     DXPixelShader();

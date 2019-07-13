@@ -14,6 +14,7 @@
 #include "foxDXInputLayout.h"
 #include "foxDXPixelShader.h"
 #include "foxDXVertexBuffer.h"
+#include "foxDXIndexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -32,6 +33,7 @@ namespace foxEngineSDK
     m_inputLayout = new DXInputLayout();
     m_pixelShader = new DXPixelShader();
     m_vertexBuffer = new DXVertexBuffer();
+    m_indexBuffer = new DXIndexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -47,6 +49,7 @@ namespace foxEngineSDK
     delete m_inputLayout;
     delete m_pixelShader;
     delete m_vertexBuffer;
+    delete m_indexBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -173,17 +176,17 @@ namespace foxEngineSDK
     return m_device->createPixelShader(m_pixelShader);
   }
 
-  bool DXGraphicsAPI::createVertexBuffer(
+  bool DXGraphicsAPI::createVertexBuffer()
     int32 _cpuAcces,
     int32 _miscFlag)
   {
-    return m_device->createVertexBuffer(m_vertexBuffer, _cpuAcces, _miscFlag);
+    return m_device->createVertexBuffer(m_vertexBuffer);
   }
 
-  //bool DXGraphicsAPI::createIndexBuffer(int32 _cpuAcces, int32 _miscFlag)
-  //{
-  //  return false;
-  //}
+  bool DXGraphicsAPI::createIndexBuffer()
+  {
+    return m_device->createIndexBuffer(m_indexBuffer);
+  }
 
   void DXGraphicsAPI::addInputElement(
     const char * _semanticName,
@@ -216,7 +219,7 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
-    if (m_vertexBuffer->getVertexBuffer()) m_vertexBuffer->getVertexBuffer()->Release();
+    if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
     if (m_pixelShader->getPixelShader()) m_pixelShader->getPixelShader()->Release();
@@ -273,6 +276,11 @@ namespace foxEngineSDK
   void DXGraphicsAPI::setIAVertexBuffer(uint32 _startSlot, uint32 _numOfBuffers)
   {
     m_deviceContext->setIAVertexBuffers(m_vertexBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setIAIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset)
+  {
+    m_deviceContext->setIAIndexBuffers(m_indexBuffer, _format, _offset);
   }
 
   void DXGraphicsAPI::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)

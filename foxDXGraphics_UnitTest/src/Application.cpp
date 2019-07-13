@@ -65,6 +65,10 @@ bool BaseApp::run()
 
   m_graphicsAPI.setIAVertexBuffer();
 
+  m_graphicsAPI.createIndexBuffer();
+
+  m_graphicsAPI.setIAIndexBuffer(FOXGI_FORMAT::E::K_R32_UINT, 0);
+
   m_graphicsAPI.setIAPrimitiveTopology(
     FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 

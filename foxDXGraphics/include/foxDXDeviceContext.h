@@ -23,6 +23,7 @@ namespace foxEngineSDK
   class DXRenderTargetView;
   class DXInputLayout;
   class DXVertexBuffer;
+  class DXIndexBuffer;
   class DXVertexShader;
   class DXPixelShader;
 
@@ -44,6 +45,11 @@ namespace foxEngineSDK
       DXVertexBuffer * _vertexBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
+
+    void setIAIndexBuffers(
+      DXIndexBuffer * _indexBuffer,
+      FOXGI_FORMAT::E _format,
+      uint32 _offset);
 
     void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 

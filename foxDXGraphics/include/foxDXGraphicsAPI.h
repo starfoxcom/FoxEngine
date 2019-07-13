@@ -38,6 +38,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXPixelShader;
   class DXVertexBuffer;
+  class DXIndexBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -113,14 +114,14 @@ namespace foxEngineSDK
      * @param _cpuAcces
      * @param _miscFlag
      */
-    bool createVertexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
+    bool createVertexBuffer();
 
     /**
      * @brief Creates the index buffer.
      * @param _cpuAcces
      * @param _miscFlag
      */
-    //bool createIndexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
+    bool createIndexBuffer();
 
     /**
      * @brief Adds an input element to the input layout element descriptor
@@ -182,6 +183,13 @@ namespace foxEngineSDK
     void setIAVertexBuffer(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
 
     /**
+     * @brief Sets the index buffer input assembly.
+     * @param _format
+     * @param _offset
+     */
+    void setIAIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset);
+
+    /**
      * @brief Sets the primitive topology
      * @param 
      */
@@ -235,6 +243,8 @@ namespace foxEngineSDK
     DXPixelShader * m_pixelShader;
 
     DXVertexBuffer * m_vertexBuffer;
+
+    DXIndexBuffer * m_indexBuffer;
   };
 }
 
