@@ -116,6 +116,13 @@ namespace foxEngineSDK
     bool createVertexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
 
     /**
+     * @brief Creates the index buffer.
+     * @param _cpuAcces
+     * @param _miscFlag
+     */
+    bool createIndexBuffer(int32 _cpuAcces = 0, int32 _miscFlag = 0);
+
+    /**
      * @brief Adds an input element to the input layout element descriptor
      */
     void addInputElement(

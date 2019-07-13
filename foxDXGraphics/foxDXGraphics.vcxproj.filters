@@ -57,6 +57,7 @@
     <ClInclude Include="include\foxDXVertexBuffer.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxDXIndexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
