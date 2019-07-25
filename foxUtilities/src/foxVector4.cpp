@@ -1,6 +1,7 @@
 #include "foxVector4.h"
 #include "foxVector3.h"
 #include "foxVector2.h"
+#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {
@@ -125,5 +126,14 @@ namespace foxEngineSDK
   float Vector4::operator[](uint32 _index) const
   {
     return (&x)[_index];
+  }
+  float Vector4::magnitude()
+  {
+    return Math::sqrt(x * x + y * y + z * z + w * w);
+  }
+  Vector4 Vector4::normalized()
+  {
+    const float scale = Math::invSqrt(x * x + y * y + z * z);
+    return Vector4(x*scale, y*scale, z*scale, 0.0f);
   }
 }

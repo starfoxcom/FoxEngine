@@ -5,6 +5,7 @@
 #include "foxDXIndexBuffer.h"
 #include "foxDXVertexShader.h"
 #include "foxDXPixelShader.h"
+#include "foxDXConstantBuffer.h"
 
 
 namespace foxEngineSDK
@@ -28,6 +29,7 @@ namespace foxEngineSDK
   {
     return m_deviceContext;
   }
+
   void DXDeviceContext::clearRenderTargetView(
     DXRenderTargetView * _renderTargetView,
     float * _clearColor)
@@ -36,6 +38,12 @@ namespace foxEngineSDK
       _renderTargetView->getRenderTargetView(),
       _clearColor);
   }
+
+  void DXDeviceContext::updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data)
+  {
+    m_deviceContext->UpdateSubresource(_constantBuffer->getBuffer(), 0, NULL, _data, 0, 0);
+  }
+
   void DXDeviceContext::setInputLayout(DXInputLayout * _inputLayout)
   {
 
@@ -67,6 +75,12 @@ namespace foxEngineSDK
       static_cast<DXGI_FORMAT>(_format),
       _offset);
   }
+
+  void DXDeviceContext::setConstantBuffers(DXConstantBuffer * _constantBuffer, uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
+  }
+
   void DXDeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
@@ -82,5 +96,9 @@ namespace foxEngineSDK
   void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->Draw(_vertexCount, _vertexStart);
+  }
+  void DXDeviceContext::drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart)
+  {
+    m_deviceContext->DrawIndexed(_indexCount, _indexStart, _vertexStart);
   }
 }

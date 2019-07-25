@@ -4,6 +4,7 @@
 #include "foxDXPixelShader.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
+#include "foxDXConstantBuffer.h"
 #include "foxLog.h"
 
 
@@ -78,19 +79,9 @@ namespace foxEngineSDK
     return true;
   }
   bool DXDevice::createVertexBuffer(DXVertexBuffer * _vertexBuffer)
-    DXVertexBuffer * _vertexBuffer,
-    int32 _cpuAcces,
-    int32 _miscFlag)
-  {
-    simpleVertex triangle[]
   {
 
-      { 0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f},
-      { 0.45f, -0.5, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f},
-      { -0.45f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f}
-    };
-
-    simpleVertex2 triangle2[]
+    simpleVertex2 vertices[]
     {
       { Vector3(-1.0f, 1.0f, -1.0f), Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
       { Vector3(1.0f, 1.0f, -1.0f),  Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
@@ -104,7 +95,7 @@ namespace foxEngineSDK
 
     _vertexBuffer->setBufferDesc();
 
-    _vertexBuffer->setSubresourceData(triangle2);
+    _vertexBuffer->setSubresourceData(vertices);
 
     if (FAILED(m_device->CreateBuffer(
       _vertexBuffer->getBufferDesc(),
@@ -156,5 +147,20 @@ namespace foxEngineSDK
     Log() << "index buffer created successfully";
     return true;
   }
-}
+  bool DXDevice::createConstantBuffer(DXConstantBuffer * _constantBuffer)
+  {
+    _constantBuffer->setBufferDesc();
+
+    if (FAILED(m_device->CreateBuffer(
+      _constantBuffer->getBufferDesc(),
+      NULL,
+      _constantBuffer->getBufferRef())))
+    {
+      Log(Log::LOGERROR, true) << "constant buffer couldn't be created";
+      return false;
+    }
+    Log() << "constant buffer created successfully";
+    return true;
+
+  }
 }

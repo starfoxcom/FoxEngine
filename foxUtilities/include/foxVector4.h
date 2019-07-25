@@ -207,8 +207,14 @@ namespace foxEngineSDK
     float operator[](uint32 _index) const;
 
     /**
-     * Vector3 functions
+     * @brief Gets the magnitude of the vector.
      */
+    float magnitude();
+
+    /**
+     * @brief Gets the vector normalized.
+     */
+    Vector4 normalized();
 
 
   };

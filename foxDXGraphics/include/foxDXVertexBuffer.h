@@ -13,11 +13,6 @@
 #include "foxPrerequisitesUtilities.h"
 #include "foxDXBuffer.h"
 
-
-
-#include "foxVector3.h"
-#include "foxVector4.h"
-
 /**
 * Libs
 */

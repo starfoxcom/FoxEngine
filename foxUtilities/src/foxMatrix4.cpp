@@ -1,13 +1,14 @@
 #include "foxMatrix4.h"
 #include "foxVector3.h"
 #include "foxVector4.h"
+#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {
 
   Matrix4::Matrix4()
   {
-    this->zero();
+    this->toZero();
   }
 
   Matrix4::Matrix4(
@@ -54,7 +55,7 @@ namespace foxEngineSDK
     m_dr[3][0] = _30; m_dr[3][1] = _31; m_dr[3][2] = _32; m_dr[3][3] = _33;
   }
 
-  void Matrix4::identity()
+  void Matrix4::toIdentity()
   {
     m_dr[0][0] = 1.0f; m_dr[0][1] = 0.0f; m_dr[0][2] = 0.0f; m_dr[0][3] = 0.0f;
     m_dr[1][0] = 0.0f; m_dr[1][1] = 1.0f; m_dr[1][2] = 0.0f; m_dr[1][3] = 0.0f;
@@ -62,12 +63,36 @@ namespace foxEngineSDK
     m_dr[3][0] = 0.0f; m_dr[3][1] = 0.0f; m_dr[3][2] = 0.0f; m_dr[3][3] = 1.0f;
   }
 
-  void Matrix4::zero()
+  void Matrix4::toZero()
   {
     m_dr[0][0] = 0.0f; m_dr[0][1] = 0.0f; m_dr[0][2] = 0.0f; m_dr[0][3] = 0.0f;
     m_dr[1][0] = 0.0f; m_dr[1][1] = 0.0f; m_dr[1][2] = 0.0f; m_dr[1][3] = 0.0f;
     m_dr[2][0] = 0.0f; m_dr[2][1] = 0.0f; m_dr[2][2] = 0.0f; m_dr[2][3] = 0.0f;
     m_dr[3][0] = 0.0f; m_dr[3][1] = 0.0f; m_dr[3][2] = 0.0f; m_dr[3][3] = 0.0f;
+  }
+
+  void Matrix4::toTranspose()
+  {
+    Matrix4 result = *this;
+    m_dr[0][0] = result.m_dr[0][0];
+    m_dr[1][0] = result.m_dr[0][1];
+    m_dr[2][0] = result.m_dr[0][2];
+    m_dr[3][0] = result.m_dr[0][3];
+
+    m_dr[0][1] = result.m_dr[1][0];
+    m_dr[1][1] = result.m_dr[1][1];
+    m_dr[2][1] = result.m_dr[1][2];
+    m_dr[3][1] = result.m_dr[1][3];
+
+    m_dr[0][2] = result.m_dr[2][0];
+    m_dr[1][2] = result.m_dr[2][1];
+    m_dr[2][2] = result.m_dr[2][2];
+    m_dr[3][2] = result.m_dr[2][3];
+    
+    m_dr[0][3] = result.m_dr[3][0];
+    m_dr[1][3] = result.m_dr[3][1];
+    m_dr[2][3] = result.m_dr[3][2];
+    m_dr[3][3] = result.m_dr[3][3];
   }
 
   Matrix4 Matrix4::transposed()
@@ -96,6 +121,61 @@ namespace foxEngineSDK
     return result;
   }
 
+  void Matrix4::toLookAt(Vector4 & _eyePos, Vector4 & _target, Vector4 & _up)
+  {
+    Vector4 xDir, yDir, zDir;
+
+    zDir = (_target - _eyePos).normalized();
+    xDir = ((_up).normalized() ^ zDir);
+    yDir = zDir ^ xDir;
+
+    m_dr[0][0] = xDir.x;
+    m_dr[1][0] = xDir.y;
+    m_dr[2][0] = xDir.z;
+    m_dr[3][0] = -(xDir | _eyePos);
+
+    m_dr[0][1] = yDir.x;
+    m_dr[1][1] = yDir.y;
+    m_dr[2][1] = yDir.z;
+    m_dr[3][1] = -(yDir | _eyePos);
+
+    m_dr[0][2] = zDir.x;
+    m_dr[1][2] = zDir.y;
+    m_dr[2][2] = zDir.z;
+    m_dr[3][2] = -(zDir | _eyePos);
+
+    m_dr[0][3] = 0;
+    m_dr[1][3] = 0;
+    m_dr[2][3] = 0;
+    m_dr[3][3] = 1;
+  }
+
+  void Matrix4::toPerspectiveFOV(float _fovY, float _ratio, float _zNear, float _zFar)
+  {
+    float height = 1 / Math::tan(_fovY / 2);
+    float width = height / _ratio;
+
+    m_dr[0][0] = width;
+    m_dr[1][0] = 0;
+    m_dr[2][0] = 0;
+    m_dr[3][0] = 0;
+
+    m_dr[0][1] = 0;
+    m_dr[1][1] = height;
+    m_dr[2][1] = 0;
+    m_dr[3][1] = 0;
+
+    m_dr[0][2] = 0;
+    m_dr[1][2] = 0;
+    m_dr[2][2] = _zFar / (_zFar - _zNear);
+    m_dr[3][2] = (-_zNear * _zFar) / (_zFar - _zNear);
+
+    m_dr[0][3] = 0;
+    m_dr[1][3] = 0;
+    m_dr[2][3] = 1;
+    m_dr[3][3] = 0;
+  }
+
   Matrix4 Matrix4::operator+(const Matrix4& _matrix)
   {
 
@@ -111,21 +191,6 @@ namespace foxEngineSDK
 
     return result;
   }
-
-  //Matrix4 Matrix4::operator-(const Matrix4& _matrix)
-  //{
-  //  Matrix4 result;
-
-  //  for (int32 x = 0; x < 4; ++x)
-  //  {
-  //    for (int32 y = 0; y < 4; ++y)
-  //    {
-  //      result.m_dr[x][y] = m_dr[x][y] - _matrix.m_dr[x][y];
-  //    }
-  //  }
-
-  //  return result;
-  //}
 
   Matrix4 Matrix4::operator*(const Matrix4 & _matrix)
   {
@@ -222,5 +287,102 @@ namespace foxEngineSDK
   bool Matrix4::operator!=(const Matrix4 & _matrix)
   {
     return !(*this == _matrix);
+  }
+
+  Matrix4 Matrix4::lookAt(Vector4 & _eyePos, Vector4 & _target, Vector4 & _up)
+  {
+    Vector4 xDir, yDir, zDir;
+
+    zDir = (_target - _eyePos).normalized();
+    xDir = ((_up).normalized() ^ zDir);
+    yDir = zDir ^ xDir;
+
+    Matrix4 view;
+
+    view.m_dr[0][0] = xDir.x;
+    view.m_dr[1][0] = xDir.y;
+    view.m_dr[2][0] = xDir.z;
+    view.m_dr[3][0] = -(xDir | _eyePos);
+    
+    view.m_dr[0][1] = yDir.x;
+    view.m_dr[1][1] = yDir.y;
+    view.m_dr[2][1] = yDir.z;
+    view.m_dr[3][1] = -(yDir | _eyePos);
+    
+    view.m_dr[0][2] = zDir.x;
+    view.m_dr[1][2] = zDir.y;
+    view.m_dr[2][2] = zDir.z;
+    view.m_dr[3][2] = -(zDir | _eyePos);
+    
+    view.m_dr[0][3] = 0;
+    view.m_dr[1][3] = 0;
+    view.m_dr[2][3] = 0;
+    view.m_dr[3][3] = 1;
+
+    return view;
+  }
+
+
+  Matrix4 Matrix4::perspectiveFOV(float _fovY, float _ratio, float _zNear, float _zFar)
+  {
+    float height = 1 / Math::tan(_fovY / 2);
+    float width = height / _ratio;
+
+    Matrix4 projection;
+
+    projection.m_dr[0][0] = width;
+    projection.m_dr[1][0] = 0;
+    projection.m_dr[2][0] = 0;
+    projection.m_dr[3][0] = 0;
+    
+    projection.m_dr[0][1] = 0;
+    projection.m_dr[1][1] = height;
+    projection.m_dr[2][1] = 0;
+    projection.m_dr[3][1] = 0;
+    
+    projection.m_dr[0][2] = 0;
+    projection.m_dr[1][2] = 0;
+    projection.m_dr[2][2] = _zFar / (_zFar - _zNear);
+    projection.m_dr[3][2] = (-_zNear * _zFar) / (_zFar - _zNear);
+    
+    projection.m_dr[0][3] = 0;
+    projection.m_dr[1][3] = 0;
+    projection.m_dr[2][3] = 1;
+    projection.m_dr[3][3] = 0;
+
+    return projection;
+  }
+
+  void Matrix4::rotateInX(float _angle)
+  {
+    Matrix4 rotation;
+    rotation.toIdentity();
+    rotation.m_dr[2][2] = rotation.m_dr[1][1] = Math::cos(_angle);
+    rotation.m_dr[1][2] = Math::sin(_angle);
+    rotation.m_dr[2][1] = -rotation.m_dr[1][2];
+
+    *this *= rotation;
+  }
+
+  void Matrix4::rotateInY(float _angle)
+  {
+    Matrix4 rotation;
+    rotation.toIdentity();
+    rotation.m_dr[0][0] = rotation.m_dr[2][2] = Math::cos(_angle);
+    rotation.m_dr[2][0] = Math::sin(_angle);
+    rotation.m_dr[0][2] = -rotation.m_dr[2][0];
+
+    *this *= rotation;
+  }
+
+  void Matrix4::rotateInZ(float _angle)
+  {
+    Matrix4 rotation;
+    rotation.toIdentity();
+    rotation.m_dr[1][1] = rotation.m_dr[0][0] = Math::cos(_angle);
+    rotation.m_dr[0][1] = Math::sin(_angle);
+    rotation.m_dr[1][0] = -rotation.m_dr[0][1];
+
+    *this *= rotation;
   }
 }
