@@ -68,7 +68,10 @@ namespace foxEngineSDK
       &errorBlob)))
     {
       if (errorBlob != NULL)
+      {
+        Log() << "Shader Couldn't not be compiled" << "[" << _shaderModel << "]";
         if (errorBlob) errorBlob->Release();
+      }
       return false;
     }
     if (errorBlob) errorBlob->Release();

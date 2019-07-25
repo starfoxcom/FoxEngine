@@ -15,6 +15,7 @@
 #include "foxLog.h"
 #include "foxGraphicsDefines.h"
 #include "foxGraphicsCommons.h"
+#include "foxMatrix4.h"
 
 /**
  * Libs, since the .libs have been added in the project settings, this is no longer needed
@@ -164,6 +165,12 @@ namespace foxEngineSDK
      */
     void clearRenderTargetView(float * _clearColor);
 
+    /**
+     * @brief Updates the constant buffer.
+     * @param _data The data to update.
+     */
+    void updateConstantBuffer(const void * _data);
+
     //////////////////////////////////////////////////////////////////////////
     // SETTERS
     //////////////////////////////////////////////////////////////////////////
@@ -192,14 +199,14 @@ namespace foxEngineSDK
 
     /**
      * @brief Sets the index buffer input assembly.
-     * @param _format
-     * @param _offset
+     * @param _format The Index buffer format.
+     * @param _offset The offset of the Index buffer.
      */
     void setIAIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset);
 
     /**
      * @brief Sets the primitive topology
-     * @param 
+     * @param _topology The topology to set.
      */
     void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 
@@ -207,6 +214,13 @@ namespace foxEngineSDK
      * @brief Sets the vertex shader.
      */
     void setVertexShader();
+
+    /**
+     * @brief Sets the constant buffer.
+     * @param _startSlot
+     * @param _numOfBuffers
+     */
+    void setConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);;
 
     /**
      * @brief Sets the pixel shader.
@@ -219,6 +233,14 @@ namespace foxEngineSDK
      * @param _vertexStart The starting point of the vertices.
      */
     void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    /**
+     * @brief Draws the indices.
+     * @param _indexCount
+     * @param _indexStart
+     * @param _vertexStart
+     */
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
     /**
      * @brief Present the information from the back to the front buffer.
@@ -255,6 +277,13 @@ namespace foxEngineSDK
     DXIndexBuffer * m_indexBuffer;
 
     DXConstantBuffer * m_constantBuffer;
+
+    //These matrices are going to be on the Camera class, when that class gets created.
+    Matrix4 m_world;
+
+    Matrix4 m_view;
+
+    Matrix4 m_projection;
   };
 }
 

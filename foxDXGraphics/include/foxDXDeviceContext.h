@@ -26,6 +26,7 @@ namespace foxEngineSDK
   class DXIndexBuffer;
   class DXVertexShader;
   class DXPixelShader;
+  class DXConstantBuffer;
 
   class DXDeviceContext
   {
@@ -39,6 +40,8 @@ namespace foxEngineSDK
 
     void clearRenderTargetView(DXRenderTargetView* _renderTargetView, float * _clearColor);
 
+    void updateConstantBuffer(DXConstantBuffer* _constantBuffer, const void * _data);
+
     void setInputLayout(DXInputLayout * _inputLayout);
 
     void setIAVertexBuffers(
@@ -51,6 +54,11 @@ namespace foxEngineSDK
       FOXGI_FORMAT::E _format,
       uint32 _offset);
 
+    void setConstantBuffers(
+      DXConstantBuffer * _constantBuffer,
+      uint32 _startSlot,
+      uint32 _numOfBuffers);
+
     void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 
     void setVertexShader(DXVertexShader * _vertexShader);
@@ -58,6 +66,8 @@ namespace foxEngineSDK
     void setPixelShader(DXPixelShader * _pixelShader);
 
     void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
   private:
     ID3D11DeviceContext * m_deviceContext;

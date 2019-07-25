@@ -81,7 +81,7 @@ namespace foxEngineSDK
   bool DXDevice::createVertexBuffer(DXVertexBuffer * _vertexBuffer)
   {
 
-    simpleVertex2 triangle2[]
+    simpleVertex2 vertices[]
     {
       { Vector3(-1.0f, 1.0f, -1.0f), Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
       { Vector3(1.0f, 1.0f, -1.0f),  Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
@@ -95,7 +95,7 @@ namespace foxEngineSDK
 
     _vertexBuffer->setBufferDesc();
 
-    _vertexBuffer->setSubresourceData(triangle2);
+    _vertexBuffer->setSubresourceData(vertices);
 
     if (FAILED(m_device->CreateBuffer(
       _vertexBuffer->getBufferDesc(),

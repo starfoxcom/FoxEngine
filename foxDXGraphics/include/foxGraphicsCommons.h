@@ -38,7 +38,7 @@ namespace foxEngineSDK
 
       K_R8G8_UINT = 50,
 
-      K_R18_UINT = 57,
+      K_R16_UINT = 57,
 
       K_R8_UINT = 62,
 

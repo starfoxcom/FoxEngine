@@ -16,6 +16,7 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {
@@ -151,7 +152,15 @@ namespace foxEngineSDK
 
     m_deviceContext->getDeviceContext()->RSSetViewports(1, m_viewport->getViewport());
 
+    m_world.toIdentity();
 
+    Vector4 eye(0.0f, 1.0f, -5.0f, 0.0f);
+    Vector4 at(0.0f, 1.0f, 0.0f, 0.0f);
+    Vector4 up(0.0f, 1.0f, 0.0f, 0.0f);
+    
+    m_view.toLookAt(eye, at, up);
+
+    m_projection.toPerspectiveFOV(Math::HALF_PI, width / static_cast<float>(height), 0.01f, 100.0f);
 
     return true;
   }
@@ -225,7 +234,9 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_constantBuffer->getBuffer()) m_constantBuffer->getBuffer()->Release();
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
+    if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
     if (m_pixelShader->getPixelShader()) m_pixelShader->getPixelShader()->Release();
@@ -238,15 +249,32 @@ namespace foxEngineSDK
   void DXGraphicsAPI::render()
   {
 
+    float t = 0.0f;
+    t += Math::PI * 0.000125f;
+
+    m_world.rotateInY(t);
+
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
 
     clearRenderTargetView(clearColor);
 
+    constantBuffer cb;
+
+    cb.world = m_world.transposed();
+    cb.view = m_view.transposed();
+    cb.projection = m_projection.transposed();
+
+    updateConstantBuffer(&cb);
+
     setVertexShader();
+
+    setConstantBuffers();
 
     setPixelShader();
 
-    draw(3, 0);
+    drawIndexed(36, 0, 0);
+    
+    //draw(3, 0);
     
     present();
   }
@@ -254,6 +282,11 @@ namespace foxEngineSDK
   void DXGraphicsAPI::clearRenderTargetView(float * _clearColor)
   {
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _clearColor);
+  }
+
+  void DXGraphicsAPI::updateConstantBuffer(const void * _data)
+  {
+    m_deviceContext->updateConstantBuffer(m_constantBuffer, _data);
   }
 
   void DXGraphicsAPI::setSwapChainDesc(
@@ -299,6 +332,11 @@ namespace foxEngineSDK
     m_deviceContext->setVertexShader(m_vertexShader);
   }
 
+  void DXGraphicsAPI::setConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->setConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
+  }
+
   void DXGraphicsAPI::setPixelShader()
   {
     m_deviceContext->setPixelShader(m_pixelShader);
@@ -307,6 +345,11 @@ namespace foxEngineSDK
   void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->draw(_vertexCount, _vertexStart);
+  }
+
+  void DXGraphicsAPI::drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart)
+  {
+    m_deviceContext->drawIndexed(_indexCount, _indexStart, _vertexStart);
   }
 
   void DXGraphicsAPI::present()
