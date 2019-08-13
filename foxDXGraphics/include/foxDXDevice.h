@@ -25,6 +25,8 @@ namespace foxEngineSDK
   class DXVertexBuffer;
   class DXIndexBuffer;
   class DXConstantBuffer;
+  class DXTexture;
+  class DXDepthStencilVew;
 
   class DXDevice
   {
@@ -47,6 +49,10 @@ namespace foxEngineSDK
     bool createIndexBuffer(DXIndexBuffer * _indexBuffer);
 
     bool createConstantBuffer(DXConstantBuffer * _constantBuffer);
+
+    bool createTexture2D(DXTexture * _texture, uint32 _width, uint32 _height, uint32 _bindFlag);
+
+    bool createDepthStencilView(DXTexture * _texture, DXDepthStencilVew * _depthStencilView);
 
   private:
     ID3D11Device * m_device;

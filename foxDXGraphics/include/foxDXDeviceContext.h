@@ -27,6 +27,7 @@ namespace foxEngineSDK
   class DXVertexShader;
   class DXPixelShader;
   class DXConstantBuffer;
+  class DXDepthStencilVew;
 
   class DXDeviceContext
   {
@@ -39,6 +40,8 @@ namespace foxEngineSDK
     ID3D11DeviceContext * getDeviceContext();
 
     void clearRenderTargetView(DXRenderTargetView* _renderTargetView, float * _clearColor);
+
+    void clearDepthStencilView(DXDepthStencilVew * _depthStencilView);
 
     void updateConstantBuffer(DXConstantBuffer* _constantBuffer, const void * _data);
 

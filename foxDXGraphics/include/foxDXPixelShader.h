@@ -11,7 +11,6 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
 #include "foxDXShader.h"
 
 namespace foxEngineSDK

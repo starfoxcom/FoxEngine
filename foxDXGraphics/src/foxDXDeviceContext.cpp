@@ -6,6 +6,7 @@
 #include "foxDXVertexShader.h"
 #include "foxDXPixelShader.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXDepthStencilView.h"
 
 
 namespace foxEngineSDK
@@ -37,6 +38,11 @@ namespace foxEngineSDK
     m_deviceContext->ClearRenderTargetView(
       _renderTargetView->getRenderTargetView(),
       _clearColor);
+  }
+
+  void DXDeviceContext::clearDepthStencilView(DXDepthStencilVew * _depthStencilView)
+  {
+    m_deviceContext->ClearDepthStencilView(_depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0);
   }
 
   void DXDeviceContext::updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data)

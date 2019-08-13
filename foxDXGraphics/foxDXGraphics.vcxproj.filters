@@ -66,6 +66,9 @@
     <ClInclude Include="include\foxDXConstantBuffer.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxDXDepthStencilView.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -114,6 +117,9 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXConstantBuffer.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxDXDepthStencilView.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

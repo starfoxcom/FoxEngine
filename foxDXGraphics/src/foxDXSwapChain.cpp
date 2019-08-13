@@ -15,6 +15,8 @@ namespace foxEngineSDK
 
   void DXSwapChain::setSwapChainDesc(
     HWND _windowHandler,
+    uint32 _width,
+    uint32 _height,
     uint32 _bufferCount,
     uint32 _numerator,
     uint32 _denominator,
@@ -23,19 +25,13 @@ namespace foxEngineSDK
     bool _windowed)
   {
 
-    RECT rect;
-
-    GetClientRect(_windowHandler, &rect);
-    uint32 width = width = rect.right - rect.left;
-    uint32 height = rect.bottom - rect.top;
-
     //Clear out the swap chain for use
-    ZeroMemory(&m_swapChainDesc, sizeof(DXGI_SWAP_CHAIN_DESC));
+    ZeroMemory(&m_swapChainDesc, sizeof(m_swapChainDesc));
 
     //Set the swap chain description
     m_swapChainDesc.BufferCount = _bufferCount;
-    m_swapChainDesc.BufferDesc.Width = width;
-    m_swapChainDesc.BufferDesc.Height = height;
+    m_swapChainDesc.BufferDesc.Width = _width;
+    m_swapChainDesc.BufferDesc.Height = _height;
     m_swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     m_swapChainDesc.BufferDesc.RefreshRate.Numerator = _numerator;
     m_swapChainDesc.BufferDesc.RefreshRate.Denominator = _denominator;

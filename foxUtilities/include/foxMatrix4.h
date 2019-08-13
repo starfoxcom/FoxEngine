@@ -138,6 +138,22 @@ namespace foxEngineSDK
     void rotateInZ(float _angle);
 
     /**
+     * @brief Translates the matrix.
+     * @param _tX The translate angle value in X.
+     * @param _tY The translate angle value in Y.
+     * @param _tZ The translate angle value in Z.
+     */
+    void translate(float _tX, float _tY, float _tZ);
+
+    /**
+     * @brief Scales the matrix.
+     * @param _tX The scale value in X.
+     * @param _tY The scale value in Y.
+     * @param _tZ The scale value in Z.
+     */
+    void scale(float _tX, float _tY, float _tZ);
+
+    /**
      * @brief Gets the result of adding two matrix together.
      * @param _matrix The other matrix to add to this.
      * @return The result of adding the matrix together.

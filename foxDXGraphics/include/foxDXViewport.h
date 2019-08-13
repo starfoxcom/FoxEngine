@@ -10,8 +10,6 @@
 * Includes
 */
 #include <d3d11.h>
-#include "foxGraphicsDefines.h"
-#include "foxPlatformTypes.h"
 
 namespace foxEngineSDK
 {
@@ -24,7 +22,7 @@ namespace foxEngineSDK
 
     void initViewport(float _width, float _height);
 
-    D3D11_VIEWPORT * getViewport();
+    D3D11_VIEWPORT * getViewportRef();
 
 
   private:

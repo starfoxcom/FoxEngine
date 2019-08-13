@@ -385,4 +385,26 @@ namespace foxEngineSDK
 
     *this *= rotation;
   }
+
+  void Matrix4::translate(float _tX, float _tY, float _tZ)
+  {
+    Matrix4 translation;
+    translation.toIdentity();
+    translation.m_dr[3][0] = _tX;
+    translation.m_dr[3][1] = _tY;
+    translation.m_dr[3][2] = _tZ;
+
+    *this *= translation;
+  }
+
+  void Matrix4::scale(float _tX, float _tY, float _tZ)
+  {
+    Matrix4 scalation;
+    scalation.toIdentity();
+    scalation.m_dr[0][0] = _tX;
+    scalation.m_dr[1][1] = _tY;
+    scalation.m_dr[2][2] = _tZ;
+
+    *this *= scalation;
+  }
 }

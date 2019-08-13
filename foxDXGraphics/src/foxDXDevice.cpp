@@ -5,6 +5,8 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXTexture.h"
+#include "foxDXDepthStencilView.h"
 #include "foxLog.h"
 
 
@@ -162,5 +164,44 @@ namespace foxEngineSDK
     Log() << "constant buffer created successfully";
     return true;
 
+  }
+
+  bool DXDevice::createTexture2D(DXTexture * _texture, uint32 _width, uint32 _height, uint32 _bindFlag)
+  {
+
+    _texture->setTextureDesc(_width, _height, _bindFlag);
+
+    if (
+      FAILED(m_device->CreateTexture2D(
+        _texture->getTextureDescRef(),
+        NULL,
+        _texture->getTextureRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Texture couldn't be created";
+      return false;
+    }
+
+    Log() << "Texture created successfully";
+    return true;
+  }
+
+  bool DXDevice::createDepthStencilView(DXTexture * _texture, DXDepthStencilVew * _depthStencilView)
+  {
+
+    _depthStencilView->setDepthStencilViewDesc(_texture);
+    
+    if (FAILED(m_device->CreateDepthStencilView(
+      _texture->getTexture(),
+      _depthStencilView->getDepthStencilViewDesc(),
+      _depthStencilView->getDepthStencilViewRef())))
+    {
+      
+      Log(Log::LOGERROR, true) << "Depth Stencil View couldn't be created";
+      return false;
+    }
+
+    Log() << "Depth Stencil View created successfully";
+    return true;
   }
 }

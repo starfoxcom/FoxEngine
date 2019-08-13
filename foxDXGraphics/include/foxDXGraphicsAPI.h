@@ -34,6 +34,7 @@ namespace foxEngineSDK
   class DXDeviceContext;
   class DXRenderTargetView;
   class DXTexture;
+  class DXDepthStencilVew;
   class DXViewport;
   class DXVertexShader;
   class DXInputLayout;
@@ -81,6 +82,21 @@ namespace foxEngineSDK
      * @brief Initialize the device.
      */
     bool initDevice();
+
+    /**
+     * @brief Creates the texture
+     * @param _width The window width.
+     * @param _height The window height.
+     */
+    bool createTexture2D(
+      uint32 _width,
+      uint32 _height,
+      uint32 _bindFlag);
+
+    /**
+     * @brief Creates the Depth Stencil View
+     */
+    bool createDepthStencilView();
 
     /**
      * @brief Initialize the viewport.
@@ -165,6 +181,8 @@ namespace foxEngineSDK
      */
     void clearRenderTargetView(float * _clearColor);
 
+    void clearDepthStencilView();
+
     /**
      * @brief Updates the constant buffer.
      * @param _data The data to update.
@@ -178,6 +196,8 @@ namespace foxEngineSDK
      * SwapChain functions
      */
     void setSwapChainDesc(
+      uint32 _width,
+      uint32 _height,
       uint32 _bufferCount = 1,
       uint32 _numerator = 60,
       uint32 _denominator = 1,
@@ -260,7 +280,11 @@ namespace foxEngineSDK
 
     DXDeviceContext * m_deviceContext;
 
-    DXTexture * m_texture;
+    DXTexture * m_backBuffer;
+
+    DXTexture * m_depthStencil;
+
+    DXDepthStencilVew * m_depthStencilView;
 
     DXViewport * m_viewport;
 
@@ -281,9 +305,19 @@ namespace foxEngineSDK
     //These matrices are going to be on the Camera class, when that class gets created.
     Matrix4 m_world;
 
+    Matrix4 m_world2;
+
     Matrix4 m_view;
 
     Matrix4 m_projection;
+
+    Matrix4 m_spin;
+    
+    Matrix4 m_orbit;
+
+    Matrix4 m_translation;
+
+    Matrix4 m_scalation;
   };
 }
 

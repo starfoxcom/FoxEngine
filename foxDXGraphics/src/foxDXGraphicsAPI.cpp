@@ -16,6 +16,7 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXDepthStencilView.h"
 #include "foxPlatformMath.h"
 
 namespace foxEngineSDK
@@ -28,7 +29,9 @@ namespace foxEngineSDK
     m_swapChain = new DXSwapChain();
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
-    m_texture = new DXTexture();
+    m_backBuffer = new DXTexture();
+    m_depthStencil = new DXTexture();
+    m_depthStencilView = new DXDepthStencilVew();
     m_viewport = new DXViewport();
     m_renderTargetView = new DXRenderTargetView();
     m_vertexShader = new DXVertexShader();
@@ -45,7 +48,9 @@ namespace foxEngineSDK
     delete m_swapChain;
     delete m_device;
     delete m_deviceContext;
-    delete m_texture;
+    delete m_backBuffer;
+    delete m_depthStencil;
+    delete m_depthStencilView;
     delete m_viewport;
     delete m_renderTargetView;
     delete m_vertexShader;
@@ -90,7 +95,7 @@ namespace foxEngineSDK
 
     uint32 numFeatureLevels = ARRAYSIZE(featureLevels);
 
-    setSwapChainDesc();
+    setSwapChainDesc(width, height);
 
     if (FAILED(D3D11CreateDeviceAndSwapChain(
       NULL,
@@ -113,12 +118,10 @@ namespace foxEngineSDK
       Log() << "Device and Swap Chain created successfully";
     }
 
-    //TODO: Create Texture class
-
     if (FAILED(m_swapChain->getSwapChain()->GetBuffer(
       0,
       __uuidof(ID3D11Texture2D),
-      (LPVOID*)m_texture->getTextureRef())))
+      (LPVOID*)m_backBuffer->getTextureRef())))
     {
       Log(Log::LOGERROR, true) << "Failed to retrieve buffer";
       return false;
@@ -128,8 +131,9 @@ namespace foxEngineSDK
       Log() << "Retrieved buffer successfully";
     }
 
+    //Need to create the createRenderTargetView Function
     if (FAILED(m_device->getDevice()->CreateRenderTargetView(
-      m_texture->getTexture(),
+      m_backBuffer->getTexture(),
       NULL,
       m_renderTargetView->getRenderTargetViewRef())))
     {
@@ -141,18 +145,28 @@ namespace foxEngineSDK
       Log() << "Created Render Target View successfully";
     }
 
-    m_texture->getTexture()->Release();
+    m_backBuffer->getTexture()->Release();
+
+    createTexture2D(width, height, FOX_BIND_FLAG::E::K_BIND_DEPTH_STENCIL);
+
+    createDepthStencilView();
 
     m_deviceContext->getDeviceContext()->OMSetRenderTargets(
       1,
       m_renderTargetView->getRenderTargetViewRef(),
-      NULL);
+      m_depthStencilView->getDepthStencilView());
 
     initViewport(static_cast<float>(width), static_cast<float>(height));
 
-    m_deviceContext->getDeviceContext()->RSSetViewports(1, m_viewport->getViewport());
+    m_deviceContext->getDeviceContext()->RSSetViewports(1, m_viewport->getViewportRef());
 
     m_world.toIdentity();
+    m_world2.toIdentity();
+
+    m_spin = m_orbit = m_translation = m_scalation = m_world2;
+
+    m_translation.translate(-4.0f, 0.5f, 0.0f);
+    m_scalation.scale(0.3f, 0.3f, 0.3f);
 
     Vector4 eye(0.0f, 1.0f, -5.0f, 0.0f);
     Vector4 at(0.0f, 1.0f, 0.0f, 0.0f);
@@ -163,6 +177,16 @@ namespace foxEngineSDK
     m_projection.toPerspectiveFOV(Math::HALF_PI, width / static_cast<float>(height), 0.01f, 100.0f);
 
     return true;
+  }
+
+  bool DXGraphicsAPI::createTexture2D(uint32 _width, uint32 _height, uint32 _bindFlag)
+  {
+    return m_device->createTexture2D(m_depthStencil, _width, _height, _bindFlag);
+  }
+
+  bool DXGraphicsAPI::createDepthStencilView()
+  {
+    return m_device->createDepthStencilView(m_depthStencil, m_depthStencilView);
   }
 
   void DXGraphicsAPI::initViewport(float _width, float _height)
@@ -240,6 +264,8 @@ namespace foxEngineSDK
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
     if (m_pixelShader->getPixelShader()) m_pixelShader->getPixelShader()->Release();
+    if (m_depthStencil->getTexture()) m_depthStencil->getTexture()->Release();
+    if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
     if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
     if (m_swapChain->getSwapChain()) m_swapChain->getSwapChain()->Release();
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->Release();
@@ -254,9 +280,16 @@ namespace foxEngineSDK
 
     m_world.rotateInY(t);
 
+    m_spin.rotateInZ(-t);
+    m_orbit.rotateInY(-t * 0.5f);
+
+    m_world2 = m_scalation * m_spin * m_translation * m_orbit;
+
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
 
     clearRenderTargetView(clearColor);
+
+    clearDepthStencilView();
 
     constantBuffer cb;
 
@@ -273,6 +306,16 @@ namespace foxEngineSDK
     setPixelShader();
 
     drawIndexed(36, 0, 0);
+
+    constantBuffer cb2;
+
+    cb2.world = m_world2.transposed();
+    cb2.view = m_view.transposed();
+    cb2.projection = m_projection.transposed();
+
+    updateConstantBuffer(&cb2);
+
+    drawIndexed(36, 0, 0);
     
     //draw(3, 0);
     
@@ -284,12 +327,19 @@ namespace foxEngineSDK
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _clearColor);
   }
 
+  void DXGraphicsAPI::clearDepthStencilView()
+  {
+    m_deviceContext->clearDepthStencilView(m_depthStencilView);
+  }
+
   void DXGraphicsAPI::updateConstantBuffer(const void * _data)
   {
     m_deviceContext->updateConstantBuffer(m_constantBuffer, _data);
   }
 
   void DXGraphicsAPI::setSwapChainDesc(
+    uint32 _width,
+    uint32 _height,
     uint32 _bufferCount,
     uint32 _numerator,
     uint32 _denominator,
@@ -299,6 +349,8 @@ namespace foxEngineSDK
   {
     m_swapChain->setSwapChainDesc(
       m_renderWindow->getWindowHandle(),
+      _width,
+      _height,
       _bufferCount,
       _numerator,
       _denominator,

@@ -26,6 +26,8 @@ namespace foxEngineSDK
 
     void setSwapChainDesc(
       HWND _windowHandler,
+      uint32 _width,
+      uint32 _height,
       uint32 _bufferCount = 1,
       uint32 _numerator = 60,
       uint32 _denominator = 1,
