@@ -17,7 +17,7 @@ namespace foxEngineSDK
     m_viewport.TopLeftX = 0;
     m_viewport.TopLeftY = 0;
   }
-  D3D11_VIEWPORT * DXViewport::getViewport()
+  D3D11_VIEWPORT * DXViewport::getViewportRef()
   {
     return &m_viewport;
   }

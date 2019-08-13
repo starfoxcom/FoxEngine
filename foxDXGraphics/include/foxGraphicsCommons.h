@@ -65,4 +65,20 @@ namespace foxEngineSDK
       K_PRIMITIVE_TOPOLOGY_TRIANGLELIST = 4
     };
   }
+
+  namespace FOX_BIND_FLAG
+  {
+    enum E
+    {
+      K_BIND_VERTEX_BUFFER = 1,
+      K_BIND_INDEX_BUFFER = 2,
+      K_BIND_CONSTANT_BUFFER = 4,
+      K_BIND_SHADER_RESOURCE = 8,
+      K_BIND_STREAM_OUTPUT = 16,
+      K_BIND_RENDER_TARGET = 32,
+      K_BIND_DEPTH_STENCIL = 64,
+      K_BIND_UNORDERED_ACCESS = 128
+
+    };
+  }
 }
