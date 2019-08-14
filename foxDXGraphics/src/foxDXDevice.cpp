@@ -83,21 +83,55 @@ namespace foxEngineSDK
   bool DXDevice::createVertexBuffer(DXVertexBuffer * _vertexBuffer)
   {
 
-    simpleVertex2 vertices[]
+    vertex vertices[]
     {
-      { Vector3(-1.0f, 1.0f, -1.0f), Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
-      { Vector3(1.0f, 1.0f, -1.0f),  Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
-      { Vector3(1.0f, 1.0f, 1.0f),   Vector4(0.0f, 1.0f, 1.0f, 1.0f) },
-      { Vector3(-1.0f, 1.0f, 1.0f),  Vector4(1.0f, 0.0f, 0.0f, 1.0f) },
-      { Vector3(-1.0f, -1.0f, -1.0f),Vector4(1.0f, 0.0f, 1.0f, 1.0f) },
-      { Vector3(1.0f, -1.0f, -1.0f), Vector4(1.0f, 1.0f, 0.0f, 1.0f) },
-      { Vector3(1.0f, -1.0f, 1.0f),  Vector4(1.0f, 1.0f, 1.0f, 1.0f) },
-      { Vector3(-1.0f, -1.0f, 1.0f), Vector4(0.0f, 0.0f, 0.0f, 1.0f) },
+      { Vector3(-1.0f, 1.0f, -1.0f), Vector3(0.0f, 0.0f, 1.0f) },
+      { Vector3(1.0f, 1.0f, -1.0f),  Vector3(0.0f, 1.0f, 0.0f) },
+      { Vector3(1.0f, 1.0f, 1.0f),   Vector3(0.0f, 1.0f, 1.0f) },
+      { Vector3(-1.0f, 1.0f, 1.0f),  Vector3(1.0f, 0.0f, 0.0f) },
+      
+      { Vector3(-1.0f, -1.0f, -1.0f),Vector3(1.0f, 0.0f, 1.0f) },
+      { Vector3(1.0f, -1.0f, -1.0f), Vector3(1.0f, 1.0f, 0.0f) },
+      { Vector3(1.0f, -1.0f, 1.0f),  Vector3(1.0f, 1.0f, 1.0f) },
+      { Vector3(-1.0f, -1.0f, 1.0f), Vector3(0.0f, 0.0f, 0.0f) },
     };
 
-    _vertexBuffer->setBufferDesc();
+    vertex vertices2[] =
+    {
+        { Vector3(-1.0f, 1.0f, -1.0f), Vector3(0.0f, 1.0f, 0.0f) },
+        { Vector3(1.0f, 1.0f, -1.0f),  Vector3(0.0f, 1.0f, 0.0f) },
+        { Vector3(1.0f, 1.0f, 1.0f),   Vector3(0.0f, 1.0f, 0.0f) },
+        { Vector3(-1.0f, 1.0f, 1.0f),  Vector3(0.0f, 1.0f, 0.0f) },
 
-    _vertexBuffer->setSubresourceData(vertices);
+        { Vector3(-1.0f, -1.0f, -1.0f),Vector3(0.0f, -1.0f, 0.0f) },
+        { Vector3(1.0f, -1.0f, -1.0f), Vector3(0.0f, -1.0f, 0.0f) },
+        { Vector3(1.0f, -1.0f, 1.0f),  Vector3(0.0f, -1.0f, 0.0f) },
+        { Vector3(-1.0f, -1.0f, 1.0f), Vector3(0.0f, -1.0f, 0.0f) },
+
+        { Vector3(-1.0f, -1.0f, 1.0f), Vector3(-1.0f, 0.0f, 0.0f) },
+        { Vector3(-1.0f, -1.0f, -1.0f),Vector3(-1.0f, 0.0f, 0.0f) },
+        { Vector3(-1.0f, 1.0f, -1.0f), Vector3(-1.0f, 0.0f, 0.0f) },
+        { Vector3(-1.0f, 1.0f, 1.0f),  Vector3(-1.0f, 0.0f, 0.0f) },
+
+        { Vector3(1.0f, -1.0f, 1.0f),  Vector3(1.0f, 0.0f, 0.0f) },
+        { Vector3(1.0f, -1.0f, -1.0f), Vector3(1.0f, 0.0f, 0.0f) },
+        { Vector3(1.0f, 1.0f, -1.0f),  Vector3(1.0f, 0.0f, 0.0f) },
+        { Vector3(1.0f, 1.0f, 1.0f),   Vector3(1.0f, 0.0f, 0.0f) },
+
+        { Vector3(-1.0f, -1.0f, -1.0f),Vector3(0.0f, 0.0f, -1.0f) },
+        { Vector3(1.0f, -1.0f, -1.0f), Vector3(0.0f, 0.0f, -1.0f) },
+        { Vector3(1.0f, 1.0f, -1.0f),  Vector3(0.0f, 0.0f, -1.0f) },
+        { Vector3(-1.0f, 1.0f, -1.0f), Vector3(0.0f, 0.0f, -1.0f) },
+
+        { Vector3(-1.0f, -1.0f, 1.0f), Vector3(0.0f, 0.0f, 1.0f) },
+        { Vector3(1.0f, -1.0f, 1.0f),  Vector3(0.0f, 0.0f, 1.0f) },
+        { Vector3(1.0f, 1.0f, 1.0f),   Vector3(0.0f, 0.0f, 1.0f) },
+        { Vector3(-1.0f, 1.0f, 1.0f),  Vector3(0.0f, 0.0f, 1.0f) },
+    };
+
+    _vertexBuffer->setBufferDesc(25);
+
+    _vertexBuffer->setSubresourceData(vertices2);
 
     if (FAILED(m_device->CreateBuffer(
       _vertexBuffer->getBufferDesc(),
@@ -134,9 +168,30 @@ namespace foxEngineSDK
         7,4,6,
     };
 
-    _indexBuffer->setBufferDesc();
+    uint32 indices2[] =
+    {
+        3,1,0,
+        2,1,3,
 
-    _indexBuffer->setSubresourceData(indices);
+        6,4,5,
+        7,4,6,
+
+        11,9,8,
+        10,9,11,
+
+        14,12,13,
+        15,12,14,
+
+        19,17,16,
+        18,17,19,
+
+        22,20,21,
+        23,20,22
+    };
+
+    _indexBuffer->setBufferDesc(36);
+
+    _indexBuffer->setSubresourceData(indices2);
 
     if (FAILED(m_device->CreateBuffer(
       _indexBuffer->getBufferDesc(),
