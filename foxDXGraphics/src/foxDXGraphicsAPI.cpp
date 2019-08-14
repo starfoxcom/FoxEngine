@@ -275,8 +275,7 @@ namespace foxEngineSDK
   void DXGraphicsAPI::render()
   {
 
-    float t = 0.0f;
-    t += Math::PI * 0.000125f;
+    float t = Math::PI * 0.000125f;
 
     m_world.rotateInY(t);
 
