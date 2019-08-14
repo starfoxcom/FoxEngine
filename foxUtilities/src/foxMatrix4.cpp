@@ -233,6 +233,32 @@ namespace foxEngineSDK
       Vector4(_matrix.m_dr[0][3], _matrix.m_dr[1][3], _matrix.m_dr[2][3], _matrix.m_dr[3][3]));
   }
 
+  Vector4 Matrix4::operator*(const Vector4& _vec4D)
+  {
+    Vector4 aux;
+    aux.x = 
+      this->m_v[0].x * _vec4D.x + 
+      this->m_v[0].y * _vec4D.y + 
+      this->m_v[0].z * _vec4D.z +
+      this->m_v[0].w;
+
+    aux.y =
+      this->m_v[1].x * _vec4D.x +
+      this->m_v[1].y * _vec4D.y +
+      this->m_v[1].z * _vec4D.z +
+      this->m_v[1].w;
+
+    aux.z =
+      this->m_v[2].x * _vec4D.x +
+      this->m_v[2].y * _vec4D.y +
+      this->m_v[2].z * _vec4D.z +
+      this->m_v[2].w;
+
+    aux.w = 1.0f;
+
+    return aux;
+  }
+
   Matrix4 Matrix4::operator*(float _value)
   {
     return Matrix4(
