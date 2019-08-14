@@ -22,11 +22,8 @@ namespace foxEngineSDK
 
   struct vertex
   {
-    FLOAT X, Y, Z, W;
-    FLOAT R, G, B, A;
-    FLOAT NX, NY, NZ, NW;
-    FLOAT U, V;
-
+    Vector3 postion;
+    Vector3 normal;
   };
 
   struct simpleVertex
@@ -47,7 +44,7 @@ namespace foxEngineSDK
     DXVertexBuffer();
     ~DXVertexBuffer();
 
-    void setBufferDesc();
+    void setBufferDesc(uint32 _vertexCount);
 
     void setSubresourceData(
       const void * _triangle);

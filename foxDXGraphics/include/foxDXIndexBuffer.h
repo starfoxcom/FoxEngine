@@ -29,7 +29,7 @@ namespace foxEngineSDK
     DXIndexBuffer();
     ~DXIndexBuffer();
 
-    void setBufferDesc();
+    void setBufferDesc(uint32 _indexCount);
 
     void setSubresourceData(
       const void * _indices);

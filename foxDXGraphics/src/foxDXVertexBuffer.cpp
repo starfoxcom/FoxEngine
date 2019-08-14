@@ -13,12 +13,12 @@ namespace foxEngineSDK
   {
   }
 
-  void DXVertexBuffer::setBufferDesc()
+  void DXVertexBuffer::setBufferDesc(uint32 _vertexCount)
   {
     m_bufferDesc = new D3D11_BUFFER_DESC();
 
     m_bufferDesc->Usage = D3D11_USAGE_DEFAULT;
-    m_bufferDesc->ByteWidth = sizeof(simpleVertex2) * 8;
+    m_bufferDesc->ByteWidth = sizeof(vertex) * _vertexCount;
     m_bufferDesc->BindFlags = D3D11_BIND_VERTEX_BUFFER;
     m_bufferDesc->CPUAccessFlags = 0;
   }
