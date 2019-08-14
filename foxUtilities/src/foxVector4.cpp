@@ -16,7 +16,7 @@ namespace foxEngineSDK
     x(_vec3D.x), y(_vec3D.y), z(_vec3D.z), w(_w) {}
 
   Vector4::Vector4(const Vector4& _vec4D) :
-    x(_vec4D.x), y(_vec4D.y), z(_vec4D.x), w(_vec4D.y) {}
+    x(_vec4D.x), y(_vec4D.y), z(_vec4D.z), w(_vec4D.w) {}
 
   Vector4 Vector4::operator+(const Vector4& _vec4D)
   {

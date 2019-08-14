@@ -16,6 +16,7 @@
 #include "foxPrerequisitesUtilities.h"
 #include "foxDXBuffer.h"
 #include "foxMatrix4.h"
+#include "foxVector4.h"
 
  /**
  * Libs
@@ -29,6 +30,9 @@ namespace foxEngineSDK
     Matrix4 world;
     Matrix4 view;
     Matrix4 projection;
+    Vector4 lightDir[2];
+    Vector4 lightColor[2];
+    Vector4 outputColor;
   };
 
   class DXConstantBuffer : public DXBuffer

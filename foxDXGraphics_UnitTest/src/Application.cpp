@@ -33,7 +33,7 @@ bool BaseApp::run()
   //Init Viewport
 
 
-  m_graphicsAPI.createVertexShader("shaders.shader", "VSMain", "vs_4_0");
+  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
 
   m_graphicsAPI.addInputElement(
     "POSITION",
@@ -46,7 +46,7 @@ bool BaseApp::run()
 
 
   m_graphicsAPI.addInputElement(
-    "COLOR",
+    "NORMAL",
     0,
     FOXGI_FORMAT::E::K_R32G32B32A32_FLOAT,
     0,
@@ -58,7 +58,9 @@ bool BaseApp::run()
 
   m_graphicsAPI.setInputLayout();
 
-  m_graphicsAPI.createPixelShader("shaders.shader", "PSMain", "ps_4_0");
+  m_graphicsAPI.createPixelShader("shaders.shader", "PS", "ps_4_0", 0);
+
+  m_graphicsAPI.createPixelShader("shaders.shader", "PSSolid", "ps_4_0", 1);
 
   //Here is where the model will be created, but for now a triangle is only what we have
   m_graphicsAPI.createVertexBuffer();

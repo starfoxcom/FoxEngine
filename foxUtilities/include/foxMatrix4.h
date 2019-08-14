@@ -175,6 +175,13 @@ namespace foxEngineSDK
     Matrix4 operator*(const Matrix4& _matrix);
 
     /**
+     * @brief Gets the result of multiplying a vector to this.
+     * @param _vec4D The vector to multiply to this.
+     * @return The result of multiplying the vector.
+     */
+    Vector4 operator*(const Vector4& _vec4D);
+
+    /**
      * @brief Gets the result of multiplying a value to this.
      * @param_value The value to multiply to this.
      * @return The result of multiplying the matrix.
