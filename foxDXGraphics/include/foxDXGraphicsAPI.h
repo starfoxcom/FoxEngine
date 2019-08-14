@@ -125,7 +125,8 @@ namespace foxEngineSDK
     bool createPixelShader(
       const char * _fileName,
       const char * _entryPoint,
-      const char * _shaderModel);
+      const char * _shaderModel,
+      const uint32 _index);
 
     /**
      * @brief Creates the vertex buffer.
@@ -236,16 +237,23 @@ namespace foxEngineSDK
     void setVertexShader();
 
     /**
-     * @brief Sets the constant buffer.
+     * @brief Sets the vertex constant buffer.
      * @param _startSlot
      * @param _numOfBuffers
      */
-    void setConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);;
+    void setVSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+
+    /**
+     * @brief Sets the pixel constant buffer.
+     * @param _startSlot
+     * @param _numOfBuffers
+     */
+    void setPSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
 
     /**
      * @brief Sets the pixel shader.
      */
-    void setPixelShader();
+    void setPixelShader(const uint32 _index);
 
     /**
      * @brief Draws the vertices.
@@ -294,7 +302,7 @@ namespace foxEngineSDK
 
     DXInputLayout * m_inputLayout;
 
-    DXPixelShader * m_pixelShader;
+    std::vector<DXPixelShader*> m_pixelShaders;
 
     DXVertexBuffer * m_vertexBuffer;
 
@@ -304,8 +312,6 @@ namespace foxEngineSDK
 
     //These matrices are going to be on the Camera class, when that class gets created.
     Matrix4 m_world;
-
-    Matrix4 m_world2;
 
     Matrix4 m_view;
 

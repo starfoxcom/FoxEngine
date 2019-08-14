@@ -57,7 +57,12 @@ namespace foxEngineSDK
       FOXGI_FORMAT::E _format,
       uint32 _offset);
 
-    void setConstantBuffers(
+    void setVSConstantBuffers(
+      DXConstantBuffer * _constantBuffer,
+      uint32 _startSlot,
+      uint32 _numOfBuffers);
+
+    void setPSConstantBuffers(
       DXConstantBuffer * _constantBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
