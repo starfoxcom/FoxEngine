@@ -36,7 +36,6 @@ namespace foxEngineSDK
     m_renderTargetView = new DXRenderTargetView();
     m_vertexShader = new DXVertexShader();
     m_inputLayout = new DXInputLayout();
-    m_pixelShader = new DXPixelShader();
     m_vertexBuffer = new DXVertexBuffer();
     m_indexBuffer = new DXIndexBuffer();
     m_constantBuffer = new DXConstantBuffer();
@@ -55,7 +54,6 @@ namespace foxEngineSDK
     delete m_renderTargetView;
     delete m_vertexShader;
     delete m_inputLayout;
-    delete m_pixelShader;
     delete m_vertexBuffer;
     delete m_indexBuffer;
     delete m_constantBuffer;
@@ -161,14 +159,13 @@ namespace foxEngineSDK
     m_deviceContext->getDeviceContext()->RSSetViewports(1, m_viewport->getViewportRef());
 
     m_world.toIdentity();
-    m_world2.toIdentity();
 
-    m_spin = m_orbit = m_translation = m_scalation = m_world2;
+    m_spin = m_orbit = m_translation = m_scalation = m_world;
 
     m_translation.translate(-4.0f, 0.5f, 0.0f);
     m_scalation.scale(0.3f, 0.3f, 0.3f);
 
-    Vector4 eye(0.0f, 1.0f, -5.0f, 0.0f);
+    Vector4 eye(0.0f, 2.0f, -5.0f, 0.0f);
     Vector4 at(0.0f, 1.0f, 0.0f, 0.0f);
     Vector4 up(0.0f, 1.0f, 0.0f, 0.0f);
     
@@ -206,10 +203,12 @@ namespace foxEngineSDK
   bool DXGraphicsAPI::createPixelShader(
     const char * _fileName,
     const char * _entryPoint,
-      const char * _shaderModel)
+      const char * _shaderModel,
+    const uint32 _index)
   {
-    m_pixelShader->compileShaderFromFile(_fileName, _entryPoint, _shaderModel);
-    return m_device->createPixelShader(m_pixelShader);
+    m_pixelShaders.push_back(new DXPixelShader());
+    m_pixelShaders[_index]->compileShaderFromFile(_fileName, _entryPoint, _shaderModel);
+    return m_device->createPixelShader(m_pixelShaders[_index]);
   }
 
   bool DXGraphicsAPI::createVertexBuffer()
@@ -263,7 +262,8 @@ namespace foxEngineSDK
     if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
-    if (m_pixelShader->getPixelShader()) m_pixelShader->getPixelShader()->Release();
+    for(int32 i = 0; i < m_pixelShaders.size(); ++i)
+    if (m_pixelShaders[i]->getPixelShader()) m_pixelShaders[i]->getPixelShader()->Release();
     if (m_depthStencil->getTexture()) m_depthStencil->getTexture()->Release();
     if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
     if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
@@ -280,10 +280,20 @@ namespace foxEngineSDK
 
     m_world.rotateInY(t);
 
-    m_spin.rotateInZ(-t);
-    m_orbit.rotateInY(-t * 0.5f);
+    Vector4 vLightDirs[2] =
+    {
+        Vector4(-0.577f, 0.577f, -0.577f, 1.0f),
+        Vector4(0.0f, 0.0f, -1.0f, 1.0f),
+    };
+    Vector4 vLightColors[2] =
+    {
+        Vector4(0.5f, 0.5f, 0.5f, 1.0f),
+        Vector4(0.5f, 0.0f, 0.0f, 1.0f)
+    };
 
-    m_world2 = m_scalation * m_spin * m_translation * m_orbit;
+    m_orbit.rotateInY(-t * -2.0f);
+
+    vLightDirs[1] = m_orbit * vLightDirs[1];
 
     float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
 
@@ -296,28 +306,40 @@ namespace foxEngineSDK
     cb.world = m_world.transposed();
     cb.view = m_view.transposed();
     cb.projection = m_projection.transposed();
+    cb.lightDir[0] = vLightDirs[0];
+    cb.lightDir[1] = vLightDirs[1];
+    cb.lightColor[0] = vLightColors[0];
+    cb.lightColor[1] = vLightColors[1];
+    cb.outputColor = Vector4(0, 0, 0, 0);
 
     updateConstantBuffer(&cb);
 
     setVertexShader();
 
-    setConstantBuffers();
+    setVSConstantBuffers();
 
-    setPixelShader();
+    setPixelShader(0);
 
-    drawIndexed(36, 0, 0);
-
-    constantBuffer cb2;
-
-    cb2.world = m_world2.transposed();
-    cb2.view = m_view.transposed();
-    cb2.projection = m_projection.transposed();
-
-    updateConstantBuffer(&cb2);
+    setPSConstantBuffers();
 
     drawIndexed(36, 0, 0);
-    
-    //draw(3, 0);
+
+    for (int32 i = 0; i < 2; ++i)
+    {
+      Matrix4 light;
+      light.toIdentity();
+      light.translate(vLightDirs[i].x * 10, vLightDirs[i].y * 10, vLightDirs[i].z * 10);
+      light.scale(0.2f, 0.2f, 0.2f);
+
+      cb.world = light.transposed();
+      cb.outputColor = vLightColors[i];
+
+      updateConstantBuffer(&cb);
+
+      setPixelShader(1);
+
+      drawIndexed(36, 0, 0);
+    }
     
     present();
   }
@@ -384,14 +406,19 @@ namespace foxEngineSDK
     m_deviceContext->setVertexShader(m_vertexShader);
   }
 
-  void DXGraphicsAPI::setConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
+  void DXGraphicsAPI::setVSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
   {
-    m_deviceContext->setConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
+    m_deviceContext->setVSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
   }
 
-  void DXGraphicsAPI::setPixelShader()
+  void DXGraphicsAPI::setPSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
   {
-    m_deviceContext->setPixelShader(m_pixelShader);
+    m_deviceContext->setPSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setPixelShader(const uint32 _index)
+  {
+    m_deviceContext->setPixelShader(m_pixelShaders[_index]);
   }
 
   void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)

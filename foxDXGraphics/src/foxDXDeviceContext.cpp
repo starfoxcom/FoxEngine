@@ -61,7 +61,7 @@ namespace foxEngineSDK
     uint32 _startSlot,
     uint32 _numOfBuffers)
   {
-    uint32 stride = sizeof(simpleVertex2);
+    uint32 stride = sizeof(vertex);
     uint32 offset = 0;
 
     m_deviceContext->IASetVertexBuffers(
@@ -82,9 +82,14 @@ namespace foxEngineSDK
       _offset);
   }
 
-  void DXDeviceContext::setConstantBuffers(DXConstantBuffer * _constantBuffer, uint32 _startSlot, uint32 _numOfBuffers)
+  void DXDeviceContext::setVSConstantBuffers(DXConstantBuffer * _constantBuffer, uint32 _startSlot, uint32 _numOfBuffers)
   {
     m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
+  }
+
+  void DXDeviceContext::setPSConstantBuffers(DXConstantBuffer * _constantBuffer, uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->PSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
   }
 
   void DXDeviceContext::setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
