@@ -1,84 +1,38 @@
-/**
-* @file foxDeviceContext.h
-* @author --
-* @date ---
-* @brief Implementation of device context.
-*/
 #pragma once
+/**
+ * @file foxDXDeviceContext.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief Graphics API Device Context Class for DirectX.
+ */
 
 /**
-* Includes
-*/
+ * Includes
+ */
 #include <d3d11.h>
-#include "foxPrerequisitesUtilities.h"
-#include "foxGraphicsCommons.h"
-
-/**
-* Libs
-*/
 
 namespace foxEngineSDK
 {
 
-  class DXRenderTargetView;
-  class DXInputLayout;
-  class DXVertexBuffer;
-  class DXIndexBuffer;
-  class DXVertexShader;
-  class DXPixelShader;
-  class DXConstantBuffer;
-  class DXDepthStencilVew;
-
   class DXDeviceContext
   {
   public:
+
+    //Default constructor
     DXDeviceContext();
+
+    //Default destructor
     ~DXDeviceContext();
 
-    ID3D11DeviceContext ** getDeviceContextRef();
-
+    //Get the DirectX Device Context
     ID3D11DeviceContext * getDeviceContext();
 
-    void clearRenderTargetView(DXRenderTargetView* _renderTargetView, float * _clearColor);
-
-    void clearDepthStencilView(DXDepthStencilVew * _depthStencilView);
-
-    void updateConstantBuffer(DXConstantBuffer* _constantBuffer, const void * _data);
-
-    void setInputLayout(DXInputLayout * _inputLayout);
-
-    void setIAVertexBuffers(
-      DXVertexBuffer * _vertexBuffer,
-      uint32 _startSlot,
-      uint32 _numOfBuffers);
-
-    void setIAIndexBuffers(
-      DXIndexBuffer * _indexBuffer,
-      FOXGI_FORMAT::E _format,
-      uint32 _offset);
-
-    void setVSConstantBuffers(
-      DXConstantBuffer * _constantBuffer,
-      uint32 _startSlot,
-      uint32 _numOfBuffers);
-
-    void setPSConstantBuffers(
-      DXConstantBuffer * _constantBuffer,
-      uint32 _startSlot,
-      uint32 _numOfBuffers);
-
-    void setIAPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
-
-    void setVertexShader(DXVertexShader * _vertexShader);
-
-    void setPixelShader(DXPixelShader * _pixelShader);
-
-    void draw(uint32 _vertexCount, uint32 _vertexStart);
-
-    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
+    //Get the DirectX Device Context reference
+    ID3D11DeviceContext ** getDeviceContextRef();
 
   private:
-    ID3D11DeviceContext * m_deviceContext;
+
+    ID3D11DeviceContext * m_deviceContext; /**< Device Context class object member*/
   };
 }
-

@@ -1,61 +1,37 @@
-/**
-* @file foxDevice.h
-* @author --
-* @date ---
-* @brief Implementation of device.
-*/
 #pragma once
+/**
+ * @file foxDXDevice.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief Graphics API Device Class for DirectX.
+ */
 
 /**
  * Includes
  */
 #include <d3d11.h>
-#include "foxPlatformTypes.h"
-
-/**
- * Libs
- */
 
 namespace foxEngineSDK
 {
-
-  class DXVertexShader;
-  class DXInputLayout;
-  class DXPixelShader;
-  class DXVertexBuffer;
-  class DXIndexBuffer;
-  class DXConstantBuffer;
-  class DXTexture;
-  class DXDepthStencilVew;
-
   class DXDevice
   {
   public:
+
+    //Default constructor
     DXDevice();
+
+    //Default destructor
     ~DXDevice();
 
-    ID3D11Device ** getDeviceRef();
-
+    //Get the DirectX Device
     ID3D11Device * getDevice();
 
-    bool createVertexShader(DXVertexShader * _vertexShader);
-
-    bool createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader);
-
-    bool createPixelShader(DXPixelShader * _pixelShader);
-
-    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer);
-
-    bool createIndexBuffer(DXIndexBuffer * _indexBuffer);
-
-    bool createConstantBuffer(DXConstantBuffer * _constantBuffer);
-
-    bool createTexture2D(DXTexture * _texture, uint32 _width, uint32 _height, uint32 _bindFlag);
-
-    bool createDepthStencilView(DXTexture * _texture, DXDepthStencilVew * _depthStencilView);
+    //Get the DirectX Device reference
+    ID3D11Device ** getDeviceRef();
 
   private:
-    ID3D11Device * m_device;
+
+    ID3D11Device * m_device; /**< Device class object member*/
   };
 }
-
