@@ -4,20 +4,6 @@
   
 #include "foxDXGraphicsAPI.h"
 #include "foxDXRenderWindow.h"
-#include "foxDXSwapChain.h"
-#include "foxDXDevice.h"
-#include "foxDXDeviceContext.h"
-#include "foxDXTexture.h"
-#include "foxDXViewport.h"
-#include "foxDXRenderTargetView.h"
-#include "foxDXVertexShader.h"
-#include "foxDXInputLayout.h"
-#include "foxDXPixelShader.h"
-#include "foxDXVertexBuffer.h"
-#include "foxDXIndexBuffer.h"
-#include "foxDXConstantBuffer.h"
-#include "foxDXDepthStencilView.h"
-#include "foxPlatformMath.h"
 
 namespace foxEngineSDK
 {
