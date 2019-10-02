@@ -15,7 +15,6 @@
 
 #include "foxGraphicsDefines.h"
 #include "foxGraphicsCommons.h"
-#include "foxMatrix4.h"
 
 namespace foxEngineSDK
 {
@@ -26,15 +25,20 @@ namespace foxEngineSDK
   class DXSwapChain;
   class DXDevice;
   class DXDeviceContext;
+  class DXRenderTargetView;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
   public:
 
-    //Default constructor
+    /**
+     * @brief Default constructor
+     */
     DXGraphicsAPI();
 
-    //Default destructor
+    /**
+     * @brief Default destructor
+     */
     ~DXGraphicsAPI();
 
     /**
@@ -60,9 +64,14 @@ namespace foxEngineSDK
   private:
 
     /**
-     * @brief Initialize the device and Swap Chain.
+     * @brief Creates the device and Swap Chain.
      */
-    bool initDeviceAndSwapChain();
+    bool createDeviceAndSwapChain();
+
+    /**
+     * @brief Creates the Render Target View.
+     */
+    bool createRenderTargetView();
 
     DXRenderWindow * m_renderWindow; /**< Render Window class object member.*/
 
@@ -71,6 +80,8 @@ namespace foxEngineSDK
     DXDevice * m_device; /**< Device class object member.*/
 
     DXDeviceContext * m_deviceContext; /**< Device Context class object member.*/
+
+    DXRenderTargetView * m_renderTargetView; /**< Render Target View class object member*/
 
 
   };

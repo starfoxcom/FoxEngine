@@ -24,5 +24,9 @@ namespace foxEngineSDK
     return &m_device;
   }
 
+  bool DXDevice::createRenderTargetView(ID3D11Texture2D * _backBuffer, ID3D11RenderTargetView ** _renderTargetViewRef)
+  {
+    return m_device->CreateRenderTargetView(_backBuffer, 0, _renderTargetViewRef);
+  }
 
 }

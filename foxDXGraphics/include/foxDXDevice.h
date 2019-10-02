@@ -12,26 +12,53 @@
  */
 #include <d3d11.h>
 
+
 namespace foxEngineSDK
 {
+
+  /**
+   * Forward Declarations
+   */
+
+
   class DXDevice
   {
   public:
 
-    //Default constructor
+    /**
+     * @brief Default constructor.
+     */
     DXDevice();
 
-    //Default destructor
+    /**
+     * @brief Default destructor.
+     */
     ~DXDevice();
 
-    //Get the DirectX Device
+    /**
+     * @brief Gets the DirectX Device.
+     * @return The DirectX Device.
+     */
     ID3D11Device * getDevice();
 
-    //Get the DirectX Device reference
+    /**
+     * @brief Gets the DirectX Device reference.
+     * @return The DirectX Device reference.
+     */
     ID3D11Device ** getDeviceRef();
+
+    /**
+     * @brief Create the DirectX Render Target View.
+     * @param _backBuffer The Back Buffer.
+     * @param _renderTargetViewRef The Render Target View reference.
+     * @return true on success.
+     */
+    bool createRenderTargetView(
+      ID3D11Texture2D * _backBuffer,
+      ID3D11RenderTargetView ** _renderTargetViewRef);
 
   private:
 
-    ID3D11Device * m_device; /**< Device class object member*/
+    ID3D11Device * m_device; /**< Device class object member.*/
   };
 }

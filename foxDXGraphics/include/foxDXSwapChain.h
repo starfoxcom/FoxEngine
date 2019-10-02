@@ -19,16 +19,24 @@ namespace foxEngineSDK
   {
   public:
 
-    //Default constructor
+    /**
+     * @brief Default constructor.
+     */
     DXSwapChain();
 
-    //Default Destructor
+    /**
+     * @brief Default destructor.
+     */
     ~DXSwapChain();
 
-    //Get the DirectX Swap Chain
+    /**
+     * @brief Gets the DirectX Swap Chain.
+     */
     IDXGISwapChain * getSwapChain();
 
-    //Get the DirectX Swap Chain reference
+    /**
+     * @brief Gets the DirectX Swap Chain reference.
+     */
     IDXGISwapChain ** getSwapChainRef();
 
   private:
