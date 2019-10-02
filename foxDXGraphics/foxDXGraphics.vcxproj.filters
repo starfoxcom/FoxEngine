@@ -33,48 +33,9 @@
     <ClInclude Include="include\foxDXDeviceContext.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxDXRenderTargetView.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXTexture.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXViewport.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXVertexShader.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXInputLayout.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXPixelShader.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXVertexBuffer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXIndexBuffer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXBuffer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXShader.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXConstantBuffer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\foxDXDepthStencilView.h">
-      <Filter>Include</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxShader.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXRenderWindow.cpp">
@@ -87,39 +48,6 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXDeviceContext.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXRenderTargetView.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXTexture.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXViewport.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXVertexShader.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXInputLayout.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXPixelShader.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXVertexBuffer.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXIndexBuffer.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXBuffer.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXConstantBuffer.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXDepthStencilView.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

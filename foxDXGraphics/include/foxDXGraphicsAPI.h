@@ -1,10 +1,11 @@
-/**
-* @file foxDXGraphicsAPI.h
-* @author --
-* @date ---
-* @brief Implementation of DirectX.
-*/
 #pragma once
+/**
+ * @file foxDXGraphicsAPI.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief Implementation of DirectX.
+ */
 
 /**
  * Includes
@@ -12,16 +13,9 @@
 #include <d3dcompiler.h>
 #include <d3d11.h>
 
-#include "foxLog.h"
 #include "foxGraphicsDefines.h"
 #include "foxGraphicsCommons.h"
 #include "foxMatrix4.h"
-
-/**
- * Libs, since the .libs have been added in the project settings, this is no longer needed
- */
-//#pragma comment(lib, "d3dcompiler.lib")
-
 
 namespace foxEngineSDK
 {
@@ -29,17 +23,20 @@ namespace foxEngineSDK
  * Forward declarations
  */
   class DXRenderWindow;
+  class DXSwapChain;
+  class DXDevice;
+  class DXDeviceContext;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
   public:
 
+    //Default constructor
     DXGraphicsAPI();
+
+    //Default destructor
     ~DXGraphicsAPI();
 
-    /**
-     * RenderWindow functions
-     */
     /**
      * @brief Initialize the graphics Window.
      * @param _hInstance The instance of the application.
@@ -62,7 +59,20 @@ namespace foxEngineSDK
 
   private:
 
-    DXRenderWindow * m_renderWindow;
+    /**
+     * @brief Initialize the device and Swap Chain.
+     */
+    bool initDeviceAndSwapChain();
+
+    DXRenderWindow * m_renderWindow; /**< Render Window class object member.*/
+
+    DXSwapChain * m_swapChain; /**< Swap Chain class object member.*/
+
+    DXDevice * m_device; /**< Device class object member.*/
+
+    DXDeviceContext * m_deviceContext; /**< Device Context class object member.*/
+
+
   };
 }
 
