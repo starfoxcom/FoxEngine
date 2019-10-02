@@ -1,9 +1,10 @@
 /**
-* @file foxInputLayout.h
-* @author --
-* @date ---
-* @brief Implementation of input layout.
-*/
+ * @file foxGraphicsCommons.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief  
+ */
 #pragma once
 
 /**

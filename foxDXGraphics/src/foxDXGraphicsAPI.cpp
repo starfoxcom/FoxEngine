@@ -11,6 +11,7 @@
 #include "foxDXSwapChain.h"
 #include "foxDXDevice.h"
 #include "foxDXDeviceContext.h"
+#include "foxDXRenderTargetView.h"
 
 namespace foxEngineSDK
 {
@@ -22,6 +23,7 @@ namespace foxEngineSDK
     m_swapChain = new DXSwapChain();
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
+    m_renderTargetView = new DXRenderTargetView();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -30,6 +32,7 @@ namespace foxEngineSDK
     delete m_swapChain;
     delete m_device;
     delete m_deviceContext;
+    delete m_renderTargetView;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -47,7 +50,7 @@ namespace foxEngineSDK
     return m_renderWindow->processMessages();
   }
 
-  bool DXGraphicsAPI::initDeviceAndSwapChain()
+  bool DXGraphicsAPI::createDeviceAndSwapChain()
   {
 
     //Create window rect variable object
@@ -114,12 +117,58 @@ namespace foxEngineSDK
       NULL,
       m_deviceContext->getDeviceContextRef())))
     {
-      Log(Log::LOGERROR, true) << "Failed to create Device and Swap Chain";
+      Log(Log::LOGERROR, true) << "Failed to create Device and Swap Chain.";
       return false;
     }
     else
     {
-      Log() << "Device and Swap Chain created successfully";
+      Log() << "Device and Swap Chain created successfully.";
+      return true;
     }
   }
+
+  bool DXGraphicsAPI::createRenderTargetView()
+  {
+
+    //Create the back buffer
+    ID3D11Texture2D * backBuffer;
+
+    //Retrieve the Swap Chain buffer
+    if (FAILED(m_swapChain->getSwapChain()->GetBuffer(
+      0,
+      __uuidof(ID3D11Texture2D),
+      (LPVOID *)&backBuffer)))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to retrieve Swap Chain Buffer.";
+      return false;
+    }
+
+    else
+    {
+
+      Log() << "Retrieved Swap Chain Buffer successfully.";
+    }
+
+    //Create the Render Target View
+    if (FAILED(m_device->createRenderTargetView(
+      backBuffer,
+      m_renderTargetView->getRenderTargetViewRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Render Target View.";
+      return false;
+    }
+    else
+    {
+      Log() << "Created Render Target View successfully.";
+
+      //Release the buffer
+      backBuffer->Release();
+      return true;
+    }
+    
+
+  }
+
 }

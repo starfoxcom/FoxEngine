@@ -179,6 +179,7 @@
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
+    <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXRenderWindow.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxGraphicsCommons.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXRenderWindow.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
   </ItemGroup>

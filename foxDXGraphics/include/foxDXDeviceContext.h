@@ -19,20 +19,28 @@ namespace foxEngineSDK
   {
   public:
 
-    //Default constructor
+    /**
+     * @brief Default constructor.
+     */
     DXDeviceContext();
 
-    //Default destructor
+    /**
+     * @brief DEfault destructor.
+     */
     ~DXDeviceContext();
 
-    //Get the DirectX Device Context
+    /**
+     * @brief Gets the DirectX Device Context.
+     */
     ID3D11DeviceContext * getDeviceContext();
 
-    //Get the DirectX Device Context reference
+    /**
+     * @brief Gets the DirectX Device Context reference.
+     */
     ID3D11DeviceContext ** getDeviceContextRef();
 
   private:
 
-    ID3D11DeviceContext * m_deviceContext; /**< Device Context class object member*/
+    ID3D11DeviceContext * m_deviceContext; /**< Device Context class object member.*/
   };
 }
