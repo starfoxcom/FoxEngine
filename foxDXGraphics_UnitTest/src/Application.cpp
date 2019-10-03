@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "foxLog.h"
 
 
 
@@ -21,6 +22,9 @@ bool BaseApp::run()
   {
     Log() << "Window initialized";
   }
+
+  //Initialize the graphicsAPI
+  m_graphicsAPI.initDXGraphicsAPI();
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)

@@ -63,6 +63,11 @@ namespace foxEngineSDK
      */
     bool processMessages();
 
+    /**
+     * @brief Initialize the DirectX Graphics API
+     */
+    bool initDXGraphicsAPI();
+
   private:
 
     /**
