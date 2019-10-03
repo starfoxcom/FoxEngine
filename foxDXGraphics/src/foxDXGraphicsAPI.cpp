@@ -69,19 +69,19 @@ namespace foxEngineSDK
     uint32 width = windowRect.right - windowRect.left;
     uint32 height = windowRect.top - windowRect.bottom;
 
-    if (FAILED(createDeviceAndSwapChain()))
+    if (!createDeviceAndSwapChain())
     {
       Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
       return false;
     }
 
-    if (FAILED(createRenderTargetView()))
+    if (!createRenderTargetView())
     {
       Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
       return false;
     }
 
-    if (FAILED(createDepthStencilView()))
+    if (!createDepthStencilView())
     {
       Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
       return false;
@@ -104,6 +104,38 @@ namespace foxEngineSDK
 
   }
 
+  void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
+  {
+
+    m_deviceContext->getDeviceContext()->ClearRenderTargetView(m_renderTargetView->getRenderTargetView(), _RGBAColor);
+  }
+
+  void DXGraphicsAPI::clearDepthStencilView()
+  {
+
+    m_deviceContext->getDeviceContext()->ClearDepthStencilView(
+      m_depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+  }
+
+  void DXGraphicsAPI::present()
+  {
+
+    m_swapChain->getSwapChain()->Present(0, 0);
+  }
+
+  void DXGraphicsAPI::cleanUpDXGraphicsAPI()
+  {
+
+    if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
+
+    if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
+    if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
+    if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
+    if (m_swapChain->getSwapChain()) m_swapChain->getSwapChain()->Release();
+    if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->Release();
+    if (m_device->getDevice()) m_device->getDevice()->Release();
+  }
+
   bool DXGraphicsAPI::createDeviceAndSwapChain()
   {
 
@@ -115,7 +147,7 @@ namespace foxEngineSDK
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
-    uint32 height = windowRect.top - windowRect.bottom;
+    uint32 height = windowRect.bottom - windowRect.top;
 
     //Create and set the device flags variable
     uint32 createDeviceFlags = 0;

@@ -16,6 +16,8 @@
 #include "foxGraphicsDefines.h"
 #include "foxGraphicsCommons.h"
 
+#include "foxPrerequisitesUtilities.h"
+
 namespace foxEngineSDK
 {
 /**
@@ -64,9 +66,30 @@ namespace foxEngineSDK
     bool processMessages();
 
     /**
-     * @brief Initialize the DirectX Graphics API
+     * @brief Initialize the DirectX Graphics API.
      */
     bool initDXGraphicsAPI();
+
+    /**
+     * @brief Clears the Render Target View.
+     * @param _RGBAColor The color to clean with.
+     */
+    void clearRenderTargetView(float * _RGBAColor);
+
+    /**
+     * @brief Clears the Depth Stencil View.
+     */
+    void clearDepthStencilView();
+
+    /**
+     * @brief Present the information from the back buffer to the front buffer.
+     */
+    void present();
+
+    /**
+     * @brief Cleans up the Graphics API.
+     */
+    void cleanUpDXGraphicsAPI();
 
   private:
 

@@ -42,12 +42,12 @@ namespace foxEngineSDK
   bool DXDevice::createDepthStencilView(
     ID3D11Texture2D * _depthStencilBuffer,
     ID3D11DepthStencilView ** _depthStencilView,
-    D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0)
+    D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc)
   {
     return m_device->CreateDepthStencilView(
       _depthStencilBuffer,
       _depthStencilViewDesc,
-      _depthStencilView);
+      _depthStencilView);;
   }
 
 }
