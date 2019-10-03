@@ -27,6 +27,7 @@ namespace foxEngineSDK
     m_deviceContext = new DXDeviceContext();
     m_renderTargetView = new DXRenderTargetView();
     m_depthStencilBuffer = new DXTexture();
+    m_depthStencilView = new DXDepthStencilView();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -37,6 +38,7 @@ namespace foxEngineSDK
     delete m_deviceContext;
     delete m_renderTargetView;
     delete m_depthStencilBuffer;
+    delete m_depthStencilView;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -52,6 +54,54 @@ namespace foxEngineSDK
   bool DXGraphicsAPI::processMessages()
   {
     return m_renderWindow->processMessages();
+  }
+
+  bool DXGraphicsAPI::initDXGraphicsAPI()
+  {
+
+    //Create window rect variable object
+    RECT windowRect;
+
+    //Get the actual window rect
+    GetClientRect(m_renderWindow->getWindowHandle(), &windowRect);
+
+    //Create and set the width and height from the obtained window rect
+    uint32 width = windowRect.right - windowRect.left;
+    uint32 height = windowRect.top - windowRect.bottom;
+
+    if (FAILED(createDeviceAndSwapChain()))
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      return false;
+    }
+
+    if (FAILED(createRenderTargetView()))
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      return false;
+    }
+
+    if (FAILED(createDepthStencilView()))
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      return false;
+    }
+
+    //Create and set the viewport
+    D3D11_VIEWPORT vp;
+
+    vp.Width = (FLOAT)width;
+    vp.Height = (FLOAT)height;
+    vp.MinDepth = 0.0f;
+    vp.MaxDepth = 1.0f;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    m_deviceContext->getDeviceContext()->RSSetViewports(1, &vp);
+
+    Log() << "Graphics API initialized successfully";
+    return true;
+
+
   }
 
   bool DXGraphicsAPI::createDeviceAndSwapChain()
