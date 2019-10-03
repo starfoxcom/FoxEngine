@@ -24,9 +24,30 @@ namespace foxEngineSDK
     return &m_device;
   }
 
-  bool DXDevice::createRenderTargetView(ID3D11Texture2D * _backBuffer, ID3D11RenderTargetView ** _renderTargetViewRef)
+  bool DXDevice::createRenderTargetView(
+    ID3D11Texture2D * _backBuffer,
+    ID3D11RenderTargetView ** _renderTargetViewRef)
   {
     return m_device->CreateRenderTargetView(_backBuffer, 0, _renderTargetViewRef);
+  }
+
+  bool DXDevice::createTexture2D(
+    D3D11_TEXTURE2D_DESC * _textureDesc,
+    ID3D11Texture2D ** _texture,
+    D3D11_SUBRESOURCE_DATA * _initData)
+  {
+    return m_device->CreateTexture2D(_textureDesc, _initData, _texture);
+  }
+
+  bool DXDevice::createDepthStencilView(
+    ID3D11Texture2D * _depthStencilBuffer,
+    ID3D11DepthStencilView ** _depthStencilView,
+    D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0)
+  {
+    return m_device->CreateDepthStencilView(
+      _depthStencilBuffer,
+      _depthStencilViewDesc,
+      _depthStencilView);
   }
 
 }

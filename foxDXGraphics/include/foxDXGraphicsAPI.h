@@ -25,7 +25,9 @@ namespace foxEngineSDK
   class DXSwapChain;
   class DXDevice;
   class DXDeviceContext;
+  class DXTexture;
   class DXRenderTargetView;
+  class DXDepthStencilView;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -73,15 +75,24 @@ namespace foxEngineSDK
      */
     bool createRenderTargetView();
 
-    DXRenderWindow * m_renderWindow; /**< Render Window class object member.*/
+    /**
+     * @brief Creates the Depth Stencil View.
+     */
+    bool createDepthStencilView();
 
-    DXSwapChain * m_swapChain; /**< Swap Chain class object member.*/
+    DXRenderWindow * m_renderWindow; /**< Render Window member.*/
+
+    DXSwapChain * m_swapChain; /**< Swap Chain member.*/
 
     DXDevice * m_device; /**< Device class object member.*/
 
-    DXDeviceContext * m_deviceContext; /**< Device Context class object member.*/
+    DXDeviceContext * m_deviceContext; /**< Device Context member.*/
 
-    DXRenderTargetView * m_renderTargetView; /**< Render Target View class object member*/
+    DXRenderTargetView * m_renderTargetView; /**< Render Target View member.*/
+
+    DXTexture * m_depthStencilBuffer; /**< Depth Stencil Buffer member.*/
+
+    DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
 
 
   };

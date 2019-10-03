@@ -176,22 +176,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\foxDXDepthStencilView.h" />
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXRenderWindow.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
+    <ClInclude Include="include\foxDXTexture.h" />
     <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\foxDXDepthStencilView.cpp" />
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXRenderWindow.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
+    <ClCompile Include="src\foxDXTexture.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

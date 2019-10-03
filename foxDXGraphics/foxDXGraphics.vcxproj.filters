@@ -34,6 +34,8 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="include\foxDXRenderTargetView.h" />
+    <ClInclude Include="include\foxDXTexture.h" />
+    <ClInclude Include="include\foxDXDepthStencilView.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -52,5 +54,7 @@
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
+    <ClCompile Include="src\foxDXTexture.cpp" />
+    <ClCompile Include="src\foxDXDepthStencilView.cpp" />
   </ItemGroup>
 </Project>

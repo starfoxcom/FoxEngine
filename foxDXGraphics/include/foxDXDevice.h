@@ -37,13 +37,11 @@ namespace foxEngineSDK
 
     /**
      * @brief Gets the DirectX Device.
-     * @return The DirectX Device.
      */
     ID3D11Device * getDevice();
 
     /**
      * @brief Gets the DirectX Device reference.
-     * @return The DirectX Device reference.
      */
     ID3D11Device ** getDeviceRef();
 
@@ -51,11 +49,32 @@ namespace foxEngineSDK
      * @brief Create the DirectX Render Target View.
      * @param _backBuffer The Back Buffer.
      * @param _renderTargetViewRef The Render Target View reference.
-     * @return true on success.
      */
     bool createRenderTargetView(
       ID3D11Texture2D * _backBuffer,
       ID3D11RenderTargetView ** _renderTargetViewRef);
+
+    /**
+     * @brief Create the DirectX texture.
+     * @param _textureDesc The texture Desc.
+     * @param _texture The Texture object.
+     * @param _initData The texture initial data.
+     */
+    bool createTexture2D(
+      D3D11_TEXTURE2D_DESC * _textureDesc,
+      ID3D11Texture2D ** _texture,
+      D3D11_SUBRESOURCE_DATA * _initData = 0);
+
+    /**
+     * @brief Create the DirectX Depth Stencil View.
+     * @param _depthStencilBuffer The Depth Stencil Buffer.
+     * @param _depthStencilView The Depth Stencil View object.
+     * @param _depthStencilViewDesc The Depth Stencil View Desc.
+     */
+    bool createDepthStencilView(
+      ID3D11Texture2D * _depthStencilBuffer,
+      ID3D11DepthStencilView ** _depthStencilView,
+      D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0);
 
   private:
 

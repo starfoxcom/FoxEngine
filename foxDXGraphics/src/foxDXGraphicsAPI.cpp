@@ -11,7 +11,9 @@
 #include "foxDXSwapChain.h"
 #include "foxDXDevice.h"
 #include "foxDXDeviceContext.h"
+#include "foxDXTexture.h"
 #include "foxDXRenderTargetView.h"
+#include "foxDXDepthStencilView.h"
 
 namespace foxEngineSDK
 {
@@ -24,6 +26,7 @@ namespace foxEngineSDK
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
     m_renderTargetView = new DXRenderTargetView();
+    m_depthStencilBuffer = new DXTexture();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -33,6 +36,7 @@ namespace foxEngineSDK
     delete m_device;
     delete m_deviceContext;
     delete m_renderTargetView;
+    delete m_depthStencilBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -161,14 +165,71 @@ namespace foxEngineSDK
     }
     else
     {
+
       Log() << "Created Render Target View successfully.";
 
       //Release the buffer
       backBuffer->Release();
       return true;
     }
-    
+  }
 
+  bool DXGraphicsAPI::createDepthStencilView()
+  {
+
+    //Create window rect variable object
+    RECT windowRect;
+
+    //Get the actual window rect
+    GetClientRect(m_renderWindow->getWindowHandle(), &windowRect);
+
+    //Create and set the width and height from the obtained window rect
+    uint32 width = windowRect.right - windowRect.left;
+    uint32 height = windowRect.top - windowRect.bottom;
+
+    //Create and set the Depth Stencil Desc
+    D3D11_TEXTURE2D_DESC dsd;
+
+    dsd.Width = width;
+    dsd.Height = height;
+    dsd.MipLevels = 1;
+    dsd.ArraySize = 1;
+    dsd.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    dsd.SampleDesc.Count = 1;
+    dsd.SampleDesc.Quality = 0;
+    dsd.Usage = D3D11_USAGE_DEFAULT;
+    dsd.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+    dsd.CPUAccessFlags = 0;
+    dsd.MiscFlags = 0;
+
+    if (FAILED(m_device->createTexture2D(&dsd, m_depthStencilBuffer->getTextureRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Texture2D.";
+      return false;
+    }
+
+    else
+    {
+
+      Log() << "Created Texture2D successfully.";
+    }
+
+    if (FAILED(m_device->createDepthStencilView(
+      m_depthStencilBuffer->getTexture(),
+      m_depthStencilView->getDepthStencilViewRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Depth Stencil View.";
+      return false;
+    }
+
+    else
+    {
+
+      Log() << "Created Depth Stencil View successfully.";
+      return true;
+    }
   }
 
 }
