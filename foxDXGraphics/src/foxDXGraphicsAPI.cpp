@@ -147,7 +147,7 @@ namespace foxEngineSDK
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
-    uint32 height = windowRect.top - windowRect.bottom;
+    uint32 height = windowRect.bottom - windowRect.top;
 
     //Create and set the device flags variable
     uint32 createDeviceFlags = 0;
@@ -171,7 +171,7 @@ namespace foxEngineSDK
     //Create and set the Swap Chain Desc
     DXGI_SWAP_CHAIN_DESC scd;
 
-    ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
+    ZeroMemory(&scd, sizeof(scd));
 
     scd.BufferDesc.Width = width;
     scd.BufferDesc.Height = height;
