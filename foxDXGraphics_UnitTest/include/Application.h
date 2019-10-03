@@ -18,6 +18,10 @@ public:
 
   bool run();
 
+  void update();
+
+  void render();
+
 private:
 
   DXGraphicsAPI m_graphicsAPI;

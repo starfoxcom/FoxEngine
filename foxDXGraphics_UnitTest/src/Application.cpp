@@ -33,10 +33,29 @@ bool BaseApp::run()
     //Update logic
 
     //Render
+    render();
 
   }
 
+  m_graphicsAPI.cleanUpDXGraphicsAPI();
+
   return m_graphicsAPI.processMessages();
+}
+
+void BaseApp::update()
+{
+}
+
+void BaseApp::render()
+{
+
+  float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
+  
+  m_graphicsAPI.clearRenderTargetView(clearColor);
+
+  m_graphicsAPI.clearDepthStencilView();
+
+  m_graphicsAPI.present();
 }
 
 BaseApp::BaseApp()
