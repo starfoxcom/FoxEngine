@@ -36,6 +36,8 @@
     <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXTexture.h" />
     <ClInclude Include="include\foxDXDepthStencilView.h" />
+    <ClInclude Include="include\foxDXInputLayout.h" />
+    <ClInclude Include="include\foxDXShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -56,5 +58,7 @@
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />
     <ClCompile Include="src\foxDXDepthStencilView.cpp" />
+    <ClCompile Include="src\foxDXInputLayout.cpp" />
+    <ClCompile Include="src\foxDXShader.cpp" />
   </ItemGroup>
 </Project>

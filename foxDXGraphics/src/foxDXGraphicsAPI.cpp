@@ -14,6 +14,7 @@
 #include "foxDXTexture.h"
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
+#include "foxDXInputLayout.h"
 
 namespace foxEngineSDK
 {
@@ -28,6 +29,7 @@ namespace foxEngineSDK
     m_renderTargetView = new DXRenderTargetView();
     m_depthStencilBuffer = new DXTexture();
     m_depthStencilView = new DXDepthStencilView();
+    m_inputLayout = new DXInputLayout();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -39,6 +41,7 @@ namespace foxEngineSDK
     delete m_renderTargetView;
     delete m_depthStencilBuffer;
     delete m_depthStencilView;
+    delete m_inputLayout;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -102,6 +105,31 @@ namespace foxEngineSDK
     return true;
 
 
+  }
+
+  void DXGraphicsAPI::addInputElement(
+    const char * _semanticName,
+    uint32 _semanticIndex,
+    FOXGI_FORMAT::E _format,
+    uint32 _inputSlot,
+    uint32 _alignedByteOffset,
+    FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
+    uint32 _instanceDataStepRate)
+  {
+
+    m_inputLayout->addElement(
+      _semanticName,
+      _semanticIndex,
+      _format,
+      _inputSlot,
+      _alignedByteOffset,
+      _inputSlotClass,
+      _instanceDataStepRate);
+  }
+
+  bool DXGraphicsAPI::createInputLayout()
+  {
+    return m_device->createInputLayout(m_inputLayout);
   }
 
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)

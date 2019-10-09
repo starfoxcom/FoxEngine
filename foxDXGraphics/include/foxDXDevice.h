@@ -19,6 +19,7 @@ namespace foxEngineSDK
   /**
    * Forward Declarations
    */
+  class DXInputLayout;
 
 
   class DXDevice
@@ -75,6 +76,12 @@ namespace foxEngineSDK
       ID3D11Texture2D * _depthStencilBuffer,
       ID3D11DepthStencilView ** _depthStencilView,
       D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0);
+
+    /**
+     * @brief Create the DirectX Input Layout.
+     * @param _inputLayout The Graphics API Input Layout.
+     */
+    bool createInputLayout(DXInputLayout * _inputLayout);
 
   private:
 

@@ -50,4 +50,26 @@ namespace foxEngineSDK
       _depthStencilView);;
   }
 
+  bool DXDevice::createInputLayout(DXInputLayout * _inputLayout)
+  {
+    //if (FAILED(m_device->CreateInputLayout(
+    //  _inputLayout->getInputElementDesc(),
+    //  _inputLayout->getInputElementsNum(),
+    //  _vertexShader->getBlob()->GetBufferPointer(),
+    //  _vertexShader->getBlob()->GetBufferSize(),
+    //  _inputLayout->getInputLayoutRef())))
+    //{
+
+    //  return false;
+    //}
+
+    //else
+    //{
+
+    //  return true;
+    //}
+
+    return false;
+  }
+
 }

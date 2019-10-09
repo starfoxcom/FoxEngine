@@ -26,6 +26,25 @@ bool BaseApp::run()
   //Initialize the graphicsAPI
   m_graphicsAPI.initDXGraphicsAPI();
 
+  //Add Input Elements for the input layout
+  m_graphicsAPI.addInputElement(
+    "POSITION",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    0,
+    0,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
+  m_graphicsAPI.addInputElement(
+    "COLOR",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    0,
+    12,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
   {
