@@ -100,10 +100,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Creates the Vertex Buffer.
-     * @param 
-     * @param 
+     * @param _data The vertex data.
+     * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer();
+    bool createVertexBuffer(const void * _data, uint32 _length);
 
     /**
      * @brief Clears the Render Target View.

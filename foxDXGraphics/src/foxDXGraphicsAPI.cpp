@@ -137,7 +137,7 @@ namespace foxEngineSDK
 
   bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _length)
   {
-    m_device->createVertexBuffer(_data, _length, m_vertexBuffer);
+    return m_device->createVertexBuffer(_data, _length, m_vertexBuffer);
   }
 
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)

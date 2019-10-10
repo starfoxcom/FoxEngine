@@ -39,6 +39,7 @@
     <ClInclude Include="include\foxDXInputLayout.h" />
     <ClInclude Include="include\foxDXShader.h" />
     <ClInclude Include="include\foxDXBuffer.h" />
+    <ClInclude Include="include\foxDXVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -62,5 +63,6 @@
     <ClCompile Include="src\foxDXInputLayout.cpp" />
     <ClCompile Include="src\foxDXShader.cpp" />
     <ClCompile Include="src\foxDXBuffer.cpp" />
+    <ClCompile Include="src\foxDXVertexBuffer.cpp" />
   </ItemGroup>
 </Project>
