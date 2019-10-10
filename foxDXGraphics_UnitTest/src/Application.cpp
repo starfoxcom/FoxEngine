@@ -92,6 +92,7 @@ bool BaseApp::run()
   m_graphicsAPI.setIndexBuffer();
 
   //Set primitive topology
+  m_graphicsAPI.setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
   //Create constant buffer
 

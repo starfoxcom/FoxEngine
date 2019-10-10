@@ -160,6 +160,12 @@ namespace foxEngineSDK
     void setIndexBuffer(FOXGI_FORMAT::E _format = FOXGI_FORMAT::E::K_R32_UINT, uint32 _offset = 0);
 
     /**
+     * @brief Sets the primitive topology.
+     * @param _topology The topology to set.
+     */
+    void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
+    /**
      * @brief Clears the Render Target View.
      * @param _RGBAColor The color to clean with.
      */

@@ -83,7 +83,7 @@ namespace foxEngineSDK
       const void * _data);
 
     /**
-     * @brief 
+     * @brief Sets the DirectX Index Buffer.
      * @param _indexBuffer The Graphics API Index Buffer.
      * @param _format The indices format.
      * @param _offset The indices offset.
@@ -92,6 +92,12 @@ namespace foxEngineSDK
       DXIndexBuffer * _indexBuffer,
       FOXGI_FORMAT::E _format,
       uint32 _offset);
+
+    /**
+     * @brief Sets the DirectX Primitive Topology.
+     * @param _topology The topology to set.
+     */
+    void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 
   private:
 
