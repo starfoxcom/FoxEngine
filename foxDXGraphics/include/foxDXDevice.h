@@ -24,6 +24,7 @@ namespace foxEngineSDK
   class DXPixelShader;
   class DXInputLayout;
   class DXVertexBuffer;
+  class DXIndexBuffer;
 
 
   class DXDevice
@@ -106,6 +107,14 @@ namespace foxEngineSDK
      * @param _length The length of the vertex data.
      */
     bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _length);
+
+    /**
+     * @brief Create the DirectX Index Buffer.
+     * @param _vertexBuffer The Graphics API Index Buffer.
+     * @param _data The index data.
+     * @param _length The length of the index data.
+     */
+    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _length);
 
   private:
 

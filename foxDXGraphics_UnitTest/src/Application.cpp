@@ -32,9 +32,26 @@ bool BaseApp::run()
 
   vertex vertices[]
   {
-    Vector3(0.0f, 0.5f, 0.5f),
-    Vector3(0.5f, -0.5f, 0.5f),
-    Vector3(-0.5f, -0.5f, 0.5f),
+    Vector3(-1.0f, -1.0f, -1.0f),
+    Vector3(-1.0f, +1.0f, -1.0f),
+    Vector3(+1.0f, +1.0f, -1.0f),
+    Vector3(+1.0f, -1.0f, -1.0f),
+    Vector3(-1.0f, -1.0f, +1.0f),
+    Vector3(-1.0f, +1.0f, +1.0f),
+    Vector3(+1.0f, +1.0f, +1.0f),
+    Vector3(+1.0f, -1.0f, +1.0f),
+  };
+
+  uint32 indices[]
+  {
+    0, 1, 2, // Triangle 0
+    0, 2, 3, // Triangle 1
+    0, 3, 4, // Triangle 2
+    0, 4, 5, // Triangle 3
+    0, 5, 6, // Triangle 4
+    0, 6, 7, // Triangle 5
+    0, 7, 8, // Triangle 6
+    0, 8, 1  // Triangle 7
   };
 
   //Initialize the graphicsAPI
@@ -63,13 +80,16 @@ bool BaseApp::run()
   m_graphicsAPI.setInputLayout();
 
   //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(vertices, 3);
+  m_graphicsAPI.createVertexBuffer(vertices, 8);
 
   //Set the vertex buffer
+  m_graphicsAPI.setVertexBuffer(vertices);
 
   //Create the index buffer
-
+  m_graphicsAPI.createIndexBuffer(indices, 24);
+  
   //Set the index buffer
+  m_graphicsAPI.setIndexBuffer();
 
   //Set primitive topology
 

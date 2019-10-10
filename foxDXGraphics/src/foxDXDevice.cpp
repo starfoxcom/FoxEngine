@@ -6,6 +6,7 @@
 #include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
+#include "foxDXIndexBuffer.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
@@ -134,6 +135,29 @@ namespace foxEngineSDK
     }
 
     Log() << "Vertex buffer created successfully";
+    return true;
+  }
+  bool DXDevice::createIndexBuffer(
+    DXIndexBuffer * _indexBuffer,
+    const void * _data,
+    uint32 _length)
+  {
+
+    _indexBuffer->setIndexBufferDesc(_data, _length);
+
+    _indexBuffer->setSubResourceData(_data);
+
+    if (FAILED(m_device->CreateBuffer(
+      &_indexBuffer->getBufferDesc(),
+      &_indexBuffer->getSubResourceData(),
+      _indexBuffer->getBufferRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Index buffer couldn't be created";
+      return false;
+    }
+
+    Log() << "Index buffer created successfully";
     return true;
   }
 }

@@ -34,6 +34,7 @@ namespace foxEngineSDK
   class DXPixelShader;
   class DXInputLayout;
   class DXVertexBuffer;
+  class DXIndexBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -123,7 +124,7 @@ namespace foxEngineSDK
     bool createInputLayout();
 
     /**
-     * @brief Sets the DirectX Input Layout.
+     * @brief Sets the Input Layout.
      */
     void setInputLayout();
 
@@ -133,6 +134,30 @@ namespace foxEngineSDK
      * @param _length The length of the vertex data.
      */
     bool createVertexBuffer(const void * _data, uint32 _length);
+
+    /**
+     * @brief Sets the Vertex Buffer.
+     * @param _data The vertex data.
+     * @param _startSlot The input slot in which to start binding vertex buffers.
+     * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
+     */
+    void setVertexBuffer(const void * _data, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+
+    /**
+     * @brief Creates the Index Buffer.
+     * @param _data The index data.
+     * @param _length The length of the index data.
+     */
+    bool createIndexBuffer(const void * _data, uint32 _length);
+
+    /**
+     * @brief Sets the Index Buffer.
+     * @param _format The format of the indices.
+     * @param _offset The offset measured in bytes, from the start of the index buffer 
+                      to the position in the index buffer the input assembly should start 
+                      reading the data.
+     */
+    void setIndexBuffer(FOXGI_FORMAT::E _format = FOXGI_FORMAT::E::K_R32_UINT, uint32 _offset = 0);
 
     /**
      * @brief Clears the Render Target View.
@@ -194,6 +219,7 @@ namespace foxEngineSDK
 
     DXVertexBuffer * m_vertexBuffer; /**< Vertex Buffer member.*/
 
+    DXIndexBuffer * m_indexBuffer; /**< Index Buffer member.*/
 
   };
 }

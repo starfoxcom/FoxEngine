@@ -5,6 +5,8 @@
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
 #include "foxDXInputLayout.h"
+#include "foxDXVertexBuffer.h"
+#include "foxDXIndexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -43,6 +45,36 @@ namespace foxEngineSDK
   void DXDeviceContext::setInputLayout(DXInputLayout * _inputLayout)
   {
     m_deviceContext->IASetInputLayout(_inputLayout->getInputLayout());
+  }
+
+  void DXDeviceContext::setVertexBuffer(
+    DXVertexBuffer * _vertexBuffer,
+    uint32 _startSlot,
+    uint32 _numOfBuffers,
+    const void * _data)
+  {
+
+    uint32 stride = sizeof(_data);
+    uint32 offset = 0;
+
+    m_deviceContext->IASetVertexBuffers(
+      _startSlot,
+      _numOfBuffers,
+      _vertexBuffer->getBufferRef(),
+      &stride,
+      &offset);
+  }
+
+  void DXDeviceContext::setIndexBuffer(
+    DXIndexBuffer * _indexBuffer,
+    FOXGI_FORMAT::E _format,
+    uint32 _offset)
+  {
+
+    m_deviceContext->IASetIndexBuffer(
+      _indexBuffer->getBuffer(),
+      static_cast<DXGI_FORMAT>(_format),
+      _offset);
   }
 
 }
