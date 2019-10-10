@@ -28,7 +28,13 @@ bool BaseApp::run()
   struct vertex
   {
     Vector3 pos;
-    Vector4 color;
+  };
+
+  vertex vertices[]
+  {
+    Vector3(0.0f, 0.5f, 0.5f),
+    Vector3(0.5f, -0.5f, 0.5f),
+    Vector3(-0.5f, -0.5f, 0.5f),
   };
 
   //Initialize the graphicsAPI
@@ -44,22 +50,19 @@ bool BaseApp::run()
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
-  m_graphicsAPI.addInputElement(
-    "COLOR",
-    0,
-    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
-    0,
-    16,
-    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
-    0);
-
   //Create vertex shader
   m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
+
   //Create pixel shader
 
   //Create the input layout
+  m_graphicsAPI.createInputLayout();
+
+  //Set the input layout
+  m_graphicsAPI.setInputLayout();
 
   //Create the vertex buffer
+  m_graphicsAPI.createVertexBuffer(vertices, 3);
 
   //Set the vertex buffer
 

@@ -111,6 +111,11 @@ namespace foxEngineSDK
     bool createInputLayout();
 
     /**
+     * @brief Sets the DirectX Input Layout.
+     */
+    void setInputLayout();
+
+    /**
      * @brief Creates the Vertex Buffer.
      * @param _data The vertex data.
      * @param _length The length of the vertex data.

@@ -149,6 +149,11 @@ namespace foxEngineSDK
     return m_device->createInputLayout(m_inputLayout);
   }
 
+  void DXGraphicsAPI::setInputLayout()
+  {
+    m_deviceContext->getDeviceContext()->IASetInputLayout(m_inputLayout->getInputLayout());
+  }
+
   bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _length)
   {
     return m_device->createVertexBuffer(m_vertexBuffer, _data, _length);

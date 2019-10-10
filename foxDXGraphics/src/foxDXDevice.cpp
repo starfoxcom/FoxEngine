@@ -72,26 +72,25 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createInputLayout(DXInputLayout * _inputLayout)
+  bool DXDevice::createInputLayout(
+    DXInputLayout * _inputLayout,
+    DXVertexShader * _vertexShader)
   {
-    //if (FAILED(m_device->CreateInputLayout(
-    //  _inputLayout->getInputElementDesc(),
-    //  _inputLayout->getInputElementsNum(),
-    //  _vertexShader->getBlob()->GetBufferPointer(),
-    //  _vertexShader->getBlob()->GetBufferSize(),
-    //  _inputLayout->getInputLayoutRef())))
-    //{
 
-    //  return false;
-    //}
-
-    //else
-    //{
-
-    //  return true;
-    //}
-
-    return false;
+    if (FAILED(m_device->CreateInputLayout(
+      _inputLayout->getInputElementDesc(),
+      _inputLayout->getInputElementsNum(),
+      _vertexShader->getBlob()->GetBufferPointer(),
+      _vertexShader->getBlob()->GetBufferSize(),
+      _inputLayout->getInputLayoutRef())))
+    {
+      _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Input layout couldn't be created";
+      return false;
+    }
+    _vertexShader->getBlob()->Release();
+    Log() << "Input layout created successfully";
+    return true;
   }
 
   bool DXDevice::createVertexBuffer(

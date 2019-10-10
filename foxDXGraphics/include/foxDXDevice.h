@@ -90,7 +90,7 @@ namespace foxEngineSDK
      * @brief Create the DirectX Input Layout.
      * @param _inputLayout The Graphics API Input Layout.
      */
-    bool createInputLayout(DXInputLayout * _inputLayout);
+    bool createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader);
 
     /**
      * @brief Create the DirectX Vertex Buffer.
