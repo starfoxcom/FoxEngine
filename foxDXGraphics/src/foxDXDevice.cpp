@@ -2,6 +2,7 @@
  * Includes
  */
 #include "foxDXDevice.h"
+#include "foxDXVertexShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxLog.h"
@@ -51,6 +52,24 @@ namespace foxEngineSDK
       _depthStencilBuffer,
       _depthStencilViewDesc,
       _depthStencilView);;
+  }
+
+  bool DXDevice::createVertexShader(DXVertexShader * _vertexShader)
+  {
+    if (FAILED(m_device->CreateVertexShader(
+      _vertexShader->getBlob()->GetBufferPointer(),
+      _vertexShader->getBlob()->GetBufferSize(),
+      NULL,
+      _vertexShader->getVertexShaderRef())))
+    {
+
+      _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Vertex Shader couldn't be created";
+      return false;
+    }
+
+    Log() << "Vertex Shader created successfully";
+    return true;
   }
 
   bool DXDevice::createInputLayout(DXInputLayout * _inputLayout)
