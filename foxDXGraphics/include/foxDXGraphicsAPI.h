@@ -30,6 +30,7 @@ namespace foxEngineSDK
   class DXTexture;
   class DXRenderTargetView;
   class DXDepthStencilView;
+  class DXVertexShader;
   class DXInputLayout;
   class DXVertexBuffer;
 
@@ -94,16 +95,27 @@ namespace foxEngineSDK
       uint32 _instanceDataStepRate);
 
     /**
+     * @brief Creates the Vertex Shader.
+     * @param _filename The name of the shader file.
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
+     */
+    bool createVertexShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel);
+
+    /**
      * @brief Creates the Input Layout.
      */
     bool createInputLayout();
 
     /**
      * @brief Creates the Vertex Buffer.
-     * @param 
-     * @param 
+     * @param _data The vertex data.
+     * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer();
+    bool createVertexBuffer(const void * _data, uint32 _length);
 
     /**
      * @brief Clears the Render Target View.
@@ -156,6 +168,8 @@ namespace foxEngineSDK
     DXTexture * m_depthStencilBuffer; /**< Depth Stencil Buffer member.*/
 
     DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
+
+    DXVertexShader * m_vertexShader; /**< Vertex Shader member.*/
 
     DXInputLayout * m_inputLayout; /**< Input Layout member.*/
 

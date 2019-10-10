@@ -1,5 +1,7 @@
 #include "Application.h"
 #include "foxLog.h"
+#include "foxVector3.h"
+#include "foxVector4.h"
 
 
 
@@ -22,6 +24,12 @@ bool BaseApp::run()
   {
     Log() << "Window initialized";
   }
+
+  struct vertex
+  {
+    Vector3 pos;
+    Vector4 color;
+  };
 
   //Initialize the graphicsAPI
   m_graphicsAPI.initDXGraphicsAPI();
@@ -46,7 +54,7 @@ bool BaseApp::run()
     0);
 
   //Create vertex shader
-
+  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
   //Create pixel shader
 
   //Create the input layout
@@ -70,6 +78,7 @@ bool BaseApp::run()
   {
 
     //Update logic
+    update();
 
     //Render
     render();

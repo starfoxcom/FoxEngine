@@ -20,6 +20,7 @@ namespace foxEngineSDK
   /**
    * Forward Declarations
    */
+  class DXVertexShader;
   class DXInputLayout;
   class DXVertexBuffer;
 
@@ -78,6 +79,12 @@ namespace foxEngineSDK
       ID3D11Texture2D * _depthStencilBuffer,
       ID3D11DepthStencilView ** _depthStencilView,
       D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0);
+
+    /**
+     * @brief Create the DirectX Vertex Shader.
+     * @param _vertexShader The Graphics API Vertex Shader.
+     */
+    bool createVertexShader(DXVertexShader * _vertexShader);
 
     /**
      * @brief Create the DirectX Input Layout.

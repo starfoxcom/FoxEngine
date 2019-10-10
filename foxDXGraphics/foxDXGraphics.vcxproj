@@ -187,6 +187,8 @@
     <ClInclude Include="include\foxDXShader.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxDXTexture.h" />
+    <ClInclude Include="include\foxDXVertexBuffer.h" />
+    <ClInclude Include="include\foxDXVertexShader.h" />
     <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
@@ -202,6 +204,8 @@
     <ClCompile Include="src\foxDXShader.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />
+    <ClCompile Include="src\foxDXVertexBuffer.cpp" />
+    <ClCompile Include="src\foxDXVertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
