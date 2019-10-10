@@ -31,6 +31,7 @@ namespace foxEngineSDK
   class DXRenderTargetView;
   class DXDepthStencilView;
   class DXInputLayout;
+  class DXVertexBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -98,6 +99,13 @@ namespace foxEngineSDK
     bool createInputLayout();
 
     /**
+     * @brief Creates the Vertex Buffer.
+     * @param 
+     * @param 
+     */
+    bool createVertexBuffer();
+
+    /**
      * @brief Clears the Render Target View.
      * @param _RGBAColor The color to clean with.
      */
@@ -150,6 +158,8 @@ namespace foxEngineSDK
     DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
 
     DXInputLayout * m_inputLayout; /**< Input Layout member.*/
+
+    DXVertexBuffer * m_vertexBuffer; /**< Vertex Buffer member.*/
 
 
   };

@@ -11,6 +11,7 @@
  * Includes
  */
 #include <d3d11.h>
+#include "foxPrerequisitesUtilities.h"
 
 
 namespace foxEngineSDK
@@ -20,6 +21,7 @@ namespace foxEngineSDK
    * Forward Declarations
    */
   class DXInputLayout;
+  class DXVertexBuffer;
 
 
   class DXDevice
@@ -82,6 +84,14 @@ namespace foxEngineSDK
      * @param _inputLayout The Graphics API Input Layout.
      */
     bool createInputLayout(DXInputLayout * _inputLayout);
+
+    /**
+     * @brief Create the DirectX Vertex Buffer.
+     * @param _vertexBuffer The Graphics API Vertex Buffer.
+     * @param _data The vertex data.
+     * @param _length The length of the vertex data.
+     */
+    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _length);
 
   private:
 
