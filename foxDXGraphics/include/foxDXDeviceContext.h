@@ -15,6 +15,13 @@
 namespace foxEngineSDK
 {
 
+  /**
+   * Forward declarations
+   */
+  class DXRenderTargetView;
+  class DXDepthStencilView;
+  class DXInputLayout;
+
   class DXDeviceContext
   {
   public:
@@ -38,6 +45,25 @@ namespace foxEngineSDK
      * @brief Gets the DirectX Device Context reference.
      */
     ID3D11DeviceContext ** getDeviceContextRef();
+
+    /**
+     * @brief Clears the DirectX Render Target View.
+     * @param _renderTargetView The Graphics API Render Target View.
+     * @param _RGBAColor The color to clear with.
+     */
+    void clearRenderTargetView(DXRenderTargetView * _renderTargetView, float * _RGBAColor);
+
+    /**
+     * @brief Clears the DirectX Depth Stencil View.
+     * @param _depthStencilView The Graphics API Depth Stencil View.
+     */
+    void clearDepthStencilView(DXDepthStencilView * _depthStencilView);
+
+    /**
+     * @brief Sets the DirectX Input Layout.
+     * @param _inputLayout The Graphics API Input Layout.
+     */
+    void setInputLayout(DXInputLayout * _inputLayout);
 
   private:
 

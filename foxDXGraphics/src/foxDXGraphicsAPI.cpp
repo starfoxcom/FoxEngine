@@ -147,7 +147,10 @@ namespace foxEngineSDK
     return m_device->createVertexShader(m_vertexShader);
   }
 
-  bool DXGraphicsAPI::createPixelShader(const char * _fileName, const char * _entryPoint, const char * _shaderModel)
+  bool DXGraphicsAPI::createPixelShader(
+    const char * _fileName,
+    const char * _entryPoint,
+    const char * _shaderModel)
   {
 
     m_pixelShader->compileShaderFromFile(_fileName, _entryPoint, _shaderModel);
@@ -162,7 +165,7 @@ namespace foxEngineSDK
 
   void DXGraphicsAPI::setInputLayout()
   {
-    m_deviceContext->getDeviceContext()->IASetInputLayout(m_inputLayout->getInputLayout());
+    m_deviceContext->setInputLayout(m_inputLayout);
   }
 
   bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _length)
@@ -172,21 +175,17 @@ namespace foxEngineSDK
 
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
-
-    m_deviceContext->getDeviceContext()->ClearRenderTargetView(m_renderTargetView->getRenderTargetView(), _RGBAColor);
+    m_deviceContext->clearRenderTargetView(m_renderTargetView, _RGBAColor);
   }
 
   void DXGraphicsAPI::clearDepthStencilView()
   {
-
-    m_deviceContext->getDeviceContext()->ClearDepthStencilView(
-      m_depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+    m_deviceContext->clearDepthStencilView(m_depthStencilView);
   }
 
   void DXGraphicsAPI::present()
   {
-
-    m_swapChain->getSwapChain()->Present(0, 0);
+    m_swapChain->present();
   }
 
   void DXGraphicsAPI::cleanUpDXGraphicsAPI()

@@ -39,6 +39,11 @@ namespace foxEngineSDK
      */
     IDXGISwapChain ** getSwapChainRef();
 
+    /**
+     * @brief Present the information from the back buffer to the front buffer.
+     */
+    void present();
+
   private:
 
     IDXGISwapChain * m_swapChain; /**< Swap Chain class object member*/

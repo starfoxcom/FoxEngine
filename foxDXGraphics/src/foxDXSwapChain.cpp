@@ -24,5 +24,10 @@ namespace foxEngineSDK
     return &m_swapChain;
   }
 
+  void DXSwapChain::present()
+  {
+    m_swapChain->Present(0, 0);
+  }
+
 
 }
