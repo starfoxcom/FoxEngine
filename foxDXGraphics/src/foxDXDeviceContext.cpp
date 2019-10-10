@@ -4,6 +4,8 @@
 #include "foxDXDeviceContext.h"
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
+#include "foxDXVertexShader.h"
+#include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
@@ -80,6 +82,16 @@ namespace foxEngineSDK
   void DXDeviceContext::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
+  }
+
+  void DXDeviceContext::setVertexShader(DXVertexShader * _vertexShader)
+  {
+    m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
+  }
+
+  void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)
+  {
+    m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
   }
 
 }

@@ -177,6 +177,16 @@ namespace foxEngineSDK
     void clearDepthStencilView();
 
     /**
+     * @brief Sets the Vertex Shader.
+     */
+    void setVertexShader();
+
+    /**
+     * @brief Sets the Pixel Shader.
+     */
+    void setPixelShader();
+
+    /**
      * @brief Present the information from the back buffer to the front buffer.
      */
     void present();

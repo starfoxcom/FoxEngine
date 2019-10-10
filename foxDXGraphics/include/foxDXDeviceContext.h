@@ -23,6 +23,8 @@ namespace foxEngineSDK
    */
   class DXRenderTargetView;
   class DXDepthStencilView;
+  class DXVertexShader;
+  class DXPixelShader;
   class DXInputLayout;
   class DXVertexBuffer;
   class DXIndexBuffer;
@@ -98,6 +100,18 @@ namespace foxEngineSDK
      * @param _topology The topology to set.
      */
     void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
+    /**
+     * @brief Sets the DirectX Vertex Shader.
+     * @param _vertexShader The Graphics API Vertex Shader.
+     */
+    void setVertexShader(DXVertexShader * _vertexShader);
+
+    /**
+     * @brief Sets the DirectX Pixel Shader.
+     * @param _pixelShader The Graphics API Pixel Shader.
+     */
+    void setPixelShader(DXPixelShader * _pixelShader);
 
   private:
 
