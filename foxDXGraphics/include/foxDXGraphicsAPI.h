@@ -31,6 +31,7 @@ namespace foxEngineSDK
   class DXRenderTargetView;
   class DXDepthStencilView;
   class DXVertexShader;
+  class DXPixelShader;
   class DXInputLayout;
   class DXVertexBuffer;
 
@@ -106,6 +107,17 @@ namespace foxEngineSDK
       const char * _shaderModel);
 
     /**
+ * @brief Creates the Vertex Shader.
+ * @param _filename The name of the shader file.
+ * @param _entryPoint The entry point for the vertex shader.
+ * @param _shaderModel The shader model.
+ */
+    bool createPixelShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel);
+
+    /**
      * @brief Creates the Input Layout.
      */
     bool createInputLayout();
@@ -175,6 +187,8 @@ namespace foxEngineSDK
     DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
 
     DXVertexShader * m_vertexShader; /**< Vertex Shader member.*/
+
+    DXPixelShader * m_pixelShader; /**< Pixel Shader member.*/
 
     DXInputLayout * m_inputLayout; /**< Input Layout member.*/
 

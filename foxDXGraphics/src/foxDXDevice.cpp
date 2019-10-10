@@ -3,6 +3,7 @@
  */
 #include "foxDXDevice.h"
 #include "foxDXVertexShader.h"
+#include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxLog.h"
@@ -69,6 +70,25 @@ namespace foxEngineSDK
     }
 
     Log() << "Vertex Shader created successfully";
+    return true;
+  }
+
+  bool DXDevice::createPixelShader(DXPixelShader * _pixelShader)
+  {
+    if (FAILED(m_device->CreatePixelShader(
+      _pixelShader->getBlob()->GetBufferPointer(),
+      _pixelShader->getBlob()->GetBufferSize(),
+      NULL,
+      _pixelShader->getPixelShaderRef())))
+    {
+
+      _pixelShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Pixel Shader couldn't be created";
+      return false;
+    }
+
+    _pixelShader->getBlob()->Release();
+    Log() << "Pixel Shader created successfully";
     return true;
   }
 

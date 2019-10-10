@@ -54,6 +54,7 @@ bool BaseApp::run()
   m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
 
   //Create pixel shader
+  m_graphicsAPI.createPixelShader("shaders.shader", "PS", "ps_4_0");
 
   //Create the input layout
   m_graphicsAPI.createInputLayout();
