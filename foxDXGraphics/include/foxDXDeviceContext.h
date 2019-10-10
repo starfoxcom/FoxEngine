@@ -12,6 +12,9 @@
  */
 #include <d3d11.h>
 
+#include "foxPrerequisitesUtilities.h"
+#include "foxGraphicsCommons.h"
+
 namespace foxEngineSDK
 {
 
@@ -21,6 +24,8 @@ namespace foxEngineSDK
   class DXRenderTargetView;
   class DXDepthStencilView;
   class DXInputLayout;
+  class DXVertexBuffer;
+  class DXIndexBuffer;
 
   class DXDeviceContext
   {
@@ -64,6 +69,29 @@ namespace foxEngineSDK
      * @param _inputLayout The Graphics API Input Layout.
      */
     void setInputLayout(DXInputLayout * _inputLayout);
+
+    /**
+     * @brief Sets the DirectX Vertex Buffer.
+     * @param _vertexBuffer The Graphics API Vertex Buffer.
+     * @param _startSlot The input slot in which to start binding vertex buffers.
+     * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
+     */
+    void setVertexBuffer(
+      DXVertexBuffer * _vertexBuffer,
+      uint32 _startSlot,
+      uint32 _numOfBuffers,
+      const void * _data);
+
+    /**
+     * @brief 
+     * @param _indexBuffer The Graphics API Index Buffer.
+     * @param _format The indices format.
+     * @param _offset The indices offset.
+     */
+    void setIndexBuffer(
+      DXIndexBuffer * _indexBuffer,
+      FOXGI_FORMAT::E _format,
+      uint32 _offset);
 
   private:
 

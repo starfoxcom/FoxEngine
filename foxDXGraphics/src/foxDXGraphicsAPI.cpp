@@ -18,6 +18,7 @@
 #include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
+#include "foxDXIndexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -36,6 +37,7 @@ namespace foxEngineSDK
     m_pixelShader = new DXPixelShader();
     m_inputLayout = new DXInputLayout();
     m_vertexBuffer = new DXVertexBuffer();
+    m_indexBuffer = new DXIndexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -51,6 +53,7 @@ namespace foxEngineSDK
     delete m_pixelShader;
     delete m_inputLayout;
     delete m_vertexBuffer;
+    delete m_indexBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -173,6 +176,21 @@ namespace foxEngineSDK
     return m_device->createVertexBuffer(m_vertexBuffer, _data, _length);
   }
 
+  void DXGraphicsAPI::setVertexBuffer(const void * _data, uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->setVertexBuffer(m_vertexBuffer, _startSlot, _numOfBuffers, _data);
+  }
+
+  bool DXGraphicsAPI::createIndexBuffer(const void * _data, uint32 _length)
+  {
+    return m_device->createIndexBuffer(m_indexBuffer, _data, _length);
+  }
+
+  void DXGraphicsAPI::setIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset)
+  {
+    m_deviceContext->setIndexBuffer(m_indexBuffer, _format, _offset);
+  }
+
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _RGBAColor);
@@ -193,6 +211,7 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
