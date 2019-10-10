@@ -182,6 +182,7 @@
     <ClInclude Include="include\foxDXDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
     <ClInclude Include="include\foxDXInputLayout.h" />
+    <ClInclude Include="include\foxDXPixelShader.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXRenderWindow.h" />
     <ClInclude Include="include\foxDXShader.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
     <ClCompile Include="src\foxDXInputLayout.cpp" />
+    <ClCompile Include="src\foxDXPixelShader.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXRenderWindow.cpp" />
     <ClCompile Include="src\foxDXShader.cpp" />

@@ -21,6 +21,7 @@ namespace foxEngineSDK
    * Forward Declarations
    */
   class DXVertexShader;
+  class DXPixelShader;
   class DXInputLayout;
   class DXVertexBuffer;
 
@@ -85,6 +86,12 @@ namespace foxEngineSDK
      * @param _vertexShader The Graphics API Vertex Shader.
      */
     bool createVertexShader(DXVertexShader * _vertexShader);
+
+    /**
+     * @brief Create the DirectX Vertex Shader.
+     * @param _vertexShader The Graphics API Vertex Shader.
+     */
+    bool createPixelShader(DXPixelShader * _pixelShader);
 
     /**
      * @brief Create the DirectX Input Layout.

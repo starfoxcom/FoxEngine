@@ -15,6 +15,7 @@
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
 #include "foxDXVertexShader.h"
+#include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 
@@ -32,6 +33,7 @@ namespace foxEngineSDK
     m_depthStencilBuffer = new DXTexture();
     m_depthStencilView = new DXDepthStencilView();
     m_vertexShader = new DXVertexShader();
+    m_pixelShader = new DXPixelShader();
     m_inputLayout = new DXInputLayout();
     m_vertexBuffer = new DXVertexBuffer();
   }
@@ -46,6 +48,7 @@ namespace foxEngineSDK
     delete m_depthStencilBuffer;
     delete m_depthStencilView;
     delete m_vertexShader;
+    delete m_pixelShader;
     delete m_inputLayout;
     delete m_vertexBuffer;
   }
@@ -142,6 +145,14 @@ namespace foxEngineSDK
     m_vertexShader->compileShaderFromFile(_fileName, _entryPoint, _shaderModel);
 
     return m_device->createVertexShader(m_vertexShader);
+  }
+
+  bool DXGraphicsAPI::createPixelShader(const char * _fileName, const char * _entryPoint, const char * _shaderModel)
+  {
+
+    m_pixelShader->compileShaderFromFile(_fileName, _entryPoint, _shaderModel);
+
+    return m_device->createPixelShader(m_pixelShader);
   }
 
   bool DXGraphicsAPI::createInputLayout()
