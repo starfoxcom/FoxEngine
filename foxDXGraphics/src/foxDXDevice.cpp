@@ -2,6 +2,9 @@
  * Includes
  */
 #include "foxDXDevice.h"
+#include "foxDXInputLayout.h"
+#include "foxDXVertexBuffer.h"
+#include "foxLog.h"
 
 namespace foxEngineSDK
 {
@@ -72,4 +75,27 @@ namespace foxEngineSDK
     return false;
   }
 
+  bool DXDevice::createVertexBuffer(
+    DXVertexBuffer * _vertexBuffer,
+    const void * _data,
+    uint32 _length)
+  {
+
+    _vertexBuffer->setVertexBufferDesc(_data, _length);
+
+    _vertexBuffer->setSubResourceData(_data);
+
+    if (FAILED(m_device->CreateBuffer(
+      &_vertexBuffer->getBufferDesc(),
+      &_vertexBuffer->getSubResourceData(),
+      _vertexBuffer->getBufferRef())))
+    {
+      
+      Log(Log::LOGERROR, true) << "Vertex buffer couldn't be created";
+      return false;
+    }
+
+    Log() << "Vertex buffer created successfully";
+    return true;
+  }
 }

@@ -15,6 +15,7 @@
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
 #include "foxDXInputLayout.h"
+#include "foxDXVertexBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -30,6 +31,7 @@ namespace foxEngineSDK
     m_depthStencilBuffer = new DXTexture();
     m_depthStencilView = new DXDepthStencilView();
     m_inputLayout = new DXInputLayout();
+    m_vertexBuffer = new DXVertexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -42,6 +44,7 @@ namespace foxEngineSDK
     delete m_depthStencilBuffer;
     delete m_depthStencilView;
     delete m_inputLayout;
+    delete m_vertexBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -132,6 +135,11 @@ namespace foxEngineSDK
     return m_device->createInputLayout(m_inputLayout);
   }
 
+  bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _length)
+  {
+    m_device->createVertexBuffer(_data, _length, m_vertexBuffer);
+  }
+
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
 
@@ -156,6 +164,8 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
+    if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
     if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
     if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();

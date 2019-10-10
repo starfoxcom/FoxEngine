@@ -41,9 +41,29 @@ bool BaseApp::run()
     0,
     FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
     0,
-    12,
+    16,
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
+
+  //Create vertex shader
+
+  //Create pixel shader
+
+  //Create the input layout
+
+  //Create the vertex buffer
+
+  //Set the vertex buffer
+
+  //Create the index buffer
+
+  //Set the index buffer
+
+  //Set primitive topology
+
+  //Create constant buffer
+
+
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
