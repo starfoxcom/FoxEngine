@@ -191,6 +191,11 @@ namespace foxEngineSDK
     m_deviceContext->setIndexBuffer(m_indexBuffer, _format, _offset);
   }
 
+  void DXGraphicsAPI::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  {
+    m_deviceContext->setPrimitiveTopology(_topology);
+  }
+
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _RGBAColor);

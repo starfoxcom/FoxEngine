@@ -77,4 +77,9 @@ namespace foxEngineSDK
       _offset);
   }
 
+  void DXDeviceContext::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  {
+    m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
+  }
+
 }
