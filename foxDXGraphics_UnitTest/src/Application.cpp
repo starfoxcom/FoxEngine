@@ -1,5 +1,7 @@
 #include "Application.h"
 #include "foxLog.h"
+#include "foxVector3.h"
+#include "foxVector4.h"
 
 
 
@@ -23,14 +25,63 @@ bool BaseApp::run()
     Log() << "Window initialized";
   }
 
+  struct vertex
+  {
+    Vector3 pos;
+  };
+
+  vertex vertices[]
+  {
+    Vector3(0.0f, 0.5f, 0.5f),
+    Vector3(0.5f, -0.5f, 0.5f),
+    Vector3(-0.5f, -0.5f, 0.5f),
+  };
+
   //Initialize the graphicsAPI
   m_graphicsAPI.initDXGraphicsAPI();
+
+  //Add Input Elements for the input layout
+  m_graphicsAPI.addInputElement(
+    "POSITION",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
+    0,
+    0,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
+  //Create vertex shader
+  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
+
+  //Create pixel shader
+
+  //Create the input layout
+  m_graphicsAPI.createInputLayout();
+
+  //Set the input layout
+  m_graphicsAPI.setInputLayout();
+
+  //Create the vertex buffer
+  m_graphicsAPI.createVertexBuffer(vertices, 3);
+
+  //Set the vertex buffer
+
+  //Create the index buffer
+
+  //Set the index buffer
+
+  //Set primitive topology
+
+  //Create constant buffer
+
+
 
   //Wait for the next message in the queue, store the result in msg
   while (m_graphicsAPI.processMessages() == true)
   {
 
     //Update logic
+    update();
 
     //Render
     render();

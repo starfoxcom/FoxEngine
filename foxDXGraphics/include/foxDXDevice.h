@@ -11,6 +11,7 @@
  * Includes
  */
 #include <d3d11.h>
+#include "foxPrerequisitesUtilities.h"
 
 
 namespace foxEngineSDK
@@ -19,6 +20,9 @@ namespace foxEngineSDK
   /**
    * Forward Declarations
    */
+  class DXVertexShader;
+  class DXInputLayout;
+  class DXVertexBuffer;
 
 
   class DXDevice
@@ -75,6 +79,26 @@ namespace foxEngineSDK
       ID3D11Texture2D * _depthStencilBuffer,
       ID3D11DepthStencilView ** _depthStencilView,
       D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0);
+
+    /**
+     * @brief Create the DirectX Vertex Shader.
+     * @param _vertexShader The Graphics API Vertex Shader.
+     */
+    bool createVertexShader(DXVertexShader * _vertexShader);
+
+    /**
+     * @brief Create the DirectX Input Layout.
+     * @param _inputLayout The Graphics API Input Layout.
+     */
+    bool createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader);
+
+    /**
+     * @brief Create the DirectX Vertex Buffer.
+     * @param _vertexBuffer The Graphics API Vertex Buffer.
+     * @param _data The vertex data.
+     * @param _length The length of the vertex data.
+     */
+    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _length);
 
   private:
 

@@ -176,26 +176,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\foxDXBuffer.h" />
     <ClInclude Include="include\foxDXDepthStencilView.h" />
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
+    <ClInclude Include="include\foxDXInputLayout.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXRenderWindow.h" />
+    <ClInclude Include="include\foxDXShader.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxDXTexture.h" />
+    <ClInclude Include="include\foxDXVertexBuffer.h" />
+    <ClInclude Include="include\foxDXVertexShader.h" />
     <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\foxDXBuffer.cpp" />
     <ClCompile Include="src\foxDXDepthStencilView.cpp" />
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxDXInputLayout.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXRenderWindow.cpp" />
+    <ClCompile Include="src\foxDXShader.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />
+    <ClCompile Include="src\foxDXVertexBuffer.cpp" />
+    <ClCompile Include="src\foxDXVertexShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

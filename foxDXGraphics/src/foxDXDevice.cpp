@@ -2,6 +2,10 @@
  * Includes
  */
 #include "foxDXDevice.h"
+#include "foxDXVertexShader.h"
+#include "foxDXInputLayout.h"
+#include "foxDXVertexBuffer.h"
+#include "foxLog.h"
 
 namespace foxEngineSDK
 {
@@ -50,4 +54,66 @@ namespace foxEngineSDK
       _depthStencilView);;
   }
 
+  bool DXDevice::createVertexShader(DXVertexShader * _vertexShader)
+  {
+    if (FAILED(m_device->CreateVertexShader(
+      _vertexShader->getBlob()->GetBufferPointer(),
+      _vertexShader->getBlob()->GetBufferSize(),
+      NULL,
+      _vertexShader->getVertexShaderRef())))
+    {
+
+      _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Vertex Shader couldn't be created";
+      return false;
+    }
+
+    Log() << "Vertex Shader created successfully";
+    return true;
+  }
+
+  bool DXDevice::createInputLayout(
+    DXInputLayout * _inputLayout,
+    DXVertexShader * _vertexShader)
+  {
+
+    if (FAILED(m_device->CreateInputLayout(
+      _inputLayout->getInputElementDesc(),
+      _inputLayout->getInputElementsNum(),
+      _vertexShader->getBlob()->GetBufferPointer(),
+      _vertexShader->getBlob()->GetBufferSize(),
+      _inputLayout->getInputLayoutRef())))
+    {
+      _vertexShader->getBlob()->Release();
+      Log(Log::LOGERROR, true) << "Input layout couldn't be created";
+      return false;
+    }
+    _vertexShader->getBlob()->Release();
+    Log() << "Input layout created successfully";
+    return true;
+  }
+
+  bool DXDevice::createVertexBuffer(
+    DXVertexBuffer * _vertexBuffer,
+    const void * _data,
+    uint32 _length)
+  {
+
+    _vertexBuffer->setVertexBufferDesc(_data, _length);
+
+    _vertexBuffer->setSubResourceData(_data);
+
+    if (FAILED(m_device->CreateBuffer(
+      &_vertexBuffer->getBufferDesc(),
+      &_vertexBuffer->getSubResourceData(),
+      _vertexBuffer->getBufferRef())))
+    {
+      
+      Log(Log::LOGERROR, true) << "Vertex buffer couldn't be created";
+      return false;
+    }
+
+    Log() << "Vertex buffer created successfully";
+    return true;
+  }
 }
