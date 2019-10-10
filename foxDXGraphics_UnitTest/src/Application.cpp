@@ -30,6 +30,12 @@ bool BaseApp::run()
     Vector3 pos;
   };
 
+  struct vertex2
+  {
+    Vector3 pos;
+    Vector4 color;
+  };
+
   vertex vertices[]
   {
     Vector3(-1.0f, -1.0f, -1.0f),
@@ -40,6 +46,13 @@ bool BaseApp::run()
     Vector3(-1.0f, +1.0f, +1.0f),
     Vector3(+1.0f, +1.0f, +1.0f),
     Vector3(+1.0f, -1.0f, +1.0f),
+  };
+
+  vertex vertices2[]
+  {
+    Vector3(0.0f, 0.5f, 0.0f),
+    Vector3(0.5f, -0.5f, 0.0f),
+    Vector3(-0.5f, -0.5f, 0.0f),
   };
 
   uint32 indices[]
@@ -57,6 +70,9 @@ bool BaseApp::run()
   //Initialize the graphicsAPI
   m_graphicsAPI.initDXGraphicsAPI();
 
+  //Create vertex shader
+  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
+
   //Add Input Elements for the input layout
   m_graphicsAPI.addInputElement(
     "POSITION",
@@ -67,9 +83,6 @@ bool BaseApp::run()
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
-  //Create vertex shader
-  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
-
   //Create pixel shader
   m_graphicsAPI.createPixelShader("shaders.shader", "PS", "ps_4_0");
 
@@ -79,17 +92,22 @@ bool BaseApp::run()
   //Set the input layout
   m_graphicsAPI.setInputLayout();
 
-  //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(vertices, 8);
+  uint32 vertexDataSize = sizeof(vertices2);
 
+  //Create the vertex buffer
+  m_graphicsAPI.createVertexBuffer(vertices2 ,vertexDataSize);
+
+  uint32 vertexStructSize = sizeof(vertex);
   //Set the vertex buffer
-  m_graphicsAPI.setVertexBuffer(vertices);
+  m_graphicsAPI.setVertexBuffer(vertexStructSize);
+
+  uint32 indexDataSize = sizeof(indices);
 
   //Create the index buffer
-  m_graphicsAPI.createIndexBuffer(indices, 24);
+  //m_graphicsAPI.createIndexBuffer(indices, indexDataSize, 24);
   
   //Set the index buffer
-  m_graphicsAPI.setIndexBuffer();
+  //m_graphicsAPI.setIndexBuffer();
 
   //Set primitive topology
   m_graphicsAPI.setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -130,13 +148,16 @@ void BaseApp::render()
   m_graphicsAPI.clearRenderTargetView(clearColor);
 
   //Clear the Depth Stencil View
-  m_graphicsAPI.clearDepthStencilView();
+  //m_graphicsAPI.clearDepthStencilView();
 
   //Set the Vertex Shader
   m_graphicsAPI.setVertexShader();
 
   //Set the Pixel Shader
   m_graphicsAPI.setPixelShader();
+
+  //Draw
+  m_graphicsAPI.draw(3, 0);
 
   //Present the new frame
   m_graphicsAPI.present();

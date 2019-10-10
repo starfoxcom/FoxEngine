@@ -20,10 +20,12 @@ namespace foxEngineSDK
   DXDeviceContext::~DXDeviceContext()
   {
   }
+
   ID3D11DeviceContext * DXDeviceContext::getDeviceContext()
   {
     return m_deviceContext;
   }
+
   ID3D11DeviceContext ** DXDeviceContext::getDeviceContextRef()
   {
     return &m_deviceContext;
@@ -41,7 +43,7 @@ namespace foxEngineSDK
   void DXDeviceContext::clearDepthStencilView(DXDepthStencilView * _depthStencilView)
   {
     m_deviceContext->ClearDepthStencilView(
-      _depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0);
+      _depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
   }
 
   void DXDeviceContext::setInputLayout(DXInputLayout * _inputLayout)
@@ -53,10 +55,10 @@ namespace foxEngineSDK
     DXVertexBuffer * _vertexBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers,
-    const void * _data)
+    uint32 _structSize)
   {
 
-    uint32 stride = sizeof(_data);
+    uint32 stride = _structSize;
     uint32 offset = 0;
 
     m_deviceContext->IASetVertexBuffers(
@@ -92,6 +94,16 @@ namespace foxEngineSDK
   void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)
   {
     m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
+  }
+
+  void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
+  {
+    m_deviceContext->Draw(_vertexCount, _vertexStart);
+  }
+
+  void DXDeviceContext::drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart)
+  {
+    m_deviceContext->DrawIndexed(_indexCount, _indexStart, _vertexStart);
   }
 
 }

@@ -104,17 +104,19 @@ namespace foxEngineSDK
      * @brief Create the DirectX Vertex Buffer.
      * @param _vertexBuffer The Graphics API Vertex Buffer.
      * @param _data The vertex data.
+     * @param _dataSize The vertex data size in bytes.
      * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _length);
+    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _dataSize);
 
     /**
      * @brief Create the DirectX Index Buffer.
      * @param _vertexBuffer The Graphics API Index Buffer.
      * @param _data The index data.
+     * @param _dataSize The index data size in bytes.
      * @param _length The length of the index data.
      */
-    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _length);
+    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize, uint32 _length);
 
   private:
 

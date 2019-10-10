@@ -77,12 +77,13 @@ namespace foxEngineSDK
      * @param _vertexBuffer The Graphics API Vertex Buffer.
      * @param _startSlot The input slot in which to start binding vertex buffers.
      * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
+     * @param _structSize The vertex struct size in bytes.
      */
     void setVertexBuffer(
       DXVertexBuffer * _vertexBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers,
-      const void * _data);
+      uint32 _structSize);
 
     /**
      * @brief Sets the DirectX Index Buffer.
@@ -112,6 +113,21 @@ namespace foxEngineSDK
      * @param _pixelShader The Graphics API Pixel Shader.
      */
     void setPixelShader(DXPixelShader * _pixelShader);
+
+    /**
+     * @brief Draws the vertices.
+     * @param _vertexCount The total count of vertices.
+     * @param _vertexStart The starting point of the vertices.
+     */
+    void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    /**
+     * @brief Draws the indices.
+     * @param _indexCount The total count of indices.
+     * @param _indexStart The starting point of the vertices.
+     * @param _vertexStart _The starting point of the indices.
+     */
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
   private:
 

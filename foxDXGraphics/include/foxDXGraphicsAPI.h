@@ -131,24 +131,26 @@ namespace foxEngineSDK
     /**
      * @brief Creates the Vertex Buffer.
      * @param _data The vertex data.
+     * @param _dataSize The vertex data size in bytes.
      * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer(const void * _data, uint32 _length);
+    bool createVertexBuffer(const void * _data, uint32 _dataSize);
 
     /**
      * @brief Sets the Vertex Buffer.
-     * @param _data The vertex data.
+     * @param _structSize The vertex struct size in bytes.
      * @param _startSlot The input slot in which to start binding vertex buffers.
      * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
      */
-    void setVertexBuffer(const void * _data, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+    void setVertexBuffer(uint32 _structSize, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
 
     /**
      * @brief Creates the Index Buffer.
      * @param _data The index data.
+     * @param _dataSize The index data size in bytes.
      * @param _length The length of the index data.
      */
-    bool createIndexBuffer(const void * _data, uint32 _length);
+    bool createIndexBuffer(const void * _data, uint32 _dataSize, uint32 _length);
 
     /**
      * @brief Sets the Index Buffer.
@@ -185,6 +187,21 @@ namespace foxEngineSDK
      * @brief Sets the Pixel Shader.
      */
     void setPixelShader();
+
+    /**
+     * @brief Draws the vertices.
+     * @param _vertexCount The total count of vertices.
+     * @param _vertexStart The starting point of the vertices.
+     */
+    void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    /**
+     * @brief Draws the indices.
+     * @param _indexCount The total count of indices.
+     * @param _indexStart The starting point of the vertices.
+     * @param _vertexStart _The starting point of the indices.
+     */
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
     /**
      * @brief Present the information from the back buffer to the front buffer.

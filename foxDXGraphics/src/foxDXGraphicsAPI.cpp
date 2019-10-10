@@ -31,13 +31,13 @@ namespace foxEngineSDK
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
     m_renderTargetView = new DXRenderTargetView();
-    m_depthStencilBuffer = new DXTexture();
-    m_depthStencilView = new DXDepthStencilView();
+    //m_depthStencilBuffer = new DXTexture();
+    //m_depthStencilView = new DXDepthStencilView();
     m_vertexShader = new DXVertexShader();
     m_pixelShader = new DXPixelShader();
     m_inputLayout = new DXInputLayout();
     m_vertexBuffer = new DXVertexBuffer();
-    m_indexBuffer = new DXIndexBuffer();
+    //m_indexBuffer = new DXIndexBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -47,13 +47,13 @@ namespace foxEngineSDK
     delete m_device;
     delete m_deviceContext;
     delete m_renderTargetView;
-    delete m_depthStencilBuffer;
-    delete m_depthStencilView;
+    //delete m_depthStencilBuffer;
+    //delete m_depthStencilView;
     delete m_vertexShader;
     delete m_pixelShader;
     delete m_inputLayout;
     delete m_vertexBuffer;
-    delete m_indexBuffer;
+    //delete m_indexBuffer;
   }
 
   bool DXGraphicsAPI::initWindow(
@@ -96,11 +96,16 @@ namespace foxEngineSDK
       return false;
     }
 
-    if (!createDepthStencilView())
-    {
-      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
-      return false;
-    }
+    //if (!createDepthStencilView())
+    //{
+    //  Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+    //  return false;
+    //}
+
+    m_deviceContext->getDeviceContext()->OMSetRenderTargets(
+      1,
+      m_renderTargetView->getRenderTargetViewRef(),
+      NULL);
 
     //Create and set the viewport
     D3D11_VIEWPORT vp;
@@ -171,19 +176,19 @@ namespace foxEngineSDK
     m_deviceContext->setInputLayout(m_inputLayout);
   }
 
-  bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _length)
+  bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _dataSize)
   {
-    return m_device->createVertexBuffer(m_vertexBuffer, _data, _length);
+    return m_device->createVertexBuffer(m_vertexBuffer, _data, _dataSize);
   }
 
-  void DXGraphicsAPI::setVertexBuffer(const void * _data, uint32 _startSlot, uint32 _numOfBuffers)
+  void DXGraphicsAPI::setVertexBuffer(uint32 _structSize, uint32 _startSlot, uint32 _numOfBuffers)
   {
-    m_deviceContext->setVertexBuffer(m_vertexBuffer, _startSlot, _numOfBuffers, _data);
+    m_deviceContext->setVertexBuffer(m_vertexBuffer, _startSlot, _numOfBuffers, _structSize);
   }
 
-  bool DXGraphicsAPI::createIndexBuffer(const void * _data, uint32 _length)
+  bool DXGraphicsAPI::createIndexBuffer(const void * _data, uint32 _dataSize, uint32 _length)
   {
-    return m_device->createIndexBuffer(m_indexBuffer, _data, _length);
+    return m_device->createIndexBuffer(m_indexBuffer, _data, _dataSize, _length);
   }
 
   void DXGraphicsAPI::setIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset)
@@ -216,6 +221,16 @@ namespace foxEngineSDK
     m_deviceContext->setPixelShader(m_pixelShader);
   }
 
+  void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
+  {
+    m_deviceContext->draw(_vertexCount, _vertexStart);
+  }
+
+  void DXGraphicsAPI::drawIndexed(uint32 _indexCount, uint32 _vertexStart, uint32 _indexStart)
+  {
+    m_deviceContext->drawIndexed(_indexCount, _vertexStart, _indexStart);
+  }
+
   void DXGraphicsAPI::present()
   {
     m_swapChain->present();
@@ -226,12 +241,12 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
-    if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
+    //if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
-    if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
-    if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
+    //if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
+    //if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
     if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
     if (m_swapChain->getSwapChain()) m_swapChain->getSwapChain()->Release();
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->Release();

@@ -117,10 +117,10 @@ namespace foxEngineSDK
   bool DXDevice::createVertexBuffer(
     DXVertexBuffer * _vertexBuffer,
     const void * _data,
-    uint32 _length)
+    uint32 _dataSize)
   {
 
-    _vertexBuffer->setVertexBufferDesc(_data, _length);
+    _vertexBuffer->setVertexBufferDesc(_dataSize);
 
     _vertexBuffer->setSubResourceData(_data);
 
@@ -140,10 +140,11 @@ namespace foxEngineSDK
   bool DXDevice::createIndexBuffer(
     DXIndexBuffer * _indexBuffer,
     const void * _data,
+    uint32 _dataSize,
     uint32 _length)
   {
 
-    _indexBuffer->setIndexBufferDesc(_data, _length);
+    _indexBuffer->setIndexBufferDesc(_dataSize, _length);
 
     _indexBuffer->setSubResourceData(_data);
 
