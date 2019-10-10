@@ -132,6 +132,12 @@ void BaseApp::render()
   //Clear the Depth Stencil View
   m_graphicsAPI.clearDepthStencilView();
 
+  //Set the Vertex Shader
+  m_graphicsAPI.setVertexShader();
+
+  //Set the Pixel Shader
+  m_graphicsAPI.setPixelShader();
+
   //Present the new frame
   m_graphicsAPI.present();
 }

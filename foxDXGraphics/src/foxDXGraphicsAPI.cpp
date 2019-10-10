@@ -206,6 +206,16 @@ namespace foxEngineSDK
     m_deviceContext->clearDepthStencilView(m_depthStencilView);
   }
 
+  void DXGraphicsAPI::setVertexShader()
+  {
+    m_deviceContext->setVertexShader(m_vertexShader);
+  }
+
+  void DXGraphicsAPI::setPixelShader()
+  {
+    m_deviceContext->setPixelShader(m_pixelShader);
+  }
+
   void DXGraphicsAPI::present()
   {
     m_swapChain->present();
