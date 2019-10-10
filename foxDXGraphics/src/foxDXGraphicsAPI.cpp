@@ -146,7 +146,7 @@ namespace foxEngineSDK
 
   bool DXGraphicsAPI::createInputLayout()
   {
-    return m_device->createInputLayout(m_inputLayout);
+    return m_device->createInputLayout(m_inputLayout, m_vertexShader);
   }
 
   void DXGraphicsAPI::setInputLayout()

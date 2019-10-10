@@ -27,11 +27,6 @@ namespace foxEngineSDK
   D3D11_INPUT_ELEMENT_DESC * DXInputLayout::getInputElementDesc()
   {
 
-    if (m_inputElementDesc != nullptr)
-    {
-      delete[] m_inputElementDesc;
-    }
-
     m_inputElementDesc = new D3D11_INPUT_ELEMENT_DESC[m_inputElements.size()];
 
     for (uint32 i = 0; i < m_inputElements.size(); ++i)
@@ -51,7 +46,7 @@ namespace foxEngineSDK
 
   uint32 DXInputLayout::getInputElementsNum()
   {
-    return m_inputElements.size();
+    return static_cast<uint32>(m_inputElements.size());
   }
 
   void DXInputLayout::addElement(
