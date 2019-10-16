@@ -58,8 +58,8 @@ bool BaseApp::run()
   vertex2 vertices3[]
   {
     {Vector3( 0.0f,  0.5f, 0.0f),  Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
-    {Vector3(-0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
     {Vector3( 0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
+    {Vector3(-0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
   };
 
   uint32 indices[]
@@ -76,6 +76,9 @@ bool BaseApp::run()
 
   //Initialize the graphicsAPI
   m_graphicsAPI.initDXGraphicsAPI();
+
+  //Init Imgui
+
 
   //Create vertex shader
   m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");

@@ -82,7 +82,7 @@ namespace foxEngineSDK
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
-    uint32 height = windowRect.top - windowRect.bottom;
+    uint32 height = windowRect.bottom - windowRect.top;
 
     if (!createDeviceAndSwapChain())
     {
