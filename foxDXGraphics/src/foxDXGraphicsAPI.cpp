@@ -272,7 +272,7 @@ namespace foxEngineSDK
     //On debug enabled
 #ifdef _DEBUG
     createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif // DEBUG
+#endif // _DEBUG
 
     //Create and set the feature levels
     D3D_FEATURE_LEVEL featureLevels[] =

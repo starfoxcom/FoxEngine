@@ -55,6 +55,13 @@ bool BaseApp::run()
     Vector3(-0.5f, -0.5f, 0.0f),
   };
 
+  vertex2 vertices3[]
+  {
+    {Vector3( 0.0f,  0.5f, 0.0f),  Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
+    {Vector3(-0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
+    {Vector3( 0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
+  };
+
   uint32 indices[]
   {
     0, 1, 2, // Triangle 0
@@ -83,6 +90,15 @@ bool BaseApp::run()
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
+  m_graphicsAPI.addInputElement(
+    "COLOR",
+    0,
+    FOXGI_FORMAT::E::K_R32G32B32A32_FLOAT,
+    0,
+    12,
+    FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
+    0);
+
   //Create pixel shader
   m_graphicsAPI.createPixelShader("shaders.shader", "PS", "ps_4_0");
 
@@ -92,12 +108,12 @@ bool BaseApp::run()
   //Set the input layout
   m_graphicsAPI.setInputLayout();
 
-  uint32 vertexDataSize = sizeof(vertices2);
+  uint32 vertexDataSize = sizeof(vertices3);
 
   //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(vertices2 ,vertexDataSize);
+  m_graphicsAPI.createVertexBuffer(vertices3 ,vertexDataSize);
 
-  uint32 vertexStructSize = sizeof(vertex);
+  uint32 vertexStructSize = sizeof(vertex2);
   //Set the vertex buffer
   m_graphicsAPI.setVertexBuffer(vertexStructSize);
 
