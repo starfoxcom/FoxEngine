@@ -2,6 +2,9 @@
 #include "foxLog.h"
 #include "foxVector3.h"
 #include "foxVector4.h"
+#include "externals/imgui.h"
+#include "externals/imgui_impl_win32.h"
+#include "externals/imgui_impl_dx11.h"
 
 
 
@@ -11,9 +14,9 @@ bool BaseApp::run()
 
   //Init window
   if (!m_graphicsAPI.initWindow(
-    GetModuleHandle(nullptr),
+    GetModuleHandle(NULL),
     "Window Class 1",
-    "First window program",
+    "Fox Engine Unit Test",
     640,
     480))
   {
@@ -78,6 +81,15 @@ bool BaseApp::run()
   m_graphicsAPI.initDXGraphicsAPI();
 
   //Init Imgui
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO(); (void)io;
+  ImGui::StyleColorsDark();
+  if (!ImGui_ImplWin32_Init(GetModuleHandle(NULL)))
+    Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+
+  if(!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
+    Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
 
 
   //Create vertex shader
@@ -120,7 +132,7 @@ bool BaseApp::run()
   //Set the vertex buffer
   m_graphicsAPI.setVertexBuffer(vertexStructSize);
 
-  uint32 indexDataSize = sizeof(indices);
+  //uint32 indexDataSize = sizeof(indices);
 
   //Create the index buffer
   //m_graphicsAPI.createIndexBuffer(indices, indexDataSize, 24);
@@ -178,8 +190,21 @@ void BaseApp::render()
   //Draw
   m_graphicsAPI.draw(3, 0);
 
+  //Start the Dear ImGui frame
+  ImGui_ImplDX11_NewFrame();
+  ImGui_ImplWin32_NewFrame();
+  ImGui::NewFrame();
+
+  ImGui::Begin("Test");
+  ImGui::End();
+
+  //Imgui Rendering
+  ImGui::Render();
+  ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
   //Present the new frame
   m_graphicsAPI.present();
+
 }
 
 BaseApp::BaseApp()
@@ -188,4 +213,8 @@ BaseApp::BaseApp()
 
 BaseApp::~BaseApp()
 {
+
+  ImGui_ImplDX11_Shutdown();
+  ImGui_ImplWin32_Shutdown();
+  ImGui::DestroyContext();
 }

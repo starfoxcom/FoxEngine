@@ -7,10 +7,40 @@
     <Filter Include="Src">
       <UniqueIdentifier>{5b6c9b27-f08a-452e-9a07-a4e2507f6c29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\externals">
+      <UniqueIdentifier>{b71d25c8-5a0a-4533-8677-4aeabe87f0b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\externals">
+      <UniqueIdentifier>{d0faa5bd-2815-440c-bf4c-6f7f772ef9bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
       <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imconfig.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_dx11.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_win32.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_internal.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_rectpack.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_textedit.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_truetype.h">
+      <Filter>Include\externals</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -19,6 +49,21 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_draw.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_widgets.cpp">
+      <Filter>Src\externals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

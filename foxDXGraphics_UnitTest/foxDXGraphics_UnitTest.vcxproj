@@ -169,9 +169,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\externals\imconfig.h" />
+    <ClInclude Include="include\externals\imgui.h" />
+    <ClInclude Include="include\externals\imgui_impl_dx11.h" />
+    <ClInclude Include="include\externals\imgui_impl_win32.h" />
+    <ClInclude Include="include\externals\imgui_internal.h" />
+    <ClInclude Include="include\externals\imstb_rectpack.h" />
+    <ClInclude Include="include\externals\imstb_textedit.h" />
+    <ClInclude Include="include\externals\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\externals\imgui.cpp" />
+    <ClCompile Include="src\externals\imgui_draw.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp" />
+    <ClCompile Include="src\externals\imgui_widgets.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

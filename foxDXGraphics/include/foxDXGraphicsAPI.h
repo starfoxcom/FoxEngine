@@ -76,6 +76,16 @@ namespace foxEngineSDK
     bool initDXGraphicsAPI();
 
     /**
+     * @brief Gets the Device.
+     */
+    ID3D11Device * getDevice();
+
+    /**
+     * @brief Gets the Device Context.
+     */
+    ID3D11DeviceContext * getDeviceContext();
+
+    /**
      * @brief Adds an Input Element to the DirectX Input Layout.
      * @param _semanticName Name to associate with the element.
      * @param _semanticIndex Index to attach to a semantic.

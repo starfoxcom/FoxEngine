@@ -124,6 +124,16 @@ namespace foxEngineSDK
 
   }
 
+  ID3D11Device * DXGraphicsAPI::getDevice()
+  {
+    return m_device->getDevice();
+  }
+
+  ID3D11DeviceContext * DXGraphicsAPI::getDeviceContext()
+  {
+    return m_deviceContext->getDeviceContext();
+  }
+
   void DXGraphicsAPI::addInputElement(
     const char * _semanticName,
     uint32 _semanticIndex,
