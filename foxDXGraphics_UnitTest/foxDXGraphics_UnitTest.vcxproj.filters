@@ -42,6 +42,9 @@
     <ClInclude Include="include\externals\imstb_truetype.h">
       <Filter>Include\externals</Filter>
     </ClInclude>
+    <ClInclude Include="include\RenderWindow.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -64,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="src\externals\imgui_widgets.cpp">
       <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_demo.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderWindow.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

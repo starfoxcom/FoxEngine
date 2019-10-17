@@ -13,7 +13,7 @@ bool BaseApp::run()
   Log::Log(Log::LOGINFO, true) << "Application start";
 
   //Init window
-  if (!m_graphicsAPI.initWindow(
+  if (!m_renderWindow.initWindow(
     GetModuleHandle(NULL),
     "Window Class 1",
     "Fox Engine Unit Test",
@@ -78,18 +78,34 @@ bool BaseApp::run()
   };
 
   //Initialize the graphicsAPI
-  m_graphicsAPI.initDXGraphicsAPI();
+  m_graphicsAPI.initDXGraphicsAPI(m_renderWindow.getWindowHandle());
 
   //Init Imgui
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO& io = ImGui::GetIO(); (void)io;
   ImGui::StyleColorsDark();
-  if (!ImGui_ImplWin32_Init(GetModuleHandle(NULL)))
-    Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+  if (!ImGui_ImplWin32_Init(m_renderWindow.getWindowHandle()))
+  {
 
-  if(!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
     Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+  }
+
+  else
+  {
+
+    if (!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
+    {
+
+      Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+    }
+
+    else
+    {
+
+      Log(Log::LOGINFO, true) << "Imgui Initialized successfully.";
+    }
+  }
 
 
   //Create vertex shader
@@ -148,7 +164,7 @@ bool BaseApp::run()
 
 
   //Wait for the next message in the queue, store the result in msg
-  while (m_graphicsAPI.processMessages() == true)
+  while (m_renderWindow.processMessages() == true)
   {
 
     //Update logic
@@ -162,7 +178,7 @@ bool BaseApp::run()
   //Clean up the Graphics API
   m_graphicsAPI.cleanUpDXGraphicsAPI();
 
-  return m_graphicsAPI.processMessages();
+  return m_renderWindow.processMessages();
 }
 
 void BaseApp::update()
@@ -195,8 +211,14 @@ void BaseApp::render()
   ImGui_ImplWin32_NewFrame();
   ImGui::NewFrame();
 
-  ImGui::Begin("Test");
-  ImGui::End();
+  {
+
+    ImGui::Begin("Framerate", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+    ImGui::SetWindowSize(ImVec2(200, 30));
+    ImGui::SetWindowPos(ImVec2(2, 2));
+    ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    ImGui::End();
+  }
 
   //Imgui Rendering
   ImGui::Render();

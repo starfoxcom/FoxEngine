@@ -21,9 +21,6 @@
     <ClInclude Include="include\foxGraphicsCommons.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxDXRenderWindow.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\foxDXDevice.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -46,9 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\foxDXRenderWindow.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\foxDXDevice.cpp">

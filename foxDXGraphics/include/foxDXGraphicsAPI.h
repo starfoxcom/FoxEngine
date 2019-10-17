@@ -23,7 +23,6 @@ namespace foxEngineSDK
 /**
  * Forward declarations
  */
-  class DXRenderWindow;
   class DXSwapChain;
   class DXDevice;
   class DXDeviceContext;
@@ -51,29 +50,9 @@ namespace foxEngineSDK
     ~DXGraphicsAPI();
 
     /**
-     * @brief Initialize the graphics Window.
-     * @param _hInstance The instance of the application.
-     * @param _windowClass The name of the window class.
-     * @param _windowTitle The title of the window.
-     * @param _width The width of the window.
-     * @param _height The height of the window.
-     */
-    bool initWindow(
-      HINSTANCE _hInstance,
-      std::string _windowClass,
-      std::string _windowTitle,
-      int32 _width,
-      int32 _height);
-
-    /**
-     * @brief Process the messages of the window.
-     */
-    bool processMessages();
-
-    /**
      * @brief Initialize the DirectX Graphics API.
      */
-    bool initDXGraphicsAPI();
+    bool initDXGraphicsAPI(HWND _windowHandle);
 
     /**
      * @brief Gets the Device.
@@ -228,7 +207,7 @@ namespace foxEngineSDK
     /**
      * @brief Creates the device and Swap Chain.
      */
-    bool createDeviceAndSwapChain();
+    bool createDeviceAndSwapChain(HWND _windowHandle);
 
     /**
      * @brief Creates the Render Target View.
@@ -238,9 +217,7 @@ namespace foxEngineSDK
     /**
      * @brief Creates the Depth Stencil View.
      */
-    bool createDepthStencilView();
-
-    DXRenderWindow * m_renderWindow; /**< Render Window member.*/
+    bool createDepthStencilView(HWND _windowHandle);
 
     DXSwapChain * m_swapChain; /**< Swap Chain member.*/
 
