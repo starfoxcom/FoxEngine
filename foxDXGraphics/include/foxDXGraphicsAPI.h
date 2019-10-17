@@ -23,7 +23,6 @@ namespace foxEngineSDK
 /**
  * Forward declarations
  */
-  class DXRenderWindow;
   class DXSwapChain;
   class DXDevice;
   class DXDeviceContext;
@@ -35,6 +34,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -51,29 +51,19 @@ namespace foxEngineSDK
     ~DXGraphicsAPI();
 
     /**
-     * @brief Initialize the graphics Window.
-     * @param _hInstance The instance of the application.
-     * @param _windowClass The name of the window class.
-     * @param _windowTitle The title of the window.
-     * @param _width The width of the window.
-     * @param _height The height of the window.
-     */
-    bool initWindow(
-      HINSTANCE _hInstance,
-      std::string _windowClass,
-      std::string _windowTitle,
-      int32 _width,
-      int32 _height);
-
-    /**
-     * @brief Process the messages of the window.
-     */
-    bool processMessages();
-
-    /**
      * @brief Initialize the DirectX Graphics API.
      */
-    bool initDXGraphicsAPI();
+    bool initDXGraphicsAPI(HWND _windowHandle);
+
+    /**
+     * @brief Gets the Device.
+     */
+    ID3D11Device * getDevice();
+
+    /**
+     * @brief Gets the Device Context.
+     */
+    ID3D11DeviceContext * getDeviceContext();
 
     /**
      * @brief Adds an Input Element to the DirectX Input Layout.
@@ -131,24 +121,25 @@ namespace foxEngineSDK
     /**
      * @brief Creates the Vertex Buffer.
      * @param _data The vertex data.
+     * @param _dataSize The vertex data size in bytes.
      * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer(const void * _data, uint32 _length);
+    bool createVertexBuffer(const void * _data, uint32 _dataSize);
 
     /**
      * @brief Sets the Vertex Buffer.
-     * @param _data The vertex data.
+     * @param _structSize The vertex struct size in bytes.
      * @param _startSlot The input slot in which to start binding vertex buffers.
      * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
      */
-    void setVertexBuffer(const void * _data, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+    void setVertexBuffer(uint32 _structSize, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
 
     /**
      * @brief Creates the Index Buffer.
      * @param _data The index data.
-     * @param _length The length of the index data.
+     * @param _dataSize The index data size in bytes.
      */
-    bool createIndexBuffer(const void * _data, uint32 _length);
+    bool createIndexBuffer(const void * _data, uint32 _dataSize);
 
     /**
      * @brief Sets the Index Buffer.
@@ -164,6 +155,19 @@ namespace foxEngineSDK
      * @param _topology The topology to set.
      */
     void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+
+    /**
+     * @brief Creates the Constant Buffer.
+     * @param _structSize The constant struct size in bytes.
+     * @param _data The constant buffer data.
+     */
+    bool createConstantBuffer(uint32 _structSize);
+
+    /**
+     * @brief Updates the Constant Buffer data.
+     * @param _data The constant buffer data to update with.
+     */
+    void updateConstantBuffer(const void * _data);
 
     /**
      * @brief Clears the Render Target View.
@@ -182,9 +186,29 @@ namespace foxEngineSDK
     void setVertexShader();
 
     /**
+     * @brief Sets the Constant Buffer.
+     */
+    void setConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBufers = 1);
+
+    /**
      * @brief Sets the Pixel Shader.
      */
     void setPixelShader();
+
+    /**
+     * @brief Draws the vertices.
+     * @param _vertexCount The total count of vertices.
+     * @param _vertexStart The starting point of the vertices.
+     */
+    void draw(uint32 _vertexCount, uint32 _vertexStart);
+
+    /**
+     * @brief Draws the indices.
+     * @param _indexCount The total count of indices.
+     * @param _indexStart The starting point of the vertices.
+     * @param _vertexStart _The starting point of the indices.
+     */
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
     /**
      * @brief Present the information from the back buffer to the front buffer.
@@ -201,7 +225,7 @@ namespace foxEngineSDK
     /**
      * @brief Creates the device and Swap Chain.
      */
-    bool createDeviceAndSwapChain();
+    bool createDeviceAndSwapChain(HWND _windowHandle);
 
     /**
      * @brief Creates the Render Target View.
@@ -211,9 +235,7 @@ namespace foxEngineSDK
     /**
      * @brief Creates the Depth Stencil View.
      */
-    bool createDepthStencilView();
-
-    DXRenderWindow * m_renderWindow; /**< Render Window member.*/
+    bool createDepthStencilView(HWND _windowHandle);
 
     DXSwapChain * m_swapChain; /**< Swap Chain member.*/
 
@@ -236,6 +258,8 @@ namespace foxEngineSDK
     DXVertexBuffer * m_vertexBuffer; /**< Vertex Buffer member.*/
 
     DXIndexBuffer * m_indexBuffer; /**< Index Buffer member.*/
+
+    DXConstantBuffer * m_constantBuffer; /**< Constant Buffer member.*/
 
   };
 }

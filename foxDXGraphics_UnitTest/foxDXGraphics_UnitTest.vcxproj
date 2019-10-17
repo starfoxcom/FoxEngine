@@ -93,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -111,7 +111,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -131,7 +131,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -153,7 +153,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxDXGraphics/include/;$(DEVLIBS)googletest/include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -169,10 +169,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\externals\imconfig.h" />
+    <ClInclude Include="include\externals\imgui.h" />
+    <ClInclude Include="include\externals\imgui_impl_dx11.h" />
+    <ClInclude Include="include\externals\imgui_impl_win32.h" />
+    <ClInclude Include="include\externals\imgui_internal.h" />
+    <ClInclude Include="include\externals\imstb_rectpack.h" />
+    <ClInclude Include="include\externals\imstb_textedit.h" />
+    <ClInclude Include="include\externals\imstb_truetype.h" />
+    <ClInclude Include="include\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\externals\imgui.cpp" />
+    <ClCompile Include="src\externals\imgui_demo.cpp" />
+    <ClCompile Include="src\externals\imgui_draw.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp" />
+    <ClCompile Include="src\externals\imgui_widgets.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\RenderWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

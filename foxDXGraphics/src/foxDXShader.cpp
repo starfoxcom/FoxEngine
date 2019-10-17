@@ -60,6 +60,14 @@ namespace foxEngineSDK
 
     ID3DBlob* errorBlob;
 
+    uint32 flags = D3DCOMPILE_ENABLE_STRICTNESS;
+
+#ifdef _DEBUG
+    flags |= D3DCOMPILE_DEBUG;
+#endif // _DEBUG
+
+
+
     if (FAILED(D3DCompile(
       &dataBuffer[0],
       fileSize,
@@ -68,7 +76,7 @@ namespace foxEngineSDK
       NULL,
       _entryPoint,
       _shaderModel,
-      D3DCOMPILE_ENABLE_STRICTNESS,
+      flags,
       0,
       &m_blob,
       &errorBlob)))

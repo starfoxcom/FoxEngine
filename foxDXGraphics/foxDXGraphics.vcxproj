@@ -177,6 +177,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\foxDXBuffer.h" />
+    <ClInclude Include="include\foxDXConstantBuffer.h" />
     <ClInclude Include="include\foxDXDepthStencilView.h" />
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
@@ -185,7 +186,6 @@
     <ClInclude Include="include\foxDXInputLayout.h" />
     <ClInclude Include="include\foxDXPixelShader.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
-    <ClInclude Include="include\foxDXRenderWindow.h" />
     <ClInclude Include="include\foxDXShader.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxDXTexture.h" />
@@ -196,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXBuffer.cpp" />
+    <ClCompile Include="src\foxDXConstantBuffer.cpp" />
     <ClCompile Include="src\foxDXDepthStencilView.cpp" />
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
@@ -204,7 +205,6 @@
     <ClCompile Include="src\foxDXInputLayout.cpp" />
     <ClCompile Include="src\foxDXPixelShader.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
-    <ClCompile Include="src\foxDXRenderWindow.cpp" />
     <ClCompile Include="src\foxDXShader.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />

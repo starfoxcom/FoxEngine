@@ -7,6 +7,7 @@
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
+#include "foxDXConstantBuffer.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
@@ -53,7 +54,7 @@ namespace foxEngineSDK
     return m_device->CreateDepthStencilView(
       _depthStencilBuffer,
       _depthStencilViewDesc,
-      _depthStencilView);;
+      _depthStencilView);
   }
 
   bool DXDevice::createVertexShader(DXVertexShader * _vertexShader)
@@ -117,10 +118,10 @@ namespace foxEngineSDK
   bool DXDevice::createVertexBuffer(
     DXVertexBuffer * _vertexBuffer,
     const void * _data,
-    uint32 _length)
+    uint32 _dataSize)
   {
 
-    _vertexBuffer->setVertexBufferDesc(_data, _length);
+    _vertexBuffer->setVertexBufferDesc(_dataSize);
 
     _vertexBuffer->setSubResourceData(_data);
 
@@ -140,10 +141,10 @@ namespace foxEngineSDK
   bool DXDevice::createIndexBuffer(
     DXIndexBuffer * _indexBuffer,
     const void * _data,
-    uint32 _length)
+    uint32 _dataSize)
   {
 
-    _indexBuffer->setIndexBufferDesc(_data, _length);
+    _indexBuffer->setIndexBufferDesc(_dataSize);
 
     _indexBuffer->setSubResourceData(_data);
 
@@ -158,6 +159,26 @@ namespace foxEngineSDK
     }
 
     Log() << "Index buffer created successfully";
+    return true;
+  }
+  bool DXDevice::createConstantBuffer(
+    DXConstantBuffer * _constantBuffer,
+    uint32 _structSize)
+  {
+
+    _constantBuffer->setConstantBufferDesc(_structSize);
+
+    if (FAILED(m_device->CreateBuffer(
+      &_constantBuffer->getBufferDesc(),
+      NULL,
+      _constantBuffer->getBufferRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Constant buffer couldn't be created";
+      return false;
+    }
+
+    Log() << "Constant buffer created successfully";
     return true;
   }
 }

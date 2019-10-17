@@ -33,10 +33,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Sets the Vertex Buffer Desc.
-     * @param _data The size, in bytes, of the vertex buffer to create. 
+     * @param _dataSize The size, in bytes, of the vertex buffer to create. 
      * @param _length The length of the data to use.
      */
-    void setVertexBufferDesc(const void * _data, uint32 _length);
+    void setVertexBufferDesc(uint32 _dataSize);
 
     /**
      * @brief Sets the Vertex Buffer sub resource data.
