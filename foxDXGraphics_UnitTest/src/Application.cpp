@@ -2,6 +2,9 @@
 #include "foxLog.h"
 #include "foxVector3.h"
 #include "foxVector4.h"
+#include "externals/imgui.h"
+#include "externals/imgui_impl_win32.h"
+#include "externals/imgui_impl_dx11.h"
 
 
 
@@ -10,10 +13,10 @@ bool BaseApp::run()
   Log::Log(Log::LOGINFO, true) << "Application start";
 
   //Init window
-  if (!m_graphicsAPI.initWindow(
-    GetModuleHandle(nullptr),
+  if (!m_renderWindow.initWindow(
+    GetModuleHandle(NULL),
     "Window Class 1",
-    "First window program",
+    "Fox Engine Unit Test",
     640,
     480))
   {
@@ -58,8 +61,8 @@ bool BaseApp::run()
   vertex2 vertices3[]
   {
     {Vector3( 0.0f,  0.5f, 0.0f),  Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
-    {Vector3(-0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
     {Vector3( 0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
+    {Vector3(-0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
   };
 
   uint32 indices[]
@@ -75,7 +78,35 @@ bool BaseApp::run()
   };
 
   //Initialize the graphicsAPI
-  m_graphicsAPI.initDXGraphicsAPI();
+  m_graphicsAPI.initDXGraphicsAPI(m_renderWindow.getWindowHandle());
+
+  //Init Imgui
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO(); (void)io;
+  ImGui::StyleColorsDark();
+  if (!ImGui_ImplWin32_Init(m_renderWindow.getWindowHandle()))
+  {
+
+    Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+  }
+
+  else
+  {
+
+    if (!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
+    {
+
+      Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
+    }
+
+    else
+    {
+
+      Log(Log::LOGINFO, true) << "Imgui Initialized successfully.";
+    }
+  }
+
 
   //Create vertex shader
   m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
@@ -117,7 +148,7 @@ bool BaseApp::run()
   //Set the vertex buffer
   m_graphicsAPI.setVertexBuffer(vertexStructSize);
 
-  uint32 indexDataSize = sizeof(indices);
+  //uint32 indexDataSize = sizeof(indices);
 
   //Create the index buffer
   //m_graphicsAPI.createIndexBuffer(indices, indexDataSize, 24);
@@ -133,7 +164,7 @@ bool BaseApp::run()
 
 
   //Wait for the next message in the queue, store the result in msg
-  while (m_graphicsAPI.processMessages() == true)
+  while (m_renderWindow.processMessages() == true)
   {
 
     //Update logic
@@ -147,7 +178,7 @@ bool BaseApp::run()
   //Clean up the Graphics API
   m_graphicsAPI.cleanUpDXGraphicsAPI();
 
-  return m_graphicsAPI.processMessages();
+  return m_renderWindow.processMessages();
 }
 
 void BaseApp::update()
@@ -175,8 +206,27 @@ void BaseApp::render()
   //Draw
   m_graphicsAPI.draw(3, 0);
 
+  //Start the Dear ImGui frame
+  ImGui_ImplDX11_NewFrame();
+  ImGui_ImplWin32_NewFrame();
+  ImGui::NewFrame();
+
+  {
+
+    ImGui::Begin("Framerate", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+    ImGui::SetWindowSize(ImVec2(200, 30));
+    ImGui::SetWindowPos(ImVec2(2, 2));
+    ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    ImGui::End();
+  }
+
+  //Imgui Rendering
+  ImGui::Render();
+  ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
   //Present the new frame
   m_graphicsAPI.present();
+
 }
 
 BaseApp::BaseApp()
@@ -185,4 +235,8 @@ BaseApp::BaseApp()
 
 BaseApp::~BaseApp()
 {
+
+  ImGui_ImplDX11_Shutdown();
+  ImGui_ImplWin32_Shutdown();
+  ImGui::DestroyContext();
 }

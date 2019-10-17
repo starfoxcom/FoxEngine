@@ -1,25 +1,35 @@
 #pragma once
-
 /**
-* @file foxRenderWindow.h
-* @author --
-* @date ---
-* @brief Implementation of render window.
-*/
+ * @file RenderWindow.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/16
+ * @brief Implementation of render window.
+ */
 
 /**
  * Includes
  */
 #include <d3d11.h>
+
 #include "foxPrerequisitesUtilities.h"
 
 namespace foxEngineSDK
 {
 
-  class DXRenderWindow
+  class RenderWindow
   {
-
   public:
+
+    /**
+     * @brief Default constructor.
+     */
+    RenderWindow();
+
+    /**
+     * @brief Default destructor.
+     */
+    ~RenderWindow();
 
     /**
      * @brief Initialize the Window.
@@ -29,7 +39,7 @@ namespace foxEngineSDK
      * @param _width The width of the window.
      * @param _height The height of the window.
      */
-    bool initialize(
+    bool initWindow(
       HINSTANCE _hInstance,
       std::string _windowClass,
       std::string _windowTitle,
@@ -37,14 +47,9 @@ namespace foxEngineSDK
       int32 _height);
 
     /**
-     * @brief Process the messages of the window.
-     */
+    * @brief Process the messages of the window.
+    */
     bool processMessages();
-
-    /**
-     * @brief Default destructor.
-     */
-    ~DXRenderWindow();
 
     /**
      * @brief Gets the Window Handle.
@@ -57,7 +62,7 @@ namespace foxEngineSDK
      * @brief Registers the window class.
      */
     bool registerWindowClass();
-    
+
     HWND m_windowHandle = NULL; /**< Window Handle variable.*/
     HINSTANCE m_hInstance = NULL; /**< Instance Handle variable.*/
     std::string m_windowClass = ""; /**< Window Class name variable.*/

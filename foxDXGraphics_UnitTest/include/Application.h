@@ -5,6 +5,7 @@
 #include <windowsx.h>
 #include <windows.h>
 #include "foxDXGraphicsAPI.h"
+#include "RenderWindow.h"
 
 
 
@@ -25,5 +26,7 @@ public:
 private:
 
   DXGraphicsAPI m_graphicsAPI;
+  
+  RenderWindow m_renderWindow;
 
 };

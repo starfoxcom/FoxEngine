@@ -7,7 +7,6 @@
 
 #include "foxLog.h"
 #include "foxDXGraphicsAPI.h"
-#include "foxDXRenderWindow.h"
 #include "foxDXSwapChain.h"
 #include "foxDXDevice.h"
 #include "foxDXDeviceContext.h"
@@ -26,7 +25,6 @@ namespace foxEngineSDK
   DXGraphicsAPI::DXGraphicsAPI()
   {
 
-    m_renderWindow = new DXRenderWindow();
     m_swapChain = new DXSwapChain();
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
@@ -42,7 +40,6 @@ namespace foxEngineSDK
 
   DXGraphicsAPI::~DXGraphicsAPI()
   {
-    delete m_renderWindow;
     delete m_swapChain;
     delete m_device;
     delete m_deviceContext;
@@ -56,35 +53,20 @@ namespace foxEngineSDK
     //delete m_indexBuffer;
   }
 
-  bool DXGraphicsAPI::initWindow(
-    HINSTANCE _hInstance,
-    std::string _windowClass,
-    std::string _windowTitle,
-    int32 _width,
-    int32 _height)
-  {
-    return m_renderWindow->initialize(_hInstance, _windowClass, _windowTitle, _width, _height);
-  }
-
-  bool DXGraphicsAPI::processMessages()
-  {
-    return m_renderWindow->processMessages();
-  }
-
-  bool DXGraphicsAPI::initDXGraphicsAPI()
+  bool DXGraphicsAPI::initDXGraphicsAPI(HWND _windowHandle)
   {
 
     //Create window rect variable object
     RECT windowRect;
 
     //Get the actual window rect
-    GetClientRect(m_renderWindow->getWindowHandle(), &windowRect);
+    GetClientRect(_windowHandle, &windowRect);
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
-    uint32 height = windowRect.top - windowRect.bottom;
+    uint32 height = windowRect.bottom - windowRect.top;
 
-    if (!createDeviceAndSwapChain())
+    if (!createDeviceAndSwapChain(_windowHandle))
     {
       Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
       return false;
@@ -96,7 +78,7 @@ namespace foxEngineSDK
       return false;
     }
 
-    //if (!createDepthStencilView())
+    //if (!createDepthStencilView(_windowHandle))
     //{
     //  Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
     //  return false;
@@ -122,6 +104,16 @@ namespace foxEngineSDK
     return true;
 
 
+  }
+
+  ID3D11Device * DXGraphicsAPI::getDevice()
+  {
+    return m_device->getDevice();
+  }
+
+  ID3D11DeviceContext * DXGraphicsAPI::getDeviceContext()
+  {
+    return m_deviceContext->getDeviceContext();
   }
 
   void DXGraphicsAPI::addInputElement(
@@ -253,14 +245,14 @@ namespace foxEngineSDK
     if (m_device->getDevice()) m_device->getDevice()->Release();
   }
 
-  bool DXGraphicsAPI::createDeviceAndSwapChain()
+  bool DXGraphicsAPI::createDeviceAndSwapChain(HWND _windowHandle)
   {
 
     //Create window rect variable object
     RECT windowRect;
 
     //Get the actual window rect
-    GetClientRect(m_renderWindow->getWindowHandle(), &windowRect);
+    GetClientRect(_windowHandle, &windowRect);
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
@@ -301,7 +293,7 @@ namespace foxEngineSDK
     scd.SampleDesc.Quality = 0;
     scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     scd.BufferCount = 1;
-    scd.OutputWindow = m_renderWindow->getWindowHandle();
+    scd.OutputWindow = _windowHandle;
     scd.Windowed = true;
     scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
     scd.Flags = 0;
@@ -373,14 +365,14 @@ namespace foxEngineSDK
     }
   }
 
-  bool DXGraphicsAPI::createDepthStencilView()
+  bool DXGraphicsAPI::createDepthStencilView(HWND _windowHandle)
   {
 
     //Create window rect variable object
     RECT windowRect;
 
     //Get the actual window rect
-    GetClientRect(m_renderWindow->getWindowHandle(), &windowRect);
+    GetClientRect(_windowHandle, &windowRect);
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
