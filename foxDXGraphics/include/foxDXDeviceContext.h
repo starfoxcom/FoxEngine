@@ -28,6 +28,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
   class DXDeviceContext
   {
@@ -103,10 +104,29 @@ namespace foxEngineSDK
     void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 
     /**
+     * @brief Updates DirectX the Constant Buffer.
+     * @param _constnatBuffer The Graphics ÄPI Constant Buffer.
+     * @param _data The Constant Buffer data.
+     */
+    void updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data);
+
+    /**
      * @brief Sets the DirectX Vertex Shader.
      * @param _vertexShader The Graphics API Vertex Shader.
      */
     void setVertexShader(DXVertexShader * _vertexShader);
+
+    /**
+     * @brief Sets the DirrectX Constant Buffer.
+     * @param _constantBuffer The Graphics API Constant Buffer.
+     * @param _startSlot Index into the device's zero-based array to begin setting 
+                         constant buffers to.
+     * @param _numOfBuffers Number of buffers to set.
+     */
+    void setConstantBuffers(
+      DXConstantBuffer * _constantBuffer,
+      uint32 _startSlot,
+      uint32 _numOfBuffers);
 
     /**
      * @brief Sets the DirectX Pixel Shader.

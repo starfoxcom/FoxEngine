@@ -34,6 +34,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -156,6 +157,19 @@ namespace foxEngineSDK
     void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
 
     /**
+     * @brief Creates the Constant Buffer.
+     * @param _structSize The constant struct size in bytes.
+     * @param _data The constant buffer data.
+     */
+    bool createConstantBuffer(uint32 _structSize);
+
+    /**
+     * @brief Updates the Constant Buffer data.
+     * @param _data The constant buffer data to update with.
+     */
+    void updateConstantBuffer(const void * _data);
+
+    /**
      * @brief Clears the Render Target View.
      * @param _RGBAColor The color to clean with.
      */
@@ -170,6 +184,11 @@ namespace foxEngineSDK
      * @brief Sets the Vertex Shader.
      */
     void setVertexShader();
+
+    /**
+     * @brief Sets the Constant Buffer.
+     */
+    void setConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBufers = 1);
 
     /**
      * @brief Sets the Pixel Shader.
@@ -239,6 +258,8 @@ namespace foxEngineSDK
     DXVertexBuffer * m_vertexBuffer; /**< Vertex Buffer member.*/
 
     DXIndexBuffer * m_indexBuffer; /**< Index Buffer member.*/
+
+    DXConstantBuffer * m_constantBuffer; /**< Constant Buffer member.*/
 
   };
 }

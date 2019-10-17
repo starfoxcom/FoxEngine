@@ -177,6 +177,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\foxDXBuffer.h" />
+    <ClInclude Include="include\foxDXConstantBuffer.h" />
     <ClInclude Include="include\foxDXDepthStencilView.h" />
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXBuffer.cpp" />
+    <ClCompile Include="src\foxDXConstantBuffer.cpp" />
     <ClCompile Include="src\foxDXDepthStencilView.cpp" />
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
