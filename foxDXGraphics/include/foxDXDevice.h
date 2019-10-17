@@ -114,9 +114,8 @@ namespace foxEngineSDK
      * @param _vertexBuffer The Graphics API Index Buffer.
      * @param _data The index data.
      * @param _dataSize The index data size in bytes.
-     * @param _length The length of the index data.
      */
-    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize, uint32 _length);
+    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize);
 
   private:
 

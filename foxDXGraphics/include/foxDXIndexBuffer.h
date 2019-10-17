@@ -34,9 +34,8 @@ namespace foxEngineSDK
     /**
      * @brief Sets the Index Buffer Desc.
      * @param _dataSize The size, in bytes, of the index buffer to create.
-     * @param _length The length of the data to use.
      */
-    void setIndexBufferDesc(uint32 _dataSize, uint32 _length);
+    void setIndexBufferDesc(uint32 _dataSize);
 
     /**
      * @brief Sets the Index Buffer sub resource data.

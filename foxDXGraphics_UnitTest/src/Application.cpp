@@ -39,16 +39,16 @@ bool BaseApp::run()
     Vector4 color;
   };
 
-  vertex vertices[]
+  vertex2 vertices[]
   {
-    Vector3(-1.0f, -1.0f, -1.0f),
-    Vector3(-1.0f, +1.0f, -1.0f),
-    Vector3(+1.0f, +1.0f, -1.0f),
-    Vector3(+1.0f, -1.0f, -1.0f),
-    Vector3(-1.0f, -1.0f, +1.0f),
-    Vector3(-1.0f, +1.0f, +1.0f),
-    Vector3(+1.0f, +1.0f, +1.0f),
-    Vector3(+1.0f, -1.0f, +1.0f),
+    {Vector3(-1.0f, -1.0f, -1.0f), Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
+    {Vector3(-1.0f, +1.0f, -1.0f), Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
+    {Vector3(+1.0f, +1.0f, -1.0f), Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
+    {Vector3(+1.0f, -1.0f, -1.0f), Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
+    {Vector3(-1.0f, -1.0f, +1.0f), Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
+    {Vector3(-1.0f, +1.0f, +1.0f), Vector4( 0.0f,  1.0f, 0.0f, 1.0f)},
+    {Vector3(+1.0f, +1.0f, +1.0f), Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
+    {Vector3(+1.0f, -1.0f, +1.0f), Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
   };
 
   vertex vertices2[]
@@ -139,22 +139,22 @@ bool BaseApp::run()
   //Set the input layout
   m_graphicsAPI.setInputLayout();
 
-  uint32 vertexDataSize = sizeof(vertices3);
+  uint32 vertexDataSize = sizeof(vertices);
 
   //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(vertices3 ,vertexDataSize);
+  m_graphicsAPI.createVertexBuffer(vertices ,vertexDataSize);
 
   uint32 vertexStructSize = sizeof(vertex2);
   //Set the vertex buffer
   m_graphicsAPI.setVertexBuffer(vertexStructSize);
 
-  //uint32 indexDataSize = sizeof(indices);
+  uint32 indexDataSize = sizeof(indices);
 
   //Create the index buffer
-  //m_graphicsAPI.createIndexBuffer(indices, indexDataSize, 24);
+  m_graphicsAPI.createIndexBuffer(indices, indexDataSize);
   
   //Set the index buffer
-  //m_graphicsAPI.setIndexBuffer();
+  m_graphicsAPI.setIndexBuffer();
 
   //Set primitive topology
   m_graphicsAPI.setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -204,7 +204,8 @@ void BaseApp::render()
   m_graphicsAPI.setPixelShader();
 
   //Draw
-  m_graphicsAPI.draw(3, 0);
+  //m_graphicsAPI.draw(3, 0);
+  m_graphicsAPI.drawIndexed(24, 0, 0);
 
   //Start the Dear ImGui frame
   ImGui_ImplDX11_NewFrame();

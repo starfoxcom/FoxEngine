@@ -140,11 +140,10 @@ namespace foxEngineSDK
   bool DXDevice::createIndexBuffer(
     DXIndexBuffer * _indexBuffer,
     const void * _data,
-    uint32 _dataSize,
-    uint32 _length)
+    uint32 _dataSize)
   {
 
-    _indexBuffer->setIndexBufferDesc(_dataSize, _length);
+    _indexBuffer->setIndexBufferDesc(_dataSize);
 
     _indexBuffer->setSubResourceData(_data);
 

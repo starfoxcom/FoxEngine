@@ -137,9 +137,8 @@ namespace foxEngineSDK
      * @brief Creates the Index Buffer.
      * @param _data The index data.
      * @param _dataSize The index data size in bytes.
-     * @param _length The length of the index data.
      */
-    bool createIndexBuffer(const void * _data, uint32 _dataSize, uint32 _length);
+    bool createIndexBuffer(const void * _data, uint32 _dataSize);
 
     /**
      * @brief Sets the Index Buffer.
