@@ -18,6 +18,7 @@
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
+#include "foxDXConstantBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -36,6 +37,7 @@ namespace foxEngineSDK
     m_inputLayout = new DXInputLayout();
     m_vertexBuffer = new DXVertexBuffer();
     m_indexBuffer = new DXIndexBuffer();
+    m_constantBuffer = new DXConstantBuffer();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -51,6 +53,7 @@ namespace foxEngineSDK
     delete m_inputLayout;
     delete m_vertexBuffer;
     delete m_indexBuffer;
+    delete m_constantBuffer;
   }
 
   bool DXGraphicsAPI::initDXGraphicsAPI(HWND _windowHandle)
@@ -193,6 +196,16 @@ namespace foxEngineSDK
     m_deviceContext->setPrimitiveTopology(_topology);
   }
 
+  bool DXGraphicsAPI::createConstantBuffer(uint32 _structSize)
+  {
+    return m_device->createConstantBuffer(m_constantBuffer, _structSize);
+  }
+
+  void DXGraphicsAPI::updateConstantBuffer(const void * _data)
+  {
+    m_deviceContext->updateConstantBuffer(m_constantBuffer, _data);
+  }
+
   void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _RGBAColor);
@@ -206,6 +219,11 @@ namespace foxEngineSDK
   void DXGraphicsAPI::setVertexShader()
   {
     m_deviceContext->setVertexShader(m_vertexShader);
+  }
+
+  void DXGraphicsAPI::setConstantBuffers(uint32 _startSlot, uint32 _numOfBufers)
+  {
+    m_deviceContext->setConstantBuffers(m_constantBuffer, _startSlot, _numOfBufers);
   }
 
   void DXGraphicsAPI::setPixelShader()
@@ -233,6 +251,7 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_constantBuffer->getBuffer()) m_constantBuffer->getBuffer()->Release();
     if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
@@ -376,7 +395,7 @@ namespace foxEngineSDK
 
     //Create and set the width and height from the obtained window rect
     uint32 width = windowRect.right - windowRect.left;
-    uint32 height = windowRect.top - windowRect.bottom;
+    uint32 height = windowRect.bottom - windowRect.top;
 
     //Create and set the Depth Stencil Desc
     D3D11_TEXTURE2D_DESC dsd;
@@ -406,9 +425,17 @@ namespace foxEngineSDK
       Log() << "Created Texture2D successfully.";
     }
 
+    D3D11_DEPTH_STENCIL_VIEW_DESC dsvd;
+
+    ZeroMemory(&dsvd, sizeof(dsvd));
+    dsvd.Format = dsd.Format;
+    dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+    dsvd.Texture2D.MipSlice = 0;
+
     if (FAILED(m_device->createDepthStencilView(
       m_depthStencilBuffer->getTexture(),
-      m_depthStencilView->getDepthStencilViewRef())))
+      m_depthStencilView->getDepthStencilViewRef(),
+      &dsvd)))
     {
 
       Log(Log::LOGERROR, true) << "Failed to create Depth Stencil View.";

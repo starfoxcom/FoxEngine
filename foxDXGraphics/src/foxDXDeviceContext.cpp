@@ -9,6 +9,7 @@
 #include "foxDXInputLayout.h"
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
+#include "foxDXConstantBuffer.h"
 
 namespace foxEngineSDK
 {
@@ -86,9 +87,22 @@ namespace foxEngineSDK
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
   }
 
+  void DXDeviceContext::updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data)
+  {
+    m_deviceContext->UpdateSubresource(_constantBuffer->getBuffer(), 0, NULL, _data, 0, 0);
+  }
+
   void DXDeviceContext::setVertexShader(DXVertexShader * _vertexShader)
   {
     m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
+  }
+
+  void DXDeviceContext::setConstantBuffers(
+    DXConstantBuffer * _constantBuffer,
+    uint32 _startSlot,
+    uint32 _numOfBuffers)
+  {
+    m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
   }
 
   void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)

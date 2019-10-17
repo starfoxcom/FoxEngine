@@ -25,6 +25,7 @@ namespace foxEngineSDK
   class DXInputLayout;
   class DXVertexBuffer;
   class DXIndexBuffer;
+  class DXConstantBuffer;
 
 
   class DXDevice
@@ -69,7 +70,7 @@ namespace foxEngineSDK
     bool createTexture2D(
       D3D11_TEXTURE2D_DESC * _textureDesc,
       ID3D11Texture2D ** _texture,
-      D3D11_SUBRESOURCE_DATA * _initData = 0);
+      D3D11_SUBRESOURCE_DATA * _initData = NULL);
 
     /**
      * @brief Create the DirectX Depth Stencil View.
@@ -116,6 +117,15 @@ namespace foxEngineSDK
      * @param _dataSize The index data size in bytes.
      */
     bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize);
+
+    /**
+     * @brief Create the DirectX Constant Buffer.
+     * @param _constantBuffer The Graphics API Constant Buffer.
+     * @param _structSize The constant buffer struct size in bytes.
+     */
+    bool createConstantBuffer(
+      DXConstantBuffer * _constantBuffer,
+      uint32 _structSize);
 
   private:
 
