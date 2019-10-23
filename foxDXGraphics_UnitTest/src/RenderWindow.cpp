@@ -3,6 +3,9 @@
  */
 #include "RenderWindow.h"
 #include "foxLog.h"
+#include "externals/imgui.h"
+#include "externals/imgui_impl_win32.h"
+#include "externals/imgui_impl_dx11.h"
 
 namespace foxEngineSDK
 {
@@ -17,6 +20,10 @@ namespace foxEngineSDK
 
   LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
   {
+
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+      return true;
+
     //Sort through and find what code to run for the message given
     switch (message)
     {

@@ -43,6 +43,6 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11PixelShader * m_pixelShader;
+    ID3D11PixelShader * m_pixelShader; /**< Pixel Shader class object member.*/
   };
 }
