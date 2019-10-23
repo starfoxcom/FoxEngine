@@ -54,11 +54,11 @@ namespace foxEngineSDK
   
   protected:
 
-    D3D11_BUFFER_DESC m_bufferDesc;
+    D3D11_BUFFER_DESC m_bufferDesc; /**< Buffer descriptor class object member.*/
 
-    ID3D11Buffer * m_buffer;
+    ID3D11Buffer * m_buffer; /**< Buffer class object member.*/
 
-    D3D11_SUBRESOURCE_DATA m_initData;
+    D3D11_SUBRESOURCE_DATA m_initData; /**< Sub resource data class object member.*/
 
   };
 }

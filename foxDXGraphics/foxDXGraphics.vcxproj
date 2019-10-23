@@ -185,12 +185,15 @@
     <ClInclude Include="include\foxDXIndexBuffer.h" />
     <ClInclude Include="include\foxDXInputLayout.h" />
     <ClInclude Include="include\foxDXPixelShader.h" />
+    <ClInclude Include="include\foxDXRasterizerState.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
     <ClInclude Include="include\foxDXShader.h" />
+    <ClInclude Include="include\foxDXSolidRS.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxDXTexture.h" />
     <ClInclude Include="include\foxDXVertexBuffer.h" />
     <ClInclude Include="include\foxDXVertexShader.h" />
+    <ClInclude Include="include\foxDXWireframeRS.h" />
     <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
@@ -204,12 +207,15 @@
     <ClCompile Include="src\foxDXIndexBuffer.cpp" />
     <ClCompile Include="src\foxDXInputLayout.cpp" />
     <ClCompile Include="src\foxDXPixelShader.cpp" />
+    <ClCompile Include="src\foxDXRasterizerState.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
     <ClCompile Include="src\foxDXShader.cpp" />
+    <ClCompile Include="src\foxDXSolidRS.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />
     <ClCompile Include="src\foxDXVertexBuffer.cpp" />
     <ClCompile Include="src\foxDXVertexShader.cpp" />
+    <ClCompile Include="src\foxDXWireframeRS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

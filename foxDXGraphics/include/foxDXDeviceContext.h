@@ -23,6 +23,7 @@ namespace foxEngineSDK
    */
   class DXRenderTargetView;
   class DXDepthStencilView;
+  class DXRasterizerState;
   class DXVertexShader;
   class DXPixelShader;
   class DXInputLayout;
@@ -133,6 +134,12 @@ namespace foxEngineSDK
      * @param _pixelShader The Graphics API Pixel Shader.
      */
     void setPixelShader(DXPixelShader * _pixelShader);
+
+    /**
+     * @brief Sets the DirectX Rasterizer State.
+     * @param _rasterizerState The Graphics API Rasterizer state.
+     */
+    void setRasterizerState(DXRasterizerState * _rasterizerState);
 
     /**
      * @brief Draws the vertices.

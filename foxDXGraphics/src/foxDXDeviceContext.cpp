@@ -4,6 +4,7 @@
 #include "foxDXDeviceContext.h"
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
+#include "foxDXRasterizerState.h"
 #include "foxDXVertexShader.h"
 #include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
@@ -108,6 +109,11 @@ namespace foxEngineSDK
   void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)
   {
     m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
+  }
+
+  void DXDeviceContext::setRasterizerState(DXRasterizerState * _rasterizerState)
+  {
+    m_deviceContext->RSSetState(_rasterizerState->getRasterizerState());
   }
 
   void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)

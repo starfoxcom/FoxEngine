@@ -38,6 +38,8 @@ private:
   Matrix4 m_view;
   Matrix4 m_projection;
 
+  int32 m_RSValue = 2;
+
   struct constantBuffer
   {
     Matrix4 world;

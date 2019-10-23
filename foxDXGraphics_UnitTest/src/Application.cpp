@@ -258,6 +258,17 @@ void BaseApp::render()
   //Set the Pixel Shader
   m_graphicsAPI.setPixelShader();
 
+  //Set the Rasterizer State
+  switch (m_RSValue)
+  {
+  case 1:
+    m_graphicsAPI.setSolidRS();
+    break;
+  case 2:
+    m_graphicsAPI.setWireframeRS();
+    break;
+  }
+
   //Draw
   //m_graphicsAPI.draw(3, 0);
   m_graphicsAPI.drawIndexed(36, 0, 0);
@@ -267,12 +278,24 @@ void BaseApp::render()
   ImGui_ImplWin32_NewFrame();
   ImGui::NewFrame();
 
+  //Framerate window
   {
-
     ImGui::Begin("Framerate", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
     ImGui::SetWindowSize(ImVec2(200, 30));
     ImGui::SetWindowPos(ImVec2(2, 2));
     ImGui::Text("%.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    ImGui::End();
+  }
+
+  //Rasterizer states window
+  {
+    ImGui::Begin("Rasterizer states", 0, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::BeginGroup();
+
+    ImGui::RadioButton("Solid",&m_RSValue, 1);
+    ImGui::RadioButton("Wire frame",&m_RSValue, 2);
+
+    ImGui::EndGroup();
     ImGui::End();
   }
 

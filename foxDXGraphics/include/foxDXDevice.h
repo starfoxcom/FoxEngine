@@ -26,7 +26,7 @@ namespace foxEngineSDK
   class DXVertexBuffer;
   class DXIndexBuffer;
   class DXConstantBuffer;
-
+  class DXRasterizerState;
 
   class DXDevice
   {
@@ -84,6 +84,12 @@ namespace foxEngineSDK
       D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc = 0);
 
     /**
+     * @brief Create the DirectX Rasterizer State.
+     * @param _raterizerState The Graphics API Rasterizer State.
+     */
+    bool createRasterizerState(DXRasterizerState * _rasterizerState);
+
+    /**
      * @brief Create the DirectX Vertex Shader.
      * @param _vertexShader The Graphics API Vertex Shader.
      */
@@ -126,6 +132,7 @@ namespace foxEngineSDK
     bool createConstantBuffer(
       DXConstantBuffer * _constantBuffer,
       uint32 _structSize);
+
 
   private:
 

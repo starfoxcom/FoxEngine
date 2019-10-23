@@ -13,6 +13,8 @@
 #include "foxDXTexture.h"
 #include "foxDXRenderTargetView.h"
 #include "foxDXDepthStencilView.h"
+#include "foxDXSolidRS.h"
+#include "foxDXWireframeRS.h"
 #include "foxDXVertexShader.h"
 #include "foxDXPixelShader.h"
 #include "foxDXInputLayout.h"
@@ -32,6 +34,8 @@ namespace foxEngineSDK
     m_renderTargetView = new DXRenderTargetView();
     m_depthStencilBuffer = new DXTexture();
     m_depthStencilView = new DXDepthStencilView();
+    m_wireframeRS = new DXWireframeRS();
+    m_solidRS = new DXSolidRS();
     m_vertexShader = new DXVertexShader();
     m_pixelShader = new DXPixelShader();
     m_inputLayout = new DXInputLayout();
@@ -48,6 +52,8 @@ namespace foxEngineSDK
     delete m_renderTargetView;
     delete m_depthStencilBuffer;
     delete m_depthStencilView;
+    delete m_solidRS;
+    delete m_wireframeRS;
     delete m_vertexShader;
     delete m_pixelShader;
     delete m_inputLayout;
@@ -71,19 +77,31 @@ namespace foxEngineSDK
 
     if (!createDeviceAndSwapChain(_windowHandle))
     {
-      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Device and Swap Chain].";
       return false;
     }
 
     if (!createRenderTargetView())
     {
-      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Render Target View].";
       return false;
     }
 
     if (!createDepthStencilView(_windowHandle))
     {
-      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API.";
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Depth Stencil View].";
+      return false;
+    }
+
+    if (!createWireframeRS())
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Wire frame Rasterizer state].";
+      return false;
+    }
+
+    if (!createSolidRS())
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Solid Rasterizer state].";
       return false;
     }
 
@@ -231,6 +249,16 @@ namespace foxEngineSDK
     m_deviceContext->setPixelShader(m_pixelShader);
   }
 
+  void DXGraphicsAPI::setSolidRS()
+  {
+    m_deviceContext->setRasterizerState(m_solidRS);
+  }
+
+  void DXGraphicsAPI::setWireframeRS()
+  {
+    m_deviceContext->setRasterizerState(m_wireframeRS);
+  }
+
   void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->draw(_vertexCount, _vertexStart);
@@ -256,6 +284,8 @@ namespace foxEngineSDK
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
     if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
     if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
+    if (m_wireframeRS->getRasterizerState()) m_wireframeRS->getRasterizerState()->Release();
+    if (m_solidRS->getRasterizerState()) m_solidRS->getRasterizerState()->Release();
     if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
     if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
     if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
@@ -448,6 +478,38 @@ namespace foxEngineSDK
       Log() << "Created Depth Stencil View successfully.";
       return true;
     }
+  }
+
+  bool DXGraphicsAPI::createSolidRS()
+  {
+
+    m_solidRS->setSolidRSDesc();
+
+    if (FAILED(m_device->createRasterizerState(m_solidRS)))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Solid Rasterizer state.";
+      return false;
+    }
+
+    Log() << "Created Solid Rasterizer state successfully.";
+    return true;
+  }
+
+  bool DXGraphicsAPI::createWireframeRS()
+  {
+
+    m_wireframeRS->setWireframeRSDesc();
+
+    if (FAILED(m_device->createRasterizerState(m_wireframeRS)))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Wire frame Rasterizer state.";
+      return false;
+    }
+
+    Log() << "Created Wire frame Rasterizer state successfully.";
+    return true;
   }
 
 }

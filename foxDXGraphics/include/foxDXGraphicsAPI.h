@@ -29,6 +29,8 @@ namespace foxEngineSDK
   class DXTexture;
   class DXRenderTargetView;
   class DXDepthStencilView;
+  class DXWireframeRS;
+  class DXSolidRS;
   class DXVertexShader;
   class DXPixelShader;
   class DXInputLayout;
@@ -196,6 +198,16 @@ namespace foxEngineSDK
     void setPixelShader();
 
     /**
+     * @brief Sets the Solid Rasterizer State.
+     */
+    void setSolidRS();
+
+    /**
+     * @brief Sets the Wire frame Rasterizer State.
+     */
+    void setWireframeRS();
+
+    /**
      * @brief Draws the vertices.
      * @param _vertexCount The total count of vertices.
      * @param _vertexStart The starting point of the vertices.
@@ -237,6 +249,16 @@ namespace foxEngineSDK
      */
     bool createDepthStencilView(HWND _windowHandle);
 
+    /**
+     * @brief Creates the Solid Rasterizer State.
+     */
+    bool createSolidRS();
+
+    /**
+     * @brief Creates the Wire frame Rasterizer State.
+     */
+    bool createWireframeRS();
+
     DXSwapChain * m_swapChain; /**< Swap Chain member.*/
 
     DXDevice * m_device; /**< Device class object member.*/
@@ -248,6 +270,10 @@ namespace foxEngineSDK
     DXTexture * m_depthStencilBuffer; /**< Depth Stencil Buffer member.*/
 
     DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
+
+    DXSolidRS * m_solidRS; /**< Solid Rasterizer state member.*/
+
+    DXWireframeRS * m_wireframeRS; /**< Wire frame Rasterizer state member.*/
 
     DXVertexShader * m_vertexShader; /**< Vertex Shader member.*/
 
