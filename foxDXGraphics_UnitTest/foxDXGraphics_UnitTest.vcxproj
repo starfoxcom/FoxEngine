@@ -177,6 +177,7 @@
     <ClInclude Include="include\externals\imstb_rectpack.h" />
     <ClInclude Include="include\externals\imstb_textedit.h" />
     <ClInclude Include="include\externals\imstb_truetype.h" />
+    <ClInclude Include="include\externals\stb_image.h" />
     <ClInclude Include="include\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>

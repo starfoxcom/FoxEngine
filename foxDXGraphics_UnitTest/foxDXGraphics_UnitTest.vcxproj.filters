@@ -45,6 +45,9 @@
     <ClInclude Include="include\RenderWindow.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\externals\stb_image.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">

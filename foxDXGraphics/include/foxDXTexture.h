@@ -43,5 +43,7 @@ namespace foxEngineSDK
 
     ID3D11Texture2D * m_texture; /**< Texture class object member.*/
 
+    D3D11_SUBRESOURCE_DATA m_initData; /**< Sub resource data class object member.*/
+
   };
 }

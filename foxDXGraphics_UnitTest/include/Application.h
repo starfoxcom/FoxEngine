@@ -38,7 +38,7 @@ private:
   Matrix4 m_view;
   Matrix4 m_projection;
 
-  int32 m_RSValue = 2;
+  int32 m_RSValue = 1;
 
   struct constantBuffer
   {

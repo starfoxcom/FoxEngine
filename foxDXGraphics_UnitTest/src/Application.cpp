@@ -6,6 +6,7 @@
 #include "externals/imgui.h"
 #include "externals/imgui_impl_win32.h"
 #include "externals/imgui_impl_dx11.h"
+#include "externals/stb_image.h"
 
 
 
@@ -289,13 +290,53 @@ void BaseApp::render()
 
   //Rasterizer states window
   {
-    ImGui::Begin("Rasterizer states", 0, ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::Begin("Rasterizer states", 0, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
+    ImGui::SetWindowSize(ImVec2(150,100));
     ImGui::BeginGroup();
 
     ImGui::RadioButton("Solid",&m_RSValue, 1);
     ImGui::RadioButton("Wire frame",&m_RSValue, 2);
 
     ImGui::EndGroup();
+    ImGui::End();
+  }
+
+
+  //Load texture window
+  {
+    ImGui::Begin("Load Texture", 0, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
+    if (ImGui::Button("Open", ImVec2(50, 20)))
+    {
+      //Get file from dialog
+      char filename[MAX_PATH];
+
+      bool bMustLoad = false;
+
+      OPENFILENAME ofn;
+      ZeroMemory(&filename, sizeof(filename));
+      ZeroMemory(&ofn, sizeof(ofn));
+      ofn.lStructSize = sizeof(ofn);
+      ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+      ofn.lpstrFilter = "JPG Files\0*.jpg\0PNG Files\0*.png\0Any File\0*.*\0";
+      ofn.lpstrFile = filename;
+      ofn.nMaxFile = MAX_PATH;
+      ofn.lpstrTitle = "Select a Texture to load";
+      ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+      if (GetOpenFileNameA(&ofn))
+      {
+        Log(Log::LOGINFO, true) << "You chose the file [" << filename << "]";
+        if (filename > 0)
+        {
+          bMustLoad = true;
+        }
+
+        if (bMustLoad)
+        {
+          //Load texture with image file
+        }
+
+      }
+    }
     ImGui::End();
   }
 
