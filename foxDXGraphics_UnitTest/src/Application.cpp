@@ -333,8 +333,13 @@ void BaseApp::render()
         if (bMustLoad)
         {
           //Load texture with image file
-        }
+          Log(Log::LOGINFO, true) << "File loaded successfully.";
 
+        }
+      }
+      else
+      {
+        Log(Log::LOGERROR, true) << "File couldn't be loaded.";
       }
     }
     ImGui::End();
