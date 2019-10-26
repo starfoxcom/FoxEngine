@@ -31,21 +31,6 @@ namespace foxEngineSDK
      */
     ~DXVertexBuffer();
 
-    /**
-     * @brief Sets the Vertex Buffer Desc.
-     * @param _dataSize The size, in bytes, of the vertex buffer to create. 
-     * @param _length The length of the data to use.
-     */
-    void setVertexBufferDesc(uint32 _dataSize);
-
-    /**
-     * @brief Sets the Vertex Buffer sub resource data.
-     * @param _data A pointer to a system memory array which contains the data 
-                    to initialize the vertex buffer.
-     */
-    void setSubResourceData(const void * _data);
-
-
   private:
 
   };

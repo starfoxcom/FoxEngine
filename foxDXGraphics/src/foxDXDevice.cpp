@@ -58,11 +58,11 @@ namespace foxEngineSDK
       _depthStencilView);
   }
   
-  bool DXDevice::createRasterizerState(DXRasterizerState * _rasterizerState)
+  bool DXDevice::createRasterizerState(DXRasterizerState * _rasterizerState, D3D11_RASTERIZER_DESC _rasterizerDesc)
   {
 
     if (FAILED(m_device->CreateRasterizerState(
-      &_rasterizerState->getRasterizerStateDesc(),
+      &_rasterizerDesc,
       _rasterizerState->getRasterizerStateRef())))
     {
 
@@ -138,14 +138,22 @@ namespace foxEngineSDK
     uint32 _dataSize)
   {
 
-    _vertexBuffer->setVertexBufferDesc(_dataSize);
+    D3D11_BUFFER_DESC bufferDesc;
 
-    _vertexBuffer->setSubResourceData(_data);
+    ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = _dataSize;
+    bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    bufferDesc.CPUAccessFlags = 0;
+    bufferDesc.MiscFlags = 0;
+    bufferDesc.StructureByteStride = 0;
 
-    if (FAILED(m_device->CreateBuffer(
-      &_vertexBuffer->getBufferDesc(),
-      &_vertexBuffer->getSubResourceData(),
-      _vertexBuffer->getBufferRef())))
+    D3D11_SUBRESOURCE_DATA initData;
+
+    ZeroMemory(&initData, sizeof(initData));
+    initData.pSysMem = _data;
+
+    if (FAILED(m_device->CreateBuffer(&bufferDesc, &initData, _vertexBuffer->getBufferRef())))
     {
       
       Log(Log::LOGERROR, true) << "Vertex buffer couldn't be created.";
@@ -160,14 +168,24 @@ namespace foxEngineSDK
     const void * _data,
     uint32 _dataSize)
   {
+    D3D11_BUFFER_DESC bufferDesc;
 
-    _indexBuffer->setIndexBufferDesc(_dataSize);
+    ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = _dataSize;
+    bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+    bufferDesc.CPUAccessFlags = 0;
+    bufferDesc.MiscFlags = 0;
+    bufferDesc.StructureByteStride = 0;
 
-    _indexBuffer->setSubResourceData(_data);
+    D3D11_SUBRESOURCE_DATA initData;
+
+    ZeroMemory(&initData, sizeof(initData));
+    initData.pSysMem = _data;
 
     if (FAILED(m_device->CreateBuffer(
-      &_indexBuffer->getBufferDesc(),
-      &_indexBuffer->getSubResourceData(),
+      &bufferDesc,
+      &initData,
       _indexBuffer->getBufferRef())))
     {
 
@@ -183,10 +201,18 @@ namespace foxEngineSDK
     uint32 _structSize)
   {
 
-    _constantBuffer->setConstantBufferDesc(_structSize);
+    D3D11_BUFFER_DESC bufferDesc;
+
+    ZeroMemory(&bufferDesc, sizeof(bufferDesc));
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.ByteWidth = _structSize;
+    bufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    bufferDesc.CPUAccessFlags = 0;
+    bufferDesc.MiscFlags = 0;
+    bufferDesc.StructureByteStride = 0;
 
     if (FAILED(m_device->CreateBuffer(
-      &_constantBuffer->getBufferDesc(),
+      &bufferDesc,
       NULL,
       _constantBuffer->getBufferRef())))
     {

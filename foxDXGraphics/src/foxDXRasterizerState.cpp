@@ -23,8 +23,6 @@ namespace foxEngineSDK
   {
     return &m_rasterizerState;
   }
-  D3D11_RASTERIZER_DESC DXRasterizerState::getRasterizerStateDesc()
-  {
-    return m_rasterizerDesc;
-  }
+
+
 }

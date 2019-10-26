@@ -31,11 +31,6 @@ namespace foxEngineSDK
      */
     ~DXWireframeRS();
 
-    /**
-     * @brief Sets the wire frame Rasterizer state Desc.
-     */
-    void setWireframeRSDesc();
-
   private:
 
   };

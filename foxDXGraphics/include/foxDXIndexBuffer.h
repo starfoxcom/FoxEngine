@@ -31,19 +31,6 @@ namespace foxEngineSDK
      */
     ~DXIndexBuffer();
 
-    /**
-     * @brief Sets the Index Buffer Desc.
-     * @param _dataSize The size, in bytes, of the index buffer to create.
-     */
-    void setIndexBufferDesc(uint32 _dataSize);
-
-    /**
-     * @brief Sets the Index Buffer sub resource data.
-     * @param _data A pointer to a system memory array which contains the data
-                    to initialize the index buffer.
-     */
-    void setSubResourceData(const void * _data);
-
   private:
 
 

@@ -40,16 +40,9 @@ namespace foxEngineSDK
      */
     ID3D11RasterizerState ** getRasterizerStateRef();
 
-    /**
-     * @brief Gets the DirectX Rasterizer State Desc.
-     */
-    D3D11_RASTERIZER_DESC getRasterizerStateDesc();
-
     protected:
 
     ID3D11RasterizerState * m_rasterizerState; /**< Rasterizer state class object member.*/
-
-    D3D11_RASTERIZER_DESC m_rasterizerDesc; /**< Rasterizer descriptor class object member.*/
 
   };
 

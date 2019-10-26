@@ -93,15 +93,15 @@ namespace foxEngineSDK
       return false;
     }
 
-    if (!createWireframeRS())
-    {
-      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Wire frame Rasterizer state].";
-      return false;
-    }
-
     if (!createSolidRS())
     {
       Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Solid Rasterizer state].";
+      return false;
+    }
+
+    if (!createWireframeRS())
+    {
+      Log(Log::LOGERROR, true) << "Failed to initialize the graphics API. [Wire frame Rasterizer state].";
       return false;
     }
 
@@ -483,9 +483,22 @@ namespace foxEngineSDK
   bool DXGraphicsAPI::createSolidRS()
   {
 
-    m_solidRS->setSolidRSDesc();
+    D3D11_RASTERIZER_DESC m_rasterizerDesc;
 
-    if (FAILED(m_device->createRasterizerState(m_solidRS)))
+    ZeroMemory(&m_rasterizerDesc, sizeof(m_rasterizerDesc));
+
+    m_rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+    m_rasterizerDesc.CullMode = D3D11_CULL_BACK;
+    m_rasterizerDesc.FrontCounterClockwise = false;
+    m_rasterizerDesc.DepthBias = 0;
+    m_rasterizerDesc.DepthBiasClamp = 0.0f;
+    m_rasterizerDesc.SlopeScaledDepthBias = 0.0f;
+    m_rasterizerDesc.DepthClipEnable = true;
+    m_rasterizerDesc.ScissorEnable = false;
+    m_rasterizerDesc.MultisampleEnable = false;
+    m_rasterizerDesc.AntialiasedLineEnable = false;
+
+    if (FAILED(m_device->createRasterizerState(m_solidRS, m_rasterizerDesc)))
     {
 
       Log(Log::LOGERROR, true) << "Failed to create Solid Rasterizer state.";
@@ -499,9 +512,22 @@ namespace foxEngineSDK
   bool DXGraphicsAPI::createWireframeRS()
   {
 
-    m_wireframeRS->setWireframeRSDesc();
+    D3D11_RASTERIZER_DESC m_rasterizerDesc;
 
-    if (FAILED(m_device->createRasterizerState(m_wireframeRS)))
+    ZeroMemory(&m_rasterizerDesc, sizeof(m_rasterizerDesc));
+
+    m_rasterizerDesc.FillMode = D3D11_FILL_WIREFRAME;
+    m_rasterizerDesc.CullMode = D3D11_CULL_NONE;
+    m_rasterizerDesc.FrontCounterClockwise = false;
+    m_rasterizerDesc.DepthBias = 0;
+    m_rasterizerDesc.DepthBiasClamp = 0.0f;
+    m_rasterizerDesc.SlopeScaledDepthBias = 0.0f;
+    m_rasterizerDesc.DepthClipEnable = true;
+    m_rasterizerDesc.ScissorEnable = false;
+    m_rasterizerDesc.MultisampleEnable = false;
+    m_rasterizerDesc.AntialiasedLineEnable = false;
+
+    if (FAILED(m_device->createRasterizerState(m_wireframeRS, m_rasterizerDesc)))
     {
 
       Log(Log::LOGERROR, true) << "Failed to create Wire frame Rasterizer state.";

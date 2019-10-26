@@ -17,20 +17,6 @@
 namespace foxEngineSDK
 {
 
-  /**
-   * @brief Element input struct.
-   */
-  struct inputElement
-  {
-    const char * semanticName;
-    uint32 semanticIndex;
-    FOXGI_FORMAT::E format;
-    uint32 inputSlot;
-    uint32 alignedByteOffset;
-    FOX_INPUT_CLASSIFICATION::E inputSlotClass;
-    uint32 instanceDataStepRate;
-  };
-
   class DXInputLayout
   {
   public:
@@ -90,8 +76,8 @@ namespace foxEngineSDK
 
     ID3D11InputLayout * m_inputLayout; /**< Input Layout class object member.*/
 
-    D3D11_INPUT_ELEMENT_DESC * m_inputElementDesc; /**< Input Element Desc class object member.*/
+    //D3D11_INPUT_ELEMENT_DESC * m_inputElementDesc; /**< Input Element Desc class object member.*/
 
-    std::vector<inputElement> m_inputElements; /**< Input Element vector.*/
+    std::vector<D3D11_INPUT_ELEMENT_DESC> m_inputElements; /**< Input Element vector.*/
   };
 }

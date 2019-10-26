@@ -86,8 +86,11 @@ namespace foxEngineSDK
     /**
      * @brief Create the DirectX Rasterizer State.
      * @param _raterizerState The Graphics API Rasterizer State.
+     * @param _rasterizerDesc The Rasterizer State Desc.
      */
-    bool createRasterizerState(DXRasterizerState * _rasterizerState);
+    bool createRasterizerState(
+      DXRasterizerState * _rasterizerState,
+      D3D11_RASTERIZER_DESC _rasterizerDesc);
 
     /**
      * @brief Create the DirectX Vertex Shader.

@@ -26,22 +26,7 @@ namespace foxEngineSDK
 
   D3D11_INPUT_ELEMENT_DESC * DXInputLayout::getInputElementDesc()
   {
-
-    m_inputElementDesc = new D3D11_INPUT_ELEMENT_DESC[m_inputElements.size()];
-
-    for (uint32 i = 0; i < m_inputElements.size(); ++i)
-    {
-
-      m_inputElementDesc[i].SemanticName = m_inputElements[i].semanticName;
-      m_inputElementDesc[i].SemanticIndex = m_inputElements[i].semanticIndex;
-      m_inputElementDesc[i].Format = static_cast<DXGI_FORMAT>(m_inputElements[i].format);
-      m_inputElementDesc[i].InputSlot = m_inputElements[i].inputSlot;
-      m_inputElementDesc[i].AlignedByteOffset = m_inputElements[i].alignedByteOffset;
-      m_inputElementDesc[i].InputSlotClass = static_cast<D3D11_INPUT_CLASSIFICATION>(m_inputElements[i].inputSlotClass);
-      m_inputElementDesc[i].InstanceDataStepRate = m_inputElements[i].instanceDataStepRate;
-    }
-
-    return m_inputElementDesc;
+    return &m_inputElements[0];
   }
 
   uint32 DXInputLayout::getInputElementsNum()
@@ -59,14 +44,14 @@ namespace foxEngineSDK
     uint32 _instanceDataStepRate)
   {
 
-    inputElement element
+    D3D11_INPUT_ELEMENT_DESC element
     {
       _semanticName,
       _semanticIndex,
-      _format,
+      static_cast<DXGI_FORMAT>(_format),
       _inputSlot,
       _alignedByteOffset,
-      _inputSlotClass,
+      static_cast<D3D11_INPUT_CLASSIFICATION>(_inputSlotClass),
       _instanceDataStepRate
     };
 

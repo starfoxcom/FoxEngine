@@ -31,12 +31,6 @@ namespace foxEngineSDK
      */
     ~DXConstantBuffer();
 
-    /**
-     * @brief Sets the Constant Buffer Desc.
-     * @param _structSize The size, in bytes, of the constant buffer struct.
-     */
-    void setConstantBufferDesc(uint32 _structSize);
-
   private:
 
   };
