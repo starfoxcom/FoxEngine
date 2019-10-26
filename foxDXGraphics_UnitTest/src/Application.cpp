@@ -333,6 +333,16 @@ void BaseApp::render()
         if (bMustLoad)
         {
           //Load texture with image file
+          int width, height, channels, imageSize;
+
+          auto * image = stbi_load(filename,
+            &width,
+            &height,
+            &channels,
+            STBI_rgb_alpha);
+
+          imageSize = width * height;
+
           Log(Log::LOGINFO, true) << "File loaded successfully.";
 
         }
