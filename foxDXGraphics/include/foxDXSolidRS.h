@@ -31,11 +31,6 @@ namespace foxEngineSDK
      */
     ~DXSolidRS();
 
-    /**
-     * @brief Sets the solid Rasterizer state Desc.
-     */
-    void setSolidRSDesc();
-
   private:
 
   };
