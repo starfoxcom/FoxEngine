@@ -9,6 +9,8 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXTexture.h"
+#include "foxDXShaderResourceView.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
@@ -222,6 +224,29 @@ namespace foxEngineSDK
     }
 
     Log() << "Constant buffer created successfully.";
+    return true;
+  }
+  bool DXDevice::createShaderResourceView(
+    DXTexture * _texture,
+    DXShaderResourceView * _shaderResourceView)
+  {
+
+    HRESULT hr = m_device->CreateShaderResourceView(
+      _texture->getTexture(),
+      NULL,
+      _shaderResourceView->getShaderResourceViewRef());
+
+    if (FAILED(m_device->CreateShaderResourceView(
+      _texture->getTexture(),
+      NULL,
+      _shaderResourceView->getShaderResourceViewRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Shader Resource View couldn't be created.";
+      return false;
+    }
+
+    Log() << "Shader Resource View created successfully.";
     return true;
   }
 }

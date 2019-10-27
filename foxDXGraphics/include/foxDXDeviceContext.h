@@ -30,6 +30,7 @@ namespace foxEngineSDK
   class DXVertexBuffer;
   class DXIndexBuffer;
   class DXConstantBuffer;
+  class DXShaderResourceView;
 
   class DXDeviceContext
   {
@@ -118,7 +119,7 @@ namespace foxEngineSDK
     void setVertexShader(DXVertexShader * _vertexShader);
 
     /**
-     * @brief Sets the DirrectX Constant Buffer.
+     * @brief Sets the DirectX Constant Buffer.
      * @param _constantBuffer The Graphics API Constant Buffer.
      * @param _startSlot Index into the device's zero-based array to begin setting 
                          constant buffers to.
@@ -128,6 +129,15 @@ namespace foxEngineSDK
       DXConstantBuffer * _constantBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
+
+    /**
+     * @brief Sets the DirectX Shader Resources.
+     * @param
+     */
+    void setShaderResources(
+      DXShaderResourceView * _shaderResourceViews,
+      uint32 _startSlot,
+      uint32 _numOfViews);
 
     /**
      * @brief Sets the DirectX Pixel Shader.

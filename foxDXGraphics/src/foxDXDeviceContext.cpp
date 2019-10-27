@@ -11,6 +11,7 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXShaderResourceView.h"
 
 namespace foxEngineSDK
 {
@@ -104,6 +105,17 @@ namespace foxEngineSDK
     uint32 _numOfBuffers)
   {
     m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
+  }
+
+  void DXDeviceContext::setShaderResources(
+    DXShaderResourceView * _shaderResourceViews,
+    uint32 _startSlot,
+    uint32 _numOfViews)
+  {
+    m_deviceContext->PSSetShaderResources(
+      _startSlot,
+      _numOfViews,
+      _shaderResourceViews->getShaderResourceViewRef());
   }
 
   void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)

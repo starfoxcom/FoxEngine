@@ -1,11 +1,14 @@
 #include "Application.h"
 #include "foxLog.h"
+#include "foxVector2.h"
 #include "foxVector3.h"
 #include "foxVector4.h"
 #include "foxPlatformMath.h"
 #include "externals/imgui.h"
 #include "externals/imgui_impl_win32.h"
 #include "externals/imgui_impl_dx11.h"
+
+#define STB_IMAGE_IMPLEMENTATION
 #include "externals/stb_image.h"
 
 
@@ -36,6 +39,7 @@ bool BaseApp::run()
   struct vertex
   {
     Vector3 pos;
+    Vector2 tex;
   };
 
   struct vertex2
@@ -58,9 +62,14 @@ bool BaseApp::run()
 
   vertex vertices2[]
   {
-    Vector3(0.0f, 0.5f, 0.0f),
-    Vector3(0.5f, -0.5f, 0.0f),
-    Vector3(-0.5f, -0.5f, 0.0f),
+    { Vector3(-1.0f, 1.0f, -1.0f),  Vector2(0.0f, 0.0f)  },
+    { Vector3(1.0f, 1.0f, -1.0f),   Vector2(1.0f, 0.0f)  },
+    { Vector3(1.0f, 1.0f, 1.0f),    Vector2(1.0f, 1.0f)  },
+    { Vector3(-1.0f, 1.0f, 1.0f),   Vector2(0.0f, 1.0f)  },
+    { Vector3(-1.0f, -1.0f, -1.0f), Vector2(0.0f, 0.0f)  },
+    { Vector3(1.0f, -1.0f, -1.0f),  Vector2(1.0f, 0.0f)  },
+    { Vector3(1.0f, -1.0f, 1.0f),   Vector2(1.0f, 1.0f)  },
+    { Vector3(-1.0f, -1.0f, 1.0f),  Vector2(0.0f, 1.0f)  },
   };
 
   vertex2 vertices3[]
@@ -136,9 +145,9 @@ bool BaseApp::run()
     0);
 
   m_graphicsAPI.addInputElement(
-    "COLOR",
+    "TEXCOORD",
     0,
-    FOXGI_FORMAT::E::K_R32G32B32A32_FLOAT,
+    FOXGI_FORMAT::E::K_R32G32_FLOAT,
     0,
     12,
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
@@ -342,6 +351,10 @@ void BaseApp::render()
             STBI_rgb_alpha);
 
           imageSize = width * height;
+
+          m_graphicsAPI.createShaderResourceViewFromFile(image, width, height);
+
+          m_graphicsAPI.setShaderResources();
 
           Log(Log::LOGINFO, true) << "File loaded successfully.";
 
