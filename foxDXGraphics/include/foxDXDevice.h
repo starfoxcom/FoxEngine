@@ -29,6 +29,7 @@ namespace foxEngineSDK
   class DXRasterizerState;
   class DXTexture;
   class DXShaderResourceView;
+  class DXSamplerState;
 
   class DXDevice
   {
@@ -140,11 +141,19 @@ namespace foxEngineSDK
 
     /**
      * @brief Create the DirectX Shader Resource View.
-     * @param
+     * @param _texture The Graphics API Texture.
+     * @param _shaderResourceView The Graphics API Shader Resource View.
      */
     bool createShaderResourceView(
       DXTexture * _texture,
       DXShaderResourceView * _shaderResourceView);
+
+    /**
+     * @brief Create the DirectX Sampler State.
+     * @param _samplerState The Graphics API Sampler State.
+     */
+    bool createSamplerState(
+    DXSamplerState * _samplerState);
 
 
   private:

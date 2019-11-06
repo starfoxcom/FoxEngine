@@ -45,6 +45,7 @@
     <ClInclude Include="include\foxDXWireframeRS.h" />
     <ClInclude Include="include\foxDXSolidRS.h" />
     <ClInclude Include="include\foxDXShaderResourceView.h" />
+    <ClInclude Include="include\foxDXSamplerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxDXGraphicsAPI.cpp">
@@ -74,5 +75,6 @@
     <ClCompile Include="src\foxDXWireframeRS.cpp" />
     <ClCompile Include="src\foxDXSolidRS.cpp" />
     <ClCompile Include="src\foxDXShaderResourceView.cpp" />
+    <ClCompile Include="src\foxDXSamplerState.cpp" />
   </ItemGroup>
 </Project>

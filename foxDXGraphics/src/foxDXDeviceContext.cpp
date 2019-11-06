@@ -12,6 +12,7 @@
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
 #include "foxDXShaderResourceView.h"
+#include "foxDXSamplerState.h"
 
 namespace foxEngineSDK
 {
@@ -99,12 +100,20 @@ namespace foxEngineSDK
     m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
   }
 
-  void DXDeviceContext::setConstantBuffers(
+  void DXDeviceContext::setVSConstantBuffers(
     DXConstantBuffer * _constantBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers)
   {
     m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
+  }
+
+  void DXDeviceContext::setPSConstantBuffers(
+    DXConstantBuffer * _constantBuffer,
+    uint32 _startSlot,
+    uint32 _numOfBuffers)
+  {
+    m_deviceContext->PSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
   }
 
   void DXDeviceContext::setShaderResources(
@@ -126,6 +135,14 @@ namespace foxEngineSDK
   void DXDeviceContext::setRasterizerState(DXRasterizerState * _rasterizerState)
   {
     m_deviceContext->RSSetState(_rasterizerState->getRasterizerState());
+  }
+
+  void DXDeviceContext::setPSSamplerState(
+    DXSamplerState * _samplerState,
+    uint32 _startSlot,
+    uint32 _numOfSamplers)
+  {
+    m_deviceContext->PSSetSamplers(_startSlot, _numOfSamplers, _samplerState->getSamplerStateRef());
   }
 
   void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)

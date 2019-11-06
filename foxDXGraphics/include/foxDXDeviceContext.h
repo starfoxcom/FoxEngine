@@ -31,6 +31,7 @@ namespace foxEngineSDK
   class DXIndexBuffer;
   class DXConstantBuffer;
   class DXShaderResourceView;
+  class DXSamplerState;
 
   class DXDeviceContext
   {
@@ -119,13 +120,25 @@ namespace foxEngineSDK
     void setVertexShader(DXVertexShader * _vertexShader);
 
     /**
-     * @brief Sets the DirectX Constant Buffer.
+     * @brief Sets the DirectX Vertex Constant Buffer.
      * @param _constantBuffer The Graphics API Constant Buffer.
      * @param _startSlot Index into the device's zero-based array to begin setting 
                          constant buffers to.
      * @param _numOfBuffers Number of buffers to set.
      */
-    void setConstantBuffers(
+    void setVSConstantBuffers(
+      DXConstantBuffer * _constantBuffer,
+      uint32 _startSlot,
+      uint32 _numOfBuffers);
+
+    /**
+     * @brief Sets the DirectX Pixel Constant Buffer.
+     * @param _constantBuffer The Graphics API Constant Buffer.
+     * @param _startSlot Index into the device's zero-based array to begin setting
+                         constant buffers to.
+     * @param _numOfBuffers Number of buffers to set.
+     */
+    void setPSConstantBuffers(
       DXConstantBuffer * _constantBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
@@ -150,6 +163,12 @@ namespace foxEngineSDK
      * @param _rasterizerState The Graphics API Rasterizer state.
      */
     void setRasterizerState(DXRasterizerState * _rasterizerState);
+
+    /**
+     * @brief Sets the DirectX Sampler State.
+     * @param _samplerState The Graphics API Sampler State.
+     */
+    void setPSSamplerState(DXSamplerState * _samplerState, uint32 _startSlot, uint32 _numOfSamplers);
 
     /**
      * @brief Draws the vertices.
