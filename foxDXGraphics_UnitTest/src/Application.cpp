@@ -1,11 +1,14 @@
 #include "Application.h"
 #include "foxLog.h"
+#include "foxVector2.h"
 #include "foxVector3.h"
 #include "foxVector4.h"
 #include "foxPlatformMath.h"
 #include "externals/imgui.h"
 #include "externals/imgui_impl_win32.h"
 #include "externals/imgui_impl_dx11.h"
+
+#define STB_IMAGE_IMPLEMENTATION
 #include "externals/stb_image.h"
 
 
@@ -36,6 +39,7 @@ bool BaseApp::run()
   struct vertex
   {
     Vector3 pos;
+    Vector2 tex;
   };
 
   struct vertex2
@@ -44,7 +48,7 @@ bool BaseApp::run()
     Vector4 color;
   };
 
-  vertex2 vertices[]
+  vertex2 colorCube[]
   {
     { Vector3(-1.0f, 1.0f, -1.0f), Vector4(0.0f, 0.0f, 1.0f, 1.0f) },
     { Vector3(1.0f, 1.0f, -1.0f),  Vector4(0.0f, 1.0f, 0.0f, 1.0f) },
@@ -56,14 +60,19 @@ bool BaseApp::run()
     { Vector3(-1.0f, -1.0f, 1.0f), Vector4(0.0f, 0.0f, 0.0f, 1.0f) },
   };
 
-  vertex vertices2[]
+  vertex textureCube[]
   {
-    Vector3(0.0f, 0.5f, 0.0f),
-    Vector3(0.5f, -0.5f, 0.0f),
-    Vector3(-0.5f, -0.5f, 0.0f),
+    { Vector3(-1.0f, 1.0f, -1.0f),  Vector2(0.0f, 0.0f)  },
+    { Vector3(1.0f, 1.0f, -1.0f),   Vector2(1.0f, 0.0f)  },
+    { Vector3(1.0f, 1.0f, 1.0f),    Vector2(1.0f, 1.0f)  },
+    { Vector3(-1.0f, 1.0f, 1.0f),   Vector2(0.0f, 1.0f)  },
+    { Vector3(-1.0f, -1.0f, -1.0f), Vector2(0.0f, 0.0f)  },
+    { Vector3(1.0f, -1.0f, -1.0f),  Vector2(1.0f, 0.0f)  },
+    { Vector3(1.0f, -1.0f, 1.0f),   Vector2(1.0f, 1.0f)  },
+    { Vector3(-1.0f, -1.0f, 1.0f),  Vector2(0.0f, 1.0f)  },
   };
 
-  vertex2 vertices3[]
+  vertex2 triangle[]
   {
     {Vector3( 0.0f,  0.5f, 0.0f),  Vector4( 1.0f,  0.0f, 0.0f, 1.0f)},
     {Vector3( 0.5f, -0.5f, 0.0f),  Vector4( 0.0f,  0.0f, 1.0f, 1.0f)},
@@ -136,9 +145,9 @@ bool BaseApp::run()
     0);
 
   m_graphicsAPI.addInputElement(
-    "COLOR",
+    "TEXCOORD",
     0,
-    FOXGI_FORMAT::E::K_R32G32B32A32_FLOAT,
+    FOXGI_FORMAT::E::K_R32G32_FLOAT,
     0,
     12,
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
@@ -154,13 +163,13 @@ bool BaseApp::run()
   m_graphicsAPI.setInputLayout();
 
   //Create and set the vertex data size, in bytes
-  uint32 vertexDataSize = sizeof(vertices);
+  uint32 vertexDataSize = sizeof(textureCube);
 
   //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(vertices ,vertexDataSize);
+  m_graphicsAPI.createVertexBuffer(textureCube ,vertexDataSize);
 
   //Create and set the vertex struct size, in bytes
-  uint32 vertexStructSize = sizeof(vertex2);
+  uint32 vertexStructSize = sizeof(vertex);
   
   //Set the vertex buffer
   m_graphicsAPI.setVertexBuffer(vertexStructSize);
@@ -183,11 +192,14 @@ bool BaseApp::run()
   //Create constant buffer
   m_graphicsAPI.createConstantBuffer(constantStructSize);
 
+  //Create sampler state
+  m_graphicsAPI.createSamplerState();
+
   //Set the world matrix to a identity matrix
   m_world.toIdentity();
 
   //Create and set the eye, target and up vectors
-  Vector4 eye(0.0f, 1.0f, -5.0f, 0.0f);
+  Vector4 eye(0.0f, 5.0f, -5.0f, 0.0f);
   Vector4 at(0.0f, 1.0f, 0.0f, 0.0f);
   Vector4 up(0.0f, 1.0f, 0.0f, 0.0f);
 
@@ -196,6 +208,9 @@ bool BaseApp::run()
 
   //Set the projection matrix to a perspective field of view matrix
   m_projection.toPerspectiveFOV(Math::HALF_PI, width / static_cast<float>(height), 0.01f, 100.0f);
+
+  //Set the color of the mesh
+  m_meshColor = Vector4(0.7f, 0.7f, 0.7f, 1.0f);
 
 
   //Wait for the next message in the queue, store the result in msg
@@ -234,6 +249,9 @@ void BaseApp::update()
   cb.view = m_view.transposed();
   cb.projection = m_projection.transposed();
 
+  //Set the mesh color constant buffer
+  cb.meshColor = m_meshColor;
+
   //Update the constant buffer data
   m_graphicsAPI.updateConstantBuffer(&cb);
 }
@@ -253,11 +271,14 @@ void BaseApp::render()
   //Set the Vertex Shader
   m_graphicsAPI.setVertexShader();
 
-  //Set the Constant Buffer
-  m_graphicsAPI.setConstantBuffers();
+  //Set the Vertex Constant Buffer
+  m_graphicsAPI.setVSConstantBuffers();
 
   //Set the Pixel Shader
   m_graphicsAPI.setPixelShader();
+
+  //Set the Pixel Constant Buffer
+  m_graphicsAPI.setPSConstantBuffers();
 
   //Set the Rasterizer State
   switch (m_RSValue)
@@ -269,6 +290,9 @@ void BaseApp::render()
     m_graphicsAPI.setWireframeRS();
     break;
   }
+
+  //Set the Pixel Sampler
+  m_graphicsAPI.setPSSamplerState();
 
   //Draw
   //m_graphicsAPI.draw(3, 0);
@@ -333,7 +357,7 @@ void BaseApp::render()
         if (bMustLoad)
         {
           //Load texture with image file
-          int width, height, channels, imageSize;
+          int width, height, channels;
 
           auto * image = stbi_load(filename,
             &width,
@@ -341,9 +365,13 @@ void BaseApp::render()
             &channels,
             STBI_rgb_alpha);
 
-          imageSize = width * height;
-
           Log(Log::LOGINFO, true) << "File loaded successfully.";
+
+          m_graphicsAPI.createShaderResourceViewFromFile(image, width, height);
+
+          stbi_image_free(image);
+
+          m_graphicsAPI.setShaderResources();
 
         }
       }

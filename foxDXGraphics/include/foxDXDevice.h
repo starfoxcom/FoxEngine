@@ -27,6 +27,9 @@ namespace foxEngineSDK
   class DXIndexBuffer;
   class DXConstantBuffer;
   class DXRasterizerState;
+  class DXTexture;
+  class DXShaderResourceView;
+  class DXSamplerState;
 
   class DXDevice
   {
@@ -135,6 +138,22 @@ namespace foxEngineSDK
     bool createConstantBuffer(
       DXConstantBuffer * _constantBuffer,
       uint32 _structSize);
+
+    /**
+     * @brief Create the DirectX Shader Resource View.
+     * @param _texture The Graphics API Texture.
+     * @param _shaderResourceView The Graphics API Shader Resource View.
+     */
+    bool createShaderResourceView(
+      DXTexture * _texture,
+      DXShaderResourceView * _shaderResourceView);
+
+    /**
+     * @brief Create the DirectX Sampler State.
+     * @param _samplerState The Graphics API Sampler State.
+     */
+    bool createSamplerState(
+    DXSamplerState * _samplerState);
 
 
   private:

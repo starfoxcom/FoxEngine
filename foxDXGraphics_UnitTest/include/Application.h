@@ -37,6 +37,7 @@ private:
   Matrix4 m_world;
   Matrix4 m_view;
   Matrix4 m_projection;
+  Vector4 m_meshColor;
 
   int32 m_RSValue = 1;
 
@@ -45,6 +46,7 @@ private:
     Matrix4 world;
     Matrix4 view;
     Matrix4 projection;
+    Vector4 meshColor;
   };
 
 };

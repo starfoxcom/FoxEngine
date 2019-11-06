@@ -21,6 +21,8 @@
 #include "foxDXVertexBuffer.h"
 #include "foxDXIndexBuffer.h"
 #include "foxDXConstantBuffer.h"
+#include "foxDXShaderResourceView.h"
+#include "foxDXSamplerState.h"
 
 namespace foxEngineSDK
 {
@@ -42,6 +44,9 @@ namespace foxEngineSDK
     m_vertexBuffer = new DXVertexBuffer();
     m_indexBuffer = new DXIndexBuffer();
     m_constantBuffer = new DXConstantBuffer();
+    m_diffuse = new DXTexture();
+    m_shaderResourceView = new DXShaderResourceView();
+    m_samplerState = new DXSamplerState();
   }
 
   DXGraphicsAPI::~DXGraphicsAPI()
@@ -60,6 +65,9 @@ namespace foxEngineSDK
     delete m_vertexBuffer;
     delete m_indexBuffer;
     delete m_constantBuffer;
+    delete m_diffuse;
+    delete m_shaderResourceView;
+    delete m_samplerState;
   }
 
   bool DXGraphicsAPI::initDXGraphicsAPI(HWND _windowHandle)
@@ -219,6 +227,51 @@ namespace foxEngineSDK
     return m_device->createConstantBuffer(m_constantBuffer, _structSize);
   }
 
+  bool DXGraphicsAPI::createShaderResourceViewFromFile(
+    const void * _data,
+    uint32 _width,
+    uint32 _height)
+  {
+
+    D3D11_TEXTURE2D_DESC td;
+
+    td.Width = _width;
+    td.Height = _height;
+    td.MipLevels = 1;
+    td.ArraySize = 1;
+    td.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    td.SampleDesc.Count = 1;
+    td.SampleDesc.Quality = 0;
+    td.Usage = D3D11_USAGE_DEFAULT;
+    td.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+    td.CPUAccessFlags = 0;
+    td.MiscFlags = 0;
+
+    D3D11_SUBRESOURCE_DATA initData;
+
+    ZeroMemory(&initData, sizeof(initData));
+    initData.pSysMem = _data;
+    initData.SysMemPitch = _width * 4;
+
+
+    if (FAILED(m_device->createTexture2D(&td, m_diffuse->getTextureRef(), &initData)))
+    {
+
+      Log(Log::LOGERROR, true) << "Failed to create Texture2D. [Shader Resource View]";
+      return false;
+    }
+
+    Log() << "Created Texture2D successfully. [Shader Resource View]";
+
+    return m_device->createShaderResourceView(m_diffuse, m_shaderResourceView);
+
+  }
+
+  bool DXGraphicsAPI::createSamplerState()
+  {
+    return m_device->createSamplerState(m_samplerState);
+  }
+
   void DXGraphicsAPI::updateConstantBuffer(const void * _data)
   {
     m_deviceContext->updateConstantBuffer(m_constantBuffer, _data);
@@ -239,9 +292,19 @@ namespace foxEngineSDK
     m_deviceContext->setVertexShader(m_vertexShader);
   }
 
-  void DXGraphicsAPI::setConstantBuffers(uint32 _startSlot, uint32 _numOfBufers)
+  void DXGraphicsAPI::setVSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
   {
-    m_deviceContext->setConstantBuffers(m_constantBuffer, _startSlot, _numOfBufers);
+    m_deviceContext->setVSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setPSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
+  {
+    m_deviceContext->setPSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
+  }
+
+  void DXGraphicsAPI::setShaderResources(uint32 _startSlot, uint32 _numOfViews)
+  {
+    m_deviceContext->setShaderResources(m_shaderResourceView, _startSlot, _numOfViews);
   }
 
   void DXGraphicsAPI::setPixelShader()
@@ -257,6 +320,11 @@ namespace foxEngineSDK
   void DXGraphicsAPI::setWireframeRS()
   {
     m_deviceContext->setRasterizerState(m_wireframeRS);
+  }
+
+  void DXGraphicsAPI::setPSSamplerState(uint32 _startSlot, uint32 _numOfSamplers)
+  {
+    m_deviceContext->setPSSamplerState(m_samplerState, _startSlot, _numOfSamplers);
   }
 
   void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
@@ -279,6 +347,9 @@ namespace foxEngineSDK
 
     if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
 
+    if (m_samplerState->getSamplerState()) m_samplerState->getSamplerState()->Release();
+    if (m_shaderResourceView->getShaderResourceView()) m_shaderResourceView->getShaderResourceView()->Release();
+    if (m_diffuse->getTexture()) m_diffuse->getTexture()->Release();
     if (m_constantBuffer->getBuffer()) m_constantBuffer->getBuffer()->Release();
     if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
     if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();

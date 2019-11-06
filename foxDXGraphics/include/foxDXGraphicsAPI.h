@@ -37,6 +37,8 @@ namespace foxEngineSDK
   class DXVertexBuffer;
   class DXIndexBuffer;
   class DXConstantBuffer;
+  class DXShaderResourceView;
+  class DXSamplerState;
 
   class FOX_GRAPHICS_EXPORT DXGraphicsAPI
   {
@@ -166,6 +168,22 @@ namespace foxEngineSDK
     bool createConstantBuffer(uint32 _structSize);
 
     /**
+     * @brief Creates the Shader Resource View.
+     * @param _data The resource data to create with.
+     * @param _width The resource width.
+     * @param _height The resource height.
+     */
+    bool createShaderResourceViewFromFile(
+      const void * _data,
+      uint32 _width,
+      uint32 _height);
+
+    /**
+     * @brief Creates the Sampler State.
+     */
+    bool createSamplerState();
+
+    /**
      * @brief Updates the Constant Buffer data.
      * @param _data The constant buffer data to update with.
      */
@@ -188,9 +206,25 @@ namespace foxEngineSDK
     void setVertexShader();
 
     /**
-     * @brief Sets the Constant Buffer.
+     * @brief Sets the Vertex Constant Buffer.
+     * @param _startSlot The starting index slot of the constant buffer.
+     * @param _numOfBuffers The number of constant buffers.
      */
-    void setConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBufers = 1);
+    void setVSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+
+    /**
+     * @brief Sets the Pixel Constant Buffer.
+     * @param _startSlot The starting index slot of the constant buffer.
+     * @param _numOfBuffers The number of constant buffer.
+     */
+    void setPSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+
+    /**
+     * @brief Sets the Shader Resources.
+     * @param _startSlot The starting index of the shader resource.
+     * @param _numOfViews The number of shader Resource Views.
+     */
+    void setShaderResources(uint32 _startSlot = 0, uint32 _numOfViews = 1);
 
     /**
      * @brief Sets the Pixel Shader.
@@ -206,6 +240,13 @@ namespace foxEngineSDK
      * @brief Sets the Wire frame Rasterizer State.
      */
     void setWireframeRS();
+
+    /**
+     * @brief Sets the Sampler State.
+     * @param _startSlot The starting index slot of the Sampler State.
+     * @param _numOfSamplers The number of Sampler States.
+     */
+    void setPSSamplerState(uint32 _startSlot = 0, uint32 _numOfSamplers = 1);
 
     /**
      * @brief Draws the vertices.
@@ -286,6 +327,12 @@ namespace foxEngineSDK
     DXIndexBuffer * m_indexBuffer; /**< Index Buffer member.*/
 
     DXConstantBuffer * m_constantBuffer; /**< Constant Buffer member.*/
+
+    DXTexture * m_diffuse; /**< Diffuse Texture member.*/
+
+    DXShaderResourceView * m_shaderResourceView = nullptr; /**< Shader Resource View member.*/
+
+    DXSamplerState * m_samplerState; /**< Sampler State member.*/
 
   };
 }
