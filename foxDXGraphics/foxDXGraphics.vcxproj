@@ -176,6 +176,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\foxDXSamplerState.h" />
     <ClInclude Include="include\foxDXShaderResourceView.h" />
     <ClInclude Include="include\foxDXBuffer.h" />
     <ClInclude Include="include\foxDXConstantBuffer.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="src\foxDXPixelShader.cpp" />
     <ClCompile Include="src\foxDXRasterizerState.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
+    <ClCompile Include="src\foxDXSamplerState.cpp" />
     <ClCompile Include="src\foxDXShader.cpp" />
     <ClCompile Include="src\foxDXShaderResourceView.cpp" />
     <ClCompile Include="src\foxDXSolidRS.cpp" />

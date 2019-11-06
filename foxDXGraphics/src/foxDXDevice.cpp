@@ -11,6 +11,7 @@
 #include "foxDXConstantBuffer.h"
 #include "foxDXTexture.h"
 #include "foxDXShaderResourceView.h"
+#include "foxDXSamplerState.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
@@ -247,6 +248,32 @@ namespace foxEngineSDK
     }
 
     Log() << "Shader Resource View created successfully.";
+    return true;
+  }
+
+  bool DXDevice::createSamplerState(DXSamplerState * _samplerState)
+  {
+
+    D3D11_SAMPLER_DESC samplerDesc;
+
+    ZeroMemory(&samplerDesc, sizeof(samplerDesc));
+    samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+    samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    samplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+    samplerDesc.MinLOD = 0;
+    samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+    if (FAILED(m_device->CreateSamplerState(&samplerDesc, _samplerState->getSamplerStateRef())))
+    {
+
+      Log(Log::LOGERROR, true) << "Sampler State couldn't be created.";
+      return false;
+    }
+
+    Log() << "Sampler State created successfully.";
+
     return true;
   }
 }
