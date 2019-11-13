@@ -42,7 +42,7 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11ShaderResourceView * m_shaderResourceView; /**< Shader Resource View class member object.*/
+    ID3D11ShaderResourceView * m_shaderResourceView = nullptr; /**< Shader Resource View class member object.*/
 
   };
 }

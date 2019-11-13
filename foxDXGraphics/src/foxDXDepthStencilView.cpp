@@ -13,6 +13,8 @@ namespace foxEngineSDK
 
   DXDepthStencilView::~DXDepthStencilView()
   {
+    if (m_depthStencilView) m_depthStencilView->Release();
+    m_depthStencilView = nullptr;
   }
 
   ID3D11DepthStencilView * DXDepthStencilView::getDepthStencilView()

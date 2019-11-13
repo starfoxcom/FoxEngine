@@ -41,7 +41,7 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11RenderTargetView *  m_renderTargetView; /**< Render Target View class object member.*/
+    ID3D11RenderTargetView *  m_renderTargetView = nullptr; /**< Render Target View class object member.*/
 
   };
 }

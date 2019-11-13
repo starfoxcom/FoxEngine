@@ -41,7 +41,7 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11Texture2D * m_texture; /**< Texture class object member.*/
+    ID3D11Texture2D * m_texture = nullptr; /**< Texture class object member.*/
 
   };
 }

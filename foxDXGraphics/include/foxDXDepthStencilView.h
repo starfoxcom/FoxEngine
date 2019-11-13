@@ -41,6 +41,6 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11DepthStencilView * m_depthStencilView; /**< Depth Stencil View class object member.*/
+    ID3D11DepthStencilView * m_depthStencilView = nullptr; /**< Depth Stencil View class object member.*/
   };
 }

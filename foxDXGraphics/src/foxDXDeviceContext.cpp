@@ -23,6 +23,11 @@ namespace foxEngineSDK
 
   DXDeviceContext::~DXDeviceContext()
   {
+    if (m_deviceContext) m_deviceContext->ClearState();
+
+    if (m_deviceContext) m_deviceContext->Release();
+
+    m_deviceContext = nullptr;
   }
 
   ID3D11DeviceContext * DXDeviceContext::getDeviceContext()

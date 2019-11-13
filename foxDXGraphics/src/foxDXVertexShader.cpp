@@ -13,6 +13,9 @@ namespace foxEngineSDK
 
   DXVertexShader::~DXVertexShader()
   {
+    if (m_vertexShader) m_vertexShader->Release();
+
+    m_vertexShader = nullptr;
   }
 
   ID3D11VertexShader * DXVertexShader::getVertexShader()

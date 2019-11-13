@@ -42,7 +42,7 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11SamplerState * m_samplerState; /**< Sampler State class object member.*/
+    ID3D11SamplerState * m_samplerState = nullptr; /**< Sampler State class object member.*/
 
   };
 }

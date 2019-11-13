@@ -43,7 +43,7 @@ namespace foxEngineSDK
   
   protected:
 
-    ID3D11Buffer * m_buffer; /**< Buffer class object member.*/
+    ID3D11Buffer * m_buffer = nullptr; /**< Buffer class object member.*/
 
   };
 }

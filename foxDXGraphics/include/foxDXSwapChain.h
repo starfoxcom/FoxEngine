@@ -46,7 +46,7 @@ namespace foxEngineSDK
 
   private:
 
-    IDXGISwapChain * m_swapChain; /**< Swap Chain class object member*/
+    IDXGISwapChain * m_swapChain = nullptr; /**< Swap Chain class object member*/
 
   };
 }

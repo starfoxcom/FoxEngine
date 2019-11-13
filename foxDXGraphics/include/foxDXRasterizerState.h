@@ -42,7 +42,7 @@ namespace foxEngineSDK
 
     protected:
 
-    ID3D11RasterizerState * m_rasterizerState; /**< Rasterizer state class object member.*/
+    ID3D11RasterizerState * m_rasterizerState = nullptr; /**< Rasterizer state class object member.*/
 
   };
 

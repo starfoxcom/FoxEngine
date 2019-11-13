@@ -12,6 +12,9 @@ namespace foxEngineSDK
 
   DXBuffer::~DXBuffer()
   {
+    if (m_buffer) m_buffer->Release();
+    m_buffer = nullptr;
+
   }
 
   ID3D11Buffer * DXBuffer::getBuffer()
