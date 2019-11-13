@@ -30,9 +30,9 @@ namespace foxEngineSDK
   DXGraphicsAPI::DXGraphicsAPI()
   {
 
-    m_swapChain = new DXSwapChain();
     m_device = new DXDevice();
     m_deviceContext = new DXDeviceContext();
+    m_swapChain = new DXSwapChain();
     m_renderTargetView = new DXRenderTargetView();
     m_depthStencilBuffer = new DXTexture();
     m_depthStencilView = new DXDepthStencilView();
@@ -51,9 +51,9 @@ namespace foxEngineSDK
 
   DXGraphicsAPI::~DXGraphicsAPI()
   {
-    delete m_swapChain;
     delete m_device;
     delete m_deviceContext;
+    delete m_swapChain;
     delete m_renderTargetView;
     delete m_depthStencilBuffer;
     delete m_depthStencilView;
@@ -340,29 +340,6 @@ namespace foxEngineSDK
   void DXGraphicsAPI::present()
   {
     m_swapChain->present();
-  }
-
-  void DXGraphicsAPI::cleanUpDXGraphicsAPI()
-  {
-
-    if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->ClearState();
-
-    if (m_samplerState->getSamplerState()) m_samplerState->getSamplerState()->Release();
-    if (m_shaderResourceView->getShaderResourceView()) m_shaderResourceView->getShaderResourceView()->Release();
-    if (m_diffuse->getTexture()) m_diffuse->getTexture()->Release();
-    if (m_constantBuffer->getBuffer()) m_constantBuffer->getBuffer()->Release();
-    if (m_indexBuffer->getBuffer()) m_indexBuffer->getBuffer()->Release();
-    if (m_vertexBuffer->getBuffer()) m_vertexBuffer->getBuffer()->Release();
-    if (m_inputLayout->getInputLayout()) m_inputLayout->getInputLayout()->Release();
-    if (m_vertexShader->getVertexShader()) m_vertexShader->getVertexShader()->Release();
-    if (m_wireframeRS->getRasterizerState()) m_wireframeRS->getRasterizerState()->Release();
-    if (m_solidRS->getRasterizerState()) m_solidRS->getRasterizerState()->Release();
-    if (m_depthStencilBuffer->getTexture()) m_depthStencilBuffer->getTexture()->Release();
-    if (m_depthStencilView->getDepthStencilView()) m_depthStencilView->getDepthStencilView()->Release();
-    if (m_renderTargetView->getRenderTargetView()) m_renderTargetView->getRenderTargetView()->Release();
-    if (m_swapChain->getSwapChain()) m_swapChain->getSwapChain()->Release();
-    if (m_deviceContext->getDeviceContext()) m_deviceContext->getDeviceContext()->Release();
-    if (m_device->getDevice()) m_device->getDevice()->Release();
   }
 
   bool DXGraphicsAPI::createDeviceAndSwapChain(HWND _windowHandle)

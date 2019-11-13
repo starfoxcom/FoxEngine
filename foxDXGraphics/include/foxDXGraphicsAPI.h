@@ -268,11 +268,6 @@ namespace foxEngineSDK
      */
     void present();
 
-    /**
-     * @brief Cleans up the Graphics API.
-     */
-    void cleanUpDXGraphicsAPI();
-
   private:
 
     /**
@@ -300,39 +295,39 @@ namespace foxEngineSDK
      */
     bool createWireframeRS();
 
-    DXSwapChain * m_swapChain; /**< Swap Chain member.*/
+    DXDevice * m_device = nullptr; /**< Device class object member.*/
 
-    DXDevice * m_device; /**< Device class object member.*/
+    DXDeviceContext * m_deviceContext = nullptr; /**< Device Context member.*/
 
-    DXDeviceContext * m_deviceContext; /**< Device Context member.*/
+    DXSwapChain * m_swapChain = nullptr; /**< Swap Chain member.*/
 
-    DXRenderTargetView * m_renderTargetView; /**< Render Target View member.*/
+    DXRenderTargetView * m_renderTargetView = nullptr; /**< Render Target View member.*/
 
-    DXTexture * m_depthStencilBuffer; /**< Depth Stencil Buffer member.*/
+    DXDepthStencilView * m_depthStencilView = nullptr; /**< Depth Stencil View member.*/
 
-    DXDepthStencilView * m_depthStencilView; /**< Depth Stencil View member.*/
+    DXTexture * m_depthStencilBuffer = nullptr; /**< Depth Stencil Buffer member.*/
 
-    DXSolidRS * m_solidRS; /**< Solid Rasterizer state member.*/
+    DXSolidRS * m_solidRS = nullptr; /**< Solid Rasterizer state member.*/
 
-    DXWireframeRS * m_wireframeRS; /**< Wire frame Rasterizer state member.*/
+    DXWireframeRS * m_wireframeRS = nullptr; /**< Wire frame Rasterizer state member.*/
 
-    DXVertexShader * m_vertexShader; /**< Vertex Shader member.*/
+    DXVertexShader * m_vertexShader = nullptr; /**< Vertex Shader member.*/
 
-    DXPixelShader * m_pixelShader; /**< Pixel Shader member.*/
+    DXPixelShader * m_pixelShader = nullptr; /**< Pixel Shader member.*/
 
-    DXInputLayout * m_inputLayout; /**< Input Layout member.*/
+    DXInputLayout * m_inputLayout = nullptr; /**< Input Layout member.*/
 
-    DXVertexBuffer * m_vertexBuffer; /**< Vertex Buffer member.*/
+    DXVertexBuffer * m_vertexBuffer = nullptr; /**< Vertex Buffer member.*/
 
-    DXIndexBuffer * m_indexBuffer; /**< Index Buffer member.*/
+    DXIndexBuffer * m_indexBuffer = nullptr; /**< Index Buffer member.*/
 
-    DXConstantBuffer * m_constantBuffer; /**< Constant Buffer member.*/
+    DXConstantBuffer * m_constantBuffer = nullptr; /**< Constant Buffer member.*/
 
-    DXTexture * m_diffuse; /**< Diffuse Texture member.*/
+    DXTexture * m_diffuse = nullptr; /**< Diffuse Texture member.*/
 
     DXShaderResourceView * m_shaderResourceView = nullptr; /**< Shader Resource View member.*/
 
-    DXSamplerState * m_samplerState; /**< Sampler State member.*/
+    DXSamplerState * m_samplerState = nullptr; /**< Sampler State member.*/
 
   };
 }

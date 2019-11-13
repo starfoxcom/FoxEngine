@@ -225,9 +225,6 @@ bool BaseApp::run()
 
   }
 
-  //Clean up the Graphics API
-  m_graphicsAPI.cleanUpDXGraphicsAPI();
-
   //Returns the processed messages
   return m_renderWindow.processMessages();
 }
