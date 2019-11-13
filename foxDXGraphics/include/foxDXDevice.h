@@ -158,6 +158,6 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11Device * m_device; /**< Device class object member.*/
+    ID3D11Device * m_device = nullptr; /**< Device class object member.*/
   };
 }

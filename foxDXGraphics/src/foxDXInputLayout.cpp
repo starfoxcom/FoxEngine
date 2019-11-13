@@ -12,6 +12,8 @@ namespace foxEngineSDK
 
   DXInputLayout::~DXInputLayout()
   {
+    if (m_inputLayout) m_inputLayout->Release();
+    m_inputLayout = nullptr;
   }
 
   ID3D11InputLayout * DXInputLayout::getInputLayout()

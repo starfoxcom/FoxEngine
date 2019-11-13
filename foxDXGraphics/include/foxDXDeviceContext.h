@@ -187,6 +187,6 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11DeviceContext * m_deviceContext; /**< Device Context class object member.*/
+    ID3D11DeviceContext * m_deviceContext = nullptr; /**< Device Context class object member.*/
   };
 }

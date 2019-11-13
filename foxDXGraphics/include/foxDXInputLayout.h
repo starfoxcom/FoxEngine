@@ -74,9 +74,7 @@ namespace foxEngineSDK
 
   private:
 
-    ID3D11InputLayout * m_inputLayout; /**< Input Layout class object member.*/
-
-    //D3D11_INPUT_ELEMENT_DESC * m_inputElementDesc; /**< Input Element Desc class object member.*/
+    ID3D11InputLayout * m_inputLayout = nullptr; /**< Input Layout class object member.*/
 
     std::vector<D3D11_INPUT_ELEMENT_DESC> m_inputElements; /**< Input Element vector.*/
   };

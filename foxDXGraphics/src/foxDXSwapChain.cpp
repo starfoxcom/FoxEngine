@@ -12,6 +12,8 @@ namespace foxEngineSDK
 
   DXSwapChain::~DXSwapChain()
   {
+    if (m_swapChain) m_swapChain->Release();
+    m_swapChain = nullptr;
   }
 
   IDXGISwapChain * DXSwapChain::getSwapChain()

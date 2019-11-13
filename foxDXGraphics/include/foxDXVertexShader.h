@@ -43,6 +43,6 @@ namespace foxEngineSDK
   
   private:
 
-    ID3D11VertexShader * m_vertexShader; /**< Vertex shader class object member.*/
+    ID3D11VertexShader * m_vertexShader = nullptr; /**< Vertex shader class object member.*/
   };
 }

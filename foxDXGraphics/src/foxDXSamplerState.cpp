@@ -13,6 +13,8 @@ namespace foxEngineSDK
 
   DXSamplerState::~DXSamplerState()
   {
+    if (m_samplerState) m_samplerState->Release();
+    m_samplerState = nullptr;
   }
 
   ID3D11SamplerState * DXSamplerState::getSamplerState()

@@ -12,6 +12,9 @@ namespace foxEngineSDK
 
   DXRasterizerState::~DXRasterizerState()
   {
+    if (m_rasterizerState) m_rasterizerState->Release();
+    m_rasterizerState = nullptr;
+
   }
 
   ID3D11RasterizerState * DXRasterizerState::getRasterizerState()

@@ -23,6 +23,8 @@ namespace foxEngineSDK
 
   DXDevice::~DXDevice()
   {
+    if (m_device) m_device->Release();
+    m_device = nullptr;
   }
 
   ID3D11Device * DXDevice::getDevice()
@@ -231,11 +233,6 @@ namespace foxEngineSDK
     DXTexture * _texture,
     DXShaderResourceView * _shaderResourceView)
   {
-
-    HRESULT hr = m_device->CreateShaderResourceView(
-      _texture->getTexture(),
-      NULL,
-      _shaderResourceView->getShaderResourceViewRef());
 
     if (FAILED(m_device->CreateShaderResourceView(
       _texture->getTexture(),

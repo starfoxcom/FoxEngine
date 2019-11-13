@@ -12,6 +12,8 @@ namespace foxEngineSDK
 
   DXRenderTargetView::~DXRenderTargetView()
   {
+    if (m_renderTargetView) m_renderTargetView->Release();
+    m_renderTargetView = nullptr;
   }
 
   ID3D11RenderTargetView * DXRenderTargetView::getRenderTargetView()

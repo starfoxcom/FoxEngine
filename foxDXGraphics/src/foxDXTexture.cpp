@@ -13,6 +13,8 @@ namespace foxEngineSDK
 
   DXTexture::~DXTexture()
   {
+    if (m_texture) m_texture->Release();
+    m_texture = nullptr;
   }
 
   ID3D11Texture2D * DXTexture::getTexture()
