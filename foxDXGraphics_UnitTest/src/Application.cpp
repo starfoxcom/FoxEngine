@@ -7,6 +7,9 @@
 #include "externals/imgui.h"
 #include "externals/imgui_impl_win32.h"
 #include "externals/imgui_impl_dx11.h"
+#include "assimp/Importer.hpp"
+#include "assimp/scene.h"
+#include "assimp/postprocess.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "externals/stb_image.h"
@@ -323,10 +326,59 @@ void BaseApp::render()
   }
 
 
-  //Load texture window
+  //Loading tool window
   {
-    ImGui::Begin("Load Texture", 0, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
-    if (ImGui::Button("Open", ImVec2(50, 20)))
+    ImGui::Begin("Loading tool", 0, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_AlwaysAutoResize);
+
+    //Load Model Button
+    if (ImGui::Button("Load Model"))
+    {
+      char filename[MAX_PATH];
+
+      bool bMustLoad = false;
+
+
+      OPENFILENAME ofn;
+      ZeroMemory(&filename, sizeof(filename));
+      ZeroMemory(&ofn, sizeof(ofn));
+      ofn.lStructSize = sizeof(ofn);
+      ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
+      ofn.lpstrFilter = "Any File\0*.*\0";
+      ofn.lpstrFile = filename;
+      ofn.nMaxFile = MAX_PATH;
+      ofn.lpstrTitle = "Select a Model to load";
+      ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST;
+      if (GetOpenFileNameA(&ofn))
+      {
+        Log(Log::LOGINFO, true) << "You chose the file [" << filename << "]";
+        if (filename > 0)
+        {
+          bMustLoad = true;
+        }
+
+        if (bMustLoad)
+        {
+          //Load Model with file
+          Assimp::Importer importer;
+          const auto model = importer.ReadFile(filename,
+            aiProcess_CalcTangentSpace |
+            aiProcess_Triangulate |
+            aiProcess_JoinIdenticalVertices |
+            aiProcess_SortByPType);
+
+          //Here you call the load function from model class
+          ///TODO: Model and Mesh Class
+
+        }
+      }
+      else
+      {
+        Log(Log::LOGERROR, true) << "File couldn't be loaded.";
+      }
+    }
+
+    //Load texture Button
+    if (ImGui::Button("Load Texture"))
     {
       //Get file from dialog
       char filename[MAX_PATH];
