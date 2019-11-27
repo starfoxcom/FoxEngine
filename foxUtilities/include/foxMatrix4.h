@@ -10,20 +10,22 @@
  * Includes
  */
 #include "foxPrerequisitesUtilities.h"
+#include "foxVector4.h"
 
 namespace foxEngineSDK
 {
 
   class Vector3;
+  class Vector4;
 
-  class Matrix4
+  class FOX_UTILITY_EXPORT Matrix4
   {
   public:
 
     /**
      * @brief Default constructor
      */
-    Matrix4() = default;
+    Matrix4();
 
     /**
      * @brief Constructor from 4 3D vectors.
@@ -72,17 +74,84 @@ namespace foxEngineSDK
     /**
      * @brief Transforms the matrix to its identity.
      */
-    void identity();
+    void toIdentity();
 
     /**
      * @brief Transforms the matrix components into zero.
      */
-    void zero();
+    void toZero();
 
     /**
      * @brief Transposes the matrix.
      */
+    void toTranspose();
+
+    /**
+     * @brief Returns the transposed matrix.
+     */
     Matrix4 transposed();
+
+    /**
+     * @brief converts the matrix to a lookAt matrix.
+     * @param _eyePos The eye position vector.
+     * @param _target The target vector.
+     * @param _up The up vector.
+     */
+    void toLookAt(Vector4 & _eyePos, Vector4 & _target, Vector4 & _up);
+
+    /**
+     * @brief Returns the lookAt matrix.
+     * @param _eyePos The eye position vector.
+     * @param _target The target vector.
+     * @param _up The up vector.
+     */
+    Matrix4 lookAt(Vector4 & _eyePos, Vector4 & _target, Vector4 & _up);
+
+    /**
+     * @brief converts the matrix to a perspective FOV matrix.
+     * @param
+     */
+    void toPerspectiveFOV(float _fovY, float _ratio, float _zNear, float _zFar);
+
+    /**
+     * @brief Returns the perspective FOV matrix.
+     * @param
+     */
+    Matrix4 perspectiveFOV(float _fovY, float _ratio, float _zNear, float _zFar);
+
+    /**
+* @brief Rotates the matrix in the X axis.
+* @param _angle The rotation angle value.
+*/
+    void rotateInX(float _angle);
+
+    /**
+     * @brief Rotates the matrix in the Y axis.
+     * @param _angle The rotation angle value.
+     */
+    void rotateInY(float _angle);
+
+    /**
+     * @brief Rotates the matrix in the Z axis.
+     * @param _angle The rotation angle value.
+     */
+    void rotateInZ(float _angle);
+
+    /**
+     * @brief Translates the matrix.
+     * @param _tX The translate angle value in X.
+     * @param _tY The translate angle value in Y.
+     * @param _tZ The translate angle value in Z.
+     */
+    void translate(float _tX, float _tY, float _tZ);
+
+    /**
+     * @brief Scales the matrix.
+     * @param _tX The scale value in X.
+     * @param _tY The scale value in Y.
+     * @param _tZ The scale value in Z.
+     */
+    void scale(float _tX, float _tY, float _tZ);
 
     /**
      * @brief Gets the result of adding two matrix together.
@@ -104,6 +173,13 @@ namespace foxEngineSDK
      * @return The result of multiplying the matrix.
      */
     Matrix4 operator*(const Matrix4& _matrix);
+
+    /**
+     * @brief Gets the result of multiplying a vector to this.
+     * @param _vec4D The vector to multiply to this.
+     * @return The result of multiplying the vector.
+     */
+    Vector4 operator*(const Vector4& _vec4D);
 
     /**
      * @brief Gets the result of multiplying a value to this.
@@ -161,12 +237,9 @@ namespace foxEngineSDK
     {
       float m_dr[4][4];
       float m_sr[16];
+      Vector4 m_v[4];
+
+
     };
-
-    /**
-     * Matrix functions
-     */
-
-    
   };
 }

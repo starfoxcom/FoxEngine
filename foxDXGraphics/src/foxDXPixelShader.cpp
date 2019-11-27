@@ -1,5 +1,7 @@
+/**
+ * Includes
+ */
 #include "foxDXPixelShader.h"
-
 
 namespace foxEngineSDK
 {
@@ -8,16 +10,18 @@ namespace foxEngineSDK
   {
   }
 
-
   DXPixelShader::~DXPixelShader()
   {
   }
-  ID3D11PixelShader ** DXPixelShader::getPixelShaderRef()
-  {
-    return &m_pixelShader;
-  }
+
   ID3D11PixelShader * DXPixelShader::getPixelShader()
   {
     return m_pixelShader;
   }
+
+  ID3D11PixelShader ** DXPixelShader::getPixelShaderRef()
+  {
+    return &m_pixelShader;
+  }
+
 }

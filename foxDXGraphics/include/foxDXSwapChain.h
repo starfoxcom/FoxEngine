@@ -1,49 +1,52 @@
-/**
-* @file foxSwapChain.h
-* @author --
-* @date ---
-* @brief Implementation of swap chain.
-*/
 #pragma once
+/**
+ * @file foxDXSwapChain.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief Graphics API Swap Chain Class for DirectX.
+ */
 
 /**
  * Includes
  */
 #include <d3d11.h>
-#include "foxPrerequisitesUtilities.h"
 
- /**
- * Libs
- */
 namespace foxEngineSDK
 {
 
   class DXSwapChain
   {
   public:
+
+    /**
+     * @brief Default constructor.
+     */
     DXSwapChain();
+
+    /**
+     * @brief Default destructor.
+     */
     ~DXSwapChain();
 
-    void setSwapChainDesc(
-      HWND _windowHandler,
-      uint32 _bufferCount = 1,
-      uint32 _numerator = 60,
-      uint32 _denominator = 1,
-      uint32 _sampleCount = 1,
-      uint32 _sampleQuality = 0,
-      bool _windowed = true);
-
-    void present();
-
-    IDXGISwapChain ** getSwapChainRef();
-
+    /**
+     * @brief Gets the DirectX Swap Chain.
+     */
     IDXGISwapChain * getSwapChain();
 
-    DXGI_SWAP_CHAIN_DESC * getSwapChainDesc();
+    /**
+     * @brief Gets the DirectX Swap Chain reference.
+     */
+    IDXGISwapChain ** getSwapChainRef();
+
+    /**
+     * @brief Present the information from the back buffer to the front buffer.
+     */
+    void present();
 
   private:
-    DXGI_SWAP_CHAIN_DESC m_swapChainDesc;
-    IDXGISwapChain * m_swapChain;
+
+    IDXGISwapChain * m_swapChain = nullptr; /**< Swap Chain class object member*/
+
   };
 }
-

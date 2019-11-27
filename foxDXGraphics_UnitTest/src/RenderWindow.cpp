@@ -1,11 +1,29 @@
-#include "foxDXRenderWindow.h"
+/**
+ * Includes
+ */
+#include "RenderWindow.h"
 #include "foxLog.h"
+#include "externals/imgui.h"
+#include "externals/imgui_impl_win32.h"
+#include "externals/imgui_impl_dx11.h"
 
 namespace foxEngineSDK
 {
 
+  RenderWindow::RenderWindow()
+  {
+  }
+
+  RenderWindow::~RenderWindow()
+  {
+  }
+
   LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
   {
+
+    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+      return true;
+
     //Sort through and find what code to run for the message given
     switch (message)
     {
@@ -22,14 +40,14 @@ namespace foxEngineSDK
     return DefWindowProc(hWnd, message, wParam, lParam);
   }
 
-  bool DXRenderWindow::initialize(
+  bool RenderWindow::initWindow(
     HINSTANCE _hInstance,
     std::string _windowClass,
     std::string _windowTitle,
     int32 _width,
     int32 _height)
   {
-
+    
     this->m_hInstance = _hInstance;
     this->m_windowClass = _windowClass;
     this->m_windowTitle = _windowTitle;
@@ -64,8 +82,9 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXRenderWindow::processMessages()
+  bool RenderWindow::processMessages()
   {
+    
     MSG msg = { 0 };
 
     if (PeekMessage(&msg, this->m_windowHandle, 0, 0, PM_REMOVE))
@@ -87,24 +106,14 @@ namespace foxEngineSDK
     return true;
   }
 
-  DXRenderWindow::~DXRenderWindow()
-  {
-
-    if (this->m_windowHandle != NULL)
-    {
-      UnregisterClass(this->m_windowClass.c_str(), this->m_hInstance);
-      DestroyWindow(m_windowHandle);
-    }
-  }
-
-  HWND DXRenderWindow::getWindowHandle()
+  HWND RenderWindow::getWindowHandle()
   {
     return m_windowHandle;
   }
 
-  bool DXRenderWindow::registerWindowClass()
+  bool RenderWindow::registerWindowClass()
   {
-
+    
     WNDCLASSEX windowClass;
 
     windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -127,4 +136,5 @@ namespace foxEngineSDK
 
     return true;
   }
+
 }

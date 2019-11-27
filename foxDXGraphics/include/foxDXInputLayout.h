@@ -1,14 +1,15 @@
-/**
-* @file foxInputLayout.h
-* @author --
-* @date ---
-* @brief Implementation of input layout.
-*/
 #pragma once
+/**
+ * @file foxDXInputLayout.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/04
+ * @brief Graphics API Input Layout class for DirectX.
+ */
 
 /**
-* Includes
-*/
+ * Includes
+ */
 #include <d3d11.h>
 #include "foxPrerequisitesUtilities.h"
 #include "foxGraphicsCommons.h"
@@ -16,31 +17,52 @@
 namespace foxEngineSDK
 {
 
-  struct InputElements
-  {
-    const char * semanticName;
-    uint32 semanticIndex;
-    FOXGI_FORMAT::E format;
-    uint32 inputSlot;
-    uint32 alignedByteOffset;
-    FOX_INPUT_CLASSIFICATION::E inputSlotClass;
-    uint32 instanceDataStepRate;
-  };
-
   class DXInputLayout
   {
   public:
+
+    /**
+     * @brief Default constructor.
+     */
     DXInputLayout();
+
+    /**
+     * @brief Default destructor.
+     */
     ~DXInputLayout();
 
-    ID3D11InputLayout ** getInputLayoutRef();
-    
+    /**
+     * @brief Gets the DirectX Input Layout.
+     */
     ID3D11InputLayout * getInputLayout();
-    
-    D3D11_INPUT_ELEMENT_DESC * getInputLayoutDesc();
-    
-    uint32 getInputLayoutNumElements();
 
+    /**
+     * @brief Gets the DirectX Input Layout reference.
+     */
+    ID3D11InputLayout ** getInputLayoutRef();
+
+    /**
+     * @brief Gets the DirectX Input Element Desc.
+     */
+    D3D11_INPUT_ELEMENT_DESC * getInputElementDesc();
+
+    /**
+     * @brief Gets the number of input elements.
+     */
+    uint32 getInputElementsNum();
+
+    /**
+     * @brief Adds an Input Element to the DirectX Input Layout.
+     * @param _semanticName Name to associate with the element.
+     * @param _semanticIndex Index to attach to a semantic.
+     * @param _format Enumerated type specifying the format of the vertex element to Direct3D.
+     * @param _inputSlot Specifies the input slot index this element will come from.
+     * @param _alignedByteOffset For a single input slot, this is the offset, in bytes,
+     *                           from the start of the C++ vertex structure to the start
+     *                           of the vertex component.
+     * @param _inputSlotClass Specifies the type of input classification.
+     * @param _instanceDataStepRate TBD.
+     */
     void addElement(
       const char * _semanticName,
       uint32 _semanticIndex,
@@ -51,10 +73,9 @@ namespace foxEngineSDK
       uint32 _instanceDataSetpRate);
 
   private:
-    ID3D11InputLayout * m_inputLayout;
 
-    D3D11_INPUT_ELEMENT_DESC * m_inputElementDesc;
+    ID3D11InputLayout * m_inputLayout = nullptr; /**< Input Layout class object member.*/
 
-    std::vector<InputElements> m_inputElements;
+    std::vector<D3D11_INPUT_ELEMENT_DESC> m_inputElements; /**< Input Element vector.*/
   };
 }

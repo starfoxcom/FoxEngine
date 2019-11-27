@@ -1,9 +1,10 @@
 /**
-* @file foxInputLayout.h
-* @author --
-* @date ---
-* @brief Implementation of input layout.
-*/
+ * @file foxGraphicsCommons.h
+ *
+ * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
+ * @date 2019/10/02
+ * @brief  
+ */
 #pragma once
 
 /**
@@ -38,7 +39,7 @@ namespace foxEngineSDK
 
       K_R8G8_UINT = 50,
 
-      K_R18_UINT = 57,
+      K_R16_UINT = 57,
 
       K_R8_UINT = 62,
 
@@ -63,6 +64,22 @@ namespace foxEngineSDK
     {
       K_PRIMITIVE_TOPOLOGY_UNDEFINDED = 0,
       K_PRIMITIVE_TOPOLOGY_TRIANGLELIST = 4
+    };
+  }
+
+  namespace FOX_BIND_FLAG
+  {
+    enum E
+    {
+      K_BIND_VERTEX_BUFFER = 1,
+      K_BIND_INDEX_BUFFER = 2,
+      K_BIND_CONSTANT_BUFFER = 4,
+      K_BIND_SHADER_RESOURCE = 8,
+      K_BIND_STREAM_OUTPUT = 16,
+      K_BIND_RENDER_TARGET = 32,
+      K_BIND_DEPTH_STENCIL = 64,
+      K_BIND_UNORDERED_ACCESS = 128
+
     };
   }
 }

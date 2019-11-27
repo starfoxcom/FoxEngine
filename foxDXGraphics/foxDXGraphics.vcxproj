@@ -93,7 +93,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -103,7 +103,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilitiesd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilitiesd.lib;foxCored.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -113,7 +113,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -123,7 +123,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilitiesd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilitiesd.lib;foxCored.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -135,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -147,7 +147,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilities.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilities.lib;foxCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -159,7 +159,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -171,41 +171,55 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilities.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;foxUtilities.lib;foxCore.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\foxDXSamplerState.h" />
+    <ClInclude Include="include\foxDXShaderResourceView.h" />
+    <ClInclude Include="include\foxDXBuffer.h" />
+    <ClInclude Include="include\foxDXConstantBuffer.h" />
+    <ClInclude Include="include\foxDXDepthStencilView.h" />
     <ClInclude Include="include\foxDXDevice.h" />
     <ClInclude Include="include\foxDXDeviceContext.h" />
     <ClInclude Include="include\foxDXGraphicsAPI.h" />
-    <ClInclude Include="include\foxGraphicsCommons.h" />
-    <ClInclude Include="include\foxGraphicsDefines.h" />
+    <ClInclude Include="include\foxDXIndexBuffer.h" />
     <ClInclude Include="include\foxDXInputLayout.h" />
     <ClInclude Include="include\foxDXPixelShader.h" />
+    <ClInclude Include="include\foxDXRasterizerState.h" />
     <ClInclude Include="include\foxDXRenderTargetView.h" />
-    <ClInclude Include="include\foxShader.h" />
+    <ClInclude Include="include\foxDXShader.h" />
+    <ClInclude Include="include\foxDXSolidRS.h" />
     <ClInclude Include="include\foxDXSwapChain.h" />
     <ClInclude Include="include\foxDXTexture.h" />
     <ClInclude Include="include\foxDXVertexBuffer.h" />
     <ClInclude Include="include\foxDXVertexShader.h" />
-    <ClInclude Include="include\foxDXRenderWindow.h" />
-    <ClInclude Include="include\foxDXViewport.h" />
+    <ClInclude Include="include\foxDXWireframeRS.h" />
+    <ClInclude Include="include\foxGraphicsCommons.h" />
+    <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\foxDXBuffer.cpp" />
+    <ClCompile Include="src\foxDXConstantBuffer.cpp" />
+    <ClCompile Include="src\foxDXDepthStencilView.cpp" />
     <ClCompile Include="src\foxDXDevice.cpp" />
     <ClCompile Include="src\foxDXDeviceContext.cpp" />
     <ClCompile Include="src\foxDXGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxDXIndexBuffer.cpp" />
     <ClCompile Include="src\foxDXInputLayout.cpp" />
     <ClCompile Include="src\foxDXPixelShader.cpp" />
+    <ClCompile Include="src\foxDXRasterizerState.cpp" />
     <ClCompile Include="src\foxDXRenderTargetView.cpp" />
-    <ClCompile Include="src\foxDXRenderWindow.cpp" />
-    <ClCompile Include="src\foxShader.cpp" />
+    <ClCompile Include="src\foxDXSamplerState.cpp" />
+    <ClCompile Include="src\foxDXShader.cpp" />
+    <ClCompile Include="src\foxDXShaderResourceView.cpp" />
+    <ClCompile Include="src\foxDXSolidRS.cpp" />
     <ClCompile Include="src\foxDXSwapChain.cpp" />
     <ClCompile Include="src\foxDXTexture.cpp" />
     <ClCompile Include="src\foxDXVertexBuffer.cpp" />
     <ClCompile Include="src\foxDXVertexShader.cpp" />
-    <ClCompile Include="src\foxDXViewport.cpp" />
+    <ClCompile Include="src\foxDXWireframeRS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

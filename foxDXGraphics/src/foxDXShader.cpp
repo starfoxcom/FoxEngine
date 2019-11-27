@@ -1,37 +1,43 @@
+/**
+ * Includes
+ */
+
 #include <vector>
 #include <fstream>
 #include <iostream>
 #include <d3dcompiler.h>
 
-#include "foxShader.h"
+#include "foxDXShader.h"
 #include "foxLog.h"
 
 namespace foxEngineSDK
 {
 
-  Shader::Shader()
+
+  DXShader::DXShader()
   {
   }
 
-  Shader::~Shader()
+  DXShader::~DXShader()
   {
   }
 
-  ID3DBlob ** Shader::getBlobRef()
-  {
-    return &m_blob;
-  }
-
-  ID3DBlob * Shader::getBlob()
+  ID3DBlob * DXShader::getBlob()
   {
     return m_blob;
   }
 
-  bool Shader::compileShaderFromFile(
+  ID3DBlob ** DXShader::getBlobRef()
+  {
+    return &m_blob;
+  }
+
+  bool DXShader::compileShaderFromFile(
     const char * _fileName,
     const char * _entryPoint,
     const char * _shaderModel)
   {
+
     std::fstream file(_fileName, std::ios::in | std::ios::binary | std::ios::ate);
 
     std::vector<char> dataBuffer;
@@ -54,6 +60,14 @@ namespace foxEngineSDK
 
     ID3DBlob* errorBlob;
 
+    uint32 flags = D3DCOMPILE_ENABLE_STRICTNESS;
+
+#ifdef _DEBUG
+    flags |= D3DCOMPILE_DEBUG;
+#endif // _DEBUG
+
+
+
     if (FAILED(D3DCompile(
       &dataBuffer[0],
       fileSize,
@@ -62,7 +76,7 @@ namespace foxEngineSDK
       NULL,
       _entryPoint,
       _shaderModel,
-      D3DCOMPILE_ENABLE_STRICTNESS,
+      flags,
       0,
       &m_blob,
       &errorBlob)))
@@ -76,6 +90,4 @@ namespace foxEngineSDK
     Log() << "Shader compiled successfully";
     return true;
   }
-
-
 }
