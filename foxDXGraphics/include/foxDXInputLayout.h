@@ -12,7 +12,6 @@
  */
 #include <d3d11.h>
 #include "foxPrerequisitesUtilities.h"
-#include "foxGraphicsCommons.h"
 
 namespace foxEngineSDK
 {

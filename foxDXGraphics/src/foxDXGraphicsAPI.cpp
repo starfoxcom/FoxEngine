@@ -135,12 +135,12 @@ namespace foxEngineSDK
 
   }
 
-  ID3D11Device * DXGraphicsAPI::getDevice()
+  void * DXGraphicsAPI::getDevice()
   {
     return m_device->getDevice();
   }
 
-  ID3D11DeviceContext * DXGraphicsAPI::getDeviceContext()
+  void * DXGraphicsAPI::getDeviceContext()
   {
     return m_deviceContext->getDeviceContext();
   }

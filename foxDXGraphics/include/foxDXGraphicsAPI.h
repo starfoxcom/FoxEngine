@@ -14,7 +14,6 @@
 #include <d3d11.h>
 
 #include "foxGraphicsDefines.h"
-#include "foxGraphicsCommons.h"
 
 #include "foxPrerequisitesUtilities.h"
 
@@ -65,12 +64,12 @@ namespace foxEngineSDK
     /**
      * @brief Gets the Device.
      */
-    ID3D11Device * getDevice();
+    void * getDevice() override;
 
     /**
      * @brief Gets the Device Context.
      */
-    ID3D11DeviceContext * getDeviceContext();
+    void * getDeviceContext() override;
 
     /**
      * @brief Adds an Input Element to the DirectX Input Layout.
@@ -91,7 +90,7 @@ namespace foxEngineSDK
       uint32 _inputSlot,
       uint32 _alignedByteOffset,
       FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
-      uint32 _instanceDataStepRate);
+      uint32 _instanceDataStepRate) override;
 
     /**
      * @brief Creates the Vertex Shader.
