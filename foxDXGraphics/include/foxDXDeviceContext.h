@@ -14,6 +14,8 @@
 
 #include "foxPrerequisitesUtilities.h"
 
+#include "foxCoreGraphicsCommons.h"
+
 namespace foxEngineSDK
 {
 

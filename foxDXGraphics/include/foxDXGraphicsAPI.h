@@ -101,18 +101,18 @@ namespace foxEngineSDK
     bool createVertexShader(
       const char * _fileName,
       const char * _entryPoint,
-      const char * _shaderModel);
+      const char * _shaderModel) override;
 
     /**
- * @brief Creates the Vertex Shader.
- * @param _filename The name of the shader file.
- * @param _entryPoint The entry point for the vertex shader.
- * @param _shaderModel The shader model.
- */
+     * @brief Creates the Vertex Shader.
+     * @param _filename The name of the shader file.
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
+     */
     bool createPixelShader(
       const char * _fileName,
       const char * _entryPoint,
-      const char * _shaderModel);
+      const char * _shaderModel) override;
 
     /**
      * @brief Creates the Input Layout.

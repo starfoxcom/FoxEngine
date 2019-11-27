@@ -47,7 +47,7 @@ namespace foxEngineSDK
     virtual void * getDeviceContext() = 0;
 
     /**
-     * @brief Adds an Input Element to the DirectX Input Layout.
+     * @brief Adds an Input Element to the Input Layout.
      * @param _semanticName Name to associate with the element.
      * @param _semanticIndex Index to attach to a semantic.
      * @param _format Enumerated type specifying the format of the vertex element to Direct3D.
@@ -66,6 +66,30 @@ namespace foxEngineSDK
       uint32 _alignedByteOffset,
       FOX_INPUT_CLASSIFICATION::E _inputSlotClass,
       uint32 _instanceDataStepRate) = 0;
+
+    /**
+     * @brief Creates the Vertex Shader.
+     * @param _filename The name of the shader file.
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
+     */
+    virtual bool createVertexShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel) = 0;
+
+    /**
+     * @brief Creates the Vertex Shader.
+     * @param _filename The name of the shader file.
+     * @param _entryPoint The entry point for the vertex shader.
+     * @param _shaderModel The shader model.
+     */
+    virtual bool createPixelShader(
+      const char * _fileName,
+      const char * _entryPoint,
+      const char * _shaderModel) = 0;
+
+
   private:
 
   };

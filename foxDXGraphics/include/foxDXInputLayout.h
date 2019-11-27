@@ -11,7 +11,10 @@
  * Includes
  */
 #include <d3d11.h>
+
 #include "foxPrerequisitesUtilities.h"
+
+#include "foxCoreGraphicsCommons.h"
 
 namespace foxEngineSDK
 {
