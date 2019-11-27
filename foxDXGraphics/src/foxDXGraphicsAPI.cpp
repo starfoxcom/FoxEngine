@@ -70,7 +70,7 @@ namespace foxEngineSDK
     delete m_samplerState;
   }
 
-  bool DXGraphicsAPI::initDXGraphicsAPI(HWND _windowHandle)
+  bool DXGraphicsAPI::initGraphicsAPI(HWND _windowHandle)
   {
 
     //Create window rect variable object

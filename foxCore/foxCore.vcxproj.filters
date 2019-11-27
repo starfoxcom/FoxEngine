@@ -12,9 +12,15 @@
     <ClInclude Include="include\foxCoreGraphicsAPI.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxCoreDefines.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxCoreGraphicsAPI.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

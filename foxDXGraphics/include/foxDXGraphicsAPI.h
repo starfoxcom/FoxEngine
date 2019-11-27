@@ -18,6 +18,8 @@
 
 #include "foxPrerequisitesUtilities.h"
 
+#include "foxCoreGraphicsAPI.h"
+
 namespace foxEngineSDK
 {
 /**
@@ -40,7 +42,7 @@ namespace foxEngineSDK
   class DXShaderResourceView;
   class DXSamplerState;
 
-  class FOX_GRAPHICS_EXPORT DXGraphicsAPI
+  class FOX_GRAPHICS_EXPORT DXGraphicsAPI : public foxGraphicsAPI
   {
   public:
 
@@ -56,8 +58,9 @@ namespace foxEngineSDK
 
     /**
      * @brief Initialize the DirectX Graphics API.
+     * @param _windowHandle The window handler.
      */
-    bool initDXGraphicsAPI(HWND _windowHandle);
+    bool initGraphicsAPI(HWND _windowHandle) override;
 
     /**
      * @brief Gets the Device.

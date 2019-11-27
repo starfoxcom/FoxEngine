@@ -10,7 +10,7 @@
 /**
  * Includes
  */
-#include <d3d11.h>
+#include <windows.h>
 
 #include "foxPrerequisitesUtilities.h"
 
