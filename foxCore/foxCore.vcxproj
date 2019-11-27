@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\foxCoreDefines.h" />
     <ClInclude Include="include\foxCoreGraphicsAPI.h" />
+    <ClInclude Include="include\foxCoreGraphicsCommons.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\foxCoreGraphicsAPI.cpp" />

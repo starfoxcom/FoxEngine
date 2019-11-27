@@ -196,7 +196,6 @@
     <ClInclude Include="include\foxDXVertexBuffer.h" />
     <ClInclude Include="include\foxDXVertexShader.h" />
     <ClInclude Include="include\foxDXWireframeRS.h" />
-    <ClInclude Include="include\foxGraphicsCommons.h" />
     <ClInclude Include="include\foxGraphicsDefines.h" />
   </ItemGroup>
   <ItemGroup>

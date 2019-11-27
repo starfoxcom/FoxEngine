@@ -15,6 +15,9 @@
     <ClInclude Include="include\foxCoreDefines.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxCoreGraphicsCommons.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">

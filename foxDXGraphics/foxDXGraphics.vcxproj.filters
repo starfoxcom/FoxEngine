@@ -18,9 +18,6 @@
     <ClInclude Include="include\foxGraphicsDefines.h">
       <Filter>Include\prerequisites</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxGraphicsCommons.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\foxDXDevice.h">
       <Filter>Include</Filter>
     </ClInclude>
