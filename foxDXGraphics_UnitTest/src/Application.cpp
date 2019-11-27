@@ -104,7 +104,7 @@ bool BaseApp::run()
   };
 
   //Initialize the graphicsAPI
-  m_graphicsAPI.initDXGraphicsAPI(m_renderWindow.getWindowHandle());
+  m_graphicsAPI.initGraphicsAPI(m_renderWindow.getWindowHandle());
 
   //Init Imgui
   IMGUI_CHECKVERSION();
@@ -120,7 +120,7 @@ bool BaseApp::run()
   else
   {
 
-    if (!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
+ /*   if (!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
     {
 
       Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
@@ -130,7 +130,7 @@ bool BaseApp::run()
     {
 
       Log(Log::LOGINFO, true) << "Imgui Initialized successfully.";
-    }
+    }*/
   }
 
 
@@ -299,7 +299,7 @@ void BaseApp::render()
   m_graphicsAPI.drawIndexed(36, 0, 0);
 
   //Start the Dear ImGui frame
-  ImGui_ImplDX11_NewFrame();
+  //ImGui_ImplDX11_NewFrame();
   ImGui_ImplWin32_NewFrame();
   ImGui::NewFrame();
 
