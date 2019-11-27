@@ -120,7 +120,9 @@ bool BaseApp::run()
   else
   {
 
- /*   if (!ImGui_ImplDX11_Init(m_graphicsAPI.getDevice(), m_graphicsAPI.getDeviceContext()))
+    if (!ImGui_ImplDX11_Init(
+      static_cast<ID3D11Device*>(m_graphicsAPI.getDevice()),
+      static_cast<ID3D11DeviceContext*>(m_graphicsAPI.getDeviceContext())))
     {
 
       Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
@@ -130,7 +132,7 @@ bool BaseApp::run()
     {
 
       Log(Log::LOGINFO, true) << "Imgui Initialized successfully.";
-    }*/
+    }
   }
 
 
@@ -299,7 +301,7 @@ void BaseApp::render()
   m_graphicsAPI.drawIndexed(36, 0, 0);
 
   //Start the Dear ImGui frame
-  //ImGui_ImplDX11_NewFrame();
+  ImGui_ImplDX11_NewFrame();
   ImGui_ImplWin32_NewFrame();
   ImGui::NewFrame();
 
