@@ -117,12 +117,12 @@ namespace foxEngineSDK
     /**
      * @brief Creates the Input Layout.
      */
-    bool createInputLayout();
+    bool createInputLayout() override;
 
     /**
      * @brief Sets the Input Layout.
      */
-    void setInputLayout();
+    void setInputLayout() override;
 
     /**
      * @brief Creates the Vertex Buffer.
@@ -130,7 +130,7 @@ namespace foxEngineSDK
      * @param _dataSize The vertex data size in bytes.
      * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer(const void * _data, uint32 _dataSize);
+    bool createVertexBuffer(const void * _data, uint32 _dataSize) override;
 
     /**
      * @brief Sets the Vertex Buffer.
@@ -138,14 +138,17 @@ namespace foxEngineSDK
      * @param _startSlot The input slot in which to start binding vertex buffers.
      * @param _numOfBuffers The number of vertex buffers we are binding to the input slots.
      */
-    void setVertexBuffer(uint32 _structSize, uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+    void setVertexBuffer(
+      uint32 _structSize,
+      uint32 _startSlot = 0,
+      uint32 _numOfBuffers = 1) override;
 
     /**
      * @brief Creates the Index Buffer.
      * @param _data The index data.
      * @param _dataSize The index data size in bytes.
      */
-    bool createIndexBuffer(const void * _data, uint32 _dataSize);
+    bool createIndexBuffer(const void * _data, uint32 _dataSize) override;
 
     /**
      * @brief Sets the Index Buffer.
@@ -154,20 +157,22 @@ namespace foxEngineSDK
                       to the position in the index buffer the input assembly should start 
                       reading the data.
      */
-    void setIndexBuffer(FOXGI_FORMAT::E _format = FOXGI_FORMAT::E::K_R32_UINT, uint32 _offset = 0);
+    void setIndexBuffer(
+      FOXGI_FORMAT::E _format = FOXGI_FORMAT::E::K_R32_UINT,
+      uint32 _offset = 0) override;
 
     /**
      * @brief Sets the primitive topology.
      * @param _topology The topology to set.
      */
-    void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology);
+    void setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology) override;
 
     /**
      * @brief Creates the Constant Buffer.
      * @param _structSize The constant struct size in bytes.
      * @param _data The constant buffer data.
      */
-    bool createConstantBuffer(uint32 _structSize);
+    bool createConstantBuffer(uint32 _structSize) override;
 
     /**
      * @brief Creates the Shader Resource View.
@@ -178,84 +183,84 @@ namespace foxEngineSDK
     bool createShaderResourceViewFromFile(
       const void * _data,
       uint32 _width,
-      uint32 _height);
+      uint32 _height) override;
 
     /**
      * @brief Creates the Sampler State.
      */
-    bool createSamplerState();
+    bool createSamplerState() override;
 
     /**
      * @brief Updates the Constant Buffer data.
      * @param _data The constant buffer data to update with.
      */
-    void updateConstantBuffer(const void * _data);
+    void updateConstantBuffer(const void * _data) override;
 
     /**
      * @brief Clears the Render Target View.
      * @param _RGBAColor The color to clean with.
      */
-    void clearRenderTargetView(float * _RGBAColor);
+    void clearRenderTargetView(float * _RGBAColor) override;
 
     /**
      * @brief Clears the Depth Stencil View.
      */
-    void clearDepthStencilView();
+    void clearDepthStencilView() override;
 
     /**
      * @brief Sets the Vertex Shader.
      */
-    void setVertexShader();
+    void setVertexShader() override;
 
     /**
      * @brief Sets the Vertex Constant Buffer.
      * @param _startSlot The starting index slot of the constant buffer.
      * @param _numOfBuffers The number of constant buffers.
      */
-    void setVSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+    void setVSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1) override;
 
     /**
      * @brief Sets the Pixel Constant Buffer.
      * @param _startSlot The starting index slot of the constant buffer.
      * @param _numOfBuffers The number of constant buffer.
      */
-    void setPSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1);
+    void setPSConstantBuffers(uint32 _startSlot = 0, uint32 _numOfBuffers = 1) override;
 
     /**
      * @brief Sets the Shader Resources.
      * @param _startSlot The starting index of the shader resource.
      * @param _numOfViews The number of shader Resource Views.
      */
-    void setShaderResources(uint32 _startSlot = 0, uint32 _numOfViews = 1);
+    void setShaderResources(uint32 _startSlot = 0, uint32 _numOfViews = 1) override;
 
     /**
      * @brief Sets the Pixel Shader.
      */
-    void setPixelShader();
+    void setPixelShader() override;
 
     /**
      * @brief Sets the Solid Rasterizer State.
      */
-    void setSolidRS();
+    void setSolidRS() override;
 
     /**
      * @brief Sets the Wire frame Rasterizer State.
      */
-    void setWireframeRS();
+    void setWireframeRS() override;
 
     /**
      * @brief Sets the Sampler State.
      * @param _startSlot The starting index slot of the Sampler State.
      * @param _numOfSamplers The number of Sampler States.
      */
-    void setPSSamplerState(uint32 _startSlot = 0, uint32 _numOfSamplers = 1);
+    void setPSSamplerState(uint32 _startSlot = 0, uint32 _numOfSamplers = 1) override;
 
     /**
      * @brief Draws the vertices.
      * @param _vertexCount The total count of vertices.
      * @param _vertexStart The starting point of the vertices.
      */
-    void draw(uint32 _vertexCount, uint32 _vertexStart);
+    void draw(uint32 _vertexCount, uint32 _vertexStart) override;
 
     /**
      * @brief Draws the indices.
@@ -263,12 +268,12 @@ namespace foxEngineSDK
      * @param _indexStart The starting point of the vertices.
      * @param _vertexStart _The starting point of the indices.
      */
-    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
+    void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart) override;
 
     /**
      * @brief Present the information from the back buffer to the front buffer.
      */
-    void present();
+    void present() override;
 
   private:
 
