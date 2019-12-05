@@ -28,6 +28,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxCore", "foxCore\foxCore.
 		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "foxCore_UnitTest", "foxCore_UnitTest\foxCore_UnitTest.vcxproj", "{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA5046CA-F3DD-4ACB-99B9-5621A07E1A18} = {AA5046CA-F3DD-4ACB-99B9-5621A07E1A18}
+		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768} = {167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +82,14 @@ Global
 		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x64.Build.0 = Release|x64
 		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x86.ActiveCfg = Release|Win32
 		{167497CA-A2C8-4C2E-B68B-CB2AA1FFA768}.Release|x86.Build.0 = Release|Win32
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Debug|x64.ActiveCfg = Debug|x64
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Debug|x64.Build.0 = Debug|x64
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Debug|x86.ActiveCfg = Debug|Win32
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Debug|x86.Build.0 = Debug|Win32
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Release|x64.ActiveCfg = Release|x64
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Release|x64.Build.0 = Release|x64
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Release|x86.ActiveCfg = Release|Win32
+		{71B20014-6C68-4C88-AAB2-1C34CEC7B12B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

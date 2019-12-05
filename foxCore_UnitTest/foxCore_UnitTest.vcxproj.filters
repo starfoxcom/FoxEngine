@@ -1,30 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Include">
+      <UniqueIdentifier>{961f5fc1-f7a9-48c8-8dde-5d76b42da8d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Src">
+      <UniqueIdentifier>{19d396a6-edf3-4ee3-b786-b3215dbc48ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Include\externals">
+      <UniqueIdentifier>{574c0e66-8f9e-4fe8-ab13-5afc38646e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\externals">
+      <UniqueIdentifier>{26d832a8-ffa8-4ca3-8b49-a58b5d3a4286}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\externals\imconfig.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_dx11.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_win32.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_internal.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_rectpack.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_textedit.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_truetype.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\stb_image.h">
+      <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CoreApplication.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CoreRenderWindow.h">
+      <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\CoreApplication.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="foxCore_UnitTest.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\CoreRenderWindow.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_demo.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_draw.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp">
+      <Filter>Src\externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_widgets.cpp">
+      <Filter>Src\externals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

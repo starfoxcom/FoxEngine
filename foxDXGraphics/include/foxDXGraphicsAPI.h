@@ -59,7 +59,7 @@ namespace foxEngineSDK
      * @brief Initialize the DirectX Graphics API.
      * @param _windowHandle The window handler.
      */
-    bool initGraphicsAPI(HWND _windowHandle) override;
+    bool initGraphicsAPI(HWND _windowHandle);
 
     /**
      * @brief Gets the Device.
