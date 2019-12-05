@@ -6,27 +6,27 @@
 namespace foxEngineSDK
 {
 
-  DXSwapChain::DXSwapChain()
+  foxDXSwapChain::foxDXSwapChain()
   {
   }
 
-  DXSwapChain::~DXSwapChain()
+  foxDXSwapChain::~foxDXSwapChain()
   {
     if (m_swapChain) m_swapChain->Release();
     m_swapChain = nullptr;
   }
 
-  IDXGISwapChain * DXSwapChain::getSwapChain()
+  IDXGISwapChain * foxDXSwapChain::getSwapChain()
   {
     return m_swapChain;
   }
 
-  IDXGISwapChain ** DXSwapChain::getSwapChainRef()
+  IDXGISwapChain ** foxDXSwapChain::getSwapChainRef()
   {
     return &m_swapChain;
   }
 
-  void DXSwapChain::present()
+  void foxDXSwapChain::present()
   {
     m_swapChain->Present(0, 0);
   }

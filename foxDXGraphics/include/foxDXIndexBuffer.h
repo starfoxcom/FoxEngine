@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXIndexBuffer : public DXBuffer
+  class foxDXIndexBuffer : public foxDXBuffer
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXIndexBuffer();
+    foxDXIndexBuffer();
 
     /**
      * @brief Default destructor.
      */
-    ~DXIndexBuffer();
+    ~foxDXIndexBuffer();
 
   private:
 

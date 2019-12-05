@@ -8,7 +8,6 @@
  */
 #include <windowsx.h>
 #include <windows.h>
-#include "foxCoreGraphicsAPI.h"
 #include "CoreRenderWindow.h"
 #include "foxMatrix4.h"
 

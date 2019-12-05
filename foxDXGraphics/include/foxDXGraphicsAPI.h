@@ -17,43 +17,43 @@
 
 #include "foxPrerequisitesUtilities.h"
 
-#include "foxCoreGraphicsAPI.h"
+#include <foxCoreGraphicsAPI.h>
 
 namespace foxEngineSDK
 {
 /**
  * Forward declarations
  */
-  class DXSwapChain;
-  class DXDevice;
-  class DXDeviceContext;
-  class DXTexture;
-  class DXRenderTargetView;
-  class DXDepthStencilView;
-  class DXWireframeRS;
-  class DXSolidRS;
-  class DXVertexShader;
-  class DXPixelShader;
-  class DXInputLayout;
-  class DXVertexBuffer;
-  class DXIndexBuffer;
-  class DXConstantBuffer;
-  class DXShaderResourceView;
-  class DXSamplerState;
+  class foxDXSwapChain;
+  class foxDXDevice;
+  class foxDXDeviceContext;
+  class foxDXTexture;
+  class foxDXRenderTargetView;
+  class foxDXDepthStencilView;
+  class foxDXWireframeRS;
+  class foxDXSolidRS;
+  class foxDXVertexShader;
+  class foxDXPixelShader;
+  class foxDXInputLayout;
+  class foxDXVertexBuffer;
+  class foxDXIndexBuffer;
+  class foxDXConstantBuffer;
+  class foxDXShaderResourceView;
+  class foxDXSamplerState;
 
-  class FOX_GRAPHICS_EXPORT DXGraphicsAPI : public foxGraphicsAPI
+  class FOX_GRAPHICS_EXPORT foxDXGraphicsAPI : public foxGraphicsAPI
   {
   public:
 
     /**
      * @brief Default constructor
      */
-    DXGraphicsAPI();
+    foxDXGraphicsAPI();
 
     /**
      * @brief Default destructor
      */
-    ~DXGraphicsAPI();
+    ~foxDXGraphicsAPI();
 
     /**
      * @brief Initialize the DirectX Graphics API.
@@ -302,39 +302,39 @@ namespace foxEngineSDK
      */
     bool createWireframeRS();
 
-    DXDevice * m_device = nullptr; /**< Device class object member.*/
+    foxDXDevice * m_device = nullptr; /**< Device class object member.*/
 
-    DXDeviceContext * m_deviceContext = nullptr; /**< Device Context member.*/
+    foxDXDeviceContext * m_deviceContext = nullptr; /**< Device Context member.*/
 
-    DXSwapChain * m_swapChain = nullptr; /**< Swap Chain member.*/
+    foxDXSwapChain * m_swapChain = nullptr; /**< Swap Chain member.*/
 
-    DXRenderTargetView * m_renderTargetView = nullptr; /**< Render Target View member.*/
+    foxDXRenderTargetView * m_renderTargetView = nullptr; /**< Render Target View member.*/
 
-    DXDepthStencilView * m_depthStencilView = nullptr; /**< Depth Stencil View member.*/
+    foxDXDepthStencilView * m_depthStencilView = nullptr; /**< Depth Stencil View member.*/
 
-    DXTexture * m_depthStencilBuffer = nullptr; /**< Depth Stencil Buffer member.*/
+    foxDXTexture * m_depthStencilBuffer = nullptr; /**< Depth Stencil Buffer member.*/
 
-    DXSolidRS * m_solidRS = nullptr; /**< Solid Rasterizer state member.*/
+    foxDXSolidRS * m_solidRS = nullptr; /**< Solid Rasterizer state member.*/
 
-    DXWireframeRS * m_wireframeRS = nullptr; /**< Wire frame Rasterizer state member.*/
+    foxDXWireframeRS * m_wireframeRS = nullptr; /**< Wire frame Rasterizer state member.*/
 
-    DXVertexShader * m_vertexShader = nullptr; /**< Vertex Shader member.*/
+    foxDXVertexShader * m_vertexShader = nullptr; /**< Vertex Shader member.*/
 
-    DXPixelShader * m_pixelShader = nullptr; /**< Pixel Shader member.*/
+    foxDXPixelShader * m_pixelShader = nullptr; /**< Pixel Shader member.*/
 
-    DXInputLayout * m_inputLayout = nullptr; /**< Input Layout member.*/
+    foxDXInputLayout * m_inputLayout = nullptr; /**< Input Layout member.*/
 
-    DXVertexBuffer * m_vertexBuffer = nullptr; /**< Vertex Buffer member.*/
+    foxDXVertexBuffer * m_vertexBuffer = nullptr; /**< Vertex Buffer member.*/
 
-    DXIndexBuffer * m_indexBuffer = nullptr; /**< Index Buffer member.*/
+    foxDXIndexBuffer * m_indexBuffer = nullptr; /**< Index Buffer member.*/
 
-    DXConstantBuffer * m_constantBuffer = nullptr; /**< Constant Buffer member.*/
+    foxDXConstantBuffer * m_constantBuffer = nullptr; /**< Constant Buffer member.*/
 
-    DXTexture * m_diffuse = nullptr; /**< Diffuse Texture member.*/
+    foxDXTexture * m_diffuse = nullptr; /**< Diffuse Texture member.*/
 
-    DXShaderResourceView * m_shaderResourceView = nullptr; /**< Shader Resource View member.*/
+    foxDXShaderResourceView * m_shaderResourceView = nullptr; /**< Shader Resource View member.*/
 
-    DXSamplerState * m_samplerState = nullptr; /**< Sampler State member.*/
+    foxDXSamplerState * m_samplerState = nullptr; /**< Sampler State member.*/
 
   };
 }

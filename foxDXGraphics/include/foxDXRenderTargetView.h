@@ -15,19 +15,19 @@
 namespace foxEngineSDK
 {
 
-  class DXRenderTargetView
+  class foxDXRenderTargetView
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXRenderTargetView();
+    foxDXRenderTargetView();
 
     /**
      * @brief Default destructor.
      */
-    ~DXRenderTargetView();
+    ~foxDXRenderTargetView();
 
     /**
      * @brief Gets the DirectX Render Target View.

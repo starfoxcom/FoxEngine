@@ -16,19 +16,19 @@
 namespace foxEngineSDK
 {
 
-  class DXRasterizerState
+  class foxDXRasterizerState
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXRasterizerState();
+    foxDXRasterizerState();
 
     /**
      * @brief Default destructor.
      */
-    ~DXRasterizerState();
+    ~foxDXRasterizerState();
 
     /**
      * @brief Gets the DirectX Rasterizer State.

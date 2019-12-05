@@ -7,22 +7,22 @@ namespace foxEngineSDK
 {
 
 
-  DXTexture::DXTexture()
+  foxDXTexture::foxDXTexture()
   {
   }
 
-  DXTexture::~DXTexture()
+  foxDXTexture::~foxDXTexture()
   {
     if (m_texture) m_texture->Release();
     m_texture = nullptr;
   }
 
-  ID3D11Texture2D * DXTexture::getTexture()
+  ID3D11Texture2D * foxDXTexture::getTexture()
   {
     return m_texture;
   }
 
-  ID3D11Texture2D ** DXTexture::getTextureRef()
+  ID3D11Texture2D ** foxDXTexture::getTextureRef()
   {
     return &m_texture;
   }

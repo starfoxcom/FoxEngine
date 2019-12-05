@@ -7,22 +7,22 @@ namespace foxEngineSDK
 {
 
 
-  DXDepthStencilView::DXDepthStencilView()
+  foxDXDepthStencilView::foxDXDepthStencilView()
   {
   }
 
-  DXDepthStencilView::~DXDepthStencilView()
+  foxDXDepthStencilView::~foxDXDepthStencilView()
   {
     if (m_depthStencilView) m_depthStencilView->Release();
     m_depthStencilView = nullptr;
   }
 
-  ID3D11DepthStencilView * DXDepthStencilView::getDepthStencilView()
+  ID3D11DepthStencilView * foxDXDepthStencilView::getDepthStencilView()
   {
     return m_depthStencilView;
   }
 
-  ID3D11DepthStencilView ** DXDepthStencilView::getDepthStencilViewRef()
+  ID3D11DepthStencilView ** foxDXDepthStencilView::getDepthStencilViewRef()
   {
     return &m_depthStencilView;
   }

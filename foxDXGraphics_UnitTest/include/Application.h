@@ -30,7 +30,7 @@ public:
 
 private:
 
-  DXGraphicsAPI m_graphicsAPI;
+  foxDXGraphicsAPI m_graphicsAPI;
   
   RenderWindow m_renderWindow;
 

@@ -6,20 +6,20 @@
 namespace foxEngineSDK
 {
 
-  DXPixelShader::DXPixelShader()
+  foxDXPixelShader::foxDXPixelShader()
   {
   }
 
-  DXPixelShader::~DXPixelShader()
+  foxDXPixelShader::~foxDXPixelShader()
   {
   }
 
-  ID3D11PixelShader * DXPixelShader::getPixelShader()
+  ID3D11PixelShader * foxDXPixelShader::getPixelShader()
   {
     return m_pixelShader;
   }
 
-  ID3D11PixelShader ** DXPixelShader::getPixelShaderRef()
+  ID3D11PixelShader ** foxDXPixelShader::getPixelShaderRef()
   {
     return &m_pixelShader;
   }

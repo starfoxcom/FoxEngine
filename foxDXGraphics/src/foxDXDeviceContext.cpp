@@ -17,11 +17,11 @@
 namespace foxEngineSDK
 {
 
-  DXDeviceContext::DXDeviceContext()
+  foxDXDeviceContext::foxDXDeviceContext()
   {
   }
 
-  DXDeviceContext::~DXDeviceContext()
+  foxDXDeviceContext::~foxDXDeviceContext()
   {
     if (m_deviceContext) m_deviceContext->ClearState();
 
@@ -30,18 +30,18 @@ namespace foxEngineSDK
     m_deviceContext = nullptr;
   }
 
-  ID3D11DeviceContext * DXDeviceContext::getDeviceContext()
+  ID3D11DeviceContext * foxDXDeviceContext::getDeviceContext()
   {
     return m_deviceContext;
   }
 
-  ID3D11DeviceContext ** DXDeviceContext::getDeviceContextRef()
+  ID3D11DeviceContext ** foxDXDeviceContext::getDeviceContextRef()
   {
     return &m_deviceContext;
   }
 
-  void DXDeviceContext::clearRenderTargetView(
-    DXRenderTargetView * _renderTargetView,
+  void foxDXDeviceContext::clearRenderTargetView(
+    foxDXRenderTargetView * _renderTargetView,
     float * _RGBAColor)
   {
     m_deviceContext->ClearRenderTargetView(
@@ -49,19 +49,19 @@ namespace foxEngineSDK
       _RGBAColor);
   }
 
-  void DXDeviceContext::clearDepthStencilView(DXDepthStencilView * _depthStencilView)
+  void foxDXDeviceContext::clearDepthStencilView(foxDXDepthStencilView * _depthStencilView)
   {
     m_deviceContext->ClearDepthStencilView(
       _depthStencilView->getDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
   }
 
-  void DXDeviceContext::setInputLayout(DXInputLayout * _inputLayout)
+  void foxDXDeviceContext::setInputLayout(foxDXInputLayout * _inputLayout)
   {
     m_deviceContext->IASetInputLayout(_inputLayout->getInputLayout());
   }
 
-  void DXDeviceContext::setVertexBuffer(
-    DXVertexBuffer * _vertexBuffer,
+  void foxDXDeviceContext::setVertexBuffer(
+    foxDXVertexBuffer * _vertexBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers,
     uint32 _structSize)
@@ -78,8 +78,8 @@ namespace foxEngineSDK
       &offset);
   }
 
-  void DXDeviceContext::setIndexBuffer(
-    DXIndexBuffer * _indexBuffer,
+  void foxDXDeviceContext::setIndexBuffer(
+    foxDXIndexBuffer * _indexBuffer,
     FOXGI_FORMAT::E _format,
     uint32 _offset)
   {
@@ -90,39 +90,39 @@ namespace foxEngineSDK
       _offset);
   }
 
-  void DXDeviceContext::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  void foxDXDeviceContext::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->IASetPrimitiveTopology(static_cast<D3D11_PRIMITIVE_TOPOLOGY>(_topology));
   }
 
-  void DXDeviceContext::updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data)
+  void foxDXDeviceContext::updateConstantBuffer(foxDXConstantBuffer * _constantBuffer, const void * _data)
   {
     m_deviceContext->UpdateSubresource(_constantBuffer->getBuffer(), 0, NULL, _data, 0, 0);
   }
 
-  void DXDeviceContext::setVertexShader(DXVertexShader * _vertexShader)
+  void foxDXDeviceContext::setVertexShader(foxDXVertexShader * _vertexShader)
   {
     m_deviceContext->VSSetShader(_vertexShader->getVertexShader(), NULL, 0);
   }
 
-  void DXDeviceContext::setVSConstantBuffers(
-    DXConstantBuffer * _constantBuffer,
+  void foxDXDeviceContext::setVSConstantBuffers(
+    foxDXConstantBuffer * _constantBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers)
   {
     m_deviceContext->VSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
   }
 
-  void DXDeviceContext::setPSConstantBuffers(
-    DXConstantBuffer * _constantBuffer,
+  void foxDXDeviceContext::setPSConstantBuffers(
+    foxDXConstantBuffer * _constantBuffer,
     uint32 _startSlot,
     uint32 _numOfBuffers)
   {
     m_deviceContext->PSSetConstantBuffers(_startSlot, _numOfBuffers, _constantBuffer->getBufferRef());
   }
 
-  void DXDeviceContext::setShaderResources(
-    DXShaderResourceView * _shaderResourceViews,
+  void foxDXDeviceContext::setShaderResources(
+    foxDXShaderResourceView * _shaderResourceViews,
     uint32 _startSlot,
     uint32 _numOfViews)
   {
@@ -132,30 +132,30 @@ namespace foxEngineSDK
       _shaderResourceViews->getShaderResourceViewRef());
   }
 
-  void DXDeviceContext::setPixelShader(DXPixelShader * _pixelShader)
+  void foxDXDeviceContext::setPixelShader(foxDXPixelShader * _pixelShader)
   {
     m_deviceContext->PSSetShader(_pixelShader->getPixelShader(), NULL, 0);
   }
 
-  void DXDeviceContext::setRasterizerState(DXRasterizerState * _rasterizerState)
+  void foxDXDeviceContext::setRasterizerState(foxDXRasterizerState * _rasterizerState)
   {
     m_deviceContext->RSSetState(_rasterizerState->getRasterizerState());
   }
 
-  void DXDeviceContext::setPSSamplerState(
-    DXSamplerState * _samplerState,
+  void foxDXDeviceContext::setPSSamplerState(
+    foxDXSamplerState * _samplerState,
     uint32 _startSlot,
     uint32 _numOfSamplers)
   {
     m_deviceContext->PSSetSamplers(_startSlot, _numOfSamplers, _samplerState->getSamplerStateRef());
   }
 
-  void DXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
+  void foxDXDeviceContext::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->Draw(_vertexCount, _vertexStart);
   }
 
-  void DXDeviceContext::drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart)
+  void foxDXDeviceContext::drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart)
   {
     m_deviceContext->DrawIndexed(_indexCount, _indexStart, _vertexStart);
   }

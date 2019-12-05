@@ -6,11 +6,11 @@
 namespace foxEngineSDK
 {
 
-  DXWireframeRS::DXWireframeRS()
+  foxDXWireframeRS::foxDXWireframeRS()
   {
   }
 
-  DXWireframeRS::~DXWireframeRS()
+  foxDXWireframeRS::~foxDXWireframeRS()
   {
   }
 

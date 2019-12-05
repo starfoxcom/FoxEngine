@@ -16,19 +16,19 @@
 namespace foxEngineSDK
 {
 
-  class DXSamplerState
+  class foxDXSamplerState
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXSamplerState();
+    foxDXSamplerState();
 
     /**
      * @brief Default destructor.
      */
-    ~DXSamplerState();
+    ~foxDXSamplerState();
 
     /**
      * @brief Gets the DirectX Sampler State.

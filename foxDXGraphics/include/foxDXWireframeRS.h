@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXWireframeRS : public DXRasterizerState
+  class foxDXWireframeRS : public foxDXRasterizerState
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXWireframeRS();
+    foxDXWireframeRS();
 
     /**
      * @brief Default destructor.
      */
-    ~DXWireframeRS();
+    ~foxDXWireframeRS();
 
   private:
 

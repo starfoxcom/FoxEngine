@@ -19,19 +19,19 @@
 namespace foxEngineSDK
 {
 
-  class DXInputLayout
+  class foxDXInputLayout
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXInputLayout();
+    foxDXInputLayout();
 
     /**
      * @brief Default destructor.
      */
-    ~DXInputLayout();
+    ~foxDXInputLayout();
 
     /**
      * @brief Gets the DirectX Input Layout.

@@ -14,25 +14,25 @@ namespace foxEngineSDK
 {
 
 
-  DXShader::DXShader()
+  foxDXShader::foxDXShader()
   {
   }
 
-  DXShader::~DXShader()
+  foxDXShader::~foxDXShader()
   {
   }
 
-  ID3DBlob * DXShader::getBlob()
+  ID3DBlob * foxDXShader::getBlob()
   {
     return m_blob;
   }
 
-  ID3DBlob ** DXShader::getBlobRef()
+  ID3DBlob ** foxDXShader::getBlobRef()
   {
     return &m_blob;
   }
 
-  bool DXShader::compileShaderFromFile(
+  bool foxDXShader::compileShaderFromFile(
     const char * _fileName,
     const char * _entryPoint,
     const char * _shaderModel)

@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXSolidRS : public DXRasterizerState
+  class foxDXSolidRS : public foxDXRasterizerState
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXSolidRS();
+    foxDXSolidRS();
 
     /**
      * @brief Default destructor.
      */
-    ~DXSolidRS();
+    ~foxDXSolidRS();
 
   private:
 

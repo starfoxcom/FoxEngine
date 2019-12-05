@@ -7,23 +7,23 @@ namespace foxEngineSDK
 {
 
 
-  DXVertexShader::DXVertexShader()
+  foxDXVertexShader::foxDXVertexShader()
   {
   }
 
-  DXVertexShader::~DXVertexShader()
+  foxDXVertexShader::~foxDXVertexShader()
   {
     if (m_vertexShader) m_vertexShader->Release();
 
     m_vertexShader = nullptr;
   }
 
-  ID3D11VertexShader * DXVertexShader::getVertexShader()
+  ID3D11VertexShader * foxDXVertexShader::getVertexShader()
   {
     return m_vertexShader;
   }
 
-  ID3D11VertexShader ** DXVertexShader::getVertexShaderRef()
+  ID3D11VertexShader ** foxDXVertexShader::getVertexShaderRef()
   {
     return &m_vertexShader;
   }

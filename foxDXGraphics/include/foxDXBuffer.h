@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXBuffer
+  class foxDXBuffer
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXBuffer();
+    foxDXBuffer();
 
     /**
      * @brief Default destructor.
      */
-    ~DXBuffer();
+    ~foxDXBuffer();
 
     /**
      * @brief Gets the DirectX buffer.

@@ -15,19 +15,19 @@
 namespace foxEngineSDK
 {
 
-  class DXTexture
+  class foxDXTexture
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXTexture();
+    foxDXTexture();
 
     /**
      * @brief Default destructor.
      */
-    ~DXTexture();
+    ~foxDXTexture();
 
     /**
      * @brief Gets the DirectX texture.

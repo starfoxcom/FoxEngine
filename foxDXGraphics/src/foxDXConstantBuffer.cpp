@@ -6,11 +6,11 @@
 namespace foxEngineSDK
 {
 
-  DXConstantBuffer::DXConstantBuffer()
+  foxDXConstantBuffer::foxDXConstantBuffer()
   {
   }
 
-  DXConstantBuffer::~DXConstantBuffer()
+  foxDXConstantBuffer::~foxDXConstantBuffer()
   {
   }
 
