@@ -73,5 +73,6 @@
     <ClCompile Include="src\foxDXSolidRS.cpp" />
     <ClCompile Include="src\foxDXShaderResourceView.cpp" />
     <ClCompile Include="src\foxDXSamplerState.cpp" />
+    <ClCompile Include="src\foxDXGraphicsLoader.cpp" />
   </ItemGroup>
 </Project>

@@ -131,7 +131,6 @@ namespace foxEngineSDK
 
     Log() << "Graphics API initialized successfully";
 
-    foxGraphicsAPI::instance() = new foxDXGraphicsAPI
     return true;
 
 
@@ -342,6 +341,22 @@ namespace foxEngineSDK
   void foxDXGraphicsAPI::present()
   {
     m_swapChain->present();
+  }
+
+  void foxDXGraphicsAPI::test()
+  {
+    Log(Log::LOGINFO, true) << "dll access is possible.";
+  }
+
+  void foxDXGraphicsAPI::onStartUp()
+  {
+
+    Log(Log::LOGINFO, true) << "Module instance started up.";
+  }
+
+  void foxDXGraphicsAPI::onShutDown()
+  {
+    Log(Log::LOGINFO, true) << "Module instance shut down.";
   }
 
   bool foxDXGraphicsAPI::createDeviceAndSwapChain(HWND _windowHandle)
@@ -586,6 +601,11 @@ namespace foxEngineSDK
 
     Log() << "Created Wire frame Rasterizer state successfully.";
     return true;
+  }
+
+  void initialize()
+  {
+    foxDXGraphicsAPI::startUp<foxDXGraphicsAPI>();
   }
 
 }

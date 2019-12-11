@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\CoreApplication.h" />
     <ClInclude Include="include\externals\imconfig.h" />
     <ClInclude Include="include\externals\imgui.h" />
     <ClInclude Include="include\externals\imgui_impl_dx11.h" />
@@ -29,11 +28,8 @@
     <ClInclude Include="include\externals\imstb_textedit.h" />
     <ClInclude Include="include\externals\imstb_truetype.h" />
     <ClInclude Include="include\externals\stb_image.h" />
-    <ClInclude Include="include\CoreRenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CoreApplication.cpp" />
-    <ClCompile Include="src\CoreRenderWindow.cpp" />
     <ClCompile Include="src\externals\imgui.cpp" />
     <ClCompile Include="src\externals\imgui_demo.cpp" />
     <ClCompile Include="src\externals\imgui_draw.cpp" />
@@ -126,7 +122,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;$(DEVLIBS)assimp/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -150,7 +146,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;$(DEVLIBS)assimp/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -176,7 +172,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;$(DEVLIBS)assimp/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
@@ -204,7 +200,7 @@
       </PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;$(DEVLIBS)assimp/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(SolutionDir)foxCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>

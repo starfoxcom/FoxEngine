@@ -19,12 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\externals\imconfig.h" />
+    <ClInclude Include="include\externals\imgui.h" />
+    <ClInclude Include="include\externals\imgui_impl_dx11.h" />
+    <ClInclude Include="include\externals\imgui_impl_win32.h" />
+    <ClInclude Include="include\externals\imgui_internal.h" />
+    <ClInclude Include="include\externals\imstb_rectpack.h" />
+    <ClInclude Include="include\externals\imstb_textedit.h" />
+    <ClInclude Include="include\externals\imstb_truetype.h" />
+    <ClInclude Include="include\externals\stb_image.h" />
+    <ClInclude Include="include\foxCoreBaseApp.h" />
     <ClInclude Include="include\foxCoreDefines.h" />
     <ClInclude Include="include\foxCoreGraphicsAPI.h" />
     <ClInclude Include="include\foxCoreGraphicsCommons.h" />
+    <ClInclude Include="include\foxCoreRenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\externals\imgui.cpp" />
+    <ClCompile Include="src\externals\imgui_demo.cpp" />
+    <ClCompile Include="src\externals\imgui_draw.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp" />
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp" />
+    <ClCompile Include="src\externals\imgui_widgets.cpp" />
+    <ClCompile Include="src\foxCoreBaseApp.cpp" />
     <ClCompile Include="src\foxCoreGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxCoreRenderWindow.cpp" />
     <ClCompile Include="src\Source.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -102,7 +121,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(DEVLIBS)assimp/include/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FOX_CORE_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -113,7 +132,7 @@
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>foxUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>foxUtilitiesd.lib;assimp-vc141-mtd.lib;IrrXMLd.lib;zlibd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,7 +141,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(DEVLIBS)assimp/include/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FOX_CORE_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -133,7 +152,7 @@
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>foxUtilitiesd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>foxUtilitiesd.lib;assimp-vc141-mtd.lib;IrrXMLd.lib;zlibd.lib;zlibstaticd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,7 +163,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(DEVLIBS)assimp/include/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FOX_CORE_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -157,7 +176,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>foxUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>foxUtilities.lib;assimp-vc141-mt.lib;IrrXML.lib;zlib.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +187,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include/;$(SolutionDir)foxUtilities/include/;$(DEVLIBS)assimp/include/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FOX_CORE_EXPORTS</PreprocessorDefinitions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -181,7 +200,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)lib\$(PlatformTarget)\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>foxUtilities.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>foxUtilities.lib;assimp-vc141-mt.lib;IrrXML.lib;zlib.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

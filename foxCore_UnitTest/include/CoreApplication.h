@@ -8,8 +8,8 @@
  */
 #include <windowsx.h>
 #include <windows.h>
-#include "CoreRenderWindow.h"
 #include "foxMatrix4.h"
+#include <foxCoreGraphicsAPI.h>
 
 using namespace foxEngineSDK;
 
@@ -31,8 +31,8 @@ public:
 
 private:
 
-  foxGraphicsAPI * m_graphicsAPI;
+  void loadDll();
 
-  CoreRenderWindow m_renderWindow;
+  foxGraphicsAPI * m_graphicsAPI;
 
 };

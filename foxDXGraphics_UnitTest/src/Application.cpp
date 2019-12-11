@@ -16,10 +16,11 @@
 
 
 
-bool BaseApp::run()
+bool App::run()
 {
   Log::Log(Log::LOGINFO, true) << "Application start";
 
+  
   int32 width = 640;
   int32 height = 480;
 
@@ -103,8 +104,10 @@ bool BaseApp::run()
    7,4,6,
   };
 
+
+
   //Initialize the graphicsAPI
-  m_graphicsAPI.initGraphicsAPI(m_renderWindow.getWindowHandle());
+  foxDXGraphicsAPI::instance().initGraphicsAPI(m_renderWindow.getWindowHandle());
 
   //Init Imgui
   IMGUI_CHECKVERSION();
@@ -121,8 +124,8 @@ bool BaseApp::run()
   {
 
     if (!ImGui_ImplDX11_Init(
-      static_cast<ID3D11Device*>(m_graphicsAPI.getDevice()),
-      static_cast<ID3D11DeviceContext*>(m_graphicsAPI.getDeviceContext())))
+      static_cast<ID3D11Device*>(foxDXGraphicsAPI::instance().getDevice()),
+      static_cast<ID3D11DeviceContext*>(foxDXGraphicsAPI::instance().getDeviceContext())))
     {
 
       Log(Log::LOGERROR, true) << "Imgui couldn't be initialized.";
@@ -137,10 +140,10 @@ bool BaseApp::run()
 
 
   //Create vertex shader
-  m_graphicsAPI.createVertexShader("shaders.shader", "VS", "vs_4_0");
+  foxDXGraphicsAPI::instance().createVertexShader("shaders.shader", "VS", "vs_4_0");
 
   //Add Input Elements for the input layout
-  m_graphicsAPI.addInputElement(
+  foxDXGraphicsAPI::instance().addInputElement(
     "POSITION",
     0,
     FOXGI_FORMAT::E::K_R32G32B32_FLOAT,
@@ -149,7 +152,7 @@ bool BaseApp::run()
     FOX_INPUT_CLASSIFICATION::E::K_INPUT_PER_VERTEX_DATA,
     0);
 
-  m_graphicsAPI.addInputElement(
+  foxDXGraphicsAPI::instance().addInputElement(
     "TEXCOORD",
     0,
     FOXGI_FORMAT::E::K_R32G32_FLOAT,
@@ -159,46 +162,46 @@ bool BaseApp::run()
     0);
 
   //Create pixel shader
-  m_graphicsAPI.createPixelShader("shaders.shader", "PS", "ps_4_0");
+  foxDXGraphicsAPI::instance().createPixelShader("shaders.shader", "PS", "ps_4_0");
 
   //Create the input layout
-  m_graphicsAPI.createInputLayout();
+  foxDXGraphicsAPI::instance().createInputLayout();
 
   //Set the input layout
-  m_graphicsAPI.setInputLayout();
+  foxDXGraphicsAPI::instance().setInputLayout();
 
   //Create and set the vertex data size, in bytes
   uint32 vertexDataSize = sizeof(textureCube);
 
   //Create the vertex buffer
-  m_graphicsAPI.createVertexBuffer(textureCube ,vertexDataSize);
+  foxDXGraphicsAPI::instance().createVertexBuffer(textureCube ,vertexDataSize);
 
   //Create and set the vertex struct size, in bytes
   uint32 vertexStructSize = sizeof(vertex);
   
   //Set the vertex buffer
-  m_graphicsAPI.setVertexBuffer(vertexStructSize);
+  foxDXGraphicsAPI::instance().setVertexBuffer(vertexStructSize);
 
   //Create and set the index data size, in bytes
   uint32 indexDataSize = sizeof(indices);
 
   //Create the index buffer
-  m_graphicsAPI.createIndexBuffer(indices, indexDataSize);
+  foxDXGraphicsAPI::instance().createIndexBuffer(indices, indexDataSize);
   
   //Set the index buffer
-  m_graphicsAPI.setIndexBuffer();
+  foxDXGraphicsAPI::instance().setIndexBuffer();
 
   //Set primitive topology
-  m_graphicsAPI.setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+  foxDXGraphicsAPI::instance().setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E::K_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
   //Create and set the constant struct size, in bytes
   uint32 constantStructSize = sizeof(constantBuffer);
   
   //Create constant buffer
-  m_graphicsAPI.createConstantBuffer(constantStructSize);
+  foxDXGraphicsAPI::instance().createConstantBuffer(constantStructSize);
 
   //Create sampler state
-  m_graphicsAPI.createSamplerState();
+  foxDXGraphicsAPI::instance().createSamplerState();
 
   //Set the world matrix to a identity matrix
   m_world.toIdentity();
@@ -234,7 +237,7 @@ bool BaseApp::run()
   return m_renderWindow.processMessages();
 }
 
-void BaseApp::update()
+void App::update()
 {
 
   //Create and set the delta time
@@ -255,50 +258,50 @@ void BaseApp::update()
   cb.meshColor = m_meshColor;
 
   //Update the constant buffer data
-  m_graphicsAPI.updateConstantBuffer(&cb);
+  foxDXGraphicsAPI::instance().updateConstantBuffer(&cb);
 }
 
-void BaseApp::render()
+void App::render()
 {
 
   //Create and set the clear color
   float clearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f };
   
   //Clear the Render Target View with the specified color
-  m_graphicsAPI.clearRenderTargetView(clearColor);
+  foxDXGraphicsAPI::instance().clearRenderTargetView(clearColor);
 
   //Clear the Depth Stencil View
-  m_graphicsAPI.clearDepthStencilView();
+  foxDXGraphicsAPI::instance().clearDepthStencilView();
 
   //Set the Vertex Shader
-  m_graphicsAPI.setVertexShader();
+  foxDXGraphicsAPI::instance().setVertexShader();
 
   //Set the Vertex Constant Buffer
-  m_graphicsAPI.setVSConstantBuffers();
+  foxDXGraphicsAPI::instance().setVSConstantBuffers();
 
   //Set the Pixel Shader
-  m_graphicsAPI.setPixelShader();
+  foxDXGraphicsAPI::instance().setPixelShader();
 
   //Set the Pixel Constant Buffer
-  m_graphicsAPI.setPSConstantBuffers();
+  foxDXGraphicsAPI::instance().setPSConstantBuffers();
 
   //Set the Rasterizer State
   switch (m_RSValue)
   {
   case 1:
-    m_graphicsAPI.setSolidRS();
+    foxDXGraphicsAPI::instance().setSolidRS();
     break;
   case 2:
-    m_graphicsAPI.setWireframeRS();
+    foxDXGraphicsAPI::instance().setWireframeRS();
     break;
   }
 
   //Set the Pixel Sampler
-  m_graphicsAPI.setPSSamplerState();
+  foxDXGraphicsAPI::instance().setPSSamplerState();
 
   //Draw
   //m_graphicsAPI.draw(3, 0);
-  m_graphicsAPI.drawIndexed(36, 0, 0);
+  foxDXGraphicsAPI::instance().drawIndexed(36, 0, 0);
 
   //Start the Dear ImGui frame
   ImGui_ImplDX11_NewFrame();
@@ -418,11 +421,11 @@ void BaseApp::render()
 
           Log(Log::LOGINFO, true) << "File loaded successfully.";
 
-          m_graphicsAPI.createShaderResourceViewFromFile(image, width, height);
+          foxDXGraphicsAPI::instance().createShaderResourceViewFromFile(image, width, height);
 
           stbi_image_free(image);
 
-          m_graphicsAPI.setShaderResources();
+          foxDXGraphicsAPI::instance().setShaderResources();
 
         }
       }
@@ -439,15 +442,15 @@ void BaseApp::render()
   ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
   //Present the new frame
-  m_graphicsAPI.present();
+  foxDXGraphicsAPI::instance().present();
 
 }
 
-BaseApp::BaseApp()
+App::App()
 {
 }
 
-BaseApp::~BaseApp()
+App::~App()
 {
 
   ImGui_ImplDX11_Shutdown();

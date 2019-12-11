@@ -13,8 +13,6 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 
-#include <foxCoreGraphicsAPI.h>
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "externals/stb_image.h"
 
@@ -55,8 +53,8 @@ bool CoreBaseApp::run()
   }
 
   //Initialize the graphics API
-  foxGraphicsAPI::instance() = new foxGraphicsAPIDX()<
 
+  //m_graphicsAPI->instancePtr()->initGraphicsAPI(m_renderWindow.getWindowHandle());
   //m_graphicsAPI->initGraphicsAPI(m_renderWindow.getWindowHandle());
 
   while (m_renderWindow.processMessages() == true)

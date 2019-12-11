@@ -41,7 +41,7 @@ namespace foxEngineSDK
   class foxDXShaderResourceView;
   class foxDXSamplerState;
 
-  class FOX_GRAPHICS_EXPORT foxDXGraphicsAPI : public foxGraphicsAPI
+  class foxDXGraphicsAPI : public foxGraphicsAPI
   {
   public:
 
@@ -274,6 +274,17 @@ namespace foxEngineSDK
      * @brief Present the information from the back buffer to the front buffer.
      */
     void present() override;
+
+    /**
+     * @brief Test function to know if dll access is possible.
+     */
+    void test() override;
+
+  protected:
+
+    void onStartUp() override;
+
+    void onShutDown() override;
 
   private:
 

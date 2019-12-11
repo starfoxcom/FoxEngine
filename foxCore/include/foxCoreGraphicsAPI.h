@@ -250,6 +250,10 @@ namespace foxEngineSDK
      */
     virtual void present() = 0;
 
+    /**
+     * @brief Test function to know if dll access is possible.
+     */
+    virtual void test() = 0;
   private:
 
   };

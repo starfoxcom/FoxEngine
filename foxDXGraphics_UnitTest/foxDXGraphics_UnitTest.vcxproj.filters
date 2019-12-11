@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Application.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\externals\imconfig.h">
       <Filter>Include\externals</Filter>
     </ClInclude>
@@ -47,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="include\externals\stb_image.h">
       <Filter>Include\externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Application.h">
+      <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

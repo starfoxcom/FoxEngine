@@ -1,7 +1,7 @@
 /**
  * Includes
  */
-#include "CoreRenderWindow.h"
+#include "foxCoreRenderWindow.h"
 #include "foxLog.h"
 #include "externals/imgui.h"
 #include "externals/imgui_impl_win32.h"
@@ -72,7 +72,8 @@ namespace foxEngineSDK
 
     if (!this->m_windowHandle)
     {
-      //TODO: Add log when completed
+      
+      Log(Log::LOGERROR, true) << "Window Handle couldn't be created";
       return false;
     }
 

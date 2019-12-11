@@ -7,6 +7,12 @@
     <Filter Include="Src">
       <UniqueIdentifier>{b0f68603-4a38-40d7-af15-1c6b7d9044d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Include\Externals">
+      <UniqueIdentifier>{4cdee5b2-436d-47ee-a3da-114c170e300e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Externals">
+      <UniqueIdentifier>{42494dd6-cbc1-4875-9b24-827fc7127e8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\foxCoreGraphicsAPI.h">
@@ -18,6 +24,39 @@
     <ClInclude Include="include\foxCoreGraphicsCommons.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxCoreRenderWindow.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxCoreBaseApp.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imconfig.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_dx11.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_impl_win32.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imgui_internal.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_rectpack.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_textedit.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\imstb_truetype.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\externals\stb_image.h">
+      <Filter>Include\Externals</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
@@ -25,6 +64,30 @@
     </ClCompile>
     <ClCompile Include="src\foxCoreGraphicsAPI.cpp">
       <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxCoreBaseApp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxCoreRenderWindow.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui.cpp">
+      <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_demo.cpp">
+      <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_draw.cpp">
+      <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_dx11.cpp">
+      <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_impl_win32.cpp">
+      <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\externals\imgui_widgets.cpp">
+      <Filter>Src\Externals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

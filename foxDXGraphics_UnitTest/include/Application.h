@@ -16,11 +16,11 @@ using namespace foxEngineSDK;
  * Forward Declarations
  */
 
-class BaseApp
+class App
 {
 public:
-  BaseApp();
-  ~BaseApp();
+  App();
+  ~App();
 
   bool run();
 
@@ -29,8 +29,6 @@ public:
   void render();
 
 private:
-
-  foxDXGraphicsAPI m_graphicsAPI;
   
   RenderWindow m_renderWindow;
 

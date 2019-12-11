@@ -1,8 +1,8 @@
-#include "CoreApplication.h"
+#include "foxCoreBaseApp.h"
 
 int main()
 {
-  CoreBaseApp app;
+  BaseApp app;
   app.run();
   return 0;
 }
