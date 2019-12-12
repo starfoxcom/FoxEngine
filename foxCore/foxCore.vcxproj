@@ -32,6 +32,8 @@
     <ClInclude Include="include\foxCoreDefines.h" />
     <ClInclude Include="include\foxCoreGraphicsAPI.h" />
     <ClInclude Include="include\foxCoreGraphicsCommons.h" />
+    <ClInclude Include="include\foxCoreMesh.h" />
+    <ClInclude Include="include\foxCoreModel.h" />
     <ClInclude Include="include\foxCoreRenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +45,8 @@
     <ClCompile Include="src\externals\imgui_widgets.cpp" />
     <ClCompile Include="src\foxCoreBaseApp.cpp" />
     <ClCompile Include="src\foxCoreGraphicsAPI.cpp" />
+    <ClCompile Include="src\foxCoreMesh.cpp" />
+    <ClCompile Include="src\foxCoreModel.cpp" />
     <ClCompile Include="src\foxCoreRenderWindow.cpp" />
     <ClCompile Include="src\Source.cpp" />
   </ItemGroup>

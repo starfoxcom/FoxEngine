@@ -10,11 +10,11 @@
 namespace foxEngineSDK
 {
 
-  CoreRenderWindow::CoreRenderWindow()
+  foxRenderWindow::foxRenderWindow()
   {
   }
 
-  CoreRenderWindow::~CoreRenderWindow()
+  foxRenderWindow::~foxRenderWindow()
   {
   }
 
@@ -40,7 +40,7 @@ namespace foxEngineSDK
     return DefWindowProc(hWnd, message, wParam, lParam);
   }
 
-  bool CoreRenderWindow::initWindow(
+  bool foxRenderWindow::initWindow(
     HINSTANCE _hInstance,
     std::string _windowClass,
     std::string _windowTitle,
@@ -83,7 +83,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool CoreRenderWindow::processMessages()
+  bool foxRenderWindow::processMessages()
   {
     
     MSG msg = { 0 };
@@ -107,12 +107,12 @@ namespace foxEngineSDK
     return true;
   }
 
-  HWND CoreRenderWindow::getWindowHandle()
+  HWND foxRenderWindow::getWindowHandle()
   {
     return m_windowHandle;
   }
 
-  bool CoreRenderWindow::registerWindowClass()
+  bool foxRenderWindow::registerWindowClass()
   {
     
     WNDCLASSEX windowClass;

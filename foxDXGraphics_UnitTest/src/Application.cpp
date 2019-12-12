@@ -107,6 +107,19 @@ bool App::run()
 
 
   //Initialize the graphicsAPI
+
+  //Check if the instance is started up
+  if (foxDXGraphicsAPI::instance().isStarted())
+  {
+
+    Log(Log::LOGINFO, true) << "instance is started up.";
+  }
+  else
+  {
+
+    Log(Log::LOGERROR, true) << "Instance is not started up.";
+  }
+
   foxDXGraphicsAPI::instance().initGraphicsAPI(m_renderWindow.getWindowHandle());
 
   //Init Imgui

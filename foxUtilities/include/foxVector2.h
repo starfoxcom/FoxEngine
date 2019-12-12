@@ -37,14 +37,14 @@ namespace foxEngineSDK
     ~Vector2();
 
     /**
-     * @brief Vector's Y component.
-     */
-    float y;
-
-    /**
      * @brief Vector's X component.
      */
     float x;
+
+    /**
+     * @brief Vector's Y component.
+     */
+    float y;
 
     /**
      * @brief Constructor using initial values.

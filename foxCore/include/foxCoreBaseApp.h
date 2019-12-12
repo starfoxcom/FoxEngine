@@ -15,58 +15,81 @@
 
 #include <foxCoreGraphicsAPI.h>
 
-#include "foxCoreRenderWindow.h"
 #include "foxPrerequisitesUtilities.h"
+#include "foxCoreRenderWindow.h"
+#include "foxMatrix4.h"
 
 
-using namespace foxEngineSDK;
-
-/**
- * Forward Declarations
- */
-
-class FOX_CORE_EXPORT BaseApp
+namespace foxEngineSDK
 {
-public:
+
 
   /**
-   * @brief Default constructor.
+   * Forward Declarations
    */
-  BaseApp();
+  class foxModel;
 
-  /**
-   * @brief Default destructor.
-   */
-  ~BaseApp();
+  class FOX_CORE_EXPORT foxBaseApp
+  {
+  public:
 
-  /**
-   * @brief Starts the App.
-   */
-  bool run();
+    /**
+     * @brief Default constructor.
+     */
+    foxBaseApp();
 
-  /**
-   * @brief Updates the App logic.
-   */
-  void update();
+    /**
+     * @brief Default destructor.
+     */
+    ~foxBaseApp();
 
-  /**
-   * @brief Renders the App.
-   */
-  void render();
+    /**
+     * @brief Starts the App.
+     */
+    bool run();
 
-private:
+    /**
+     * @brief Updates the App logic.
+     */
+    void update();
 
-  /**
-   * @brief Starts up the module instance.
-   * @param _dllName The dll name.
-   * @param _dllMethod The dll method.
-   */
-  void loadLibrary(String _dllName, String _dllMethod);
+    /**
+     * @brief Renders the App.
+     */
+    void render();
 
-  foxGraphicsAPI * m_graphicsAPI;
+  private:
 
-  CoreRenderWindow m_renderWindow;
+    /**
+     * @brief Starts up the module instance.
+     * @param _dllName The dll name.
+     * @param _dllMethod The dll method.
+     */
+    void loadLibrary(String _dllName, String _dllMethod);
 
-  int32 m_RSValue = 1;
+    foxGraphicsAPI * m_graphicsAPI;
 
-};
+    foxRenderWindow m_renderWindow;
+
+    int32 m_RSValue = 1;
+
+    foxModel * m_model;
+
+    Matrix4 m_world;
+    Matrix4 m_view;
+    Matrix4 m_projection;
+    Vector4 m_meshColor;
+
+    Vector4 m_eye;
+    Vector4 m_at;
+    Vector4 m_up;
+
+    struct constantBuffer
+    {
+      Matrix4 world;
+      Matrix4 view;
+      Matrix4 projection;
+      Vector4 meshColor;
+    };
+  };
+}

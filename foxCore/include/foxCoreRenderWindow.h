@@ -19,19 +19,19 @@ extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam
 namespace foxEngineSDK
 {
 
-  class CoreRenderWindow
+  class foxRenderWindow
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    CoreRenderWindow();
+    foxRenderWindow();
 
     /**
      * @brief Default destructor.
      */
-    ~CoreRenderWindow();
+    ~foxRenderWindow();
 
     /**
      * @brief Initialize the Window.

@@ -57,6 +57,12 @@
     <ClInclude Include="include\externals\stb_image.h">
       <Filter>Include\Externals</Filter>
     </ClInclude>
+    <ClInclude Include="include\foxCoreModel.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\foxCoreMesh.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Source.cpp">
@@ -88,6 +94,12 @@
     </ClCompile>
     <ClCompile Include="src\externals\imgui_widgets.cpp">
       <Filter>Src\Externals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxCoreModel.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\foxCoreMesh.cpp">
+      <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
