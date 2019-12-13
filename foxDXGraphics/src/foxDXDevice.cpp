@@ -17,34 +17,34 @@
 namespace foxEngineSDK
 {
 
-  DXDevice::DXDevice()
+  foxDXDevice::foxDXDevice()
   {
   }
 
-  DXDevice::~DXDevice()
+  foxDXDevice::~foxDXDevice()
   {
     if (m_device) m_device->Release();
     m_device = nullptr;
   }
 
-  ID3D11Device * DXDevice::getDevice()
+  ID3D11Device * foxDXDevice::getDevice()
   {
     return m_device;
   }
 
-  ID3D11Device ** DXDevice::getDeviceRef()
+  ID3D11Device ** foxDXDevice::getDeviceRef()
   {
     return &m_device;
   }
 
-  bool DXDevice::createRenderTargetView(
+  bool foxDXDevice::createRenderTargetView(
     ID3D11Texture2D * _backBuffer,
     ID3D11RenderTargetView ** _renderTargetViewRef)
   {
     return m_device->CreateRenderTargetView(_backBuffer, 0, _renderTargetViewRef);
   }
 
-  bool DXDevice::createTexture2D(
+  bool foxDXDevice::createTexture2D(
     D3D11_TEXTURE2D_DESC * _textureDesc,
     ID3D11Texture2D ** _texture,
     D3D11_SUBRESOURCE_DATA * _initData)
@@ -52,7 +52,7 @@ namespace foxEngineSDK
     return m_device->CreateTexture2D(_textureDesc, _initData, _texture);
   }
 
-  bool DXDevice::createDepthStencilView(
+  bool foxDXDevice::createDepthStencilView(
     ID3D11Texture2D * _depthStencilBuffer,
     ID3D11DepthStencilView ** _depthStencilView,
     D3D11_DEPTH_STENCIL_VIEW_DESC * _depthStencilViewDesc)
@@ -63,7 +63,7 @@ namespace foxEngineSDK
       _depthStencilView);
   }
   
-  bool DXDevice::createRasterizerState(DXRasterizerState * _rasterizerState, D3D11_RASTERIZER_DESC _rasterizerDesc)
+  bool foxDXDevice::createRasterizerState(foxDXRasterizerState * _rasterizerState, D3D11_RASTERIZER_DESC _rasterizerDesc)
   {
 
     if (FAILED(m_device->CreateRasterizerState(
@@ -79,7 +79,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createVertexShader(DXVertexShader * _vertexShader)
+  bool foxDXDevice::createVertexShader(foxDXVertexShader * _vertexShader)
   {
     if (FAILED(m_device->CreateVertexShader(
       _vertexShader->getBlob()->GetBufferPointer(),
@@ -97,7 +97,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createPixelShader(DXPixelShader * _pixelShader)
+  bool foxDXDevice::createPixelShader(foxDXPixelShader * _pixelShader)
   {
     if (FAILED(m_device->CreatePixelShader(
       _pixelShader->getBlob()->GetBufferPointer(),
@@ -116,9 +116,9 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createInputLayout(
-    DXInputLayout * _inputLayout,
-    DXVertexShader * _vertexShader)
+  bool foxDXDevice::createInputLayout(
+    foxDXInputLayout * _inputLayout,
+    foxDXVertexShader * _vertexShader)
   {
 
     if (FAILED(m_device->CreateInputLayout(
@@ -137,8 +137,8 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createVertexBuffer(
-    DXVertexBuffer * _vertexBuffer,
+  bool foxDXDevice::createVertexBuffer(
+    foxDXVertexBuffer * _vertexBuffer,
     const void * _data,
     uint32 _dataSize)
   {
@@ -168,8 +168,8 @@ namespace foxEngineSDK
     Log() << "Vertex buffer created successfully.";
     return true;
   }
-  bool DXDevice::createIndexBuffer(
-    DXIndexBuffer * _indexBuffer,
+  bool foxDXDevice::createIndexBuffer(
+    foxDXIndexBuffer * _indexBuffer,
     const void * _data,
     uint32 _dataSize)
   {
@@ -201,8 +201,8 @@ namespace foxEngineSDK
     Log() << "Index buffer created successfully.";
     return true;
   }
-  bool DXDevice::createConstantBuffer(
-    DXConstantBuffer * _constantBuffer,
+  bool foxDXDevice::createConstantBuffer(
+    foxDXConstantBuffer * _constantBuffer,
     uint32 _structSize)
   {
 
@@ -229,9 +229,9 @@ namespace foxEngineSDK
     Log() << "Constant buffer created successfully.";
     return true;
   }
-  bool DXDevice::createShaderResourceView(
-    DXTexture * _texture,
-    DXShaderResourceView * _shaderResourceView)
+  bool foxDXDevice::createShaderResourceView(
+    foxDXTexture * _texture,
+    foxDXShaderResourceView * _shaderResourceView)
   {
 
     if (FAILED(m_device->CreateShaderResourceView(
@@ -248,7 +248,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXDevice::createSamplerState(DXSamplerState * _samplerState)
+  bool foxDXDevice::createSamplerState(foxDXSamplerState * _samplerState)
   {
 
     D3D11_SAMPLER_DESC samplerDesc;

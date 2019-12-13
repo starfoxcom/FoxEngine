@@ -16,19 +16,19 @@
 namespace foxEngineSDK
 {
 
-  class DXShaderResourceView
+  class foxDXShaderResourceView
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXShaderResourceView();
+    foxDXShaderResourceView();
 
     /**
      * @brief Default destructor.
      */
-    ~DXShaderResourceView();
+    ~foxDXShaderResourceView();
 
     /**
      * @brief Gets the DirectX Shader Resource View.

@@ -11,25 +11,27 @@
  * Includes
  */
 #include <d3d11.h>
+
 #include "foxPrerequisitesUtilities.h"
-#include "foxGraphicsCommons.h"
+
+#include "foxCoreGraphicsCommons.h"
 
 namespace foxEngineSDK
 {
 
-  class DXInputLayout
+  class foxDXInputLayout
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXInputLayout();
+    foxDXInputLayout();
 
     /**
      * @brief Default destructor.
      */
-    ~DXInputLayout();
+    ~foxDXInputLayout();
 
     /**
      * @brief Gets the DirectX Input Layout.

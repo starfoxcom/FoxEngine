@@ -7,21 +7,21 @@ namespace foxEngineSDK
 {
 
   
-  DXShaderResourceView::DXShaderResourceView()
+  foxDXShaderResourceView::foxDXShaderResourceView()
   {
   }
 
-  DXShaderResourceView::~DXShaderResourceView()
+  foxDXShaderResourceView::~foxDXShaderResourceView()
   {
     if (m_shaderResourceView) m_shaderResourceView->Release();
     m_shaderResourceView = nullptr;
   }
 
-  ID3D11ShaderResourceView * DXShaderResourceView::getShaderResourceView()
+  ID3D11ShaderResourceView * foxDXShaderResourceView::getShaderResourceView()
   {
     return m_shaderResourceView;
   }
-  ID3D11ShaderResourceView ** DXShaderResourceView::getShaderResourceViewRef()
+  ID3D11ShaderResourceView ** foxDXShaderResourceView::getShaderResourceViewRef()
   {
     return &m_shaderResourceView;
   }

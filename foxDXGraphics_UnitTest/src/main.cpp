@@ -2,7 +2,7 @@
 
 int main()
 {
-  BaseApp app;
+  App app;
   app.run();
   return 0;
 }

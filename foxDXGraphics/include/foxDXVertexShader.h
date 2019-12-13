@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXVertexShader : public DXShader
+  class foxDXVertexShader : public foxDXShader
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXVertexShader();
+    foxDXVertexShader();
 
     /**
      * @brief Default destructor.
      */
-    ~DXVertexShader();
+    ~foxDXVertexShader();
 
     /**
      * @brief Gets the DirectX Vertex Shader.

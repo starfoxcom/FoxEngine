@@ -13,7 +13,8 @@
 #include <d3d11.h>
 
 #include "foxPrerequisitesUtilities.h"
-#include "foxGraphicsCommons.h"
+
+#include "foxCoreGraphicsCommons.h"
 
 namespace foxEngineSDK
 {
@@ -21,31 +22,31 @@ namespace foxEngineSDK
   /**
    * Forward declarations
    */
-  class DXRenderTargetView;
-  class DXDepthStencilView;
-  class DXRasterizerState;
-  class DXVertexShader;
-  class DXPixelShader;
-  class DXInputLayout;
-  class DXVertexBuffer;
-  class DXIndexBuffer;
-  class DXConstantBuffer;
-  class DXShaderResourceView;
-  class DXSamplerState;
+  class foxDXRenderTargetView;
+  class foxDXDepthStencilView;
+  class foxDXRasterizerState;
+  class foxDXVertexShader;
+  class foxDXPixelShader;
+  class foxDXInputLayout;
+  class foxDXVertexBuffer;
+  class foxDXIndexBuffer;
+  class foxDXConstantBuffer;
+  class foxDXShaderResourceView;
+  class foxDXSamplerState;
 
-  class DXDeviceContext
+  class foxDXDeviceContext
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXDeviceContext();
+    foxDXDeviceContext();
 
     /**
      * @brief DEfault destructor.
      */
-    ~DXDeviceContext();
+    ~foxDXDeviceContext();
 
     /**
      * @brief Gets the DirectX Device Context.
@@ -62,19 +63,19 @@ namespace foxEngineSDK
      * @param _renderTargetView The Graphics API Render Target View.
      * @param _RGBAColor The color to clear with.
      */
-    void clearRenderTargetView(DXRenderTargetView * _renderTargetView, float * _RGBAColor);
+    void clearRenderTargetView(foxDXRenderTargetView * _renderTargetView, float * _RGBAColor);
 
     /**
      * @brief Clears the DirectX Depth Stencil View.
      * @param _depthStencilView The Graphics API Depth Stencil View.
      */
-    void clearDepthStencilView(DXDepthStencilView * _depthStencilView);
+    void clearDepthStencilView(foxDXDepthStencilView * _depthStencilView);
 
     /**
      * @brief Sets the DirectX Input Layout.
      * @param _inputLayout The Graphics API Input Layout.
      */
-    void setInputLayout(DXInputLayout * _inputLayout);
+    void setInputLayout(foxDXInputLayout * _inputLayout);
 
     /**
      * @brief Sets the DirectX Vertex Buffer.
@@ -84,7 +85,7 @@ namespace foxEngineSDK
      * @param _structSize The vertex struct size in bytes.
      */
     void setVertexBuffer(
-      DXVertexBuffer * _vertexBuffer,
+      foxDXVertexBuffer * _vertexBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers,
       uint32 _structSize);
@@ -96,7 +97,7 @@ namespace foxEngineSDK
      * @param _offset The indices offset.
      */
     void setIndexBuffer(
-      DXIndexBuffer * _indexBuffer,
+      foxDXIndexBuffer * _indexBuffer,
       FOXGI_FORMAT::E _format,
       uint32 _offset);
 
@@ -111,13 +112,13 @@ namespace foxEngineSDK
      * @param _constnatBuffer The Graphics ÄPI Constant Buffer.
      * @param _data The Constant Buffer data.
      */
-    void updateConstantBuffer(DXConstantBuffer * _constantBuffer, const void * _data);
+    void updateConstantBuffer(foxDXConstantBuffer * _constantBuffer, const void * _data);
 
     /**
      * @brief Sets the DirectX Vertex Shader.
      * @param _vertexShader The Graphics API Vertex Shader.
      */
-    void setVertexShader(DXVertexShader * _vertexShader);
+    void setVertexShader(foxDXVertexShader * _vertexShader);
 
     /**
      * @brief Sets the DirectX Vertex Constant Buffer.
@@ -127,7 +128,7 @@ namespace foxEngineSDK
      * @param _numOfBuffers Number of buffers to set.
      */
     void setVSConstantBuffers(
-      DXConstantBuffer * _constantBuffer,
+      foxDXConstantBuffer * _constantBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
 
@@ -139,7 +140,7 @@ namespace foxEngineSDK
      * @param _numOfBuffers Number of buffers to set.
      */
     void setPSConstantBuffers(
-      DXConstantBuffer * _constantBuffer,
+      foxDXConstantBuffer * _constantBuffer,
       uint32 _startSlot,
       uint32 _numOfBuffers);
 
@@ -148,7 +149,7 @@ namespace foxEngineSDK
      * @param
      */
     void setShaderResources(
-      DXShaderResourceView * _shaderResourceViews,
+      foxDXShaderResourceView * _shaderResourceViews,
       uint32 _startSlot,
       uint32 _numOfViews);
 
@@ -156,19 +157,19 @@ namespace foxEngineSDK
      * @brief Sets the DirectX Pixel Shader.
      * @param _pixelShader The Graphics API Pixel Shader.
      */
-    void setPixelShader(DXPixelShader * _pixelShader);
+    void setPixelShader(foxDXPixelShader * _pixelShader);
 
     /**
      * @brief Sets the DirectX Rasterizer State.
      * @param _rasterizerState The Graphics API Rasterizer state.
      */
-    void setRasterizerState(DXRasterizerState * _rasterizerState);
+    void setRasterizerState(foxDXRasterizerState * _rasterizerState);
 
     /**
      * @brief Sets the DirectX Sampler State.
      * @param _samplerState The Graphics API Sampler State.
      */
-    void setPSSamplerState(DXSamplerState * _samplerState, uint32 _startSlot, uint32 _numOfSamplers);
+    void setPSSamplerState(foxDXSamplerState * _samplerState, uint32 _startSlot, uint32 _numOfSamplers);
 
     /**
      * @brief Draws the vertices.

@@ -27,29 +27,29 @@
 namespace foxEngineSDK
 {
 
-  DXGraphicsAPI::DXGraphicsAPI()
+  foxDXGraphicsAPI::foxDXGraphicsAPI()
   {
 
-    m_device = new DXDevice();
-    m_deviceContext = new DXDeviceContext();
-    m_swapChain = new DXSwapChain();
-    m_renderTargetView = new DXRenderTargetView();
-    m_depthStencilBuffer = new DXTexture();
-    m_depthStencilView = new DXDepthStencilView();
-    m_wireframeRS = new DXWireframeRS();
-    m_solidRS = new DXSolidRS();
-    m_vertexShader = new DXVertexShader();
-    m_pixelShader = new DXPixelShader();
-    m_inputLayout = new DXInputLayout();
-    m_vertexBuffer = new DXVertexBuffer();
-    m_indexBuffer = new DXIndexBuffer();
-    m_constantBuffer = new DXConstantBuffer();
-    m_diffuse = new DXTexture();
-    m_shaderResourceView = new DXShaderResourceView();
-    m_samplerState = new DXSamplerState();
+    m_device = new foxDXDevice();
+    m_deviceContext = new foxDXDeviceContext();
+    m_swapChain = new foxDXSwapChain();
+    m_renderTargetView = new foxDXRenderTargetView();
+    m_depthStencilBuffer = new foxDXTexture();
+    m_depthStencilView = new foxDXDepthStencilView();
+    m_wireframeRS = new foxDXWireframeRS();
+    m_solidRS = new foxDXSolidRS();
+    m_vertexShader = new foxDXVertexShader();
+    m_pixelShader = new foxDXPixelShader();
+    m_inputLayout = new foxDXInputLayout();
+    m_vertexBuffer = new foxDXVertexBuffer();
+    m_indexBuffer = new foxDXIndexBuffer();
+    m_constantBuffer = new foxDXConstantBuffer();
+    m_diffuse = new foxDXTexture();
+    m_shaderResourceView = new foxDXShaderResourceView();
+    m_samplerState = new foxDXSamplerState();
   }
 
-  DXGraphicsAPI::~DXGraphicsAPI()
+  foxDXGraphicsAPI::~foxDXGraphicsAPI()
   {
     delete m_device;
     delete m_deviceContext;
@@ -70,7 +70,7 @@ namespace foxEngineSDK
     delete m_samplerState;
   }
 
-  bool DXGraphicsAPI::initGraphicsAPI(HWND _windowHandle)
+  bool foxDXGraphicsAPI::initGraphicsAPI(HWND _windowHandle)
   {
 
     //Create window rect variable object
@@ -130,22 +130,23 @@ namespace foxEngineSDK
     m_deviceContext->getDeviceContext()->RSSetViewports(1, &vp);
 
     Log() << "Graphics API initialized successfully";
+
     return true;
 
 
   }
 
-  ID3D11Device * DXGraphicsAPI::getDevice()
+  void * foxDXGraphicsAPI::getDevice()
   {
     return m_device->getDevice();
   }
 
-  ID3D11DeviceContext * DXGraphicsAPI::getDeviceContext()
+  void * foxDXGraphicsAPI::getDeviceContext()
   {
     return m_deviceContext->getDeviceContext();
   }
 
-  void DXGraphicsAPI::addInputElement(
+  void foxDXGraphicsAPI::addInputElement(
     const char * _semanticName,
     uint32 _semanticIndex,
     FOXGI_FORMAT::E _format,
@@ -165,7 +166,7 @@ namespace foxEngineSDK
       _instanceDataStepRate);
   }
 
-  bool DXGraphicsAPI::createVertexShader(
+  bool foxDXGraphicsAPI::createVertexShader(
     const char * _fileName,
     const char * _entryPoint,
     const char * _shaderModel)
@@ -176,7 +177,7 @@ namespace foxEngineSDK
     return m_device->createVertexShader(m_vertexShader);
   }
 
-  bool DXGraphicsAPI::createPixelShader(
+  bool foxDXGraphicsAPI::createPixelShader(
     const char * _fileName,
     const char * _entryPoint,
     const char * _shaderModel)
@@ -187,47 +188,47 @@ namespace foxEngineSDK
     return m_device->createPixelShader(m_pixelShader);
   }
 
-  bool DXGraphicsAPI::createInputLayout()
+  bool foxDXGraphicsAPI::createInputLayout()
   {
     return m_device->createInputLayout(m_inputLayout, m_vertexShader);
   }
 
-  void DXGraphicsAPI::setInputLayout()
+  void foxDXGraphicsAPI::setInputLayout()
   {
     m_deviceContext->setInputLayout(m_inputLayout);
   }
 
-  bool DXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _dataSize)
+  bool foxDXGraphicsAPI::createVertexBuffer(const void * _data, uint32 _dataSize)
   {
     return m_device->createVertexBuffer(m_vertexBuffer, _data, _dataSize);
   }
 
-  void DXGraphicsAPI::setVertexBuffer(uint32 _structSize, uint32 _startSlot, uint32 _numOfBuffers)
+  void foxDXGraphicsAPI::setVertexBuffer(uint32 _structSize, uint32 _startSlot, uint32 _numOfBuffers)
   {
     m_deviceContext->setVertexBuffer(m_vertexBuffer, _startSlot, _numOfBuffers, _structSize);
   }
 
-  bool DXGraphicsAPI::createIndexBuffer(const void * _data, uint32 _dataSize)
+  bool foxDXGraphicsAPI::createIndexBuffer(const void * _data, uint32 _dataSize)
   {
     return m_device->createIndexBuffer(m_indexBuffer, _data, _dataSize);
   }
 
-  void DXGraphicsAPI::setIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset)
+  void foxDXGraphicsAPI::setIndexBuffer(FOXGI_FORMAT::E _format, uint32 _offset)
   {
     m_deviceContext->setIndexBuffer(m_indexBuffer, _format, _offset);
   }
 
-  void DXGraphicsAPI::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
+  void foxDXGraphicsAPI::setPrimitiveTopology(FOX_PRIMITIVE_TOPOLOGY::E _topology)
   {
     m_deviceContext->setPrimitiveTopology(_topology);
   }
 
-  bool DXGraphicsAPI::createConstantBuffer(uint32 _structSize)
+  bool foxDXGraphicsAPI::createConstantBuffer(uint32 _structSize)
   {
     return m_device->createConstantBuffer(m_constantBuffer, _structSize);
   }
 
-  bool DXGraphicsAPI::createShaderResourceViewFromFile(
+  bool foxDXGraphicsAPI::createShaderResourceViewFromFile(
     const void * _data,
     uint32 _width,
     uint32 _height)
@@ -267,82 +268,98 @@ namespace foxEngineSDK
 
   }
 
-  bool DXGraphicsAPI::createSamplerState()
+  bool foxDXGraphicsAPI::createSamplerState()
   {
     return m_device->createSamplerState(m_samplerState);
   }
 
-  void DXGraphicsAPI::updateConstantBuffer(const void * _data)
+  void foxDXGraphicsAPI::updateConstantBuffer(const void * _data)
   {
     m_deviceContext->updateConstantBuffer(m_constantBuffer, _data);
   }
 
-  void DXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
+  void foxDXGraphicsAPI::clearRenderTargetView(float * _RGBAColor)
   {
     m_deviceContext->clearRenderTargetView(m_renderTargetView, _RGBAColor);
   }
 
-  void DXGraphicsAPI::clearDepthStencilView()
+  void foxDXGraphicsAPI::clearDepthStencilView()
   {
     m_deviceContext->clearDepthStencilView(m_depthStencilView);
   }
 
-  void DXGraphicsAPI::setVertexShader()
+  void foxDXGraphicsAPI::setVertexShader()
   {
     m_deviceContext->setVertexShader(m_vertexShader);
   }
 
-  void DXGraphicsAPI::setVSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
+  void foxDXGraphicsAPI::setVSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
   {
     m_deviceContext->setVSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
   }
 
-  void DXGraphicsAPI::setPSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
+  void foxDXGraphicsAPI::setPSConstantBuffers(uint32 _startSlot, uint32 _numOfBuffers)
   {
     m_deviceContext->setPSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
   }
 
-  void DXGraphicsAPI::setShaderResources(uint32 _startSlot, uint32 _numOfViews)
+  void foxDXGraphicsAPI::setShaderResources(uint32 _startSlot, uint32 _numOfViews)
   {
     m_deviceContext->setShaderResources(m_shaderResourceView, _startSlot, _numOfViews);
   }
 
-  void DXGraphicsAPI::setPixelShader()
+  void foxDXGraphicsAPI::setPixelShader()
   {
     m_deviceContext->setPixelShader(m_pixelShader);
   }
 
-  void DXGraphicsAPI::setSolidRS()
+  void foxDXGraphicsAPI::setSolidRS()
   {
     m_deviceContext->setRasterizerState(m_solidRS);
   }
 
-  void DXGraphicsAPI::setWireframeRS()
+  void foxDXGraphicsAPI::setWireframeRS()
   {
     m_deviceContext->setRasterizerState(m_wireframeRS);
   }
 
-  void DXGraphicsAPI::setPSSamplerState(uint32 _startSlot, uint32 _numOfSamplers)
+  void foxDXGraphicsAPI::setPSSamplerState(uint32 _startSlot, uint32 _numOfSamplers)
   {
     m_deviceContext->setPSSamplerState(m_samplerState, _startSlot, _numOfSamplers);
   }
 
-  void DXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
+  void foxDXGraphicsAPI::draw(uint32 _vertexCount, uint32 _vertexStart)
   {
     m_deviceContext->draw(_vertexCount, _vertexStart);
   }
 
-  void DXGraphicsAPI::drawIndexed(uint32 _indexCount, uint32 _vertexStart, uint32 _indexStart)
+  void foxDXGraphicsAPI::drawIndexed(uint32 _indexCount, uint32 _vertexStart, uint32 _indexStart)
   {
     m_deviceContext->drawIndexed(_indexCount, _vertexStart, _indexStart);
   }
 
-  void DXGraphicsAPI::present()
+  void foxDXGraphicsAPI::present()
   {
     m_swapChain->present();
   }
 
-  bool DXGraphicsAPI::createDeviceAndSwapChain(HWND _windowHandle)
+  void foxDXGraphicsAPI::test()
+  {
+    Log(Log::LOGINFO, true) << "dll access is possible.";
+  }
+
+  void foxDXGraphicsAPI::onStartUp()
+  {
+
+    Log(Log::LOGINFO, true) << "Module instance started up.";
+  }
+
+  void foxDXGraphicsAPI::onShutDown()
+  {
+    Log(Log::LOGINFO, true) << "Module instance shut down.";
+  }
+
+  bool foxDXGraphicsAPI::createDeviceAndSwapChain(HWND _windowHandle)
   {
 
     //Create window rect variable object
@@ -419,7 +436,7 @@ namespace foxEngineSDK
     }
   }
 
-  bool DXGraphicsAPI::createRenderTargetView()
+  bool foxDXGraphicsAPI::createRenderTargetView()
   {
 
     //Create the back buffer
@@ -462,7 +479,7 @@ namespace foxEngineSDK
     }
   }
 
-  bool DXGraphicsAPI::createDepthStencilView(HWND _windowHandle)
+  bool foxDXGraphicsAPI::createDepthStencilView(HWND _windowHandle)
   {
 
     //Create window rect variable object
@@ -528,7 +545,7 @@ namespace foxEngineSDK
     }
   }
 
-  bool DXGraphicsAPI::createSolidRS()
+  bool foxDXGraphicsAPI::createSolidRS()
   {
 
     D3D11_RASTERIZER_DESC m_rasterizerDesc;
@@ -557,7 +574,7 @@ namespace foxEngineSDK
     return true;
   }
 
-  bool DXGraphicsAPI::createWireframeRS()
+  bool foxDXGraphicsAPI::createWireframeRS()
   {
 
     D3D11_RASTERIZER_DESC m_rasterizerDesc;
@@ -584,6 +601,11 @@ namespace foxEngineSDK
 
     Log() << "Created Wire frame Rasterizer state successfully.";
     return true;
+  }
+
+  void initialize()
+  {
+    foxDXGraphicsAPI::startUp<foxDXGraphicsAPI>();
   }
 
 }

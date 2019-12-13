@@ -18,9 +18,6 @@
     <ClInclude Include="include\foxGraphicsDefines.h">
       <Filter>Include\prerequisites</Filter>
     </ClInclude>
-    <ClInclude Include="include\foxGraphicsCommons.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\foxDXDevice.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -76,5 +73,6 @@
     <ClCompile Include="src\foxDXSolidRS.cpp" />
     <ClCompile Include="src\foxDXShaderResourceView.cpp" />
     <ClCompile Include="src\foxDXSamplerState.cpp" />
+    <ClCompile Include="src\foxDXGraphicsLoader.cpp" />
   </ItemGroup>
 </Project>

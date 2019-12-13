@@ -7,22 +7,22 @@ namespace foxEngineSDK
 {
 
 
-  DXSamplerState::DXSamplerState()
+  foxDXSamplerState::foxDXSamplerState()
   {
   }
 
-  DXSamplerState::~DXSamplerState()
+  foxDXSamplerState::~foxDXSamplerState()
   {
     if (m_samplerState) m_samplerState->Release();
     m_samplerState = nullptr;
   }
 
-  ID3D11SamplerState * DXSamplerState::getSamplerState()
+  ID3D11SamplerState * foxDXSamplerState::getSamplerState()
   {
     return m_samplerState;
   }
 
-  ID3D11SamplerState ** DXSamplerState::getSamplerStateRef()
+  ID3D11SamplerState ** foxDXSamplerState::getSamplerStateRef()
   {
     return &m_samplerState;
   }

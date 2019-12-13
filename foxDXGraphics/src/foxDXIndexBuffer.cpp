@@ -6,11 +6,11 @@
 namespace foxEngineSDK
 {
   
-  DXIndexBuffer::DXIndexBuffer()
+  foxDXIndexBuffer::foxDXIndexBuffer()
   {
   }
 
-  DXIndexBuffer::~DXIndexBuffer()
+  foxDXIndexBuffer::~foxDXIndexBuffer()
   {
   }
 

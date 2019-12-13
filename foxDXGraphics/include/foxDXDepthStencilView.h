@@ -15,19 +15,19 @@
 namespace foxEngineSDK
 {
 
-  class DXDepthStencilView
+  class foxDXDepthStencilView
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXDepthStencilView();
+    foxDXDepthStencilView();
 
     /**
      * @brief Default destructor.
      */
-    ~DXDepthStencilView();
+    ~foxDXDepthStencilView();
 
     /**
      * @brief Gets the DirectX Depth Stencil View.

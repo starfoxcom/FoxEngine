@@ -20,30 +20,30 @@ namespace foxEngineSDK
   /**
    * Forward Declarations
    */
-  class DXVertexShader;
-  class DXPixelShader;
-  class DXInputLayout;
-  class DXVertexBuffer;
-  class DXIndexBuffer;
-  class DXConstantBuffer;
-  class DXRasterizerState;
-  class DXTexture;
-  class DXShaderResourceView;
-  class DXSamplerState;
+  class foxDXVertexShader;
+  class foxDXPixelShader;
+  class foxDXInputLayout;
+  class foxDXVertexBuffer;
+  class foxDXIndexBuffer;
+  class foxDXConstantBuffer;
+  class foxDXRasterizerState;
+  class foxDXTexture;
+  class foxDXShaderResourceView;
+  class foxDXSamplerState;
 
-  class DXDevice
+  class foxDXDevice
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXDevice();
+    foxDXDevice();
 
     /**
      * @brief Default destructor.
      */
-    ~DXDevice();
+    ~foxDXDevice();
 
     /**
      * @brief Gets the DirectX Device.
@@ -92,26 +92,26 @@ namespace foxEngineSDK
      * @param _rasterizerDesc The Rasterizer State Desc.
      */
     bool createRasterizerState(
-      DXRasterizerState * _rasterizerState,
+      foxDXRasterizerState * _rasterizerState,
       D3D11_RASTERIZER_DESC _rasterizerDesc);
 
     /**
      * @brief Create the DirectX Vertex Shader.
      * @param _vertexShader The Graphics API Vertex Shader.
      */
-    bool createVertexShader(DXVertexShader * _vertexShader);
+    bool createVertexShader(foxDXVertexShader * _vertexShader);
 
     /**
      * @brief Create the DirectX Vertex Shader.
      * @param _vertexShader The Graphics API Vertex Shader.
      */
-    bool createPixelShader(DXPixelShader * _pixelShader);
+    bool createPixelShader(foxDXPixelShader * _pixelShader);
 
     /**
      * @brief Create the DirectX Input Layout.
      * @param _inputLayout The Graphics API Input Layout.
      */
-    bool createInputLayout(DXInputLayout * _inputLayout, DXVertexShader * _vertexShader);
+    bool createInputLayout(foxDXInputLayout * _inputLayout, foxDXVertexShader * _vertexShader);
 
     /**
      * @brief Create the DirectX Vertex Buffer.
@@ -120,7 +120,7 @@ namespace foxEngineSDK
      * @param _dataSize The vertex data size in bytes.
      * @param _length The length of the vertex data.
      */
-    bool createVertexBuffer(DXVertexBuffer * _vertexBuffer, const void * _data, uint32 _dataSize);
+    bool createVertexBuffer(foxDXVertexBuffer * _vertexBuffer, const void * _data, uint32 _dataSize);
 
     /**
      * @brief Create the DirectX Index Buffer.
@@ -128,7 +128,7 @@ namespace foxEngineSDK
      * @param _data The index data.
      * @param _dataSize The index data size in bytes.
      */
-    bool createIndexBuffer(DXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize);
+    bool createIndexBuffer(foxDXIndexBuffer * _indexBuffer, const void * _data, uint32 _dataSize);
 
     /**
      * @brief Create the DirectX Constant Buffer.
@@ -136,7 +136,7 @@ namespace foxEngineSDK
      * @param _structSize The constant buffer struct size in bytes.
      */
     bool createConstantBuffer(
-      DXConstantBuffer * _constantBuffer,
+      foxDXConstantBuffer * _constantBuffer,
       uint32 _structSize);
 
     /**
@@ -145,15 +145,15 @@ namespace foxEngineSDK
      * @param _shaderResourceView The Graphics API Shader Resource View.
      */
     bool createShaderResourceView(
-      DXTexture * _texture,
-      DXShaderResourceView * _shaderResourceView);
+      foxDXTexture * _texture,
+      foxDXShaderResourceView * _shaderResourceView);
 
     /**
      * @brief Create the DirectX Sampler State.
      * @param _samplerState The Graphics API Sampler State.
      */
     bool createSamplerState(
-    DXSamplerState * _samplerState);
+    foxDXSamplerState * _samplerState);
 
 
   private:

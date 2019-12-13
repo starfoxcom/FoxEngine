@@ -1,9 +1,9 @@
 /**
- * @file foxGraphicsCommons.h
+ * @file foxCoreGraphicsCommons.h
  *
  * @author Jorge Alexandro Zamudio Arredondo (starfoxcom)
- * @date 2019/10/02
- * @brief  
+ * @date 2019/11/26
+ * @brief Common Graphics Enumerators.
  */
 #pragma once
 

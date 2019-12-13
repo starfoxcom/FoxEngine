@@ -7,11 +7,11 @@ namespace foxEngineSDK
 {
 
 
-  DXVertexBuffer::DXVertexBuffer()
+  foxDXVertexBuffer::foxDXVertexBuffer()
   {
   }
 
-  DXVertexBuffer::~DXVertexBuffer()
+  foxDXVertexBuffer::~foxDXVertexBuffer()
   {
   }
 

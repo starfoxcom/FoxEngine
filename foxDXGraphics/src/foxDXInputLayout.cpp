@@ -6,37 +6,37 @@
 namespace foxEngineSDK
 {
 
-  DXInputLayout::DXInputLayout()
+  foxDXInputLayout::foxDXInputLayout()
   {
   }
 
-  DXInputLayout::~DXInputLayout()
+  foxDXInputLayout::~foxDXInputLayout()
   {
     if (m_inputLayout) m_inputLayout->Release();
     m_inputLayout = nullptr;
   }
 
-  ID3D11InputLayout * DXInputLayout::getInputLayout()
+  ID3D11InputLayout * foxDXInputLayout::getInputLayout()
   {
     return m_inputLayout;
   }
 
-  ID3D11InputLayout ** DXInputLayout::getInputLayoutRef()
+  ID3D11InputLayout ** foxDXInputLayout::getInputLayoutRef()
   {
     return &m_inputLayout;
   }
 
-  D3D11_INPUT_ELEMENT_DESC * DXInputLayout::getInputElementDesc()
+  D3D11_INPUT_ELEMENT_DESC * foxDXInputLayout::getInputElementDesc()
   {
     return &m_inputElements[0];
   }
 
-  uint32 DXInputLayout::getInputElementsNum()
+  uint32 foxDXInputLayout::getInputElementsNum()
   {
     return static_cast<uint32>(m_inputElements.size());
   }
 
-  void DXInputLayout::addElement(
+  void foxDXInputLayout::addElement(
     const char * _semanticName,
     uint32 _semanticIndex,
     FOXGI_FORMAT::E _format,

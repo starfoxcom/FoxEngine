@@ -17,19 +17,19 @@
 namespace foxEngineSDK
 {
 
-  class DXPixelShader : public DXShader
+  class foxDXPixelShader : public foxDXShader
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXPixelShader();
+    foxDXPixelShader();
 
     /**
      * @brief Default destructor.
      */
-    ~DXPixelShader();
+    ~foxDXPixelShader();
 
     /**
      * @brief Gets the DirectX Pixel Shader.

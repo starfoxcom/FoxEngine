@@ -15,19 +15,19 @@
 namespace foxEngineSDK
 {
 
-  class DXShader
+  class foxDXShader
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXShader();
+    foxDXShader();
 
     /**
      * @brief Default destructor.
      */
-    ~DXShader();
+    ~foxDXShader();
 
     /**
      * @brief Gets the Shader Blob.

@@ -6,23 +6,23 @@
 namespace foxEngineSDK
 {
 
-  DXBuffer::DXBuffer()
+  foxDXBuffer::foxDXBuffer()
   {
   }
 
-  DXBuffer::~DXBuffer()
+  foxDXBuffer::~foxDXBuffer()
   {
     if (m_buffer) m_buffer->Release();
     m_buffer = nullptr;
 
   }
 
-  ID3D11Buffer * DXBuffer::getBuffer()
+  ID3D11Buffer * foxDXBuffer::getBuffer()
   {
     return m_buffer;
   }
 
-  ID3D11Buffer** DXBuffer::getBufferRef()
+  ID3D11Buffer** foxDXBuffer::getBufferRef()
   {
     return &m_buffer;
   }

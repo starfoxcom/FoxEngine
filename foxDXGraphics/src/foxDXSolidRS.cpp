@@ -5,11 +5,11 @@
 
 namespace foxEngineSDK
 {
-  DXSolidRS::DXSolidRS()
+  foxDXSolidRS::foxDXSolidRS()
   {
   }
 
-  DXSolidRS::~DXSolidRS()
+  foxDXSolidRS::~foxDXSolidRS()
   {
   }
 }

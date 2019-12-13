@@ -15,19 +15,19 @@
 namespace foxEngineSDK
 {
 
-  class DXSwapChain
+  class foxDXSwapChain
   {
   public:
 
     /**
      * @brief Default constructor.
      */
-    DXSwapChain();
+    foxDXSwapChain();
 
     /**
      * @brief Default destructor.
      */
-    ~DXSwapChain();
+    ~foxDXSwapChain();
 
     /**
      * @brief Gets the DirectX Swap Chain.
