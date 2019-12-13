@@ -170,7 +170,7 @@ namespace foxEngineSDK
     m_view.toLookAt(m_eye, m_at, m_up);
 
     //Set the projection matrix to a perspective field of view matrix
-    m_projection.toPerspectiveFOV(Math::HALF_PI, width / static_cast<float>(height), 0.01f, 100.0f);
+    m_projection.toPerspectiveFOV(Math::HALF_PI, width / static_cast<float>(height), 0.01f, 1000.0f);
 
     //Set the color of the mesh
     m_meshColor = Vector4(0.7f, 0.7f, 0.7f, 1.0f);

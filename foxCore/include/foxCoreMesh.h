@@ -40,9 +40,10 @@ namespace foxEngineSDK
 
     /**
      * @brief Loads the Mesh data to their respective members of the class.
-     * @param _mesh The assimp mesh pointer.
+     * @param _mesh The Assimp mesh pointer.
+     * @param _indexCount The Index count for the index mesh offset.
      */
-    void loadMesh(const aiMesh* _mesh);
+    void loadMesh(const aiMesh* _mesh, const uint32 _indexCount);
 
     /**
      * @brief Gets the byte width of the vertices.

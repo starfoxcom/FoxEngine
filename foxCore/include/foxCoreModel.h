@@ -57,6 +57,8 @@ namespace foxEngineSDK
 
     uint32 m_indexByteWidth = 0; /**< The index byte width.*/
 
+    uint32 m_vertexCount = 0; /**< The Model vertex count.*/
+
     uint32 m_indexCount = 0; /**< The Model index count.*/
   };
 }

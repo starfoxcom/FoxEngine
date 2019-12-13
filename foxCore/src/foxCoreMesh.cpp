@@ -14,7 +14,7 @@ namespace foxEngineSDK
   {
   }
 
-  void foxMesh::loadMesh(const aiMesh * _mesh)
+  void foxMesh::loadMesh(const aiMesh * _mesh, const uint32 _indexCount)
   {
 
     m_vertices.resize(_mesh->mNumVertices);
@@ -30,8 +30,8 @@ namespace foxEngineSDK
       if (_mesh->HasTextureCoords(0))
       {
 
-      m_vertices[i].tex.x = _mesh->mTextureCoords[0]->x;
-      m_vertices[i].tex.y = _mesh->mTextureCoords[0]->y;
+        m_vertices[i].tex.x = _mesh->mTextureCoords[0]->x;
+        m_vertices[i].tex.y = _mesh->mTextureCoords[0]->y;
       }
     }
 
@@ -42,7 +42,7 @@ namespace foxEngineSDK
       for (uint32 j = 0; j < 3; ++j)
       {
 
-        m_indices[index] = _mesh->mFaces[i].mIndices[j];
+        m_indices[index] = _mesh->mFaces[i].mIndices[j] + _indexCount;
         ++index;
       }
     }

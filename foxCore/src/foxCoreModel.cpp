@@ -30,12 +30,13 @@ namespace foxEngineSDK
     m_indexByteWidth = 0;
 
     m_indexCount = 0;
+    m_vertexCount = 0;
 
     //Create the Assimp importer
     Assimp::Importer importer;
 
     //Read the file with the Assimp importer
-    const auto model = importer.ReadFile(_fileName,
+    const aiScene* model = importer.ReadFile(_fileName,
       aiProcess_CalcTangentSpace |
       aiProcess_Triangulate |
       aiProcess_JoinIdenticalVertices |
@@ -50,7 +51,7 @@ namespace foxEngineSDK
       const aiMesh* meshData = model->mMeshes[i];
 
       //Load the Mesh
-      m_meshes[i].loadMesh(meshData);
+      m_meshes[i].loadMesh(meshData, m_vertexCount);
 
       m_vertexByteWidth += m_meshes[i].getVertexByteWidth();
 
@@ -67,6 +68,8 @@ namespace foxEngineSDK
         m_meshes[i].getIndexData()->end());
 
       m_indexCount += m_meshes[i].getIndexData()->size();
+
+      m_vertexCount += m_meshes[i].getVertexData()->size();
     }
 
     foxGraphicsAPI::instance().createVertexBuffer(&m_vertexData[0], m_vertexByteWidth);
