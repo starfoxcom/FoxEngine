@@ -344,7 +344,7 @@ namespace foxEngineSDK
         ZeroMemory(&ofn, sizeof(ofn));
         ofn.lStructSize = sizeof(ofn);
         ofn.hwndOwner = NULL;  // If you have a window to center over, put its HANDLE here
-        ofn.lpstrFilter = "JPG Files\0*.jpg\0PNG Files\0*.png\0Any File\0*.*\0";
+        ofn.lpstrFilter = "Any File\0*.*\0";
         ofn.lpstrFile = filename;
         ofn.nMaxFile = MAX_PATH;
         ofn.lpstrTitle = "Select a Texture to load";
@@ -414,7 +414,7 @@ namespace foxEngineSDK
 
     HINSTANCE hinstLib;
     createGraphicsAPI ProcAdd;
-    BOOL fFreeResult, fRunTimeLinkSuccess = FALSE;
+    BOOL freeResult, fRunTimeLinkSuccess = FALSE;
     // Get a handle to the DLL module.
 #if _DEBUG
 
@@ -444,10 +444,10 @@ namespace foxEngineSDK
       else
       {
         Log(Log::LOGERROR, true) << "Error loading that shit.";
-      }
       // Free the DLL module.
 
-      //fFreeResult = FreeLibrary(hinstLib);
+      freeResult = FreeLibrary(hinstLib);
+      }
     }
 
     // If unable to call the DLL function, use an alternative.
