@@ -181,8 +181,8 @@ namespace foxEngineSDK
     /**
      * @brief Draws the indices.
      * @param _indexCount The total count of indices.
-     * @param _indexStart The starting point of the vertices.
-     * @param _vertexStart _The starting point of the indices.
+     * @param _indexStart The starting point of the indices.
+     * @param _vertexStart _The starting point of the vertices.
      */
     void drawIndexed(uint32 _indexCount, uint32 _indexStart, uint32 _vertexStart);
 
