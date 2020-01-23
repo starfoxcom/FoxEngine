@@ -72,6 +72,11 @@ namespace foxEngineSDK
     void * getDeviceContext() override;
 
     /**
+     * @brief Gets the Shader Resource.
+     */
+    void * getShaderResource() override;
+
+    /**
      * @brief Adds an Input Element to the DirectX Input Layout.
      * @param _semanticName Name to associate with the element.
      * @param _semanticIndex Index to attach to a semantic.
@@ -231,7 +236,7 @@ namespace foxEngineSDK
      * @param _startSlot The starting index of the shader resource.
      * @param _numOfViews The number of shader Resource Views.
      */
-    void setShaderResources(uint32 _startSlot = 0, uint32 _numOfViews = 1) override;
+    void setShaderResources(void * _shaderResource = nullptr, uint32 _startSlot = 0, uint32 _numOfViews = 1) override;
 
     /**
      * @brief Sets the Pixel Shader.

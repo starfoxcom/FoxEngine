@@ -24,8 +24,28 @@ namespace foxEngineSDK
     m_vertices.resize(_mesh->mNumVertices);
     m_indices.resize(_mesh->mNumFaces * 3);
 
+    aiString texturePath;
+
     //Set the texture path of the mesh.
-    _mat->GetTexture(aiTextureType_DIFFUSE, 0, &m_texturePath);
+    _mat->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath);
+
+    int width, height, channels;
+
+    //Set the texture data.
+    auto * img = stbi_load(texturePath.data,
+      &width,
+      &height,
+      &channels,
+      STBI_rgb_alpha);
+
+    foxGraphicsAPI::instance().createShaderResourceViewFromFile(img, width, height);
+    
+    std::memcpy(
+      m_texture,
+      foxGraphicsAPI::instance().getShaderResource(),
+      sizeof(foxGraphicsAPI::instance().getShaderResource()));
+
+    stbi_image_free(img);
 
     //Set the vertex position and UV coordinates data.
     for (uint32 i = 0; i < m_vertices.size(); ++i)
@@ -57,26 +77,9 @@ namespace foxEngineSDK
     }
   }
 
-  void foxMesh::loadAndSetMeshTexture()
+  void foxMesh::SetMeshTexture()
   {
-    if (m_texturePath.length != 0)
-    {
-
-      int width, height, channels;
-
-      //Set the texture data.
-      auto * m_texture = stbi_load(m_texturePath.data,
-        &width,
-        &height,
-        &channels,
-        STBI_rgb_alpha);
-
-      foxGraphicsAPI::instance().createShaderResourceViewFromFile(m_texture, width, height);
-
-      stbi_image_free(m_texture);
-
-      foxGraphicsAPI::instance().setShaderResources();
-    }
+    foxGraphicsAPI::instance().setShaderResources(m_texture);
   }
 
   uint32 foxMesh::getVertexByteWidth()

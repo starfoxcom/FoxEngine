@@ -94,7 +94,7 @@ namespace foxEngineSDK
       for (uint32 i = 0; i < m_meshes.size(); ++i)
       {
         
-        m_meshes[i].loadAndSetMeshTexture();
+        m_meshes[i].SetMeshTexture();
 
         foxGraphicsAPI::instance().drawIndexed(
           m_meshes[i].getIndexData()->size(),

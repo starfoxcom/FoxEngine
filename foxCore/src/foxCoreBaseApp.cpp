@@ -374,7 +374,7 @@ namespace foxEngineSDK
 
             stbi_image_free(image);
 
-            m_graphicsAPI->instance().setShaderResources();
+            m_graphicsAPI->instance().setShaderResources(m_graphicsAPI->instance().getShaderResource());
 
           }
         }

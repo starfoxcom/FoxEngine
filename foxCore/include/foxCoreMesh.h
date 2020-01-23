@@ -51,7 +51,7 @@ namespace foxEngineSDK
     /**
      * @brief Loads and sets the Mesh texture.
      */
-    void loadAndSetMeshTexture();
+    void SetMeshTexture();
 
     /**
      * @brief Gets the byte width of the vertices.
@@ -79,6 +79,6 @@ namespace foxEngineSDK
 
     std::vector<uint32> m_indices; /**< The Mesh indices.*/
 
-    aiString m_texturePath; /**< The Mesh texture file path.*/
+    void * m_texture; /**< The Mesh texture resource.*/
   };
 }

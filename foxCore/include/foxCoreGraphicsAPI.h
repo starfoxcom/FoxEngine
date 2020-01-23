@@ -47,6 +47,11 @@ namespace foxEngineSDK
     virtual void * getDeviceContext() = 0;
 
     /**
+     * @brief Gets the Shader Resource.
+     */
+    virtual void * getShaderResource() = 0;
+
+    /**
      * @brief Adds an Input Element to the Input Layout.
      * @param _semanticName Name to associate with the element.
      * @param _semanticIndex Index to attach to a semantic.
@@ -206,7 +211,7 @@ namespace foxEngineSDK
      * @param _startSlot The starting index of the shader resource.
      * @param _numOfViews The number of shader Resource Views.
      */
-    virtual void setShaderResources(uint32 _startSlot = 0, uint32 _numOfViews = 1) = 0;
+    virtual void setShaderResources(void * _shaderResource = nullptr, uint32 _startSlot = 0, uint32 _numOfViews = 1) = 0;
 
     /**
      * @brief Sets the Pixel Shader.

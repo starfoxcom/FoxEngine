@@ -146,6 +146,11 @@ namespace foxEngineSDK
     return m_deviceContext->getDeviceContext();
   }
 
+  void * foxDXGraphicsAPI::getShaderResource()
+  {
+    return m_shaderResourceView;
+  }
+
   void foxDXGraphicsAPI::addInputElement(
     const char * _semanticName,
     uint32 _semanticIndex,
@@ -303,9 +308,9 @@ namespace foxEngineSDK
     m_deviceContext->setPSConstantBuffers(m_constantBuffer, _startSlot, _numOfBuffers);
   }
 
-  void foxDXGraphicsAPI::setShaderResources(uint32 _startSlot, uint32 _numOfViews)
+  void foxDXGraphicsAPI::setShaderResources(void * _shaderResource, uint32 _startSlot, uint32 _numOfViews)
   {
-    m_deviceContext->setShaderResources(m_shaderResourceView, _startSlot, _numOfViews);
+    m_deviceContext->setShaderResources(static_cast<foxDXShaderResourceView*>(_shaderResource), _startSlot, _numOfViews);
   }
 
   void foxDXGraphicsAPI::setPixelShader()
