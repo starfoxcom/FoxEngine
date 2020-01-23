@@ -53,6 +53,8 @@ namespace foxEngineSDK
 
     std::vector<uint32> m_indexData; /**< The model index data.*/
 
+    std::vector<uint32> m_indexMeshStart; /**< The Mesh index starting point.*/
+
     uint32 m_vertexByteWidth = 0; /**< The Vertex byte width.*/
 
     uint32 m_indexByteWidth = 0; /**< The index byte width.*/

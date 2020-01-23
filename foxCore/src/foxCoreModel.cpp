@@ -26,6 +26,8 @@ namespace foxEngineSDK
 
     m_indexData.clear();
 
+    m_indexMeshStart.clear();
+
     m_vertexByteWidth = 0;
     m_indexByteWidth = 0;
 
@@ -67,6 +69,8 @@ namespace foxEngineSDK
         m_meshes[i].getIndexData()->begin(),
         m_meshes[i].getIndexData()->end());
 
+      m_indexMeshStart.push_back(m_indexCount);
+
       m_indexCount += m_meshes[i].getIndexData()->size();
 
       m_vertexCount += m_meshes[i].getVertexData()->size();
@@ -92,7 +96,10 @@ namespace foxEngineSDK
         
         m_meshes[i].loadAndSetMeshTexture();
 
-        foxGraphicsAPI::instance().drawIndexed(m_meshes[i].getIndexData()->size(), 0, 0);
+        foxGraphicsAPI::instance().drawIndexed(
+          m_meshes[i].getIndexData()->size(),
+          m_indexMeshStart[i],
+          0);
       }
     }
   }
