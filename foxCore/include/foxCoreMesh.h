@@ -14,6 +14,9 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 
+
+
+
 namespace foxEngineSDK
 {
 
@@ -43,7 +46,12 @@ namespace foxEngineSDK
      * @param _mesh The Assimp mesh pointer.
      * @param _indexCount The Index count for the index mesh offset.
      */
-    void loadMesh(const aiMesh* _mesh, const uint32 _indexCount);
+    void loadMesh(const aiMesh* _mesh, const uint32 _indexCount, const aiMaterial * _mat);
+
+    /**
+     * @brief Loads and sets the Mesh texture.
+     */
+    void loadAndSetMeshTexture();
 
     /**
      * @brief Gets the byte width of the vertices.
@@ -70,5 +78,7 @@ namespace foxEngineSDK
     std::vector<vertex> m_vertices; /**< The Mesh vertices.*/
 
     std::vector<uint32> m_indices; /**< The Mesh indices.*/
+
+    aiString m_texturePath; /**< The Mesh texture file path.*/
   };
 }

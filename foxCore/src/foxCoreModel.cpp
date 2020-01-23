@@ -51,7 +51,7 @@ namespace foxEngineSDK
       const aiMesh* meshData = model->mMeshes[i];
 
       //Load the Mesh
-      m_meshes[i].loadMesh(meshData, m_vertexCount);
+      m_meshes[i].loadMesh(meshData, m_vertexCount, model->mMaterials[meshData->mMaterialIndex]);
 
       m_vertexByteWidth += m_meshes[i].getVertexByteWidth();
 
@@ -86,7 +86,14 @@ namespace foxEngineSDK
 
     if (m_indexCount != 0)
     {
-      foxGraphicsAPI::instance().drawIndexed(m_indexCount, 0, 0);
+
+      for (uint32 i = 0; i < m_meshes.size(); ++i)
+      {
+        
+        m_meshes[i].loadAndSetMeshTexture();
+
+        foxGraphicsAPI::instance().drawIndexed(m_meshes[i].getIndexData()->size(), 0, 0);
+      }
     }
   }
 
